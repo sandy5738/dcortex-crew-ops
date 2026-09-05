@@ -25,6 +25,7 @@ import { ALL_FILES, readJson } from './ingest';
 import { RulesEngine, Schemas, calendarWindow, ruleParams } from './rulesEngine';
 import { deriveDuty, fdpLimit } from './duty';
 import { recommendCover } from './decide';
+import { assessStationClosure, planJointCover } from './disruption';
 
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
@@ -526,6 +527,43 @@ function derivationAndRecommendation() {
     const a = JSON.stringify(recommendCover(s2.event.pairing_id, s2.event.crew_id));
     const b = JSON.stringify(recommendCover(s2.event.pairing_id, s2.event.crew_id));
     check('recommendCover is deterministic', a === b);
+
+    // -- S3: a station closure, both directions. 9 of the 13 affected flights
+    // are ARRIVALS - the narrative is explicit that aircraft may not land in
+    // the window either - so a departures-only reading finds a third of them.
+    const s3 = readJson('scenarios').find((s: any) => s.scenario_id === 'S3');
+    if (s3) {
+        const c = assessStationClosure(
+            s3.event.station, s3.event.window_utc.start, s3.event.window_utc.end);
+        equal('S3 affected flights match the key',
+              [...c.affected_flights].sort(), [...s3.answer_key.affected_flights].sort());
+
+        let wrong = 0;
+        for (const k of s3.answer_key.per_flight_assessment) {
+            const o = c.per_flight_assessment.find(x => x.flight_id === k.flight_id);
+            if (!o || o.pairing_id !== k.pairing_id ||
+                o.min_delay_hours !== k.min_delay_hours ||
+                o.crew_fdp_after_delay !== k.crew_fdp_after_delay ||
+                o.fdp_limit !== k.fdp_limit || o.action !== k.action) wrong++;
+        }
+        equal('S3 per-flight assessment matches the key on every row', wrong, 0);
+    }
+
+    // -- S6: two vacancies, one pool. Running recommendCover twice and taking
+    // each rank 1 double-books whoever ranks first for both, so the plan is
+    // solved jointly and only the TOTAL is asserted: the key states that
+    // equal-cost mirror assignments are equally correct.
+    const s6 = readJson('scenarios').find((s: any) => s.scenario_id === 'S6');
+    if (s6) {
+        const plan = planJointCover(s6.event.events.map((e: any) =>
+            ({ pairingId: e.pairing_id, vacancyCrewId: e.crew_id })));
+        check('S6 produces a joint plan', plan.optimal !== null);
+        equal('S6 optimal total cost matches the key',
+              plan.optimal?.total_cost_inr, s6.answer_key.optimal_joint_plan.total_cost_inr);
+        const ids = plan.optimal?.assignments.map(x => x.crew_id) ?? [];
+        equal('S6 assigns nobody to two aircraft', ids.length, new Set(ids).size);
+        equal('S6 covers every vacancy', ids.length, s6.event.events.length);
+    }
 }
 
 // -------------------------------------------------------------------- cli

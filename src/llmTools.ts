@@ -25,6 +25,7 @@ import { QueryEngine, QuerySchemas } from './queryEngine';
 import { assessCandidate, recommendCover } from './decide';
 import { deriveDuty, fdpLimit } from './duty';
 import { simulateImpact } from './simulator';
+import { assessStationClosure, planJointCover } from './disruption';
 
 // ---------------------------------------------------------------- schemas
 
@@ -47,6 +48,17 @@ export const DecisionSchemas = {
     AssessVacancy: z.object({
         crewId: z.string().describe("The crew member who is unavailable"),
         date: z.string().describe("Date in YYYY-MM-DD"),
+    }),
+    AssessStationClosure: z.object({
+        station: z.string().describe("Station code (e.g., BLR, HYD)"),
+        startUtc: z.string().describe("Closure start, UTC ISO (e.g., 2026-09-17T08:00:00Z)"),
+        endUtc: z.string().describe("Closure end, UTC ISO"),
+    }),
+    PlanJointCover: z.object({
+        vacancies: z.array(z.object({
+            pairingId: z.string(),
+            vacancyCrewId: z.string(),
+        })).min(1).describe("Every simultaneous vacancy. Solved together so no crew member is assigned twice."),
     }),
 };
 
@@ -75,7 +87,10 @@ export const TOOLS = [
     tool('assessCandidate', 'Can this crew member legally cover this pairing? Evaluates ALL SEVEN rules plus availability (status, on-call window, double-booking) and returns a verdict per rule with its arithmetic. Derives duty and block hours itself — never supply them.', DecisionSchemas.AssessCandidate),
     tool('assessDelay', 'Effect of a technical delay on an aircraft line: the extended duty period, the FDP limit for its sector count, and whether it breaches.', DecisionSchemas.AssessDelay),
 
+    tool('assessStationClosure', "Which flights a station closure blocks, in both directions, and whether each affected pairing's rostered crew can still legally operate once the delay lands on their duty.", DecisionSchemas.AssessStationClosure),
+
     // ---- Tier 3: recommendation
+    tool('planJointCover', 'Cover several simultaneous vacancies at once, minimising total cost while ensuring no crew member is assigned to two aircraft. Use whenever more than one vacancy must be solved together — assigning each separately double-books the candidate who ranks first for both.', DecisionSchemas.PlanJointCover),
     tool('recommendCover', 'Ranked, costed, rule-checked options to cover a pairing whose crew member is unavailable. Enumerates every crew member of the required rank, evaluates all seven rules on each, prices the legal ones and ranks them, and returns the rejected ones with reasons.', DecisionSchemas.RecommendCover),
 ];
 
@@ -133,6 +148,14 @@ const HANDLERS: Record<string, Handler> = {
                 };
             });
         },
+    },
+    assessStationClosure: {
+        schema: DecisionSchemas.AssessStationClosure,
+        run: a => assessStationClosure(a.station, a.startUtc, a.endUtc),
+    },
+    planJointCover: {
+        schema: DecisionSchemas.PlanJointCover,
+        run: a => planJointCover(a.vacancies),
     },
     recommendCover: {
         schema: DecisionSchemas.RecommendCover,
