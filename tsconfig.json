@@ -6,5 +6,10 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true
-  }
+  },
+  // The backend only. ui/ is a separate Vite project with its own tsconfig
+  // (JSX, DOM libs, bundler resolution); compiling it under these options
+  // fails on every .tsx import. `npm run build` inside ui/ typechecks it.
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "ui", "dist"]
 }

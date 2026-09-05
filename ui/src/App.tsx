@@ -8,6 +8,7 @@
 import { useEffect, useState } from "react";
 import { ConversationRail, type Message } from "./components/ConversationRail";
 import { ExclusionPanel } from "./components/ExclusionPanel";
+import { ResultTable } from "./components/ResultTable";
 import { Header } from "./components/Header";
 import { Rack } from "./components/Rack";
 import { fixtureMode, recordChoice, useAsk } from "./api";
@@ -58,12 +59,22 @@ function Answer({
   return (
     <>
       <Header verdict={verdict} degraded={degraded} />
-      <Rack
-        options={verdict.options}
-        rankingKey={verdict.ranking_key}
-        onChoose={onChoose}
-      />
-      <ExclusionPanel excluded={verdict.excluded} />
+
+      {/* A Tier 1 lookup returns rows, not ranked options. Showing an empty
+          rack there reads as "no legal option found", which is wrong and
+          alarming for a question that simply listed some flights. */}
+      {verdict.rows.length > 0 ? (
+        <ResultTable rows={verdict.rows} />
+      ) : (
+        <>
+          <Rack
+            options={verdict.options}
+            rankingKey={verdict.ranking_key}
+            onChoose={onChoose}
+          />
+          <ExclusionPanel excluded={verdict.excluded} />
+        </>
+      )}
 
       {verdict.caveats.length > 0 && (
         <div
@@ -97,7 +108,7 @@ function Answer({
 }
 
 export default function App() {
-  const { result, decisionId, loading, error, degraded, ask } = useAsk();
+  const { result, decisionId, loading, error, degraded, prose, ask } = useAsk();
   const [messages, setMessages] = useState<Message[]>([]);
 
   // In fixture mode, seed the rail so the screen is never empty on a projector.
@@ -106,6 +117,19 @@ export default function App() {
       setMessages([{ role: "you", text: result.query }]);
     }
   }, [result]);
+
+  // The narration belongs in the rail, next to the question that produced it.
+  // It is appended when an answer arrives rather than rendered from state, so
+  // the history reads as a conversation rather than only ever showing the
+  // latest reply.
+  useEffect(() => {
+    if (!prose || loading) return;
+    setMessages((m) =>
+      m.length && m[m.length - 1].role === "advisor" && m[m.length - 1].text === prose
+        ? m
+        : [...m, { role: "advisor", text: prose }],
+    );
+  }, [prose, loading]);
 
   function handleAsk(q: string) {
     setMessages((m) => [...m, { role: "you", text: q }]);

@@ -288,7 +288,20 @@ export function build(): void {
     // Only now is the old database replaced. rename is atomic within a
     // filesystem, so a reader sees either the previous database or the new
     // one, never a half-built file.
-    fs.renameSync(tmpPath, DB_PATH);
+    try {
+      fs.renameSync(tmpPath, DB_PATH);
+    } catch (err: any) {
+      // Windows refuses to rename over a file another process holds open, and
+      // `EPERM on rename` explains nothing. The previous database is intact
+      // and the new one is complete - only the swap failed.
+      if (err?.code === 'EPERM' || err?.code === 'EBUSY') {
+        throw new Error(
+          `Could not replace ${path.basename(DB_PATH)}: another process is holding it open ` +
+          `(on Windows the API server does, because it keeps one read handle for its lifetime). ` +
+          `Stop the API, re-run the ingest, then start it again. The existing database is unchanged.`);
+      }
+      throw err;
+    }
   } catch (err) {
     try { db.close(); } catch { /* already closed on the success path */ }
     if (fs.existsSync(tmpPath)) fs.unlinkSync(tmpPath);

@@ -181,6 +181,24 @@ export function assessmentToVerdict(
  * as tabular rows. The UI shows a table when `rows` is populated and there
  * are no options, so every tool has somewhere to land.
  */
+/** Tool names are for the model. Controllers get a phrase. */
+const TITLES: Record<string, string> = {
+    getCrew: 'Crew',
+    getFlights: 'Flights',
+    getNetworkStats: 'Network',
+    getPairing: 'Pairing',
+    getReservePool: 'Reserve pool',
+    getExpiringCertifications: 'Expiring certifications',
+    getDutyHours: 'Duty clock',
+    getCrewAboveDutyThreshold: 'Crew near the duty limit',
+    getRiskSignals: 'Disruption risk',
+    getEarliestNextReport: 'Earliest next report',
+    assessVacancy: 'Vacancy impact',
+    assessDelay: 'Delay impact',
+    assessStationClosure: 'Station closure',
+    planJointCover: 'Joint recovery plan',
+};
+
 export function rowsToVerdict(
     result: unknown, query: string, computedAt: string, toolName: string,
 ): UiVerdict {
@@ -189,7 +207,7 @@ export function rowsToVerdict(
         : (result && typeof result === 'object' ? [result as Record<string, unknown>] : []);
 
     return {
-        intent_kind: toolName,
+        intent_kind: TITLES[toolName] ?? toolName,
         query,
         impact: null,
         options: [],

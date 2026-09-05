@@ -66,11 +66,20 @@ export function Header({
         )}
       </div>
 
-      <div className="num mt-1 text-14" style={{ color: "var(--ink-2)" }}>
-        {verdict.pool_size} candidates considered · {legal} legal ·{" "}
-        {excluded} excluded
-        {skipped > 0 && <> · {skipped} not evaluated</>}
-      </div>
+      {/* The candidate arithmetic is the basis for trusting the first strip —
+          but it is nonsense on a lookup, where "0 legal · 0 excluded" reads as
+          a failure rather than a list of flights. */}
+      {evaluated > 0 ? (
+        <div className="num mt-1 text-14" style={{ color: "var(--ink-2)" }}>
+          {verdict.pool_size} candidates considered · {legal} legal ·{" "}
+          {excluded} excluded
+          {skipped > 0 && <> · {skipped} not evaluated</>}
+        </div>
+      ) : verdict.rows.length > 0 ? (
+        <div className="num mt-1 text-14" style={{ color: "var(--ink-2)" }}>
+          {verdict.rows.length} record{verdict.rows.length === 1 ? "" : "s"}
+        </div>
+      ) : null}
 
       {im && im.uncovered_flights_day1.length > 0 && (
         <div className="mono mt-2 text-13">

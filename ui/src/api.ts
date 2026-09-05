@@ -7,9 +7,9 @@
  * Vite proxies /api/* to http://localhost:3000 (vite.config.ts), so there is
  * no CORS configuration anywhere.
  *
- * ⚠ The backend does not serve POST /ask yet — src/api.ts exposes per-tool
- * routes and a stub /chat. Until an endpoint returns a Verdict, run the UI
- * with ?fixture=1. See ui/README.md.
+ * POST /ask is live: it parses with Sarvam, executes the deterministic engine,
+ * and returns a Verdict plus one paragraph of narration. `?fixture=1` still
+ * renders the S2 fixture with no network at all, which is the safe demo path.
  */
 import { useCallback, useEffect, useState } from "react";
 import type { Result, Verdict } from "./types";
@@ -25,6 +25,8 @@ export function fixtureMode(): boolean {
 
 export interface AskResponse {
   result: Result;
+  /** One-paragraph narration. Contains no number that is not in the verdict. */
+  prose: string;
   /** Server says whether the LLM path was live. Drives the degraded badge. */
   degraded: boolean;
   /** Ledger row id, so a strip click can write controller_chose back. */
@@ -48,6 +50,7 @@ export type AskState = {
   result: Result | null;
   decisionId: string | null;
   loading: boolean;
+  prose: string;
   /** State what happened and what to do. Never "Something went wrong." */
   error: string | null;
   degraded: boolean;
@@ -60,6 +63,7 @@ export function useAsk() {
     loading: false,
     error: null,
     degraded: false,
+    prose: "",
   });
 
   // In fixture mode, render the flagship answer immediately and never call out.
@@ -71,6 +75,7 @@ export function useAsk() {
         loading: false,
         error: null,
         degraded: true,
+        prose: "Rendering the S2 fixture. No backend was contacted.",
       });
     }
   }, []);
@@ -87,6 +92,7 @@ export function useAsk() {
         loading: false,
         error: null,
         degraded: true,
+        prose: "Rendering the S2 fixture. No backend was contacted.",
       });
       return;
     }
@@ -100,6 +106,7 @@ export function useAsk() {
         loading: false,
         error: null,
         degraded: data.degraded,
+        prose: data.prose ?? "",
       });
     } catch (e) {
       setState({
@@ -111,6 +118,7 @@ export function useAsk() {
             ? `${e.message}. Is the API running? Start it with \`npm start\`.`
             : "Unknown error",
         degraded: false,
+        prose: "",
       });
     }
   }, []);
