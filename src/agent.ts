@@ -8,6 +8,8 @@ import { RulesEngine, Schemas as RuleSchemas } from "./rulesEngine";
 import { QueryEngine, QuerySchemas } from "./queryEngine";
 import { simulateImpact } from "./simulator";
 import { z } from "zod";
+import { zodToJsonSchema } from "zod-to-json-schema";
+import { getDb, closeDb } from "./db";
 
 /**
  * 1. Define the Tools for LangGraph
@@ -27,7 +29,7 @@ const checkFdpLimitTool = tool(
     {
         name: "check_fdp_limit",
         description: "Evaluates RULE-FDP-01: Max flight duty period 13h, reduced 0.5h per sector beyond the 2nd.",
-        schema: RuleSchemas.FDP01
+        schema: zodToJsonSchema(RuleSchemas.FDP01)
     }
 );
 
@@ -38,7 +40,7 @@ const checkDutyLimitTool = tool(
     {
         name: "check_7d_duty_limit",
         description: "Evaluates RULE-DUTY-02: Max 60 duty hours in any 7 consecutive calendar days.",
-        schema: RuleSchemas.DUTY02
+        schema: zodToJsonSchema(RuleSchemas.DUTY02)
     }
 );
 
@@ -147,8 +149,9 @@ const getDutyHours = tool(
 );
 
 const getFlights = tool(
-    async (input: z.infer<typeof QuerySchemas.GetFlights>) => {
-        const rows = QueryEngine.getFlights(input);
+    async (input: { date?: string; depStation?: string; arrStation?: string }) => {
+        const date = input.date || new Date().toISOString().split('T')[0];
+        const rows = QueryEngine.getFlights({ ...input, date });
         return JSON.stringify(rows).length > 0 ? JSON.stringify(rows) : JSON.stringify({ result: [] });
     },
     {
@@ -231,6 +234,119 @@ const checkAllRulesTool = tool(
 
 export const tools = [checkAllRulesTool, simulateImpactTool,
     lookupReservePool, getDutyHours, getFlights, getExpiringCerts, getCrew, getPairing];
+const checkFlightLimitTool = tool(
+    async (input: z.infer<typeof RuleSchemas.FLT03>) => {
+        return JSON.stringify(RulesEngine.checkFlt03(input));
+    },
+    {
+        name: "check_flt03",
+        description: "Evaluates RULE-FLT-03: Max 100 flight hours in any 28 consecutive calendar days.",
+        schema: zodToJsonSchema(RuleSchemas.FLT03)
+    }
+);
+
+const checkRest04Tool = tool(
+    async (input: z.infer<typeof RuleSchemas.REST04>) => {
+        return JSON.stringify(RulesEngine.checkRest04(input));
+    },
+    {
+        name: "check_rest04",
+        description: "Evaluates RULE-REST-04: Min 12h rest between release and next report.",
+        schema: zodToJsonSchema(RuleSchemas.REST04)
+    }
+);
+
+const checkQual05Tool = tool(
+    async (input: z.infer<typeof RuleSchemas.QUAL05>) => {
+        return JSON.stringify(RulesEngine.checkQual05(input));
+    },
+    {
+        name: "check_qual05",
+        description: "Evaluates RULE-QUAL-05: Crew must hold a valid rating for the assigned aircraft type.",
+        schema: zodToJsonSchema(RuleSchemas.QUAL05)
+    }
+);
+
+const checkCert06Tool = tool(
+    async (input: z.infer<typeof RuleSchemas.CERT06>) => {
+        return JSON.stringify(RulesEngine.checkCert06(input));
+    },
+    {
+        name: "check_cert06",
+        description: "Evaluates RULE-CERT-06: All certifications must be valid on the duty date.",
+        schema: zodToJsonSchema(RuleSchemas.CERT06)
+    }
+);
+
+const checkBase07Tool = tool(
+    async (input: z.infer<typeof RuleSchemas.BASE07>) => {
+        return JSON.stringify(RulesEngine.checkBase07(input));
+    },
+    {
+        name: "check_base07",
+        description: "Evaluates RULE-BASE-07: Reserve callout from own base only; covering from another base requires deadhead positioning.",
+        schema: zodToJsonSchema(RuleSchemas.BASE07)
+    }
+);
+
+
+const updateCrewStatusTool = tool(
+    async (input: { crewId: string; status: string }) => {
+        const db = getDb();
+        db.prepare("UPDATE crew SET status = ? WHERE crew_id = ?").run(input.status, input.crewId);
+        db.close();
+        closeDb();
+        return { success: true, crew_id: input.crewId, new_status: input.status };
+    },
+    {
+        name: "update_crew_status",
+        description: "Updates a crew member's status (e.g., 'sick', 'leave', 'training') in the database.",
+        schema: zodToJsonSchema(z.object({
+            crewId: z.string().describe("Crew ID (e.g., C-1042)"),
+            status: z.string().describe("New status: 'active', 'sick', 'leave', 'training'")
+        }))
+    }
+);
+
+const assignPairingCrewTool = tool(
+    async (input: { pairingId: string; crewId: string; role: string }) => {
+        const db = getDb();
+        const seq = db.prepare("SELECT MAX(seq) as max_seq FROM pairing_crew WHERE pairing_id = ?").get(input.pairingId) as any;
+        const newSeq = (seq?.max_seq ?? 0) + 1;
+        db.prepare("INSERT INTO pairing_crew (pairing_id, crew_id, role, seq) VALUES (?, ?, ?, ?)").run(input.pairingId, input.crewId, input.role, newSeq);
+        db.close();
+        closeDb();
+        return { success: true, pairing_id: input.pairingId, crew_id: input.crewId, role: input.role };
+    },
+    {
+        name: "assign_pairing_crew",
+        description: "Assigns a crew member to a pairing with a specific role.",
+        schema: zodToJsonSchema(z.object({
+            pairingId: z.string().describe("Pairing ID (e.g., P-2201)"),
+            crewId: z.string().describe("Crew ID (e.g., C-3315)"),
+            role: z.string().describe("Role: 'Captain', 'First Officer', 'Senior Cabin Crew', 'Cabin Crew'")
+        }))
+    }
+);
+
+const rollbackDbTool = tool(
+    async () => {
+        closeDb();
+        const { build } = await import('./ingest');
+        build();
+        return { success: true, message: "Database rolled back to original state" };
+    },
+    {
+        name: "rollback_db",
+        description: "Rolls back the database to its original state by rebuilding from JSON source.",
+        schema: zodToJsonSchema(z.object({}))
+    }
+);
+
+const tools = [checkFdpLimitTool, checkDutyLimitTool, simulateImpactTool,
+    checkFlightLimitTool,
+    lookupReservePool, getDutyHours, getFlights, getExpiringCerts, getCrew, getPairing,
+    updateCrewStatusTool, assignPairingCrewTool, rollbackDbTool];
 const toolNode = new ToolNode(tools);
 
 /**
