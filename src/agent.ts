@@ -12,8 +12,13 @@ import { getDb, closeDb } from "./db";
 
 /**
  * 1. Define the Tools for LangGraph
- * We wrap our deterministic RulesEngine and Simulator into LangChain-compatible tools.
- * Tool schemas are declared as plain JSON Schema objects directly.
+ *
+ * Every tool passes its Zod schema directly. LangChain (>=1.0) understands
+ * Zod 4 natively: it derives the OpenAI tool parameters AND validates the
+ * model's arguments against the same schema before the engine runs. The
+ * hand-written JSON Schema duplicates from the previous version are gone —
+ * one schema is the single source of truth for the LLM's contract and the
+ * deterministic engine's input check.
  */
 
 const checkFdpLimitTool = tool(
@@ -35,6 +40,61 @@ const checkDutyLimitTool = tool(
         name: "check_7d_duty_limit",
         description: "Evaluates RULE-DUTY-02: Max 60 duty hours in any 7 consecutive calendar days.",
         schema: zodToJsonSchema(RuleSchemas.DUTY02)
+    }
+);
+
+const checkFlightHoursTool = tool(
+    async (input: z.infer<typeof RuleSchemas.FLT03>) => {
+        return JSON.stringify(RulesEngine.checkFlt03(input));
+    },
+    {
+        name: "check_28d_flight_hours",
+        description: "Evaluates RULE-FLT-03: Max 100 flight (block) hours in any 28 consecutive days.",
+        schema: RuleSchemas.FLT03
+    }
+);
+
+const checkRest04Tool = tool(
+    async (input: z.infer<typeof RuleSchemas.REST04>) => {
+        return JSON.stringify(RulesEngine.checkRest04(input));
+    },
+    {
+        name: "check_rest04",
+        description: "Evaluates RULE-REST-04: Min 12h rest between release and next report, checked in both directions, plus double-booking detection.",
+        schema: RuleSchemas.REST04
+    }
+);
+
+const checkQual05Tool = tool(
+    async (input: z.infer<typeof RuleSchemas.QUAL05>) => {
+        return JSON.stringify(RulesEngine.checkQual05(input));
+    },
+    {
+        name: "check_qual05",
+        description: "Evaluates RULE-QUAL-05: Crew must hold a valid rating for the assigned aircraft type.",
+        schema: RuleSchemas.QUAL05
+    }
+);
+
+const checkCert06Tool = tool(
+    async (input: z.infer<typeof RuleSchemas.CERT06>) => {
+        return JSON.stringify(RulesEngine.checkCert06(input));
+    },
+    {
+        name: "check_cert06",
+        description: "Evaluates RULE-CERT-06: All certifications must be valid on the duty date.",
+        schema: RuleSchemas.CERT06
+    }
+);
+
+const checkBase07Tool = tool(
+    async (input: z.infer<typeof RuleSchemas.BASE07>) => {
+        return JSON.stringify(RulesEngine.checkBase07(input));
+    },
+    {
+        name: "check_base07",
+        description: "Evaluates RULE-BASE-07: Reserve callout from own base only; covering from another base requires deadhead positioning.",
+        schema: RuleSchemas.BASE07
     }
 );
 
@@ -64,48 +124,26 @@ const simulateImpactTool = tool(
 );
 
 const lookupReservePool = tool(
-    async (input: { date?: string; base?: string }) => {
-        const date = input.date || new Date().toISOString().split('T')[0];
-        const rows = QueryEngine.getReservePool({ ...input, date });
+    async (input: z.infer<typeof QuerySchemas.GetReservePool>) => {
+        const rows = QueryEngine.getReservePool(input);
         return JSON.stringify(rows).length > 0 ? JSON.stringify(rows) : JSON.stringify({ result: [] });
     },
     {
         name: "get_reserve_pool",
-        description: "Looks up which crew members are on reserve/standby for a specific date and base, and returns their on-call windows.",
-        schema: {
-            type: "object",
-            properties: {
-                date: {
-                    type: "string",
-                    description: "Date in YYYY-MM-DD format (defaults to current date)"
-                },
-                base: {
-                    type: "string",
-                    description: "Station code (e.g., BLR, DEL)"
-                }
-            }
-        }
+        description: "Looks up which crew members are on reserve/standby for a specific date and base.",
+        schema: QuerySchemas.GetReservePool
     }
 );
 
 const getDutyHours = tool(
-    async (input: { crewId: string }) => {
+    async (input: z.infer<typeof QuerySchemas.GetDutyHours>) => {
         const result = QueryEngine.getDutyHours(input);
         return JSON.stringify(result).length > 0 ? JSON.stringify(result) : JSON.stringify({ result: null });
     },
     {
         name: "get_duty_hours",
         description: "Looks up a crew member's accumulated duty hours and rest times.",
-        schema: {
-            type: "object",
-            properties: {
-                crewId: {
-                    type: "string",
-                    description: "Crew ID (e.g., C-1042)"
-                }
-            },
-            required: ["crewId"]
-        }
+        schema: QuerySchemas.GetDutyHours
     }
 );
 
@@ -117,102 +155,84 @@ const getFlights = tool(
     },
     {
         name: "get_flights",
-        description: "Looks up flight schedules. If date is not provided, defaults to current date. Filter by departure or arrival station (e.g. DEL, BLR, BOM).",
-        schema: {
-            type: "object",
-            properties: {
-                date: {
-                    type: "string",
-                    description: "Date in YYYY-MM-DD format (defaults to current date if not provided or for 'today')"
-                },
-                depStation: {
-                    type: "string",
-                    description: "Departure station code (e.g., DEL)"
-                },
-                arrStation: {
-                    type: "string",
-                    description: "Arrival station code (e.g., BOM)"
-                }
-            }
-        }
+        description: "Looks up flight schedules for a given date. Optionally filter by departure or arrival station.",
+        schema: QuerySchemas.GetFlights
     }
 );
 
 const getExpiringCerts = tool(
-    async (input: { dateFrom: string; dateTo: string }) => {
+    async (input: z.infer<typeof QuerySchemas.GetExpiringCertifications>) => {
         const rows = QueryEngine.getExpiringCertifications(input);
         return JSON.stringify(rows).length > 0 ? JSON.stringify(rows) : JSON.stringify({ result: [] });
     },
     {
         name: "get_expiring_certifications",
         description: "Finds all crew medical/training certifications expiring within a specific date range.",
-        schema: {
-            type: "object",
-            properties: {
-                dateFrom: {
-                    type: "string",
-                    description: "Start date in YYYY-MM-DD"
-                },
-                dateTo: {
-                    type: "string",
-                    description: "End date in YYYY-MM-DD"
-                }
-            },
-            required: ["dateFrom", "dateTo"]
-        }
+        schema: QuerySchemas.GetExpiringCertifications
     }
 );
 
 const getCrew = tool(
-    async (input: { crewId?: string; base?: string; rank?: string }) => {
+    async (input: z.infer<typeof QuerySchemas.GetCrew>) => {
         const rows = QueryEngine.getCrew(input);
         return JSON.stringify(rows).length > 0 ? JSON.stringify(rows) : JSON.stringify({ result: [] });
     },
     {
         name: "get_crew",
         description: "Looks up crew member details (rank, base, ratings).",
-        schema: {
-            type: "object",
-            properties: {
-                crewId: {
-                    type: "string",
-                    description: "Crew ID (e.g., C-1042)"
-                },
-                base: {
-                    type: "string",
-                    description: "Station code (e.g., BLR)"
-                },
-                rank: {
-                    type: "string",
-                    description: "Rank (e.g., Captain, First Officer, Cabin Crew)"
-                }
-            },
-            required: []
-        }
+        schema: QuerySchemas.GetCrew
     }
 );
 
 const getPairing = tool(
-    async (input: { pairingId: string }) => {
+    async (input: z.infer<typeof QuerySchemas.GetPairing>) => {
         const result = QueryEngine.getPairing(input);
         return JSON.stringify(result).length > 0 ? JSON.stringify(result) : JSON.stringify({ error: "Pairing not found" });
     },
     {
         name: "get_pairing",
-        description: "Looks up the full details of a pairing by pairing ID.",
-        schema: {
-            type: "object",
-            properties: {
-                pairingId: {
-                    type: "string",
-                    description: "Pairing ID (e.g., P-2291)"
-                }
-            },
-            required: ["pairingId"]
-        }
+        description: "Looks up the full details of a pairing (the schedule of flights and assigned crew) by pairing ID.",
+        schema: QuerySchemas.GetPairing
     }
 );
 
+const CheckAllRulesSchema = z.object({
+    crewId: z.string(),
+    dutyDate: z.string().describe("Date of duty in YYYY-MM-DD"),
+    newReportUtc: z.string().datetime().describe("UTC ISO string of the report time"),
+    coverReleaseUtc: z.string().datetime().describe("UTC ISO string of the release time"),
+    numSectors: z.number().int().min(1).describe("Number of flight legs"),
+    proposedFdpHours: z.number().positive().describe("Proposed total flight duty period in hours"),
+    newDutyHours: z.number().positive().describe("Proposed total duty hours"),
+    newFlightHours: z.number().positive().describe("Proposed flight (block) hours"),
+    targetAircraftType: z.string().describe("Aircraft type (e.g., A320, ATR72)"),
+    requiredDepartureStation: z.string().describe("Station code (e.g., BLR)"),
+    priorProposed: z.record(z.string(), z.number()).optional().describe("Earlier days of the SAME multi-day assignment")
+});
+
+const checkAllRulesTool = tool(
+    async (input: z.infer<typeof CheckAllRulesSchema>) => {
+        const results = {
+            fdp01: RulesEngine.checkFdp01(input),
+            duty02: RulesEngine.checkDuty02(input),
+            flt03: RulesEngine.checkFlt03(input),
+            rest04: RulesEngine.checkRest04(input),
+            qual05: RulesEngine.checkQual05(input),
+            cert06: RulesEngine.checkCert06(input),
+            base07: RulesEngine.checkBase07(input)
+        };
+        const allLegal = Object.values(results).every(r => r.legal);
+        return JSON.stringify({ all_legal: allLegal, results });
+    },
+    {
+        name: "check_all_rules",
+        description: "Evaluates all 7 legality rules (FDP, Duty, Flight, Rest, Qualifications, Certifications, Base) in a single tool call.",
+        schema: CheckAllRulesSchema
+    }
+);
+
+export const tools = [checkAllRulesTool, simulateImpactTool,
+    lookupReservePool, getDutyHours, getFlights, getExpiringCerts, getCrew, getPairing];
 const checkFlightLimitTool = tool(
     async (input: z.infer<typeof RuleSchemas.FLT03>) => {
         return JSON.stringify(RulesEngine.checkFlt03(input));
@@ -333,16 +353,31 @@ const toolNode = new ToolNode(tools);
  */
 
 const callModel = async (state: any) => {
-    const openai = new ChatOpenAI({
+    const primaryModel = new ChatOpenAI({
         modelName: "sarvam-105b",
         temperature: 0,
+        openAIApiKey: process.env.SARVAM_API_KEY || "missing",
         configuration: {
             baseURL: "https://api.sarvam.ai/v1",
             apiKey: process.env.SARVAM_API_KEY
         }
     }).bindTools(tools);
-    
-    const response = await openai.invoke(state.messages as BaseMessage[]);
+
+    const fallbackModel = new ChatOpenAI({
+        modelName: "glm-4",
+        temperature: 0,
+        openAIApiKey: process.env.TOKENROUTER_API_KEY || "missing",
+        configuration: {
+            baseURL: "https://api.tokenrouter.com/v1",
+            apiKey: process.env.TOKENROUTER_API_KEY
+        }
+    }).bindTools(tools);
+
+    const modelWithFallback = primaryModel.withFallbacks({
+        fallbacks: [fallbackModel]
+    });
+
+    const response = await modelWithFallback.invoke(state.messages as BaseMessage[]);
     return { messages: [response] };
 };
 
