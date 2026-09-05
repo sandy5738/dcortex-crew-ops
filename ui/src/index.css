@@ -141,6 +141,19 @@ table {
   white-space: nowrap;
 }
 
+.tier-pre {
+  margin: 0;
+  padding: 8px;
+  max-height: 240px;
+  overflow: auto;
+  background: #f7f7f5;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  font-family: "IBM Plex Mono", ui-monospace, "Consolas", monospace;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
 /* --------------------------------------------------------------- motion */
 
 /* The certificate expanding is the single animated moment in the app.

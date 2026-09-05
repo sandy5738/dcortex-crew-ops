@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { ChatOpenAI } from "@langchain/openai";
 import { MessagesAnnotation, StateGraph } from "@langchain/langgraph";
 import { BaseMessage } from "@langchain/core/messages";
@@ -257,12 +258,22 @@ const toolNode = new ToolNode(tools);
  */
 
 const callModel = async (state: any) => {
+    const apiKey = process.env.SARVAM_API_KEY ?? process.env.OPENAI_API_KEY;
+    const baseURL = process.env.SARVAM_BASE_URL ?? "https://api.sarvam.ai/v1";
+    const modelName = process.env.SARVAM_MODEL ?? "sarvam-105b";
+
+    if (!apiKey) {
+        throw new Error(
+            "Missing API credentials. Set SARVAM_API_KEY (preferred) or OPENAI_API_KEY in .env.",
+        );
+    }
+
     const openai = new ChatOpenAI({
-        modelName: "sarvam-105b",
+        modelName,
+        apiKey,
         temperature: 0,
         configuration: {
-            baseURL: "https://api.sarvam.ai/v1",
-            apiKey: process.env.SARVAM_API_KEY
+            baseURL
         }
     }).bindTools(tools);
     

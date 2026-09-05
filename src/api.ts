@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
@@ -120,38 +121,64 @@ app.post('/tools/call', (req, res) => {
 // LANGGRAPH CHAT ENDPOINT (LLM orchestration via graph)
 // =================================================================
 app.post('/chat', async (req, res) => {
-    const { message } = req.body;
+    const { message, history } = req.body;
     if (!message || typeof message !== 'string') {
         return res.status(400).json({ error: 'message field required (string)' });
+    }
+
+    const safeHistory = Array.isArray(history)
+        ? history
+            .filter((m) => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
+            .slice(-20)
+        : [];
+
+    function parseMaybeJson(value: unknown): unknown {
+        if (typeof value !== 'string') return value;
+        try {
+            return JSON.parse(value);
+        } catch {
+            return value;
+        }
     }
 
     try {
         const result = await graph.invoke({
             messages: [
                 { role: 'system', content: 'You are the Crew Ops Advisor for dCortex Air. You have access to tools to judge crew pairings, duty limits, reserve pools, and disruption impacts. Always reason step by step using tools when the user asks for a legality check, lookup, or simulation.' },
+                ...safeHistory,
                 { role: 'user', content: message }
             ]
         });
 
-        // Extract tool calls from the reasoning trail
+        // Extract tool calls and pair them with tool outputs for transparency.
         const toolCalls: any[] = [];
+        const byToolCallId = new Map<string, { tool_called: string; arguments: unknown; raw_result: unknown }>();
+
         for (const msg of result.messages) {
             const m = msg as any;
             if (m.tool_calls) {
                 for (const tc of m.tool_calls) {
-                    toolCalls.push({
+                    const row = {
                         tool_called: tc.name,
                         arguments: tc.args,
-                        raw_result: undefined
-                    });
+                        raw_result: null
+                    };
+                    toolCalls.push(row);
+                    if (tc.id) byToolCallId.set(tc.id, row);
                 }
             }
+
             if (m.type === 'tool') {
-                // Match tool results to tool calls
-                for (const tc of toolCalls) {
-                    if (!tc.raw_result && m.tool_call_id === tc.tool_called) {
-                        tc.raw_result = m.content;
-                    }
+                const parsedContent = parseMaybeJson(m.content);
+                const matched = m.tool_call_id ? byToolCallId.get(m.tool_call_id) : undefined;
+                if (matched) {
+                    matched.raw_result = parsedContent;
+                } else {
+                    toolCalls.push({
+                        tool_called: m.name || 'tool',
+                        arguments: {},
+                        raw_result: parsedContent
+                    });
                 }
             }
         }

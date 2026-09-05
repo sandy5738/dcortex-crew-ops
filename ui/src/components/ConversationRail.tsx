@@ -16,10 +16,10 @@ export interface Message {
 /** Four real questions — one per tier plus one out of scope — so the
  *  controller learns the range in five seconds. Not a logo and a tagline. */
 export const EXAMPLES = [
-  "Who's on reserve at BLR tomorrow?",
-  "C-1042 called in sick for the 15th — what breaks?",
-  "C-1042 is out. What should I do?",
-  "What's the weather at DEL?",
+  "Who is on reserve at BLR on 2026-09-15?",
+  "Check duty legality for C-2087 with newDutyHours 9.5 on 2026-09-15.",
+  "C-1042 is unavailable on 2026-09-15. Simulate impact and recommend a fallback.",
+  "Follow-up: compare the top option against one cheaper backup.",
 ];
 
 export function ConversationRail({
