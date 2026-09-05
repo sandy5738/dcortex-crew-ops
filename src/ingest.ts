@@ -214,6 +214,61 @@ function loadRules(db: Database.Database) {
     def.run(term, text as string, i));
 }
 
+function loadReserveAvailability(db: Database.Database) {
+  // Precompute whether a reserve entry is usable on each of its dates
+  // by summing the duty and flight windows and comparing against rule limits.
+  const dutyParam = db.prepare(
+    "SELECT value_num FROM rule_params WHERE rule_id='RULE-DUTY-02' AND param_key='max_duty_hours'"
+  ).get();
+  const dutyWindow = db.prepare(
+    "SELECT value_num FROM rule_params WHERE rule_id='RULE-DUTY-02' AND param_key='window_days'"
+  ).get();
+  const flightParam = db.prepare(
+    "SELECT value_num FROM rule_params WHERE rule_id='RULE-FLT-03' AND param_key='max_flight_hours'"
+  ).get();
+  const flightWindow = db.prepare(
+    "SELECT value_num FROM rule_params WHERE rule_id='RULE-FLT-03' AND param_key='window_days'"
+  ).get();
+
+  const maxDuty = dutyParam ? Number(dutyParam.value_num) : 60;
+  const dutyDays = dutyWindow ? Number(dutyWindow.value_num) : 7;
+  const maxFlight = flightParam ? Number(flightParam.value_num) : 100;
+  const flightDays = flightWindow ? Number(flightWindow.value_num) : 28;
+
+  const reserveDates = db.prepare('SELECT crew_id, date FROM reserve_dates').all() as {crew_id:string, date:string}[];
+  const ins = db.prepare('INSERT OR REPLACE INTO reserve_availability (crew_id, date, usable, duty_hours_7d, flight_hours_28d, reason) VALUES (?,?,?,?,?,?)');
+
+  for (const r of reserveDates) {
+    const crew = r.crew_id;
+    const date = r.date;
+    // compute window starts
+    const dStart = new Date(date + 'T00:00:00Z');
+    dStart.setUTCDate(dStart.getUTCDate() - (dutyDays - 1));
+    const dutyStart = dStart.toISOString().slice(0,10);
+    const fStartDate = new Date(date + 'T00:00:00Z');
+    fStartDate.setUTCDate(fStartDate.getUTCDate() - (flightDays - 1));
+    const flightStart = fStartDate.toISOString().slice(0,10);
+
+    const dutyRow = db.prepare('SELECT SUM(duty_hours) AS s FROM duty_daily_history WHERE crew_id = ? AND date BETWEEN ? AND ?').get(crew, dutyStart, date) as any;
+    const flightRow = db.prepare('SELECT SUM(flight_hours) AS s FROM duty_daily_history WHERE crew_id = ? AND date BETWEEN ? AND ?').get(crew, flightStart, date) as any;
+    const dutySum = Math.max(0, Number(dutyRow?.s || 0));
+    const flightSum = Math.max(0, Number(flightRow?.s || 0));
+
+    let usable = 1;
+    let reason: string | null = null;
+    if (dutySum >= maxDuty) {
+      usable = 0;
+      reason = 'duty_hours_exceeded';
+    }
+    if (flightSum >= maxFlight) {
+      usable = 0;
+      reason = reason ? reason + ';flight_hours_exceeded' : 'flight_hours_exceeded';
+    }
+
+    ins.run(crew, date, usable, dutySum, flightSum, reason);
+  }
+}
+
 function loadCosts(db: Database.Database) {
   const ins = db.prepare(
     'INSERT INTO costs (key, value_int, value_text, seq) VALUES (?,?,?,?)');
@@ -418,6 +473,7 @@ export function build(): void {
       loadCertifications(db);
       loadReserves(db);
       loadRules(db);
+      loadReserveAvailability(db);
       loadCosts(db);
       loadCostsPerFlight(db);
       loadCostsPerPairing(db);

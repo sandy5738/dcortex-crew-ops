@@ -343,6 +343,19 @@ CREATE TABLE IF NOT EXISTS normalized_duty_clock_summary (
     seq INTEGER NOT NULL
 );
 
+-- Precomputed reserve availability: whether a reserve on a given date is
+-- actually usable considering duty and flight-hour windows. This lets
+-- queries filter reserves cheaply without recomputing window sums.
+CREATE TABLE IF NOT EXISTS reserve_availability (
+    crew_id TEXT NOT NULL REFERENCES reserves(crew_id),
+    date    TEXT NOT NULL,
+    usable  INTEGER NOT NULL CHECK (usable IN (0,1)),
+    duty_hours_7d REAL,
+    flight_hours_28d REAL,
+    reason  TEXT,
+    PRIMARY KEY (crew_id, date)
+) WITHOUT ROWID;
+
 -- ---------------------------------------------------------------- impacts (consolidated detailed)
 -- ---------------------------------------------------------------- impacts (consolidated detailed)
 
