@@ -149,17 +149,27 @@ export class ResolutionEngine {
                 AND r.oncall_start <= ? AND r.oncall_end >= ?
             `).get(crewId, disruptedDate, reportTime.toFormat('HH:mm'), reportTime.toFormat('HH:mm'));
 
+            // Fetch dynamic costs from the database
+            const getCost = (key: string) => (db.prepare("SELECT value_int FROM costs WHERE key = ?").get(key) as any)?.value_int || 0;
+            
+            const isPilot = missingRole === 'Captain' || missingRole === 'First Officer';
+            const reserveCost = getCost(isPilot ? 'reserve_callout_pilot' : 'reserve_callout_cabin');
+            const dayOffCost = getCost(isPilot ? 'dayoff_callout_pilot' : 'dayoff_callout_cabin');
+            const deadheadCost = getCost('deadhead_positioning');
+            const delayCostPerHour = getCost('delay_cost_per_duty_hour');
+
             let cost = 0;
             let actionText = "";
 
             if (isDeadheading) {
-                cost = 41200;
+                // Reserve callout + Deadhead flight + Delay penalty (e.g., 3 hours * delay cost)
+                cost = reserveCost + deadheadCost + (delayHours * delayCostPerHour);
                 actionText = `Assign ${missingRole} ${crewId} (reserve callout + deadhead from ${candidate.base})`;
             } else if (isReserve) {
-                cost = 18500;
+                cost = reserveCost;
                 actionText = `Assign ${missingRole} ${crewId} (reserve callout)`;
             } else {
-                cost = 24000;
+                cost = dayOffCost;
                 actionText = `Assign ${missingRole} ${crewId} (day-off callout)`;
             }
 
