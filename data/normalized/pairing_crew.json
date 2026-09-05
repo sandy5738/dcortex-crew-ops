@@ -1,0 +1,1033 @@
+[
+  {
+    "pairing_id": "P-2201",
+    "crew_id": "C-5837",
+    "role": "Captain"
+    
+  },
+  {
+    "pairing_id": "P-2201",
+    "crew_id": "C-2791",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2201",
+    "crew_id": "C-5597",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2201",
+    "crew_id": "C-4679",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2201",
+    "crew_id": "C-4462",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2201",
+    "crew_id": "C-3757",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2202",
+    "crew_id": "C-3940",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2202",
+    "crew_id": "C-4763",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2202",
+    "crew_id": "C-5522",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2202",
+    "crew_id": "C-1569",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2202",
+    "crew_id": "C-2907",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2202",
+    "crew_id": "C-3988",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2203",
+    "crew_id": "C-3187",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2203",
+    "crew_id": "C-5375",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2203",
+    "crew_id": "C-3211",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2203",
+    "crew_id": "C-2876",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2203",
+    "crew_id": "C-1542",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2203",
+    "crew_id": "C-5089",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2204",
+    "crew_id": "C-5837",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2204",
+    "crew_id": "C-2791",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2204",
+    "crew_id": "C-5597",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2204",
+    "crew_id": "C-4679",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2204",
+    "crew_id": "C-4462",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2204",
+    "crew_id": "C-3757",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2205",
+    "crew_id": "C-3940",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2205",
+    "crew_id": "C-4763",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2205",
+    "crew_id": "C-5522",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2205",
+    "crew_id": "C-1569",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2205",
+    "crew_id": "C-2907",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2205",
+    "crew_id": "C-3988",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2206",
+    "crew_id": "C-3187",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2206",
+    "crew_id": "C-5375",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2206",
+    "crew_id": "C-3211",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2206",
+    "crew_id": "C-2876",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2206",
+    "crew_id": "C-1542",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2206",
+    "crew_id": "C-5089",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2207",
+    "crew_id": "C-5837",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2207",
+    "crew_id": "C-2791",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2207",
+    "crew_id": "C-5597",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2207",
+    "crew_id": "C-4679",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2207",
+    "crew_id": "C-4462",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2207",
+    "crew_id": "C-3757",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2208",
+    "crew_id": "C-2143",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2208",
+    "crew_id": "C-5788",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2208",
+    "crew_id": "C-2796",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2208",
+    "crew_id": "C-1385",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2208",
+    "crew_id": "C-4458",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2208",
+    "crew_id": "C-5881",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2209",
+    "crew_id": "C-1938",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2209",
+    "crew_id": "C-2295",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2209",
+    "crew_id": "C-5158",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2209",
+    "crew_id": "C-2252",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2209",
+    "crew_id": "C-5906",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2209",
+    "crew_id": "C-3973",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2210",
+    "crew_id": "C-5647",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2210",
+    "crew_id": "C-5363",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2210",
+    "crew_id": "C-3171",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2210",
+    "crew_id": "C-5417",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2210",
+    "crew_id": "C-4588",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2210",
+    "crew_id": "C-2840",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2211",
+    "crew_id": "C-2143",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2211",
+    "crew_id": "C-5788",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2211",
+    "crew_id": "C-2796",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2211",
+    "crew_id": "C-1385",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2211",
+    "crew_id": "C-4458",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2211",
+    "crew_id": "C-5881",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2212",
+    "crew_id": "C-1938",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2212",
+    "crew_id": "C-2295",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2212",
+    "crew_id": "C-5158",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2212",
+    "crew_id": "C-2252",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2212",
+    "crew_id": "C-5906",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2212",
+    "crew_id": "C-3973",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2213",
+    "crew_id": "C-5647",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2213",
+    "crew_id": "C-5363",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2213",
+    "crew_id": "C-3171",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2213",
+    "crew_id": "C-5417",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2213",
+    "crew_id": "C-4588",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2213",
+    "crew_id": "C-2840",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2214",
+    "crew_id": "C-2143",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2214",
+    "crew_id": "C-5788",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2214",
+    "crew_id": "C-2796",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2214",
+    "crew_id": "C-1385",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2214",
+    "crew_id": "C-4458",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2214",
+    "crew_id": "C-5881",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2215",
+    "crew_id": "C-5820",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2215",
+    "crew_id": "C-2875",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2215",
+    "crew_id": "C-5211",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2215",
+    "crew_id": "C-2083",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2215",
+    "crew_id": "C-4874",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2215",
+    "crew_id": "C-4531",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2216",
+    "crew_id": "C-1443",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2216",
+    "crew_id": "C-1895",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2216",
+    "crew_id": "C-2148",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2216",
+    "crew_id": "C-3046",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2216",
+    "crew_id": "C-1414",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2216",
+    "crew_id": "C-2751",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2217",
+    "crew_id": "C-1017",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2217",
+    "crew_id": "C-4465",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2217",
+    "crew_id": "C-3430",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2217",
+    "crew_id": "C-3569",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2217",
+    "crew_id": "C-5119",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2217",
+    "crew_id": "C-5666",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2218",
+    "crew_id": "C-5820",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2218",
+    "crew_id": "C-2875",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2218",
+    "crew_id": "C-5211",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2218",
+    "crew_id": "C-2083",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2218",
+    "crew_id": "C-4874",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2218",
+    "crew_id": "C-4531",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2219",
+    "crew_id": "C-1443",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2219",
+    "crew_id": "C-1895",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2219",
+    "crew_id": "C-2148",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2219",
+    "crew_id": "C-3046",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2219",
+    "crew_id": "C-1414",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2219",
+    "crew_id": "C-2751",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2220",
+    "crew_id": "C-1017",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2220",
+    "crew_id": "C-4465",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2220",
+    "crew_id": "C-3430",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2220",
+    "crew_id": "C-3569",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2220",
+    "crew_id": "C-5119",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2220",
+    "crew_id": "C-5666",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2221",
+    "crew_id": "C-5820",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2221",
+    "crew_id": "C-2875",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2221",
+    "crew_id": "C-5211",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2221",
+    "crew_id": "C-2083",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2221",
+    "crew_id": "C-4874",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2221",
+    "crew_id": "C-4531",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2222",
+    "crew_id": "C-1671",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2222",
+    "crew_id": "C-3136",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2222",
+    "crew_id": "C-4242",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2222",
+    "crew_id": "C-1594",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2223",
+    "crew_id": "C-1600",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2223",
+    "crew_id": "C-2085",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2223",
+    "crew_id": "C-3334",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2223",
+    "crew_id": "C-2100",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2224",
+    "crew_id": "C-3231",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2224",
+    "crew_id": "C-3057",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2224",
+    "crew_id": "C-3266",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2224",
+    "crew_id": "C-3145",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2225",
+    "crew_id": "C-1671",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2225",
+    "crew_id": "C-3136",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2225",
+    "crew_id": "C-4242",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2225",
+    "crew_id": "C-1594",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2226",
+    "crew_id": "C-1600",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2226",
+    "crew_id": "C-2085",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2226",
+    "crew_id": "C-3334",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2226",
+    "crew_id": "C-2100",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2227",
+    "crew_id": "C-3231",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2227",
+    "crew_id": "C-3057",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2227",
+    "crew_id": "C-3266",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2227",
+    "crew_id": "C-3145",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2228",
+    "crew_id": "C-1671",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2228",
+    "crew_id": "C-3136",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2228",
+    "crew_id": "C-4242",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2228",
+    "crew_id": "C-1594",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2229",
+    "crew_id": "C-2221",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2229",
+    "crew_id": "C-4520",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2229",
+    "crew_id": "C-1326",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2229",
+    "crew_id": "C-3897",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2230",
+    "crew_id": "C-3721",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2230",
+    "crew_id": "C-1317",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2230",
+    "crew_id": "C-3864",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2230",
+    "crew_id": "C-1568",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2231",
+    "crew_id": "C-5392",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2231",
+    "crew_id": "C-1313",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2231",
+    "crew_id": "C-4574",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2231",
+    "crew_id": "C-5723",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2232",
+    "crew_id": "C-2221",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2232",
+    "crew_id": "C-4520",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2232",
+    "crew_id": "C-1326",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2232",
+    "crew_id": "C-3897",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2233",
+    "crew_id": "C-3721",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2233",
+    "crew_id": "C-1317",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2233",
+    "crew_id": "C-3864",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2233",
+    "crew_id": "C-1568",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2234",
+    "crew_id": "C-5392",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2234",
+    "crew_id": "C-1313",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2234",
+    "crew_id": "C-4574",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2234",
+    "crew_id": "C-5723",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2235",
+    "crew_id": "C-2221",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2235",
+    "crew_id": "C-4520",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2235",
+    "crew_id": "C-1326",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2235",
+    "crew_id": "C-3897",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2289",
+    "crew_id": "C-3983",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2289",
+    "crew_id": "C-3460",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2289",
+    "crew_id": "C-4296",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2289",
+    "crew_id": "C-4326",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2289",
+    "crew_id": "C-5751",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2289",
+    "crew_id": "C-4622",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2291",
+    "crew_id": "C-1042",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2291",
+    "crew_id": "C-1694",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2291",
+    "crew_id": "C-3005",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2291",
+    "crew_id": "C-4395",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2291",
+    "crew_id": "C-4273",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2291",
+    "crew_id": "C-1873",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2293",
+    "crew_id": "C-5566",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2293",
+    "crew_id": "C-4806",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2293",
+    "crew_id": "C-2303",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2293",
+    "crew_id": "C-3271",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2293",
+    "crew_id": "C-3249",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2293",
+    "crew_id": "C-3619",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2295",
+    "crew_id": "C-1526",
+    "role": "Captain"
+  },
+  {
+    "pairing_id": "P-2295",
+    "crew_id": "C-1510",
+    "role": "First Officer"
+  },
+  {
+    "pairing_id": "P-2295",
+    "crew_id": "C-5716",
+    "role": "Senior Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2295",
+    "crew_id": "C-4999",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2295",
+    "crew_id": "C-2352",
+    "role": "Cabin Crew"
+  },
+  {
+    "pairing_id": "P-2295",
+    "crew_id": "C-5848",
+    "role": "Cabin Crew"
+  }
+]

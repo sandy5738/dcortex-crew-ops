@@ -48,14 +48,29 @@ function loadProvenance(db: Database.Database) {
   const costs = readJson('costs');
 
   const meta = db.prepare('INSERT INTO dataset_meta (key, value) VALUES (?, ?)');
+  // Derive provenance values rather than hard-coding them. Week bounds are
+  // taken from the rostered pairing days; snapshot time defaults to
+  // midnight UTC on the first rostered date if no explicit value exists.
+  const allDates: string[] = [];
+  rosters.pairings?.forEach((p: any) => p.days?.forEach((d: any) => allDates.push(d.date)));
+  const week_start = allDates.length ? allDates.slice().sort()[0] : '';
+  // week_end = week_start + 6 days
+  let week_end = '';
+  if (week_start) {
+    const dt = new Date(week_start + 'T00:00:00Z');
+    dt.setUTCDate(dt.getUTCDate() + 6);
+    week_end = dt.toISOString().slice(0, 10);
+  }
+  const snapshot_utc = costs.snapshot_utc || (week_start ? `${week_start}T00:00:00Z` : '');
+
   const rows: [string, string][] = [
     ['schema_version', SCHEMA_VERSION],
     ['source', 'data/*.json (the source of truth)'],
     ['carrier', 'dCortex Air'],
     ['hub', 'BLR'],
-    ['week_start', '2026-09-14'],
-    ['week_end', '2026-09-20'],
-    ['snapshot_utc', '2026-09-14T18:00:00Z'],
+    ['week_start', week_start],
+    ['week_end', week_end],
+    ['snapshot_utc', snapshot_utc],
     ['currency', costs.currency],
     ['time_convention', rules.time_convention],
     ['rosters_note', rosters.note],
@@ -199,12 +214,150 @@ function loadRules(db: Database.Database) {
     def.run(term, text as string, i));
 }
 
+function loadReserveAvailability(db: Database.Database) {
+  // Precompute whether a reserve entry is usable on each of its dates
+  // by summing the duty and flight windows and comparing against rule limits.
+  type RuleParamRow = { value_num: number | null };
+  const dutyParam = db.prepare(
+    "SELECT value_num FROM rule_params WHERE rule_id='RULE-DUTY-02' AND param_key='max_duty_hours'"
+  ).get() as RuleParamRow | undefined;
+  const dutyWindow = db.prepare(
+    "SELECT value_num FROM rule_params WHERE rule_id='RULE-DUTY-02' AND param_key='window_days'"
+  ).get() as RuleParamRow | undefined;
+  const flightParam = db.prepare(
+    "SELECT value_num FROM rule_params WHERE rule_id='RULE-FLT-03' AND param_key='max_flight_hours'"
+  ).get() as RuleParamRow | undefined;
+  const flightWindow = db.prepare(
+    "SELECT value_num FROM rule_params WHERE rule_id='RULE-FLT-03' AND param_key='window_days'"
+  ).get() as RuleParamRow | undefined;
+
+  const maxDuty = dutyParam ? Number(dutyParam.value_num) : 60;
+  const dutyDays = dutyWindow ? Number(dutyWindow.value_num) : 7;
+  const maxFlight = flightParam ? Number(flightParam.value_num) : 100;
+  const flightDays = flightWindow ? Number(flightWindow.value_num) : 28;
+
+  const reserveDates = db.prepare('SELECT crew_id, date FROM reserve_dates').all() as {crew_id:string, date:string}[];
+  const ins = db.prepare('INSERT OR REPLACE INTO reserve_availability (crew_id, date, usable, duty_hours_7d, flight_hours_28d, reason) VALUES (?,?,?,?,?,?)');
+
+  for (const r of reserveDates) {
+    const crew = r.crew_id;
+    const date = r.date;
+    // compute window starts
+    const dStart = new Date(date + 'T00:00:00Z');
+    dStart.setUTCDate(dStart.getUTCDate() - (dutyDays - 1));
+    const dutyStart = dStart.toISOString().slice(0,10);
+    const fStartDate = new Date(date + 'T00:00:00Z');
+    fStartDate.setUTCDate(fStartDate.getUTCDate() - (flightDays - 1));
+    const flightStart = fStartDate.toISOString().slice(0,10);
+
+    const dutyRow = db.prepare('SELECT SUM(duty_hours) AS s FROM duty_daily_history WHERE crew_id = ? AND date BETWEEN ? AND ?').get(crew, dutyStart, date) as any;
+    const flightRow = db.prepare('SELECT SUM(flight_hours) AS s FROM duty_daily_history WHERE crew_id = ? AND date BETWEEN ? AND ?').get(crew, flightStart, date) as any;
+    const dutySum = Math.max(0, Number(dutyRow?.s || 0));
+    const flightSum = Math.max(0, Number(flightRow?.s || 0));
+
+    let usable = 1;
+    let reason: string | null = null;
+    if (dutySum >= maxDuty) {
+      usable = 0;
+      reason = 'duty_hours_exceeded';
+    }
+    if (flightSum >= maxFlight) {
+      usable = 0;
+      reason = reason ? reason + ';flight_hours_exceeded' : 'flight_hours_exceeded';
+    }
+
+    ins.run(crew, date, usable, dutySum, flightSum, reason);
+  }
+}
+
 function loadCosts(db: Database.Database) {
   const ins = db.prepare(
     'INSERT INTO costs (key, value_int, value_text, seq) VALUES (?,?,?,?)');
   Object.entries(readJson('costs')).forEach(([k, v], i) =>
     ins.run(k, typeof v === 'number' ? v : null,
             typeof v === 'string' ? v : null, i));
+}
+
+function loadCostsPerFlight(db: Database.Database) {
+  const p = path.join(DATA_DIR, 'costs', 'costs_per_flight.json');
+  if (!fs.existsSync(p)) return;
+  const doc = JSON.parse(fs.readFileSync(p, 'utf-8')) as any[];
+  const ins = db.prepare(
+    `INSERT OR REPLACE INTO costs_per_flight (flight_id, cancellation_cost, estimated_deadhead_cost, estimated_delay_cost_per_hour)
+     VALUES (?,?,?,?)`);
+  doc.forEach((r: any) => ins.run(r.flight_id, r.cancellation_cost ?? null, r.estimated_deadhead_cost ?? null, r.estimated_delay_cost_per_hour ?? null));
+}
+
+function loadCostsPerPairing(db: Database.Database) {
+  const p = path.join(DATA_DIR, 'costs', 'costs_per_pairing.json');
+  if (!fs.existsSync(p)) return;
+  const doc = JSON.parse(fs.readFileSync(p, 'utf-8')) as any[];
+  const ins = db.prepare(
+    `INSERT OR REPLACE INTO costs_per_pairing (pairing_id, total_block_hours, estimated_hotel_nights, hotel_cost_total, cancellation_costs_total)
+     VALUES (?,?,?,?,?)`);
+  doc.forEach((r: any) => ins.run(r.pairing_id, r.total_block_hours ?? null, r.estimated_hotel_nights ?? null, r.hotel_cost_total ?? null, r.cancellation_costs_total ?? null));
+}
+
+function loadNormalizedArtifacts(db: Database.Database) {
+  // normalized/flights_basic.json
+  try {
+    const p = path.join(DATA_DIR, 'normalized', 'flights_basic.json');
+    if (fs.existsSync(p)) {
+      const doc = JSON.parse(fs.readFileSync(p, 'utf-8')) as any[];
+      const ins = db.prepare(`INSERT OR REPLACE INTO normalized_flights_basic (flight_id, flight_no, date, dep_station, arr_station, dep_utc, arr_utc, block_hours, aircraft, aircraft_type, seats, seq) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`);
+      doc.forEach((r: any, i: number) => ins.run(r.flight_id, r.flight_no, r.date, r.dep_station, r.arr_station, r.dep_utc, r.arr_utc, r.block_hours, r.aircraft, r.aircraft_type, r.seats, i));
+    }
+  } catch (e) { /* tolerate */ }
+
+  // normalized/pairings.json
+  try {
+    const p = path.join(DATA_DIR, 'normalized', 'pairings.json');
+    if (fs.existsSync(p)) {
+      const doc = JSON.parse(fs.readFileSync(p, 'utf-8')) as any[];
+      const ins = db.prepare('INSERT OR REPLACE INTO normalized_pairings (pairing_id, aircraft, seq) VALUES (?,?,?)');
+      doc.forEach((r: any, i: number) => ins.run(r.pairing_id, r.aircraft, i));
+    }
+  } catch (e) { }
+
+  // normalized/pairing_crew.json
+  try {
+    const p = path.join(DATA_DIR, 'normalized', 'pairing_crew.json');
+    if (fs.existsSync(p)) {
+      const doc = JSON.parse(fs.readFileSync(p, 'utf-8')) as any[];
+      const ins = db.prepare('INSERT OR REPLACE INTO normalized_pairing_crew (pairing_id, crew_id, role, seq) VALUES (?,?,?,?)');
+      doc.forEach((r: any, i: number) => ins.run(r.pairing_id, r.crew_id, r.role, i));
+    }
+  } catch (e) { }
+
+  // normalized/pairing_legs.json
+  try {
+    const p = path.join(DATA_DIR, 'normalized', 'pairing_legs.json');
+    if (fs.existsSync(p)) {
+      const doc = JSON.parse(fs.readFileSync(p, 'utf-8')) as any[];
+      const ins = db.prepare('INSERT OR REPLACE INTO normalized_pairing_legs (pairing_id, flight_id, seq) VALUES (?,?,?)');
+      doc.forEach((r: any, i: number) => ins.run(r.pairing_id, r.flight_id, r.seq ?? i));
+    }
+  } catch (e) { }
+
+  // normalized/crew_base.json
+  try {
+    const p = path.join(DATA_DIR, 'normalized', 'crew_base.json');
+    if (fs.existsSync(p)) {
+      const doc = JSON.parse(fs.readFileSync(p, 'utf-8')) as any[];
+      const ins = db.prepare('INSERT OR REPLACE INTO normalized_crew_base (crew_id, name, rank, base, seniority, reachability_minutes, status, seq) VALUES (?,?,?,?,?,?,?,?)');
+      doc.forEach((r: any, i: number) => ins.run(r.crew_id, r.name, r.rank, r.base, r.seniority, r.reachability_minutes, r.status, i));
+    }
+  } catch (e) { }
+
+  // normalized/duty_clock_summary.json
+  try {
+    const p = path.join(DATA_DIR, 'normalized', 'duty_clock_summary.json');
+    if (fs.existsSync(p)) {
+      const doc = JSON.parse(fs.readFileSync(p, 'utf-8')) as any[];
+      const ins = db.prepare('INSERT OR REPLACE INTO normalized_duty_clock_summary (crew_id, as_of_utc, duty_hours_7d, flight_hours_28d, last_rest_ended, seq) VALUES (?,?,?,?,?,?)');
+      doc.forEach((r: any, i: number) => ins.run(r.crew_id, r.as_of_utc, r.duty_hours_7d, r.flight_hours_28d, r.last_rest_ended, i));
+    }
+  } catch (e) { }
 }
 
 function loadRiskSignals(db: Database.Database) {
@@ -218,6 +371,83 @@ function loadRiskSignals(db: Database.Database) {
     ins.run(r.crew_id, r.as_of_utc, r.disruption_risk_score, seq);
     (r.drivers || []).forEach((d: string, j: number) => driver.run(r.crew_id, j, d));
   });
+}
+
+function loadImpacts(db: Database.Database) {
+  // Load a consolidated, tool-produced detailed impacts file. This file is
+  // a derived artifact and not required for core rules or verification; the
+  // loader is therefore tolerant: if the file is absent the ingest proceeds
+  // normally. When present, rows are inserted into two small tables that
+  // let analysts query replacement/cancellation cost scenarios alongside
+  // the canonical snapshot (flights, pairings, crew).
+  const filePath = path.join(DATA_DIR, 'costs', 'impacts_detailed_consolidated.json');
+  if (!fs.existsSync(filePath)) return;
+  const doc = JSON.parse(fs.readFileSync(filePath, 'utf-8')) as any[];
+
+  // Pairing-level baseline (keeps the small summary object as JSON text).
+  const insPair = db.prepare(
+    'INSERT OR REPLACE INTO impacts_pairing (crew_id, pairing_id, role, baseline_json, seq) VALUES (?,?,?,?,?)'
+  );
+
+  // Leg-level numeric estimates used to compute recommendations. Storing
+  // them as columns avoids re-parsing JSON for common analytic queries.
+  const insLeg = db.prepare(
+    `INSERT OR REPLACE INTO impacts_leg (crew_id, pairing_id, leg_seq, flight_id, remaining_legs, cancel_cost, reserve_total, deadhead_only, recommended_action, seq)
+     VALUES (?,?,?,?,?,?,?,?,?,?)`
+  );
+
+  // Iterate deterministic order: the consolidated file is stable but we
+  // retain seq values to preserve any original ordering semantics.
+  doc.forEach((c: any, ci: number) => {
+    const crew_id = c.crew_id;
+    (c.pairings || []).forEach((p: any, pi: number) => {
+      insPair.run(crew_id, p.pairing_id, p.role || null, JSON.stringify(p.baseline_pairing_costs || {}), pi);
+      (p.leg_scenarios || []).forEach((l: any, li: number) => {
+        const costs = l.costs || {};
+        insLeg.run(
+          crew_id,
+          p.pairing_id,
+          l.dropped_before_leg || (li + 1),
+          l.flight_id || null,
+          l.remaining_legs || 0,
+          costs.cancel_cost ?? null,
+          costs.reserve_total ?? null,
+          costs.deadhead_only ?? null,
+          l.recommended_action || null,
+          li
+        );
+      });
+    });
+  });
+}
+
+function loadDerivedArtifacts(db: Database.Database) {
+  // Walk DATA_DIR and its common subfolders and insert any JSON files
+  // that are not part of the canonical ALL_FILES set into
+  // `derived_json_files` so the DB contains the exact tool outputs.
+  const crypto = require('crypto');
+  const files: string[] = [];
+
+  function walk(dir: string) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, entry.name);
+      if (entry.isDirectory()) walk(p);
+      else if (entry.isFile() && entry.name.endsWith('.json')) files.push(p);
+    }
+  }
+
+  walk(DATA_DIR);
+  const ins = db.prepare('INSERT OR REPLACE INTO derived_json_files (filename, sha256, bytes, json_text, seq) VALUES (?,?,?,?,?)');
+  let seq = 0;
+  for (const abs of files.sort()) {
+    const rel = path.relative(DATA_DIR, abs).replace(/\\/g, '/');
+    const base = path.basename(rel, '.json');
+    // Skip the canonical source files; they are already recorded in source_files
+    if ((ALL_FILES as readonly string[]).includes(base)) continue;
+    const buf = fs.readFileSync(abs);
+    const hash = crypto.createHash('sha256').update(buf).digest('hex');
+    ins.run(rel, hash, buf.length, buf.toString('utf-8'), seq++);
+  }
 }
 
 function loadHarness(db: Database.Database) {
@@ -273,8 +503,14 @@ export function build(): void {
       loadCertifications(db);
       loadReserves(db);
       loadRules(db);
+      loadReserveAvailability(db);
       loadCosts(db);
+      loadCostsPerFlight(db);
+      loadCostsPerPairing(db);
+      loadNormalizedArtifacts(db);
       loadRiskSignals(db);
+      loadImpacts(db);
+      loadDerivedArtifacts(db);
       loadHarness(db);
     })();
 

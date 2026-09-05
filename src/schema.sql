@@ -264,6 +264,137 @@ CREATE TABLE costs (
     CHECK ((value_int IS NULL) <> (value_text IS NULL))
 ) WITHOUT ROWID;
 
+-- Derived cost tables produced by tools/split_and_extract_costs.py and
+-- tools/generate_*_impacts.py. These are not the canonical source of
+-- truth, but they make common cost analytics much faster to write in SQL.
+CREATE TABLE IF NOT EXISTS costs_per_flight (
+    flight_id TEXT PRIMARY KEY,
+    cancellation_cost INTEGER,
+    estimated_deadhead_cost INTEGER,
+    estimated_delay_cost_per_hour INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS costs_per_pairing (
+    pairing_id TEXT PRIMARY KEY,
+    total_block_hours REAL,
+    estimated_hotel_nights INTEGER,
+    hotel_cost_total INTEGER,
+    cancellation_costs_total INTEGER
+);
+
+-- Normalized/denormalized artifacts produced by the normalization step.
+-- These shadow the canonical tables but are intentionally named so they
+-- don't collide with snapshot tables; they are useful for ad-hoc joins
+-- and for importing intermediate outputs produced by tools/ without
+-- disturbing the canonical ingest pipeline.
+CREATE TABLE IF NOT EXISTS normalized_flights_basic (
+    flight_id      TEXT PRIMARY KEY,
+    flight_no      TEXT NOT NULL,
+    date           TEXT NOT NULL,
+    dep_station    TEXT NOT NULL,
+    arr_station    TEXT NOT NULL,
+    dep_utc        TEXT NOT NULL,
+    arr_utc        TEXT NOT NULL,
+    block_hours    REAL NOT NULL,
+    aircraft       TEXT NOT NULL,
+    aircraft_type  TEXT NOT NULL,
+    seats          INTEGER NOT NULL,
+    seq            INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS normalized_pairings (
+    pairing_id TEXT PRIMARY KEY,
+    aircraft   TEXT NOT NULL,
+    seq        INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS normalized_pairing_crew (
+    pairing_id TEXT NOT NULL,
+    crew_id    TEXT NOT NULL,
+    role       TEXT NOT NULL,
+    seq        INTEGER NOT NULL,
+    PRIMARY KEY (pairing_id, crew_id)
+);
+
+CREATE TABLE IF NOT EXISTS normalized_pairing_legs (
+    pairing_id TEXT NOT NULL,
+    flight_id  TEXT NOT NULL,
+    seq        INTEGER NOT NULL,
+    PRIMARY KEY (pairing_id, seq)
+);
+
+CREATE TABLE IF NOT EXISTS normalized_crew_base (
+    crew_id  TEXT PRIMARY KEY,
+    name     TEXT NOT NULL,
+    rank     TEXT NOT NULL,
+    base     TEXT NOT NULL,
+    seniority INTEGER NOT NULL,
+    reachability_minutes INTEGER NOT NULL,
+    status   TEXT NOT NULL,
+    seq      INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS normalized_duty_clock_summary (
+    crew_id TEXT PRIMARY KEY,
+    as_of_utc TEXT NOT NULL,
+    duty_hours_7d REAL NOT NULL,
+    flight_hours_28d REAL NOT NULL,
+    last_rest_ended TEXT NOT NULL,
+    seq INTEGER NOT NULL
+);
+
+-- Precomputed reserve availability: whether a reserve on a given date is
+-- actually usable considering duty and flight-hour windows. This lets
+-- queries filter reserves cheaply without recomputing window sums.
+CREATE TABLE IF NOT EXISTS reserve_availability (
+    crew_id TEXT NOT NULL REFERENCES reserves(crew_id),
+    date    TEXT NOT NULL,
+    usable  INTEGER NOT NULL CHECK (usable IN (0,1)),
+    duty_hours_7d REAL,
+    flight_hours_28d REAL,
+    reason  TEXT,
+    PRIMARY KEY (crew_id, date)
+) WITHOUT ROWID;
+
+-- ---------------------------------------------------------------- impacts (consolidated detailed)
+-- ---------------------------------------------------------------- impacts (consolidated detailed)
+
+-- Detailed, per-crew, per-pairing, per-leg cost scenarios derived by
+-- the analysis tools under `tools/`. These tables store the derived
+-- cost scenarios (baseline pairing costs are kept as a small JSON blob)
+-- and one row per (crew, pairing, leg) for efficient querying and joins
+-- with the canonical snapshot tables (flights, crew, pairings).
+--
+-- Notes:
+--  - `baseline_json` contains the pairing-level cost summary as JSON text
+--    (hotel totals, cancellation totals, etc.) to avoid shredding a small
+--    heterogeneous object into many columns.
+--  - `impacts_leg` stores the per-leg numeric estimates used by the
+--    recommendation heuristics so SQL queries can reproduce or inspect
+--    the same decision logic without re-running Python tools.
+CREATE TABLE impacts_pairing (
+    crew_id    TEXT NOT NULL REFERENCES crew(crew_id),
+    pairing_id TEXT NOT NULL,
+    role       TEXT,
+    baseline_json TEXT NOT NULL,
+    seq        INTEGER NOT NULL,
+    PRIMARY KEY (crew_id, pairing_id)
+) WITHOUT ROWID;
+
+CREATE TABLE impacts_leg (
+    crew_id    TEXT NOT NULL REFERENCES crew(crew_id),
+    pairing_id TEXT NOT NULL,
+    leg_seq    INTEGER NOT NULL,
+    flight_id  TEXT NOT NULL,
+    remaining_legs INTEGER NOT NULL,
+    cancel_cost INTEGER,
+    reserve_total INTEGER,
+    deadhead_only INTEGER,
+    recommended_action TEXT,
+    seq        INTEGER NOT NULL,
+    PRIMARY KEY (crew_id, pairing_id, leg_seq)
+) WITHOUT ROWID;
+
 -- ------------------------------------------------------------ risk signals
 
 -- A GIVEN INPUT, like a weather forecast. We do not build a prediction
@@ -311,3 +442,19 @@ CREATE TABLE harness_questions (
 );
 
 CREATE INDEX ix_harness_questions_tier ON harness_questions(tier);
+
+-- ------------------------------------------------------------------ derived
+
+-- Store any derived JSON artifact produced by tools/ so the database
+-- contains a copy of what the analysis pipeline produced. The canonical
+-- source_files table continues to track the nine world files; this table
+-- is a convenience for analysts who want the derived artifacts available
+-- inside the DB without adding many separate columns or tables for each
+-- tool output.
+CREATE TABLE IF NOT EXISTS derived_json_files (
+    filename   TEXT PRIMARY KEY,
+    sha256     TEXT NOT NULL,
+    bytes      INTEGER NOT NULL,
+    json_text  TEXT NOT NULL,
+    seq        INTEGER NOT NULL
+) WITHOUT ROWID;

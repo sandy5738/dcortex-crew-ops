@@ -1,0 +1,520 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===================================================================
+   Design tokens — docs/UI_DESIGN.md §2.
+   Five base colours, three semantic. The semantic three are the aviation
+   convention (green / amber / red); a controller reads them without
+   thinking. Colour is a verdict here, never decoration.
+   =================================================================== */
+
+:root {
+  --paper: #f3f4f1; /* page ground */
+  --strip: #ffffff; /* strip and panel face */
+  --board: #2e353b; /* the rack region behind strips, and the left rail */
+  --ink: #14181b; /* primary text */
+  --ink-2: #5a6167; /* labels, secondary */
+  --rule: #d8dad5; /* hairlines, 1px */
+
+  --legal: #17603f; /* rule passed */
+  --breach: #a02724; /* rule failed */
+  --caution: #9a6206; /* passed, but margin under 2h */
+
+  --rail-w: 320px;
+
+  color-scheme: light;
+}
+
+/* ------------------------------------------------------------------ base */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Every element containing a number gets tabular figures, so columns align
+   on the decimal point. This is why the certificate is readable at a glance. */
+.num,
+.mono,
+table {
+  font-variant-numeric: tabular-nums;
+}
+
+.mono {
+  font-family: "IBM Plex Mono", ui-monospace, "Cascadia Mono", "Consolas",
+    monospace;
+}
+
+/* Depth by tone, not shadow (§2 principle 4). Nothing in this app casts one. */
+* {
+  box-shadow: none !important;
+}
+
+/* ------------------------------------------------------------- semantics */
+
+.v-legal {
+  color: var(--legal);
+}
+.v-breach {
+  color: var(--breach);
+}
+.v-caution {
+  color: var(--caution);
+}
+
+.edge-legal {
+  border-left-color: var(--legal);
+}
+.edge-breach {
+  border-left-color: var(--breach);
+}
+.edge-caution {
+  border-left-color: var(--caution);
+}
+
+/* ------------------------------------------------------------------ rack */
+
+/* Strips are rack items, not cards: 2px radius, a 3px left edge in the
+   legality colour, hairline separation. The shared radius-plus-shadow look
+   is exactly the SaaS-kit tell we rejected. */
+.strip {
+  background: var(--strip);
+  border-radius: 2px;
+  border-left: 3px solid var(--rule);
+  border-top: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.strip:focus-visible,
+.chip:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* The strip currently addressed by j/k. Keyboard focus must be visible
+   without a mouse — a controller under pressure does not reach for one. */
+.strip[data-cursor="true"] {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* ----------------------------------------------------------- certificate */
+
+/* It should read as machine output, because it is. Fixed-width,
+   decimal-aligned, 1px hairline border, no radius. */
+.certificate {
+  background: var(--strip);
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  font-family: "IBM Plex Mono", ui-monospace, "Consolas", monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+  overflow-x: auto;
+}
+
+.chip {
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--strip);
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.tier-pre {
+  margin: 0;
+  padding: 8px;
+  max-height: 240px;
+  overflow: auto;
+  background: #f7f7f5;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  font-family: "IBM Plex Mono", ui-monospace, "Consolas", monospace;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.response-shell {
+  display: grid;
+  gap: 16px;
+  max-width: 1120px;
+}
+
+.response-hero,
+.response-card,
+.response-metric-card,
+.response-answer-card,
+.response-tier-card,
+.response-followup-card {
+  background: linear-gradient(180deg, #fffdfa 0%, #ffffff 100%);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+}
+
+.response-hero {
+  padding: 24px 26px;
+  background:
+    radial-gradient(circle at top right, rgba(204, 132, 40, 0.16), transparent 32%),
+    linear-gradient(135deg, #fffef8 0%, #f8f4ea 100%);
+}
+
+.response-hero-loading {
+  min-height: 148px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.response-eyebrow {
+  margin-bottom: 8px;
+  color: var(--caution);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.response-title {
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.08;
+  font-weight: 600;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+.response-subtitle {
+  margin-top: 10px;
+  max-width: 72ch;
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.response-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.response-card,
+.response-metric-card,
+.response-answer-card,
+.response-followup-card,
+.response-tier-card {
+  padding: 18px;
+}
+
+.response-card-label {
+  color: var(--ink-2);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.response-card-text {
+  margin-top: 8px;
+  color: var(--ink-2);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.response-metric-value {
+  margin-top: 10px;
+  font-size: 36px;
+  line-height: 1;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.response-section-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.response-section-title {
+  margin-top: 3px;
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.response-time {
+  color: var(--ink-2);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.response-answer-body {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.response-paragraph {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #1b2328;
+}
+
+.response-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.response-list-item {
+  position: relative;
+  padding-left: 18px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.response-list-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--caution);
+  transform: translateY(-50%);
+}
+
+.response-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+}
+
+.response-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.response-table th,
+.response-table td {
+  padding: 11px 12px;
+  text-align: left;
+  border-bottom: 1px solid #ece7dc;
+}
+
+.response-table th {
+  background: #f7f1e4;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.response-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.response-tier-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.response-tier-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.response-tier-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+}
+
+.tone-lookup::before {
+  background: #2c6e63;
+}
+
+.tone-checks::before {
+  background: #b17816;
+}
+
+.tone-impact::before {
+  background: #8b3b32;
+}
+
+.tone-other::before {
+  background: #5f6a72;
+}
+
+.response-pill,
+.response-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: #fbfaf6;
+}
+
+.response-pill {
+  padding: 6px 10px;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+.response-chip {
+  padding: 4px 9px;
+  color: var(--ink-2);
+  font-size: 12px;
+}
+
+.response-call-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.response-call-item {
+  border: 1px solid #e7e3da;
+  border-radius: 10px;
+  background: #fcfbf8;
+}
+
+.response-call-summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.response-call-summary::-webkit-details-marker {
+  display: none;
+}
+
+.response-call-name {
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.response-call-meta {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.response-call-body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0 14px 14px;
+}
+
+.response-followup-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.response-followup-button {
+  border: 1px solid #d9d2c2;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #fffefb 0%, #f7f2e7 100%);
+  color: var(--ink);
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.response-followup-button:hover {
+  border-color: #c8b99b;
+}
+
+@media (max-width: 960px) {
+  .response-grid,
+  .response-call-body {
+    grid-template-columns: 1fr;
+  }
+
+  .response-title {
+    max-width: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .response-hero,
+  .response-card,
+  .response-metric-card,
+  .response-answer-card,
+  .response-tier-card,
+  .response-followup-card {
+    padding: 15px;
+  }
+
+  .response-section-head,
+  .response-call-summary {
+    flex-direction: column;
+  }
+}
+
+/* --------------------------------------------------------------- motion */
+
+/* The certificate expanding is the single animated moment in the app.
+   No entrance animations, no hover lifts. */
+@media (prefers-reduced-motion: no-preference) {
+  .expand {
+    animation: expand 140ms ease-out;
+  }
+}
+
+@keyframes expand {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------ scrollbars */
+
+.rail ::-webkit-scrollbar,
+.rail::-webkit-scrollbar {
+  width: 8px;
+}
+.rail::-webkit-scrollbar-thumb {
+  background: #47505722;
+}
