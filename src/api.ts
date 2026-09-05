@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import morgan from 'morgan';
 import { RulesEngine, Schemas as RuleSchemas } from './rulesEngine';
 import { QueryEngine, QuerySchemas } from './queryEngine';
 import { simulateImpact } from './simulator';
@@ -8,19 +9,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// API Logger Middleware
-app.use((req, res, next) => {
-    console.log(`\n[${new Date().toISOString()}] ${req.method} ${req.url}`);
-    if (Object.keys(req.body).length > 0) {
-        console.log(`Body: ${JSON.stringify(req.body)}`);
-    }
-    const start = Date.now();
-    res.on('finish', () => {
-        const ms = Date.now() - start;
-        console.log(`[${new Date().toISOString()}] ${req.method} ${req.url} ${res.statusCode} - ${ms}ms`);
-    });
-    next();
+// Setup Morgan logger with a custom token for the request body
+morgan.token('body', (req: express.Request) => {
+    return Object.keys(req.body || {}).length ? JSON.stringify(req.body) : '';
 });
+app.use(morgan(':method :url :status :res[content-length] bytes - :response-time ms \nPayload: :body\n'));
 
 // =================================================================
 // TIER 1: LOOKUP ENDPOINTS (Data Retrieval)
