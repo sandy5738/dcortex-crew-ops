@@ -11,15 +11,8 @@ import { z } from "zod";
 /**
  * 1. Define the Tools for LangGraph
  * We wrap our deterministic RulesEngine and Simulator into LangChain-compatible tools.
- * Using zod-to-json-schema for tool schemas instead of @langchain/core/tools.tool
- * to avoid the missing-module type errors.
+ * Tool schemas are declared as plain JSON Schema objects directly.
  */
-
-/**
- * zod-to-json-schema is already a dependency (devDependency actually, but
- * we re-import from there to avoid @langchain/openai peer-dependency issues).
- */
-import { zodToJsonSchema } from "zod-to-json-schema";
 
 const checkFdpLimitTool = tool(
     async (input: { numSectors: number; proposedFdpHours: number }) => {
@@ -269,7 +262,7 @@ const callModel = async (state: any) => {
         temperature: 0,
         configuration: {
             baseURL: "https://api.sarvam.ai/v1",
-            apiKey: process.env.SARVAM_API_KEY"
+            apiKey: process.env.SARVAM_API_KEY
         }
     }).bindTools(tools);
     
