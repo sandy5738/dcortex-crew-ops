@@ -1,0 +1,969 @@
+[
+ {
+  "question_id": "Q01",
+  "tier": 1,
+  "prompt": "Who is on reserve at BLR on 2026-09-15, and what are their on-call windows?",
+  "expected_answer": [
+   {
+    "crew_id": "C-3305",
+    "rank": "Captain",
+    "window": {
+     "start": "00:00",
+     "end": "05:30"
+    }
+   },
+   {
+    "crew_id": "C-3310",
+    "rank": "Captain",
+    "window": {
+     "start": "06:00",
+     "end": "18:00"
+    }
+   },
+   {
+    "crew_id": "C-3311",
+    "rank": "First Officer",
+    "window": {
+     "start": "06:00",
+     "end": "18:00"
+    }
+   },
+   {
+    "crew_id": "C-3312",
+    "rank": "First Officer",
+    "window": {
+     "start": "00:00",
+     "end": "12:00"
+    }
+   },
+   {
+    "crew_id": "C-3315",
+    "rank": "Captain",
+    "window": {
+     "start": "03:00",
+     "end": "15:00"
+    }
+   },
+   {
+    "crew_id": "C-3316",
+    "rank": "First Officer",
+    "window": {
+     "start": "03:00",
+     "end": "15:00"
+    }
+   },
+   {
+    "crew_id": "C-2111",
+    "rank": "Senior Cabin Crew",
+    "window": {
+     "start": "04:00",
+     "end": "16:00"
+    }
+   },
+   {
+    "crew_id": "C-3677",
+    "rank": "Senior Cabin Crew",
+    "window": {
+     "start": "04:00",
+     "end": "16:00"
+    }
+   },
+   {
+    "crew_id": "C-5418",
+    "rank": "Cabin Crew",
+    "window": {
+     "start": "04:00",
+     "end": "16:00"
+    }
+   },
+   {
+    "crew_id": "C-1329",
+    "rank": "Cabin Crew",
+    "window": {
+     "start": "04:00",
+     "end": "16:00"
+    }
+   },
+   {
+    "crew_id": "C-2248",
+    "rank": "Cabin Crew",
+    "window": {
+     "start": "04:00",
+     "end": "16:00"
+    }
+   },
+   {
+    "crew_id": "C-4809",
+    "rank": "Cabin Crew",
+    "window": {
+     "start": "00:00",
+     "end": "12:00"
+    }
+   }
+  ],
+  "explanation": "Read directly from reserve_pool.json filtered to base BLR (all reserves are active all week).",
+  "rules_ref": []
+ },
+ {
+  "question_id": "Q02",
+  "tier": 1,
+  "prompt": "As of the snapshot, how many duty hours has C-1042 accrued in the 7 calendar days ending 2026-09-14, and how much headroom does that leave under RULE-DUTY-02?",
+  "expected_answer": {
+   "duty_hours_7d": 20.93,
+   "headroom_hours": 39.07
+  },
+  "explanation": "Sum daily_history for Sep 8\u201314 (duty_clocks.json); headroom = 60 \u2212 that sum.",
+  "rules_ref": [
+   "RULE-DUTY-02"
+  ]
+ },
+ {
+  "question_id": "Q03",
+  "tier": 1,
+  "prompt": "Which flights depart DEL on 2026-09-15?",
+  "expected_answer": [
+   "DX402"
+  ],
+  "explanation": "Filter flights.json by date and dep_station. (DX589 runs only on VT-DXC's DEL-start days: 14/16/18/20 Sep.)",
+  "rules_ref": []
+ },
+ {
+  "question_id": "Q04",
+  "tier": 1,
+  "prompt": "List all certifications expiring within 30 days of 2026-09-15.",
+  "expected_answer": [
+   {
+    "crew_id": "C-2087",
+    "cert_type": "licence",
+    "valid_to": "2026-09-18"
+   },
+   {
+    "crew_id": "C-2091",
+    "cert_type": "medical_class1",
+    "valid_to": "2026-09-23"
+   },
+   {
+    "crew_id": "C-5417",
+    "cert_type": "recurrent_training",
+    "valid_to": "2026-09-17"
+   },
+   {
+    "crew_id": "C-3116",
+    "cert_type": "dangerous_goods",
+    "valid_to": "2026-09-28"
+   },
+   {
+    "crew_id": "C-5020",
+    "cert_type": "recurrent_training",
+    "valid_to": "2026-10-03"
+   },
+   {
+    "crew_id": "C-2993",
+    "cert_type": "medical_class1",
+    "valid_to": "2026-10-08"
+   }
+  ],
+  "explanation": "Filter certifications.json on valid_to between 2026-09-15 and 2026-10-15.",
+  "rules_ref": [
+   "RULE-CERT-06"
+  ]
+ },
+ {
+  "question_id": "Q05",
+  "tier": 1,
+  "prompt": "Which aircraft operates DX412 on 2026-09-15, and how many seats does it have?",
+  "expected_answer": {
+   "aircraft": "VT-DXC",
+   "aircraft_type": "A320",
+   "seats": 162
+  },
+  "explanation": "Lookup in flights.json.",
+  "rules_ref": []
+ },
+ {
+  "question_id": "Q06",
+  "tier": 1,
+  "prompt": "What is C-3310's reserve on-call window and reachability?",
+  "expected_answer": {
+   "window": {
+    "start": "06:00",
+    "end": "18:00"
+   },
+   "reachability_minutes": 45
+  },
+  "explanation": "Join reserve_pool.json with crew.json.",
+  "rules_ref": []
+ },
+ {
+  "question_id": "Q07",
+  "tier": 1,
+  "prompt": "What is C-2210's base and rating?",
+  "expected_answer": {
+   "base": "DEL",
+   "ratings": [
+    "A320"
+   ]
+  },
+  "explanation": "Lookup in crew.json.",
+  "rules_ref": []
+ },
+ {
+  "question_id": "Q08",
+  "tier": 1,
+  "prompt": "Which crew are assigned to pairing P-2291, and in what roles?",
+  "expected_answer": [
+   {
+    "crew_id": "C-1042",
+    "role": "Captain"
+   },
+   {
+    "crew_id": "C-1694",
+    "role": "First Officer"
+   },
+   {
+    "crew_id": "C-3005",
+    "role": "Senior Cabin Crew"
+   },
+   {
+    "crew_id": "C-4395",
+    "role": "Cabin Crew"
+   },
+   {
+    "crew_id": "C-4273",
+    "role": "Cabin Crew"
+   },
+   {
+    "crew_id": "C-1873",
+    "role": "Cabin Crew"
+   }
+  ],
+  "explanation": "Read rosters.json, pairing P-2291.",
+  "rules_ref": []
+ },
+ {
+  "question_id": "Q09",
+  "tier": 1,
+  "prompt": "Which flights fly BLR\u2192BOM on 2026-09-17?",
+  "expected_answer": [
+   "DX431",
+   "DX412"
+  ],
+  "explanation": "Filter flights.json.",
+  "rules_ref": []
+ },
+ {
+  "question_id": "Q10",
+  "tier": 1,
+  "prompt": "How many flights operate on 2026-09-16 in total?",
+  "expected_answer": 21,
+  "explanation": "Count flights.json rows for the date.",
+  "rules_ref": []
+ },
+ {
+  "question_id": "Q11",
+  "tier": 1,
+  "prompt": "How many captains are based at DEL, and who are they?",
+  "expected_answer": [
+   "C-2210"
+  ],
+  "explanation": "Filter crew.json by rank and base.",
+  "rules_ref": []
+ },
+ {
+  "question_id": "Q12",
+  "tier": 1,
+  "prompt": "What is the longest block time in the schedule, and which flights have it?",
+  "expected_answer": {
+   "block_hours": 2.75,
+   "flights": [
+    "DX401",
+    "DX402",
+    "DX588",
+    "DX589"
+   ]
+  },
+  "explanation": "Max block_hours in flights.json.",
+  "rules_ref": []
+ },
+ {
+  "question_id": "Q13",
+  "tier": 1,
+  "prompt": "What is C-2087's rank, and total flight hours over the 28 days ending 2026-09-14?",
+  "expected_answer": {
+   "rank": "Captain",
+   "flight_hours_28d": 23.5
+  },
+  "explanation": "crew.json + duty_clocks.json. Note: C-2087 is a Captain.",
+  "rules_ref": []
+ },
+ {
+  "question_id": "Q14",
+  "tier": 1,
+  "prompt": "Which stations does the network serve nonstop from BLR?",
+  "expected_answer": [
+   "BOM",
+   "CCU",
+   "COK",
+   "DEL",
+   "GOI",
+   "HYD",
+   "MAA"
+  ],
+  "explanation": "Distinct arr_station where dep_station=BLR.",
+  "rules_ref": []
+ },
+ {
+  "question_id": "Q15",
+  "tier": 1,
+  "prompt": "Who is the Senior Cabin Crew on VT-DXB's pairing on 2026-09-16?",
+  "expected_answer": "C-3171",
+  "explanation": "rosters.json for the date/aircraft.",
+  "rules_ref": []
+ },
+ {
+  "question_id": "Q16",
+  "tier": 1,
+  "prompt": "What is the disruption-risk score for C-1042 and what drives it?",
+  "expected_answer": {
+   "score": 0.78,
+   "drivers": [
+    "short-rest pattern over last 14 days",
+    "two fatigue reports this month"
+   ]
+  },
+  "explanation": "risk_signals.json \u2014 provided, not computed.",
+  "rules_ref": []
+ },
+ {
+  "question_id": "Q17",
+  "tier": 2,
+  "prompt": "Captain C-1042 calls in sick at 05:00Z on 15 Sep for pairing P-2291. Which flights are immediately uncrewed?",
+  "expected_answer": {
+   "day1": [
+    "DX412-2026-09-15",
+    "DX413-2026-09-15",
+    "DX588-2026-09-15"
+   ],
+   "day2_also_at_risk": [
+    "DX589-2026-09-16",
+    "DX590-2026-09-16",
+    "DX591-2026-09-16"
+   ],
+   "passengers_day1": 486
+  },
+  "explanation": "P-2291 is a 2-day pairing; day 1 legs lose their captain immediately and day 2 is at risk because the pairing overnights at DEL.",
+  "rules_ref": [
+   "RULE-QUAL-05"
+  ]
+ },
+ {
+  "question_id": "Q18",
+  "tier": 2,
+  "prompt": "If Captain C-2087 is assigned to cover P-2291 from 15 Sep, does any rule breach? Give the detail.",
+  "expected_answer": {
+   "legal": false,
+   "issues": [
+    "RULE-DUTY-02: would exceed 60h/7d by 1h20m on 2026-09-15 (total 61.33h)",
+    "RULE-DUTY-02: would exceed 60h/7d by 1h05m on 2026-09-16 (total 61.08h)"
+   ]
+  },
+  "explanation": "Simulate C-2087's 7-day duty window including the new duty; RULE-DUTY-02 is exceeded on day 1.",
+  "rules_ref": [
+   "RULE-DUTY-02"
+  ]
+ },
+ {
+  "question_id": "Q19",
+  "tier": 2,
+  "prompt": "BLR is closed 08:00\u201314:00Z on 17 Sep. Which flights are affected?",
+  "expected_answer": [
+   "DX402-2026-09-17",
+   "DX422-2026-09-17",
+   "DX462-2026-09-17",
+   "DX453-2026-09-17",
+   "DX433-2026-09-17",
+   "DX403-2026-09-17",
+   "DX413-2026-09-17",
+   "DX423-2026-09-17",
+   "DX454-2026-09-17",
+   "DX434-2026-09-17",
+   "DX404-2026-09-17",
+   "DX424-2026-09-17",
+   "DX588-2026-09-17"
+  ],
+  "explanation": "Any flight departing or arriving BLR inside the window. See scenario S3 for per-flight assessment.",
+  "rules_ref": []
+ },
+ {
+  "question_id": "Q20",
+  "tier": 2,
+  "prompt": "VT-DXA is delayed 90 minutes before DX401 on 16 Sep. Does the rostered crew breach any limit if they fly all four legs?",
+  "expected_answer": {
+   "breach": true,
+   "fdp_after_delay": 12.75,
+   "fdp_limit": 12.0
+  },
+  "explanation": "FDP extends beyond the 4-sector limit of 12.0h.",
+  "rules_ref": [
+   "RULE-FDP-01"
+  ]
+ },
+ {
+  "question_id": "Q21",
+  "tier": 2,
+  "prompt": "Can C-2210 (DEL base) legally cover P-2291 if positioned to BLR on the morning of 15 Sep? What is the operational consequence?",
+  "expected_answer": {
+   "legal": true,
+   "consequence": "Deadhead positioning on DX402 (arr 08:45Z) delays the first departure by ~3h; RULE-BASE-07 deadhead cost applies."
+  },
+  "explanation": "Legal on all duty/rest/qualification checks; the cost is positioning plus duty-start delay.",
+  "rules_ref": [
+   "RULE-BASE-07",
+   "RULE-REST-04"
+  ]
+ },
+ {
+  "question_id": "Q22",
+  "tier": 2,
+  "prompt": "Can C-5417 legally operate their rostered VT-DXB duty on 19 Sep?",
+  "expected_answer": {
+   "legal": false,
+   "rule": "RULE-CERT-06",
+   "detail": "recurrent_training expired 2026-09-17"
+  },
+  "explanation": "certifications.json vs duty date.",
+  "rules_ref": [
+   "RULE-CERT-06"
+  ]
+ },
+ {
+  "question_id": "Q23",
+  "tier": 2,
+  "prompt": "A crew is released at 15:30Z on 16 Sep. What is the earliest they may report next?",
+  "expected_answer": "2026-09-17T03:30:00Z",
+  "explanation": "RULE-REST-04: release + 12h.",
+  "rules_ref": [
+   "RULE-REST-04"
+  ]
+ },
+ {
+  "question_id": "Q24",
+  "tier": 2,
+  "prompt": "Can reserve C-3305 cover the FULL pairing P-2291 (both days)? Why or why not?",
+  "expected_answer": {
+   "legal": false,
+   "issues": [
+    "RULE-DUTY-02: would exceed 60h/7d by 8h15m on 2026-09-16 (total 68.25h)"
+   ]
+  },
+  "explanation": "Day 1 fits, but the rolling 7-day duty window breaches on day 2 \u2014 a candidate must be legal for every day of the cover.",
+  "rules_ref": [
+   "RULE-DUTY-02"
+  ]
+ },
+ {
+  "question_id": "Q25",
+  "tier": 2,
+  "prompt": "If DX404 on 16 Sep is cancelled, how many passengers are affected and what is the direct cancellation cost?",
+  "expected_answer": {
+   "passengers": 162,
+   "cost_inr": 250000
+  },
+  "explanation": "flights.json seats + costs.json.",
+  "rules_ref": []
+ },
+ {
+  "question_id": "Q26",
+  "tier": 2,
+  "prompt": "Which crew have 45 or more duty hours in the 7 days ending 2026-09-15 (including any planned duty that day)?",
+  "expected_answer": [
+   {
+    "crew_id": "C-2087",
+    "duty_hours_7d_incl_15sep_plan": 51.83
+   },
+   {
+    "crew_id": "C-3305",
+    "duty_hours_7d_incl_15sep_plan": 50.0
+   }
+  ],
+  "explanation": "Rolling window over daily_history plus the current-week roster.",
+  "rules_ref": [
+   "RULE-DUTY-02"
+  ]
+ },
+ {
+  "question_id": "Q27",
+  "tier": 2,
+  "prompt": "The VT-DXE captain is sick on 16 Sep (called 01:30Z). Which reserve captains' on-call windows cover the callout, and are they qualified?",
+  "expected_answer": {
+   "eligible": [
+    "C-3315"
+   ],
+   "excluded_examples": [
+    {
+     "crew_id": "C-3305",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    },
+    {
+     "crew_id": "C-3310",
+     "reason": "reserve on-call window 06:00-18:00Z does not cover required report 03:00Z"
+    }
+   ]
+  },
+  "explanation": "Callout must fall in the window; ATR rating required (RULE-QUAL-05). C-3315 qualifies; A320-only reserves are excluded.",
+  "rules_ref": [
+   "RULE-QUAL-05",
+   "RULE-BASE-07"
+  ]
+ },
+ {
+  "question_id": "Q28",
+  "tier": 2,
+  "prompt": "Captain C-5837 (VT-DXA line, works 14/17/20 Sep) is proposed to cover P-2291. Legal?",
+  "expected_answer": {
+   "legal": false,
+   "issues": [
+    "RULE-REST-04: only 10.75h rest before P-2204 on 2026-09-17 (downstream conflict)"
+   ]
+  },
+  "explanation": "Covering the pairing collides with his own 17 Sep duty \u2014 a downstream rest/overlap conflict, not a same-day one.",
+  "rules_ref": [
+   "RULE-REST-04"
+  ]
+ },
+ {
+  "question_id": "Q29",
+  "tier": 2,
+  "prompt": "Station HYD is closed 05:00\u201309:00Z on 19 Sep. Which flights are affected?",
+  "expected_answer": [
+   "DX461-2026-09-19",
+   "DX462-2026-09-19"
+  ],
+  "explanation": "Same window logic as S3 applied to HYD.",
+  "rules_ref": []
+ },
+ {
+  "question_id": "Q30",
+  "tier": 2,
+  "prompt": "Which single flight leg has the most seats at risk if cancelled, and why?",
+  "expected_answer": {
+   "flights": "any A320 leg (162 seats)",
+   "vs": "ATR72 legs (72 seats)"
+  },
+  "explanation": "Seats come from aircraft_type; A320 legs dominate.",
+  "rules_ref": []
+ },
+ {
+  "question_id": "Q31",
+  "tier": 3,
+  "prompt": "Captain C-1042 is out for pairing P-2291 (15\u201316 Sep). Produce ranked resolution options with costs and reasoning.",
+  "expected_answer": [
+   {
+    "action": "Assign Captain C-3310 (reserve callout)",
+    "crew_id": "C-3310",
+    "legal": true,
+    "rules_checked": [
+     "RULE-FDP-01",
+     "RULE-DUTY-02",
+     "RULE-FLT-03",
+     "RULE-REST-04",
+     "RULE-QUAL-05",
+     "RULE-CERT-06",
+     "RULE-BASE-07"
+    ],
+    "cost_inr": 18500,
+    "delay_hours": 0.0,
+    "rank": 1
+   },
+   {
+    "action": "Assign Captain C-1526 (day-off callout)",
+    "crew_id": "C-1526",
+    "legal": true,
+    "rules_checked": [
+     "RULE-FDP-01",
+     "RULE-DUTY-02",
+     "RULE-FLT-03",
+     "RULE-REST-04",
+     "RULE-QUAL-05",
+     "RULE-CERT-06",
+     "RULE-BASE-07"
+    ],
+    "cost_inr": 24000,
+    "delay_hours": 0.0,
+    "rank": 2
+   },
+   {
+    "action": "Assign Captain C-3983 (day-off callout)",
+    "crew_id": "C-3983",
+    "legal": true,
+    "rules_checked": [
+     "RULE-FDP-01",
+     "RULE-DUTY-02",
+     "RULE-FLT-03",
+     "RULE-REST-04",
+     "RULE-QUAL-05",
+     "RULE-CERT-06",
+     "RULE-BASE-07"
+    ],
+    "cost_inr": 24000,
+    "delay_hours": 0.0,
+    "rank": 3
+   },
+   {
+    "action": "Assign Captain C-5566 (day-off callout)",
+    "crew_id": "C-5566",
+    "legal": true,
+    "rules_checked": [
+     "RULE-FDP-01",
+     "RULE-DUTY-02",
+     "RULE-FLT-03",
+     "RULE-REST-04",
+     "RULE-QUAL-05",
+     "RULE-CERT-06",
+     "RULE-BASE-07"
+    ],
+    "cost_inr": 24000,
+    "delay_hours": 0.0,
+    "rank": 4
+   },
+   {
+    "action": "Assign Captain C-2210 (reserve callout + deadhead from DEL (first departure delayed ~3.0h))",
+    "crew_id": "C-2210",
+    "legal": true,
+    "rules_checked": [
+     "RULE-FDP-01",
+     "RULE-DUTY-02",
+     "RULE-FLT-03",
+     "RULE-REST-04",
+     "RULE-QUAL-05",
+     "RULE-CERT-06",
+     "RULE-BASE-07"
+    ],
+    "cost_inr": 41200,
+    "delay_hours": 3.0,
+    "rank": 5
+   },
+   {
+    "action": "Cancel all 6 flights of the pairing",
+    "crew_id": null,
+    "legal": true,
+    "rules_checked": [],
+    "cost_inr": 1500000,
+    "delay_hours": 0.0,
+    "rank": 6
+   }
+  ],
+  "explanation": "See scenario S2: reserve C-3310 is cheapest and clean; C-2210 requires deadhead + ~3h delay; C-2087 and C-3305 are excluded on RULE-DUTY-02; cancellation is last resort.",
+  "rules_ref": [
+   "RULE-DUTY-02",
+   "RULE-BASE-07"
+  ]
+ },
+ {
+  "question_id": "Q32",
+  "tier": 3,
+  "prompt": "Both A320 captains (VT-DXA and VT-DXB) are sick at 00:30Z on 18 Sep. Give the optimal joint crewing plan.",
+  "expected_answer": {
+   "total_cost_inr": 42500,
+   "assign_dxa": {
+    "action": "Assign Captain C-3305 (reserve callout)",
+    "crew_id": "C-3305",
+    "legal": true,
+    "rules_checked": [
+     "RULE-FDP-01",
+     "RULE-DUTY-02",
+     "RULE-FLT-03",
+     "RULE-REST-04",
+     "RULE-QUAL-05",
+     "RULE-CERT-06",
+     "RULE-BASE-07"
+    ],
+    "cost_inr": 18500,
+    "delay_hours": 0.0,
+    "rank": 1
+   },
+   "assign_dxb": {
+    "action": "Assign Captain C-1017 (day-off callout)",
+    "crew_id": "C-1017",
+    "legal": true,
+    "rules_checked": [
+     "RULE-FDP-01",
+     "RULE-DUTY-02",
+     "RULE-FLT-03",
+     "RULE-REST-04",
+     "RULE-QUAL-05",
+     "RULE-CERT-06",
+     "RULE-BASE-07"
+    ],
+    "cost_inr": 24000,
+    "delay_hours": 0.0,
+    "rank": 2
+   }
+  },
+  "explanation": "Enumerate legal candidates per pairing, forbid double-assignment, minimise total cost. See scenario S6.",
+  "rules_ref": [
+   "RULE-BASE-07",
+   "RULE-DUTY-02"
+  ]
+ },
+ {
+  "question_id": "Q33",
+  "tier": 3,
+  "prompt": "After the 90-minute delay to VT-DXA on 16 Sep, what should Crew Control do about the FDP breach?",
+  "expected_answer": [
+   {
+    "rank": 1,
+    "action": "Original crew operates DX401\u2013DX403 (delayed); full reserve set (CPT, FO, SCC, 3 CC) operates DX404",
+    "legal": true,
+    "cost_inr": 75000,
+    "reasoning": "Delayed 3-leg duty FDP 9.5h vs 12.5h limit \u2014 legal. Reserve set covers the last sector (callout window and 12h-rest all satisfied)."
+   },
+   {
+    "rank": 2,
+    "action": "Cancel DX404",
+    "legal": true,
+    "cost_inr": 250000,
+    "reasoning": "Legal but ~3.3x more expensive than re-crewing one leg; 162 passengers stranded."
+   }
+  ],
+  "explanation": "Original crew legally completes 3 legs; a reserve set takes DX404. Cancellation is legal but ~3x the cost. See scenario S4.",
+  "rules_ref": [
+   "RULE-FDP-01"
+  ]
+ },
+ {
+  "question_id": "Q34",
+  "tier": 3,
+  "prompt": "C-5417's recurrent training lapsed. Resolve their 19 Sep assignment.",
+  "expected_answer": [
+   {
+    "action": "Assign Cabin Crew C-4809 (reserve callout)",
+    "crew_id": "C-4809",
+    "legal": true,
+    "rules_checked": [
+     "RULE-FDP-01",
+     "RULE-DUTY-02",
+     "RULE-FLT-03",
+     "RULE-REST-04",
+     "RULE-QUAL-05",
+     "RULE-CERT-06",
+     "RULE-BASE-07"
+    ],
+    "cost_inr": 9500,
+    "delay_hours": 0.0,
+    "rank": 1
+   },
+   {
+    "action": "Assign Cabin Crew C-1021 (day-off callout)",
+    "crew_id": "C-1021",
+    "legal": true,
+    "rules_checked": [
+     "RULE-FDP-01",
+     "RULE-DUTY-02",
+     "RULE-FLT-03",
+     "RULE-REST-04",
+     "RULE-QUAL-05",
+     "RULE-CERT-06",
+     "RULE-BASE-07"
+    ],
+    "cost_inr": 12500,
+    "delay_hours": 0.0,
+    "rank": 2
+   },
+   {
+    "action": "Assign Cabin Crew C-1385 (day-off callout)",
+    "crew_id": "C-1385",
+    "legal": true,
+    "rules_checked": [
+     "RULE-FDP-01",
+     "RULE-DUTY-02",
+     "RULE-FLT-03",
+     "RULE-REST-04",
+     "RULE-QUAL-05",
+     "RULE-CERT-06",
+     "RULE-BASE-07"
+    ],
+    "cost_inr": 12500,
+    "delay_hours": 0.0,
+    "rank": 3
+   }
+  ],
+  "explanation": "Cabin reserve callout is the clean fix; see scenario S5.",
+  "rules_ref": [
+   "RULE-CERT-06"
+  ]
+ },
+ {
+  "question_id": "Q35",
+  "tier": 3,
+  "prompt": "BLR closes 08:00\u201314:00Z on 17 Sep. Outline the recovery plan across affected pairings.",
+  "expected_answer": [
+   {
+    "flight_id": "DX402-2026-09-17",
+    "pairing_id": "P-2204",
+    "min_delay_hours": 5.75,
+    "crew_fdp_after_delay": 17.0,
+    "fdp_limit": 12.0,
+    "action": "delay exceeds crew FDP \u2014 re-crew tail legs from reserves or cancel"
+   },
+   {
+    "flight_id": "DX422-2026-09-17",
+    "pairing_id": "P-2211",
+    "min_delay_hours": 5.75,
+    "crew_fdp_after_delay": 17.0,
+    "fdp_limit": 12.0,
+    "action": "delay exceeds crew FDP \u2014 re-crew tail legs from reserves or cancel"
+   },
+   {
+    "flight_id": "DX462-2026-09-17",
+    "pairing_id": "P-2232",
+    "min_delay_hours": 5.75,
+    "crew_fdp_after_delay": 11.0,
+    "fdp_limit": 13.0,
+    "action": "delay (crew legal)"
+   },
+   {
+    "flight_id": "DX453-2026-09-17",
+    "pairing_id": "P-2225",
+    "min_delay_hours": 6.5,
+    "crew_fdp_after_delay": 14.75,
+    "fdp_limit": 12.0,
+    "action": "delay exceeds crew FDP \u2014 re-crew tail legs from reserves or cancel"
+   },
+   {
+    "flight_id": "DX433-2026-09-17",
+    "pairing_id": "P-2218",
+    "min_delay_hours": 6.0,
+    "crew_fdp_after_delay": 15.75,
+    "fdp_limit": 12.0,
+    "action": "delay exceeds crew FDP \u2014 re-crew tail legs from reserves or cancel"
+   },
+   {
+    "flight_id": "DX403-2026-09-17",
+    "pairing_id": "P-2204",
+    "min_delay_hours": 5.0,
+    "crew_fdp_after_delay": 16.25,
+    "fdp_limit": 12.0,
+    "action": "delay exceeds crew FDP \u2014 re-crew tail legs from reserves or cancel"
+   },
+   {
+    "flight_id": "DX413-2026-09-17",
+    "pairing_id": "P-2293",
+    "min_delay_hours": 3.25,
+    "crew_fdp_after_delay": 12.75,
+    "fdp_limit": 12.5,
+    "action": "delay exceeds crew FDP \u2014 re-crew tail legs from reserves or cancel"
+   },
+   {
+    "flight_id": "DX423-2026-09-17",
+    "pairing_id": "P-2211",
+    "min_delay_hours": 5.0,
+    "crew_fdp_after_delay": 16.25,
+    "fdp_limit": 12.0,
+    "action": "delay exceeds crew FDP \u2014 re-crew tail legs from reserves or cancel"
+   },
+   {
+    "flight_id": "DX454-2026-09-17",
+    "pairing_id": "P-2225",
+    "min_delay_hours": 3.75,
+    "crew_fdp_after_delay": 12.0,
+    "fdp_limit": 12.0,
+    "action": "delay (crew legal)"
+   },
+   {
+    "flight_id": "DX434-2026-09-17",
+    "pairing_id": "P-2218",
+    "min_delay_hours": 2.75,
+    "crew_fdp_after_delay": 12.5,
+    "fdp_limit": 12.0,
+    "action": "delay exceeds crew FDP \u2014 re-crew tail legs from reserves or cancel"
+   },
+   {
+    "flight_id": "DX404-2026-09-17",
+    "pairing_id": "P-2204",
+    "min_delay_hours": 2.25,
+    "crew_fdp_after_delay": 13.5,
+    "fdp_limit": 12.0,
+    "action": "delay exceeds crew FDP \u2014 re-crew tail legs from reserves or cancel"
+   },
+   {
+    "flight_id": "DX424-2026-09-17",
+    "pairing_id": "P-2211",
+    "min_delay_hours": 1.75,
+    "crew_fdp_after_delay": 13.0,
+    "fdp_limit": 12.0,
+    "action": "delay exceeds crew FDP \u2014 re-crew tail legs from reserves or cancel"
+   },
+   {
+    "flight_id": "DX588-2026-09-17",
+    "pairing_id": "P-2293",
+    "min_delay_hours": 2.25,
+    "crew_fdp_after_delay": 11.75,
+    "fdp_limit": 12.5,
+    "action": "delay (crew legal)"
+   }
+  ],
+  "explanation": "Delay-to-reopen where crew FDP holds; re-crew or cancel tail legs where it doesn't. See scenario S3.",
+  "rules_ref": [
+   "RULE-FDP-01"
+  ]
+ },
+ {
+  "question_id": "Q36",
+  "tier": 3,
+  "prompt": "Draft the callout notification to C-3310 for covering P-2291.",
+  "expected_answer": {
+   "must_include": [
+    "crew_id and pairing_id",
+    "report time/place: 06:00Z 15 Sep, BLR crew room",
+    "flights day 1: DX412/DX413/DX588; overnight DEL (hotel arranged)",
+    "flights day 2: DX589/DX590/DX591, report 04:00Z at DEL",
+    "acknowledgement request with deadline",
+    "contact for questions"
+   ]
+  },
+  "explanation": "Judged on completeness, correctness of times from rosters.json, and clarity \u2014 not template wording.",
+  "rules_ref": []
+ },
+ {
+  "question_id": "Q37",
+  "tier": 3,
+  "prompt": "What is the cheapest legal way to cover the VT-DXF First Officer on 20 Sep if they call sick at 03:30Z?",
+  "expected_answer": {
+   "action": "Assign First Officer C-3316 (reserve callout)",
+   "crew_id": "C-3316",
+   "legal": true,
+   "rules_checked": [
+    "RULE-FDP-01",
+    "RULE-DUTY-02",
+    "RULE-FLT-03",
+    "RULE-REST-04",
+    "RULE-QUAL-05",
+    "RULE-CERT-06",
+    "RULE-BASE-07"
+   ],
+   "cost_inr": 18500,
+   "delay_hours": 0.0,
+   "rank": 1
+  },
+  "explanation": "ATR-rated FO reserve C-3316 (window 03:00\u201315:00) is the clean cover.",
+  "rules_ref": [
+   "RULE-QUAL-05"
+  ]
+ },
+ {
+  "question_id": "Q38",
+  "tier": 3,
+  "prompt": "If the desk wants a standing morning briefing, which three data points per aircraft line should it surface and why?",
+  "expected_answer": {
+   "suggested": [
+    "crew legality headroom (7d duty) for today's rostered crew",
+    "reserve availability by window and rating for the day",
+    "risk_signals for today's rostered crew (provided input)"
+   ],
+   "note": "Open-ended; judged on operational reasoning, not exact match."
+  },
+  "explanation": "Tier-3 open question \u2014 grading rubric style.",
+  "rules_ref": []
+ }
+]

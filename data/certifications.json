@@ -1,0 +1,3602 @@
+[
+ {
+  "crew_id": "C-1042",
+  "cert_type": "licence",
+  "valid_from": "2030-01-24",
+  "valid_to": "2032-01-24"
+ },
+ {
+  "crew_id": "C-1042",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-12-31",
+  "valid_to": "2027-12-31"
+ },
+ {
+  "crew_id": "C-1042",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-05-23",
+  "valid_to": "2027-05-23"
+ },
+ {
+  "crew_id": "C-1042",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-05-25",
+  "valid_to": "2028-05-24"
+ },
+ {
+  "crew_id": "C-2087",
+  "cert_type": "licence",
+  "valid_from": "2028-11-06",
+  "valid_to": "2026-09-18"
+ },
+ {
+  "crew_id": "C-2087",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-08",
+  "valid_to": "2027-08-08"
+ },
+ {
+  "crew_id": "C-2087",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-01-06",
+  "valid_to": "2027-01-06"
+ },
+ {
+  "crew_id": "C-2087",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-02-23",
+  "valid_to": "2028-02-23"
+ },
+ {
+  "crew_id": "C-2210",
+  "cert_type": "licence",
+  "valid_from": "2027-09-21",
+  "valid_to": "2029-09-20"
+ },
+ {
+  "crew_id": "C-2210",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-06-24",
+  "valid_to": "2027-06-24"
+ },
+ {
+  "crew_id": "C-2210",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-01-12",
+  "valid_to": "2027-01-12"
+ },
+ {
+  "crew_id": "C-2210",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-08-20",
+  "valid_to": "2027-08-20"
+ },
+ {
+  "crew_id": "C-3305",
+  "cert_type": "licence",
+  "valid_from": "2028-08-04",
+  "valid_to": "2030-08-04"
+ },
+ {
+  "crew_id": "C-3305",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-12-01",
+  "valid_to": "2027-12-01"
+ },
+ {
+  "crew_id": "C-3305",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-01-31",
+  "valid_to": "2027-01-31"
+ },
+ {
+  "crew_id": "C-3305",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-04-17",
+  "valid_to": "2028-04-16"
+ },
+ {
+  "crew_id": "C-3310",
+  "cert_type": "licence",
+  "valid_from": "2029-01-16",
+  "valid_to": "2031-01-16"
+ },
+ {
+  "crew_id": "C-3310",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-13",
+  "valid_to": "2027-08-13"
+ },
+ {
+  "crew_id": "C-3310",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-15",
+  "valid_to": "2027-06-15"
+ },
+ {
+  "crew_id": "C-3310",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-01-15",
+  "valid_to": "2028-01-15"
+ },
+ {
+  "crew_id": "C-3311",
+  "cert_type": "licence",
+  "valid_from": "2028-08-11",
+  "valid_to": "2030-08-11"
+ },
+ {
+  "crew_id": "C-3311",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-09-25",
+  "valid_to": "2027-09-25"
+ },
+ {
+  "crew_id": "C-3311",
+  "cert_type": "recurrent_training",
+  "valid_from": "2024-12-23",
+  "valid_to": "2026-12-23"
+ },
+ {
+  "crew_id": "C-3311",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-03-09",
+  "valid_to": "2028-03-08"
+ },
+ {
+  "crew_id": "C-3312",
+  "cert_type": "licence",
+  "valid_from": "2027-11-06",
+  "valid_to": "2029-11-05"
+ },
+ {
+  "crew_id": "C-3312",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-09-28",
+  "valid_to": "2027-09-28"
+ },
+ {
+  "crew_id": "C-3312",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-24",
+  "valid_to": "2027-03-24"
+ },
+ {
+  "crew_id": "C-3312",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-07-17",
+  "valid_to": "2028-07-16"
+ },
+ {
+  "crew_id": "C-3315",
+  "cert_type": "licence",
+  "valid_from": "2028-02-23",
+  "valid_to": "2030-02-22"
+ },
+ {
+  "crew_id": "C-3315",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-25",
+  "valid_to": "2027-08-25"
+ },
+ {
+  "crew_id": "C-3315",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-12",
+  "valid_to": "2027-06-12"
+ },
+ {
+  "crew_id": "C-3315",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-12-10",
+  "valid_to": "2027-12-10"
+ },
+ {
+  "crew_id": "C-3316",
+  "cert_type": "licence",
+  "valid_from": "2030-01-11",
+  "valid_to": "2032-01-11"
+ },
+ {
+  "crew_id": "C-3316",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-12-07",
+  "valid_to": "2027-12-07"
+ },
+ {
+  "crew_id": "C-3316",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-07-29",
+  "valid_to": "2027-07-29"
+ },
+ {
+  "crew_id": "C-3316",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-04-02",
+  "valid_to": "2027-04-02"
+ },
+ {
+  "crew_id": "C-2091",
+  "cert_type": "licence",
+  "valid_from": "2029-04-21",
+  "valid_to": "2031-04-21"
+ },
+ {
+  "crew_id": "C-2091",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-26",
+  "valid_to": "2026-09-23"
+ },
+ {
+  "crew_id": "C-2091",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-08-07",
+  "valid_to": "2027-08-07"
+ },
+ {
+  "crew_id": "C-2091",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-06-09",
+  "valid_to": "2027-06-09"
+ },
+ {
+  "crew_id": "C-5837",
+  "cert_type": "licence",
+  "valid_from": "2028-02-09",
+  "valid_to": "2030-02-08"
+ },
+ {
+  "crew_id": "C-5837",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-09-21",
+  "valid_to": "2027-09-21"
+ },
+ {
+  "crew_id": "C-5837",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-07-16",
+  "valid_to": "2027-07-16"
+ },
+ {
+  "crew_id": "C-5837",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-03-02",
+  "valid_to": "2028-03-01"
+ },
+ {
+  "crew_id": "C-2791",
+  "cert_type": "licence",
+  "valid_from": "2027-07-27",
+  "valid_to": "2029-07-26"
+ },
+ {
+  "crew_id": "C-2791",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-05-12",
+  "valid_to": "2027-05-12"
+ },
+ {
+  "crew_id": "C-2791",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-05",
+  "valid_to": "2027-03-05"
+ },
+ {
+  "crew_id": "C-2791",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-12-29",
+  "valid_to": "2027-12-29"
+ },
+ {
+  "crew_id": "C-5597",
+  "cert_type": "licence",
+  "valid_from": "2028-06-12",
+  "valid_to": "2030-06-12"
+ },
+ {
+  "crew_id": "C-5597",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-09-09",
+  "valid_to": "2027-09-09"
+ },
+ {
+  "crew_id": "C-5597",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-05-24",
+  "valid_to": "2027-05-24"
+ },
+ {
+  "crew_id": "C-5597",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-11-06",
+  "valid_to": "2027-11-06"
+ },
+ {
+  "crew_id": "C-4679",
+  "cert_type": "licence",
+  "valid_from": "2028-08-31",
+  "valid_to": "2030-08-31"
+ },
+ {
+  "crew_id": "C-4679",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-10-21",
+  "valid_to": "2027-10-21"
+ },
+ {
+  "crew_id": "C-4679",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-30",
+  "valid_to": "2027-04-30"
+ },
+ {
+  "crew_id": "C-4679",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-04-12",
+  "valid_to": "2028-04-11"
+ },
+ {
+  "crew_id": "C-4462",
+  "cert_type": "licence",
+  "valid_from": "2029-03-15",
+  "valid_to": "2031-03-15"
+ },
+ {
+  "crew_id": "C-4462",
+  "cert_type": "medical_class1",
+  "valid_from": "2026-01-27",
+  "valid_to": "2028-01-27"
+ },
+ {
+  "crew_id": "C-4462",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-09-05",
+  "valid_to": "2027-09-05"
+ },
+ {
+  "crew_id": "C-4462",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-04-18",
+  "valid_to": "2028-04-17"
+ },
+ {
+  "crew_id": "C-3757",
+  "cert_type": "licence",
+  "valid_from": "2029-06-27",
+  "valid_to": "2031-06-27"
+ },
+ {
+  "crew_id": "C-3757",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-06-26",
+  "valid_to": "2027-06-26"
+ },
+ {
+  "crew_id": "C-3757",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-17",
+  "valid_to": "2027-03-17"
+ },
+ {
+  "crew_id": "C-3757",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-02-04",
+  "valid_to": "2027-02-04"
+ },
+ {
+  "crew_id": "C-3940",
+  "cert_type": "licence",
+  "valid_from": "2027-11-14",
+  "valid_to": "2029-11-13"
+ },
+ {
+  "crew_id": "C-3940",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-07-31",
+  "valid_to": "2027-07-31"
+ },
+ {
+  "crew_id": "C-3940",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-20",
+  "valid_to": "2027-04-20"
+ },
+ {
+  "crew_id": "C-3940",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-04-03",
+  "valid_to": "2027-04-03"
+ },
+ {
+  "crew_id": "C-4763",
+  "cert_type": "licence",
+  "valid_from": "2028-05-07",
+  "valid_to": "2030-05-07"
+ },
+ {
+  "crew_id": "C-4763",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-06-26",
+  "valid_to": "2027-06-26"
+ },
+ {
+  "crew_id": "C-4763",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-07-04",
+  "valid_to": "2027-07-04"
+ },
+ {
+  "crew_id": "C-4763",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-04-27",
+  "valid_to": "2027-04-27"
+ },
+ {
+  "crew_id": "C-5522",
+  "cert_type": "licence",
+  "valid_from": "2027-09-14",
+  "valid_to": "2029-09-13"
+ },
+ {
+  "crew_id": "C-5522",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-05-04",
+  "valid_to": "2027-05-04"
+ },
+ {
+  "crew_id": "C-5522",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-08-12",
+  "valid_to": "2027-08-12"
+ },
+ {
+  "crew_id": "C-5522",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-07-27",
+  "valid_to": "2028-07-26"
+ },
+ {
+  "crew_id": "C-1569",
+  "cert_type": "licence",
+  "valid_from": "2027-06-21",
+  "valid_to": "2029-06-20"
+ },
+ {
+  "crew_id": "C-1569",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-04-15",
+  "valid_to": "2027-04-15"
+ },
+ {
+  "crew_id": "C-1569",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-07-04",
+  "valid_to": "2027-07-04"
+ },
+ {
+  "crew_id": "C-1569",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-07-02",
+  "valid_to": "2028-07-01"
+ },
+ {
+  "crew_id": "C-2907",
+  "cert_type": "licence",
+  "valid_from": "2027-08-20",
+  "valid_to": "2029-08-19"
+ },
+ {
+  "crew_id": "C-2907",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-05-25",
+  "valid_to": "2027-05-25"
+ },
+ {
+  "crew_id": "C-2907",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-26",
+  "valid_to": "2027-04-26"
+ },
+ {
+  "crew_id": "C-2907",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-06-20",
+  "valid_to": "2027-06-20"
+ },
+ {
+  "crew_id": "C-3988",
+  "cert_type": "licence",
+  "valid_from": "2027-08-22",
+  "valid_to": "2029-08-21"
+ },
+ {
+  "crew_id": "C-3988",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-10-18",
+  "valid_to": "2027-10-18"
+ },
+ {
+  "crew_id": "C-3988",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-05-20",
+  "valid_to": "2027-05-20"
+ },
+ {
+  "crew_id": "C-3988",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-09-03",
+  "valid_to": "2027-09-03"
+ },
+ {
+  "crew_id": "C-3187",
+  "cert_type": "licence",
+  "valid_from": "2028-07-21",
+  "valid_to": "2030-07-21"
+ },
+ {
+  "crew_id": "C-3187",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-25",
+  "valid_to": "2027-08-25"
+ },
+ {
+  "crew_id": "C-3187",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-07-27",
+  "valid_to": "2027-07-27"
+ },
+ {
+  "crew_id": "C-3187",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-05-21",
+  "valid_to": "2027-05-21"
+ },
+ {
+  "crew_id": "C-5375",
+  "cert_type": "licence",
+  "valid_from": "2027-11-26",
+  "valid_to": "2029-11-25"
+ },
+ {
+  "crew_id": "C-5375",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-12-27",
+  "valid_to": "2027-12-27"
+ },
+ {
+  "crew_id": "C-5375",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-10",
+  "valid_to": "2027-03-10"
+ },
+ {
+  "crew_id": "C-5375",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-02-10",
+  "valid_to": "2027-02-10"
+ },
+ {
+  "crew_id": "C-3211",
+  "cert_type": "licence",
+  "valid_from": "2027-05-13",
+  "valid_to": "2029-05-12"
+ },
+ {
+  "crew_id": "C-3211",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-10-01",
+  "valid_to": "2027-10-01"
+ },
+ {
+  "crew_id": "C-3211",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-05-28",
+  "valid_to": "2027-05-28"
+ },
+ {
+  "crew_id": "C-3211",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-05-14",
+  "valid_to": "2028-05-13"
+ },
+ {
+  "crew_id": "C-2876",
+  "cert_type": "licence",
+  "valid_from": "2029-10-14",
+  "valid_to": "2031-10-14"
+ },
+ {
+  "crew_id": "C-2876",
+  "cert_type": "medical_class1",
+  "valid_from": "2026-01-03",
+  "valid_to": "2028-01-03"
+ },
+ {
+  "crew_id": "C-2876",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-05-01",
+  "valid_to": "2027-05-01"
+ },
+ {
+  "crew_id": "C-2876",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-07-27",
+  "valid_to": "2028-07-26"
+ },
+ {
+  "crew_id": "C-1542",
+  "cert_type": "licence",
+  "valid_from": "2029-08-30",
+  "valid_to": "2031-08-30"
+ },
+ {
+  "crew_id": "C-1542",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-06-10",
+  "valid_to": "2027-06-10"
+ },
+ {
+  "crew_id": "C-1542",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-13",
+  "valid_to": "2027-03-13"
+ },
+ {
+  "crew_id": "C-1542",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-04-24",
+  "valid_to": "2028-04-23"
+ },
+ {
+  "crew_id": "C-5089",
+  "cert_type": "licence",
+  "valid_from": "2029-08-09",
+  "valid_to": "2031-08-09"
+ },
+ {
+  "crew_id": "C-5089",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-12-26",
+  "valid_to": "2027-12-26"
+ },
+ {
+  "crew_id": "C-5089",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-05-20",
+  "valid_to": "2027-05-20"
+ },
+ {
+  "crew_id": "C-5089",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-01-02",
+  "valid_to": "2028-01-02"
+ },
+ {
+  "crew_id": "C-2143",
+  "cert_type": "licence",
+  "valid_from": "2029-11-13",
+  "valid_to": "2031-11-13"
+ },
+ {
+  "crew_id": "C-2143",
+  "cert_type": "medical_class1",
+  "valid_from": "2026-01-03",
+  "valid_to": "2028-01-03"
+ },
+ {
+  "crew_id": "C-2143",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-08",
+  "valid_to": "2027-04-08"
+ },
+ {
+  "crew_id": "C-2143",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-04-13",
+  "valid_to": "2027-04-13"
+ },
+ {
+  "crew_id": "C-5788",
+  "cert_type": "licence",
+  "valid_from": "2029-08-23",
+  "valid_to": "2031-08-23"
+ },
+ {
+  "crew_id": "C-5788",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-09-06",
+  "valid_to": "2027-09-06"
+ },
+ {
+  "crew_id": "C-5788",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-18",
+  "valid_to": "2027-06-18"
+ },
+ {
+  "crew_id": "C-5788",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-03-10",
+  "valid_to": "2028-03-09"
+ },
+ {
+  "crew_id": "C-2796",
+  "cert_type": "licence",
+  "valid_from": "2028-08-16",
+  "valid_to": "2030-08-16"
+ },
+ {
+  "crew_id": "C-2796",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-06-20",
+  "valid_to": "2027-06-20"
+ },
+ {
+  "crew_id": "C-2796",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-05-17",
+  "valid_to": "2027-05-17"
+ },
+ {
+  "crew_id": "C-2796",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-01-22",
+  "valid_to": "2027-01-22"
+ },
+ {
+  "crew_id": "C-1385",
+  "cert_type": "licence",
+  "valid_from": "2027-03-03",
+  "valid_to": "2029-03-02"
+ },
+ {
+  "crew_id": "C-1385",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-12-25",
+  "valid_to": "2027-12-25"
+ },
+ {
+  "crew_id": "C-1385",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-02-20",
+  "valid_to": "2027-02-20"
+ },
+ {
+  "crew_id": "C-1385",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-12-30",
+  "valid_to": "2027-12-30"
+ },
+ {
+  "crew_id": "C-4458",
+  "cert_type": "licence",
+  "valid_from": "2028-10-10",
+  "valid_to": "2030-10-10"
+ },
+ {
+  "crew_id": "C-4458",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-11-28",
+  "valid_to": "2027-11-28"
+ },
+ {
+  "crew_id": "C-4458",
+  "cert_type": "recurrent_training",
+  "valid_from": "2024-12-17",
+  "valid_to": "2026-12-17"
+ },
+ {
+  "crew_id": "C-4458",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-05-30",
+  "valid_to": "2028-05-29"
+ },
+ {
+  "crew_id": "C-5881",
+  "cert_type": "licence",
+  "valid_from": "2029-11-04",
+  "valid_to": "2031-11-04"
+ },
+ {
+  "crew_id": "C-5881",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-09-02",
+  "valid_to": "2027-09-02"
+ },
+ {
+  "crew_id": "C-5881",
+  "cert_type": "recurrent_training",
+  "valid_from": "2024-12-17",
+  "valid_to": "2026-12-17"
+ },
+ {
+  "crew_id": "C-5881",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-03-28",
+  "valid_to": "2028-03-27"
+ },
+ {
+  "crew_id": "C-1938",
+  "cert_type": "licence",
+  "valid_from": "2028-10-22",
+  "valid_to": "2030-10-22"
+ },
+ {
+  "crew_id": "C-1938",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-07-29",
+  "valid_to": "2027-07-29"
+ },
+ {
+  "crew_id": "C-1938",
+  "cert_type": "recurrent_training",
+  "valid_from": "2024-12-16",
+  "valid_to": "2026-12-16"
+ },
+ {
+  "crew_id": "C-1938",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-07-27",
+  "valid_to": "2028-07-26"
+ },
+ {
+  "crew_id": "C-2295",
+  "cert_type": "licence",
+  "valid_from": "2029-04-06",
+  "valid_to": "2031-04-06"
+ },
+ {
+  "crew_id": "C-2295",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-07-07",
+  "valid_to": "2027-07-07"
+ },
+ {
+  "crew_id": "C-2295",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-07-11",
+  "valid_to": "2027-07-11"
+ },
+ {
+  "crew_id": "C-2295",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-08-09",
+  "valid_to": "2028-08-08"
+ },
+ {
+  "crew_id": "C-5158",
+  "cert_type": "licence",
+  "valid_from": "2029-08-14",
+  "valid_to": "2031-08-14"
+ },
+ {
+  "crew_id": "C-5158",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-10-21",
+  "valid_to": "2027-10-21"
+ },
+ {
+  "crew_id": "C-5158",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-19",
+  "valid_to": "2027-04-19"
+ },
+ {
+  "crew_id": "C-5158",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-06-28",
+  "valid_to": "2027-06-28"
+ },
+ {
+  "crew_id": "C-2252",
+  "cert_type": "licence",
+  "valid_from": "2029-05-09",
+  "valid_to": "2031-05-09"
+ },
+ {
+  "crew_id": "C-2252",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-10-12",
+  "valid_to": "2027-10-12"
+ },
+ {
+  "crew_id": "C-2252",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-04",
+  "valid_to": "2027-04-04"
+ },
+ {
+  "crew_id": "C-2252",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-10-08",
+  "valid_to": "2027-10-08"
+ },
+ {
+  "crew_id": "C-5906",
+  "cert_type": "licence",
+  "valid_from": "2027-08-12",
+  "valid_to": "2029-08-11"
+ },
+ {
+  "crew_id": "C-5906",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-11-04",
+  "valid_to": "2027-11-04"
+ },
+ {
+  "crew_id": "C-5906",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-14",
+  "valid_to": "2027-04-14"
+ },
+ {
+  "crew_id": "C-5906",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-06-25",
+  "valid_to": "2028-06-24"
+ },
+ {
+  "crew_id": "C-3973",
+  "cert_type": "licence",
+  "valid_from": "2028-09-09",
+  "valid_to": "2030-09-09"
+ },
+ {
+  "crew_id": "C-3973",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-25",
+  "valid_to": "2027-08-25"
+ },
+ {
+  "crew_id": "C-3973",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-29",
+  "valid_to": "2027-04-29"
+ },
+ {
+  "crew_id": "C-3973",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-03-10",
+  "valid_to": "2028-03-09"
+ },
+ {
+  "crew_id": "C-5647",
+  "cert_type": "licence",
+  "valid_from": "2028-03-22",
+  "valid_to": "2030-03-22"
+ },
+ {
+  "crew_id": "C-5647",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-05-07",
+  "valid_to": "2027-05-07"
+ },
+ {
+  "crew_id": "C-5647",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-16",
+  "valid_to": "2027-03-16"
+ },
+ {
+  "crew_id": "C-5647",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-05-31",
+  "valid_to": "2027-05-31"
+ },
+ {
+  "crew_id": "C-5363",
+  "cert_type": "licence",
+  "valid_from": "2028-10-16",
+  "valid_to": "2030-10-16"
+ },
+ {
+  "crew_id": "C-5363",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-05-28",
+  "valid_to": "2027-05-28"
+ },
+ {
+  "crew_id": "C-5363",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-08-03",
+  "valid_to": "2027-08-03"
+ },
+ {
+  "crew_id": "C-5363",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-04-20",
+  "valid_to": "2028-04-19"
+ },
+ {
+  "crew_id": "C-3171",
+  "cert_type": "licence",
+  "valid_from": "2028-09-10",
+  "valid_to": "2030-09-10"
+ },
+ {
+  "crew_id": "C-3171",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-12-09",
+  "valid_to": "2027-12-09"
+ },
+ {
+  "crew_id": "C-3171",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-19",
+  "valid_to": "2027-03-19"
+ },
+ {
+  "crew_id": "C-3171",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-12-06",
+  "valid_to": "2027-12-06"
+ },
+ {
+  "crew_id": "C-5417",
+  "cert_type": "licence",
+  "valid_from": "2027-04-11",
+  "valid_to": "2029-04-10"
+ },
+ {
+  "crew_id": "C-5417",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-06-18",
+  "valid_to": "2027-06-18"
+ },
+ {
+  "crew_id": "C-5417",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-01-07",
+  "valid_to": "2026-09-17"
+ },
+ {
+  "crew_id": "C-5417",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-07-13",
+  "valid_to": "2028-07-12"
+ },
+ {
+  "crew_id": "C-4588",
+  "cert_type": "licence",
+  "valid_from": "2027-04-17",
+  "valid_to": "2029-04-16"
+ },
+ {
+  "crew_id": "C-4588",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-07-06",
+  "valid_to": "2027-07-06"
+ },
+ {
+  "crew_id": "C-4588",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-02-03",
+  "valid_to": "2027-02-03"
+ },
+ {
+  "crew_id": "C-4588",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-10-27",
+  "valid_to": "2027-10-27"
+ },
+ {
+  "crew_id": "C-2840",
+  "cert_type": "licence",
+  "valid_from": "2028-09-04",
+  "valid_to": "2030-09-04"
+ },
+ {
+  "crew_id": "C-2840",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-06-05",
+  "valid_to": "2027-06-05"
+ },
+ {
+  "crew_id": "C-2840",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-07-25",
+  "valid_to": "2027-07-25"
+ },
+ {
+  "crew_id": "C-2840",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-01-20",
+  "valid_to": "2027-01-20"
+ },
+ {
+  "crew_id": "C-5820",
+  "cert_type": "licence",
+  "valid_from": "2028-06-21",
+  "valid_to": "2030-06-21"
+ },
+ {
+  "crew_id": "C-5820",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-05-18",
+  "valid_to": "2027-05-18"
+ },
+ {
+  "crew_id": "C-5820",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-02-28",
+  "valid_to": "2027-02-28"
+ },
+ {
+  "crew_id": "C-5820",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-01-27",
+  "valid_to": "2027-01-27"
+ },
+ {
+  "crew_id": "C-2875",
+  "cert_type": "licence",
+  "valid_from": "2029-12-07",
+  "valid_to": "2031-12-07"
+ },
+ {
+  "crew_id": "C-2875",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-07-22",
+  "valid_to": "2027-07-22"
+ },
+ {
+  "crew_id": "C-2875",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-06",
+  "valid_to": "2027-06-06"
+ },
+ {
+  "crew_id": "C-2875",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-03-18",
+  "valid_to": "2028-03-17"
+ },
+ {
+  "crew_id": "C-5211",
+  "cert_type": "licence",
+  "valid_from": "2028-11-30",
+  "valid_to": "2030-11-30"
+ },
+ {
+  "crew_id": "C-5211",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-12-13",
+  "valid_to": "2027-12-13"
+ },
+ {
+  "crew_id": "C-5211",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-21",
+  "valid_to": "2027-06-21"
+ },
+ {
+  "crew_id": "C-5211",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-05-01",
+  "valid_to": "2028-04-30"
+ },
+ {
+  "crew_id": "C-2083",
+  "cert_type": "licence",
+  "valid_from": "2027-05-06",
+  "valid_to": "2029-05-05"
+ },
+ {
+  "crew_id": "C-2083",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-09-18",
+  "valid_to": "2027-09-18"
+ },
+ {
+  "crew_id": "C-2083",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-01-23",
+  "valid_to": "2027-01-23"
+ },
+ {
+  "crew_id": "C-2083",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-06-10",
+  "valid_to": "2027-06-10"
+ },
+ {
+  "crew_id": "C-4874",
+  "cert_type": "licence",
+  "valid_from": "2027-06-25",
+  "valid_to": "2029-06-24"
+ },
+ {
+  "crew_id": "C-4874",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-16",
+  "valid_to": "2027-08-16"
+ },
+ {
+  "crew_id": "C-4874",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-07-01",
+  "valid_to": "2027-07-01"
+ },
+ {
+  "crew_id": "C-4874",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-03-26",
+  "valid_to": "2027-03-26"
+ },
+ {
+  "crew_id": "C-4531",
+  "cert_type": "licence",
+  "valid_from": "2029-10-20",
+  "valid_to": "2031-10-20"
+ },
+ {
+  "crew_id": "C-4531",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-07-03",
+  "valid_to": "2027-07-03"
+ },
+ {
+  "crew_id": "C-4531",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-21",
+  "valid_to": "2027-03-21"
+ },
+ {
+  "crew_id": "C-4531",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-09-25",
+  "valid_to": "2027-09-25"
+ },
+ {
+  "crew_id": "C-1443",
+  "cert_type": "licence",
+  "valid_from": "2029-04-22",
+  "valid_to": "2031-04-22"
+ },
+ {
+  "crew_id": "C-1443",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-04-08",
+  "valid_to": "2027-04-08"
+ },
+ {
+  "crew_id": "C-1443",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-02-13",
+  "valid_to": "2027-02-13"
+ },
+ {
+  "crew_id": "C-1443",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-09-23",
+  "valid_to": "2027-09-23"
+ },
+ {
+  "crew_id": "C-1895",
+  "cert_type": "licence",
+  "valid_from": "2029-04-29",
+  "valid_to": "2031-04-29"
+ },
+ {
+  "crew_id": "C-1895",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-11-14",
+  "valid_to": "2027-11-14"
+ },
+ {
+  "crew_id": "C-1895",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-18",
+  "valid_to": "2027-04-18"
+ },
+ {
+  "crew_id": "C-1895",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-02-15",
+  "valid_to": "2027-02-15"
+ },
+ {
+  "crew_id": "C-2148",
+  "cert_type": "licence",
+  "valid_from": "2028-04-13",
+  "valid_to": "2030-04-13"
+ },
+ {
+  "crew_id": "C-2148",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-11-23",
+  "valid_to": "2027-11-23"
+ },
+ {
+  "crew_id": "C-2148",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-01-30",
+  "valid_to": "2027-01-30"
+ },
+ {
+  "crew_id": "C-2148",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-06-29",
+  "valid_to": "2028-06-28"
+ },
+ {
+  "crew_id": "C-3046",
+  "cert_type": "licence",
+  "valid_from": "2028-05-02",
+  "valid_to": "2030-05-02"
+ },
+ {
+  "crew_id": "C-3046",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-11-30",
+  "valid_to": "2027-11-30"
+ },
+ {
+  "crew_id": "C-3046",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-30",
+  "valid_to": "2027-06-30"
+ },
+ {
+  "crew_id": "C-3046",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-11-27",
+  "valid_to": "2027-11-27"
+ },
+ {
+  "crew_id": "C-1414",
+  "cert_type": "licence",
+  "valid_from": "2028-12-23",
+  "valid_to": "2030-12-23"
+ },
+ {
+  "crew_id": "C-1414",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-06-22",
+  "valid_to": "2027-06-22"
+ },
+ {
+  "crew_id": "C-1414",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-01-03",
+  "valid_to": "2027-01-03"
+ },
+ {
+  "crew_id": "C-1414",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-07-28",
+  "valid_to": "2028-07-27"
+ },
+ {
+  "crew_id": "C-2751",
+  "cert_type": "licence",
+  "valid_from": "2030-02-01",
+  "valid_to": "2032-02-01"
+ },
+ {
+  "crew_id": "C-2751",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-06-03",
+  "valid_to": "2027-06-03"
+ },
+ {
+  "crew_id": "C-2751",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-21",
+  "valid_to": "2027-04-21"
+ },
+ {
+  "crew_id": "C-2751",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-05-19",
+  "valid_to": "2028-05-18"
+ },
+ {
+  "crew_id": "C-1017",
+  "cert_type": "licence",
+  "valid_from": "2028-11-03",
+  "valid_to": "2030-11-03"
+ },
+ {
+  "crew_id": "C-1017",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-07-12",
+  "valid_to": "2027-07-12"
+ },
+ {
+  "crew_id": "C-1017",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-15",
+  "valid_to": "2027-06-15"
+ },
+ {
+  "crew_id": "C-1017",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-03-06",
+  "valid_to": "2027-03-06"
+ },
+ {
+  "crew_id": "C-4465",
+  "cert_type": "licence",
+  "valid_from": "2028-05-22",
+  "valid_to": "2030-05-22"
+ },
+ {
+  "crew_id": "C-4465",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-05-29",
+  "valid_to": "2027-05-29"
+ },
+ {
+  "crew_id": "C-4465",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-12",
+  "valid_to": "2027-04-12"
+ },
+ {
+  "crew_id": "C-4465",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-04-01",
+  "valid_to": "2028-03-31"
+ },
+ {
+  "crew_id": "C-3430",
+  "cert_type": "licence",
+  "valid_from": "2028-12-26",
+  "valid_to": "2030-12-26"
+ },
+ {
+  "crew_id": "C-3430",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-04-09",
+  "valid_to": "2027-04-09"
+ },
+ {
+  "crew_id": "C-3430",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-08",
+  "valid_to": "2027-03-08"
+ },
+ {
+  "crew_id": "C-3430",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-10-21",
+  "valid_to": "2027-10-21"
+ },
+ {
+  "crew_id": "C-3569",
+  "cert_type": "licence",
+  "valid_from": "2027-11-03",
+  "valid_to": "2029-11-02"
+ },
+ {
+  "crew_id": "C-3569",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-10-21",
+  "valid_to": "2027-10-21"
+ },
+ {
+  "crew_id": "C-3569",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-16",
+  "valid_to": "2027-04-16"
+ },
+ {
+  "crew_id": "C-3569",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-01-21",
+  "valid_to": "2027-01-21"
+ },
+ {
+  "crew_id": "C-5119",
+  "cert_type": "licence",
+  "valid_from": "2027-05-28",
+  "valid_to": "2029-05-27"
+ },
+ {
+  "crew_id": "C-5119",
+  "cert_type": "medical_class1",
+  "valid_from": "2026-01-24",
+  "valid_to": "2028-01-24"
+ },
+ {
+  "crew_id": "C-5119",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-08-13",
+  "valid_to": "2027-08-13"
+ },
+ {
+  "crew_id": "C-5119",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-06-19",
+  "valid_to": "2027-06-19"
+ },
+ {
+  "crew_id": "C-5666",
+  "cert_type": "licence",
+  "valid_from": "2029-04-01",
+  "valid_to": "2031-04-01"
+ },
+ {
+  "crew_id": "C-5666",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-05-17",
+  "valid_to": "2027-05-17"
+ },
+ {
+  "crew_id": "C-5666",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-19",
+  "valid_to": "2027-04-19"
+ },
+ {
+  "crew_id": "C-5666",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-06-22",
+  "valid_to": "2027-06-22"
+ },
+ {
+  "crew_id": "C-1671",
+  "cert_type": "licence",
+  "valid_from": "2029-12-20",
+  "valid_to": "2031-12-20"
+ },
+ {
+  "crew_id": "C-1671",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-05-18",
+  "valid_to": "2027-05-18"
+ },
+ {
+  "crew_id": "C-1671",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-04",
+  "valid_to": "2027-06-04"
+ },
+ {
+  "crew_id": "C-1671",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-03-14",
+  "valid_to": "2027-03-14"
+ },
+ {
+  "crew_id": "C-3136",
+  "cert_type": "licence",
+  "valid_from": "2027-07-03",
+  "valid_to": "2029-07-02"
+ },
+ {
+  "crew_id": "C-3136",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-10-01",
+  "valid_to": "2027-10-01"
+ },
+ {
+  "crew_id": "C-3136",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-01",
+  "valid_to": "2027-03-01"
+ },
+ {
+  "crew_id": "C-3136",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-07-15",
+  "valid_to": "2028-07-14"
+ },
+ {
+  "crew_id": "C-4242",
+  "cert_type": "licence",
+  "valid_from": "2027-10-08",
+  "valid_to": "2029-10-07"
+ },
+ {
+  "crew_id": "C-4242",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-06-05",
+  "valid_to": "2027-06-05"
+ },
+ {
+  "crew_id": "C-4242",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-08-19",
+  "valid_to": "2027-08-19"
+ },
+ {
+  "crew_id": "C-4242",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-09-07",
+  "valid_to": "2027-09-07"
+ },
+ {
+  "crew_id": "C-1594",
+  "cert_type": "licence",
+  "valid_from": "2028-12-10",
+  "valid_to": "2030-12-10"
+ },
+ {
+  "crew_id": "C-1594",
+  "cert_type": "medical_class1",
+  "valid_from": "2026-01-12",
+  "valid_to": "2028-01-12"
+ },
+ {
+  "crew_id": "C-1594",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-08",
+  "valid_to": "2027-06-08"
+ },
+ {
+  "crew_id": "C-1594",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-04-06",
+  "valid_to": "2028-04-05"
+ },
+ {
+  "crew_id": "C-1600",
+  "cert_type": "licence",
+  "valid_from": "2028-04-01",
+  "valid_to": "2030-04-01"
+ },
+ {
+  "crew_id": "C-1600",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-04-12",
+  "valid_to": "2027-04-12"
+ },
+ {
+  "crew_id": "C-1600",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-24",
+  "valid_to": "2027-06-24"
+ },
+ {
+  "crew_id": "C-1600",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-01-13",
+  "valid_to": "2028-01-13"
+ },
+ {
+  "crew_id": "C-2085",
+  "cert_type": "licence",
+  "valid_from": "2027-12-03",
+  "valid_to": "2029-12-02"
+ },
+ {
+  "crew_id": "C-2085",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-08",
+  "valid_to": "2027-08-08"
+ },
+ {
+  "crew_id": "C-2085",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-01-02",
+  "valid_to": "2027-01-02"
+ },
+ {
+  "crew_id": "C-2085",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-05-23",
+  "valid_to": "2028-05-22"
+ },
+ {
+  "crew_id": "C-3334",
+  "cert_type": "licence",
+  "valid_from": "2029-08-15",
+  "valid_to": "2031-08-15"
+ },
+ {
+  "crew_id": "C-3334",
+  "cert_type": "medical_class1",
+  "valid_from": "2026-01-13",
+  "valid_to": "2028-01-13"
+ },
+ {
+  "crew_id": "C-3334",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-05-12",
+  "valid_to": "2027-05-12"
+ },
+ {
+  "crew_id": "C-3334",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-07-21",
+  "valid_to": "2028-07-20"
+ },
+ {
+  "crew_id": "C-2100",
+  "cert_type": "licence",
+  "valid_from": "2029-11-30",
+  "valid_to": "2031-11-30"
+ },
+ {
+  "crew_id": "C-2100",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-07-08",
+  "valid_to": "2027-07-08"
+ },
+ {
+  "crew_id": "C-2100",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-18",
+  "valid_to": "2027-03-18"
+ },
+ {
+  "crew_id": "C-2100",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-07-22",
+  "valid_to": "2028-07-21"
+ },
+ {
+  "crew_id": "C-3231",
+  "cert_type": "licence",
+  "valid_from": "2029-02-12",
+  "valid_to": "2031-02-12"
+ },
+ {
+  "crew_id": "C-3231",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-09-14",
+  "valid_to": "2027-09-14"
+ },
+ {
+  "crew_id": "C-3231",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-08-09",
+  "valid_to": "2027-08-09"
+ },
+ {
+  "crew_id": "C-3231",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-10-20",
+  "valid_to": "2027-10-20"
+ },
+ {
+  "crew_id": "C-3057",
+  "cert_type": "licence",
+  "valid_from": "2028-01-25",
+  "valid_to": "2030-01-24"
+ },
+ {
+  "crew_id": "C-3057",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-05-07",
+  "valid_to": "2027-05-07"
+ },
+ {
+  "crew_id": "C-3057",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-02",
+  "valid_to": "2027-03-02"
+ },
+ {
+  "crew_id": "C-3057",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-04-17",
+  "valid_to": "2028-04-16"
+ },
+ {
+  "crew_id": "C-3266",
+  "cert_type": "licence",
+  "valid_from": "2028-10-28",
+  "valid_to": "2030-10-28"
+ },
+ {
+  "crew_id": "C-3266",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-14",
+  "valid_to": "2027-08-14"
+ },
+ {
+  "crew_id": "C-3266",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-18",
+  "valid_to": "2027-06-18"
+ },
+ {
+  "crew_id": "C-3266",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-04-21",
+  "valid_to": "2028-04-20"
+ },
+ {
+  "crew_id": "C-3145",
+  "cert_type": "licence",
+  "valid_from": "2027-03-04",
+  "valid_to": "2029-03-03"
+ },
+ {
+  "crew_id": "C-3145",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-12-17",
+  "valid_to": "2027-12-17"
+ },
+ {
+  "crew_id": "C-3145",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-25",
+  "valid_to": "2027-06-25"
+ },
+ {
+  "crew_id": "C-3145",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-07-20",
+  "valid_to": "2027-07-20"
+ },
+ {
+  "crew_id": "C-2221",
+  "cert_type": "licence",
+  "valid_from": "2027-04-10",
+  "valid_to": "2029-04-09"
+ },
+ {
+  "crew_id": "C-2221",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-10-05",
+  "valid_to": "2027-10-05"
+ },
+ {
+  "crew_id": "C-2221",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-14",
+  "valid_to": "2027-04-14"
+ },
+ {
+  "crew_id": "C-2221",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-12-06",
+  "valid_to": "2027-12-06"
+ },
+ {
+  "crew_id": "C-4520",
+  "cert_type": "licence",
+  "valid_from": "2027-07-10",
+  "valid_to": "2029-07-09"
+ },
+ {
+  "crew_id": "C-4520",
+  "cert_type": "medical_class1",
+  "valid_from": "2026-01-02",
+  "valid_to": "2028-01-02"
+ },
+ {
+  "crew_id": "C-4520",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-29",
+  "valid_to": "2027-06-29"
+ },
+ {
+  "crew_id": "C-4520",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-07-25",
+  "valid_to": "2027-07-25"
+ },
+ {
+  "crew_id": "C-1326",
+  "cert_type": "licence",
+  "valid_from": "2030-02-08",
+  "valid_to": "2032-02-08"
+ },
+ {
+  "crew_id": "C-1326",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-12-12",
+  "valid_to": "2027-12-12"
+ },
+ {
+  "crew_id": "C-1326",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-01",
+  "valid_to": "2027-03-01"
+ },
+ {
+  "crew_id": "C-1326",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-10-28",
+  "valid_to": "2027-10-28"
+ },
+ {
+  "crew_id": "C-3897",
+  "cert_type": "licence",
+  "valid_from": "2028-12-22",
+  "valid_to": "2030-12-22"
+ },
+ {
+  "crew_id": "C-3897",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-10-28",
+  "valid_to": "2027-10-28"
+ },
+ {
+  "crew_id": "C-3897",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-05-26",
+  "valid_to": "2027-05-26"
+ },
+ {
+  "crew_id": "C-3897",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-05-05",
+  "valid_to": "2027-05-05"
+ },
+ {
+  "crew_id": "C-3721",
+  "cert_type": "licence",
+  "valid_from": "2027-09-16",
+  "valid_to": "2029-09-15"
+ },
+ {
+  "crew_id": "C-3721",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-12-25",
+  "valid_to": "2027-12-25"
+ },
+ {
+  "crew_id": "C-3721",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-01-16",
+  "valid_to": "2027-01-16"
+ },
+ {
+  "crew_id": "C-3721",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-02-25",
+  "valid_to": "2027-02-25"
+ },
+ {
+  "crew_id": "C-1317",
+  "cert_type": "licence",
+  "valid_from": "2027-11-23",
+  "valid_to": "2029-11-22"
+ },
+ {
+  "crew_id": "C-1317",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-07-02",
+  "valid_to": "2027-07-02"
+ },
+ {
+  "crew_id": "C-1317",
+  "cert_type": "recurrent_training",
+  "valid_from": "2024-12-29",
+  "valid_to": "2026-12-29"
+ },
+ {
+  "crew_id": "C-1317",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-08-06",
+  "valid_to": "2027-08-06"
+ },
+ {
+  "crew_id": "C-3864",
+  "cert_type": "licence",
+  "valid_from": "2027-10-08",
+  "valid_to": "2029-10-07"
+ },
+ {
+  "crew_id": "C-3864",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-12-06",
+  "valid_to": "2027-12-06"
+ },
+ {
+  "crew_id": "C-3864",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-21",
+  "valid_to": "2027-03-21"
+ },
+ {
+  "crew_id": "C-3864",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-04-23",
+  "valid_to": "2027-04-23"
+ },
+ {
+  "crew_id": "C-1568",
+  "cert_type": "licence",
+  "valid_from": "2027-05-07",
+  "valid_to": "2029-05-06"
+ },
+ {
+  "crew_id": "C-1568",
+  "cert_type": "medical_class1",
+  "valid_from": "2026-01-19",
+  "valid_to": "2028-01-19"
+ },
+ {
+  "crew_id": "C-1568",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-29",
+  "valid_to": "2027-06-29"
+ },
+ {
+  "crew_id": "C-1568",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-05-28",
+  "valid_to": "2028-05-27"
+ },
+ {
+  "crew_id": "C-5392",
+  "cert_type": "licence",
+  "valid_from": "2030-02-11",
+  "valid_to": "2032-02-11"
+ },
+ {
+  "crew_id": "C-5392",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-11",
+  "valid_to": "2027-08-11"
+ },
+ {
+  "crew_id": "C-5392",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-01-07",
+  "valid_to": "2027-01-07"
+ },
+ {
+  "crew_id": "C-5392",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-01-22",
+  "valid_to": "2028-01-22"
+ },
+ {
+  "crew_id": "C-1313",
+  "cert_type": "licence",
+  "valid_from": "2028-05-28",
+  "valid_to": "2030-05-28"
+ },
+ {
+  "crew_id": "C-1313",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-05-08",
+  "valid_to": "2027-05-08"
+ },
+ {
+  "crew_id": "C-1313",
+  "cert_type": "recurrent_training",
+  "valid_from": "2024-12-19",
+  "valid_to": "2026-12-19"
+ },
+ {
+  "crew_id": "C-1313",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-08-13",
+  "valid_to": "2027-08-13"
+ },
+ {
+  "crew_id": "C-4574",
+  "cert_type": "licence",
+  "valid_from": "2029-12-03",
+  "valid_to": "2031-12-03"
+ },
+ {
+  "crew_id": "C-4574",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-05-12",
+  "valid_to": "2027-05-12"
+ },
+ {
+  "crew_id": "C-4574",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-08-09",
+  "valid_to": "2027-08-09"
+ },
+ {
+  "crew_id": "C-4574",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-03-15",
+  "valid_to": "2027-03-15"
+ },
+ {
+  "crew_id": "C-5723",
+  "cert_type": "licence",
+  "valid_from": "2029-03-11",
+  "valid_to": "2031-03-11"
+ },
+ {
+  "crew_id": "C-5723",
+  "cert_type": "medical_class1",
+  "valid_from": "2026-01-12",
+  "valid_to": "2028-01-12"
+ },
+ {
+  "crew_id": "C-5723",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-07-13",
+  "valid_to": "2027-07-13"
+ },
+ {
+  "crew_id": "C-5723",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-01-24",
+  "valid_to": "2028-01-24"
+ },
+ {
+  "crew_id": "C-3983",
+  "cert_type": "licence",
+  "valid_from": "2027-06-30",
+  "valid_to": "2029-06-29"
+ },
+ {
+  "crew_id": "C-3983",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-16",
+  "valid_to": "2027-08-16"
+ },
+ {
+  "crew_id": "C-3983",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-09-09",
+  "valid_to": "2027-09-09"
+ },
+ {
+  "crew_id": "C-3983",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-02-22",
+  "valid_to": "2027-02-22"
+ },
+ {
+  "crew_id": "C-3460",
+  "cert_type": "licence",
+  "valid_from": "2027-07-25",
+  "valid_to": "2029-07-24"
+ },
+ {
+  "crew_id": "C-3460",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-09-04",
+  "valid_to": "2027-09-04"
+ },
+ {
+  "crew_id": "C-3460",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-01-21",
+  "valid_to": "2027-01-21"
+ },
+ {
+  "crew_id": "C-3460",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-08-21",
+  "valid_to": "2027-08-21"
+ },
+ {
+  "crew_id": "C-4296",
+  "cert_type": "licence",
+  "valid_from": "2030-01-29",
+  "valid_to": "2032-01-29"
+ },
+ {
+  "crew_id": "C-4296",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-05-21",
+  "valid_to": "2027-05-21"
+ },
+ {
+  "crew_id": "C-4296",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-02-02",
+  "valid_to": "2027-02-02"
+ },
+ {
+  "crew_id": "C-4296",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-09-05",
+  "valid_to": "2027-09-05"
+ },
+ {
+  "crew_id": "C-4326",
+  "cert_type": "licence",
+  "valid_from": "2030-02-23",
+  "valid_to": "2032-02-23"
+ },
+ {
+  "crew_id": "C-4326",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-10-16",
+  "valid_to": "2027-10-16"
+ },
+ {
+  "crew_id": "C-4326",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-20",
+  "valid_to": "2027-03-20"
+ },
+ {
+  "crew_id": "C-4326",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-07-28",
+  "valid_to": "2027-07-28"
+ },
+ {
+  "crew_id": "C-5751",
+  "cert_type": "licence",
+  "valid_from": "2030-02-12",
+  "valid_to": "2032-02-12"
+ },
+ {
+  "crew_id": "C-5751",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-07",
+  "valid_to": "2027-08-07"
+ },
+ {
+  "crew_id": "C-5751",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-14",
+  "valid_to": "2027-03-14"
+ },
+ {
+  "crew_id": "C-5751",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-08-06",
+  "valid_to": "2028-08-05"
+ },
+ {
+  "crew_id": "C-4622",
+  "cert_type": "licence",
+  "valid_from": "2029-06-30",
+  "valid_to": "2031-06-30"
+ },
+ {
+  "crew_id": "C-4622",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-05-26",
+  "valid_to": "2027-05-26"
+ },
+ {
+  "crew_id": "C-4622",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-14",
+  "valid_to": "2027-06-14"
+ },
+ {
+  "crew_id": "C-4622",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-04-26",
+  "valid_to": "2028-04-25"
+ },
+ {
+  "crew_id": "C-1694",
+  "cert_type": "licence",
+  "valid_from": "2029-07-24",
+  "valid_to": "2031-07-24"
+ },
+ {
+  "crew_id": "C-1694",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-05-25",
+  "valid_to": "2027-05-25"
+ },
+ {
+  "crew_id": "C-1694",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-08",
+  "valid_to": "2027-03-08"
+ },
+ {
+  "crew_id": "C-1694",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-07-15",
+  "valid_to": "2027-07-15"
+ },
+ {
+  "crew_id": "C-3005",
+  "cert_type": "licence",
+  "valid_from": "2029-06-02",
+  "valid_to": "2031-06-02"
+ },
+ {
+  "crew_id": "C-3005",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-12-16",
+  "valid_to": "2027-12-16"
+ },
+ {
+  "crew_id": "C-3005",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-03",
+  "valid_to": "2027-06-03"
+ },
+ {
+  "crew_id": "C-3005",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-06-22",
+  "valid_to": "2027-06-22"
+ },
+ {
+  "crew_id": "C-4395",
+  "cert_type": "licence",
+  "valid_from": "2030-02-28",
+  "valid_to": "2032-02-28"
+ },
+ {
+  "crew_id": "C-4395",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-11-14",
+  "valid_to": "2027-11-14"
+ },
+ {
+  "crew_id": "C-4395",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-11",
+  "valid_to": "2027-06-11"
+ },
+ {
+  "crew_id": "C-4395",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-11-30",
+  "valid_to": "2027-11-30"
+ },
+ {
+  "crew_id": "C-4273",
+  "cert_type": "licence",
+  "valid_from": "2028-12-26",
+  "valid_to": "2030-12-26"
+ },
+ {
+  "crew_id": "C-4273",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-10-09",
+  "valid_to": "2027-10-09"
+ },
+ {
+  "crew_id": "C-4273",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-07-12",
+  "valid_to": "2027-07-12"
+ },
+ {
+  "crew_id": "C-4273",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-03-28",
+  "valid_to": "2028-03-27"
+ },
+ {
+  "crew_id": "C-1873",
+  "cert_type": "licence",
+  "valid_from": "2028-12-24",
+  "valid_to": "2030-12-24"
+ },
+ {
+  "crew_id": "C-1873",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-03",
+  "valid_to": "2027-08-03"
+ },
+ {
+  "crew_id": "C-1873",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-01",
+  "valid_to": "2027-04-01"
+ },
+ {
+  "crew_id": "C-1873",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-01-31",
+  "valid_to": "2028-01-31"
+ },
+ {
+  "crew_id": "C-5566",
+  "cert_type": "licence",
+  "valid_from": "2028-08-04",
+  "valid_to": "2030-08-04"
+ },
+ {
+  "crew_id": "C-5566",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-10-03",
+  "valid_to": "2027-10-03"
+ },
+ {
+  "crew_id": "C-5566",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-08-01",
+  "valid_to": "2027-08-01"
+ },
+ {
+  "crew_id": "C-5566",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-04-15",
+  "valid_to": "2028-04-14"
+ },
+ {
+  "crew_id": "C-4806",
+  "cert_type": "licence",
+  "valid_from": "2029-05-24",
+  "valid_to": "2031-05-24"
+ },
+ {
+  "crew_id": "C-4806",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-04-02",
+  "valid_to": "2027-04-02"
+ },
+ {
+  "crew_id": "C-4806",
+  "cert_type": "recurrent_training",
+  "valid_from": "2024-12-30",
+  "valid_to": "2026-12-30"
+ },
+ {
+  "crew_id": "C-4806",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-10-30",
+  "valid_to": "2027-10-30"
+ },
+ {
+  "crew_id": "C-2303",
+  "cert_type": "licence",
+  "valid_from": "2027-04-05",
+  "valid_to": "2029-04-04"
+ },
+ {
+  "crew_id": "C-2303",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-12-23",
+  "valid_to": "2027-12-23"
+ },
+ {
+  "crew_id": "C-2303",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-02-20",
+  "valid_to": "2027-02-20"
+ },
+ {
+  "crew_id": "C-2303",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-11-17",
+  "valid_to": "2027-11-17"
+ },
+ {
+  "crew_id": "C-3271",
+  "cert_type": "licence",
+  "valid_from": "2027-03-16",
+  "valid_to": "2029-03-15"
+ },
+ {
+  "crew_id": "C-3271",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-09-02",
+  "valid_to": "2027-09-02"
+ },
+ {
+  "crew_id": "C-3271",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-05",
+  "valid_to": "2027-04-05"
+ },
+ {
+  "crew_id": "C-3271",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-08-19",
+  "valid_to": "2027-08-19"
+ },
+ {
+  "crew_id": "C-3249",
+  "cert_type": "licence",
+  "valid_from": "2028-12-06",
+  "valid_to": "2030-12-06"
+ },
+ {
+  "crew_id": "C-3249",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-04-13",
+  "valid_to": "2027-04-13"
+ },
+ {
+  "crew_id": "C-3249",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-05-03",
+  "valid_to": "2027-05-03"
+ },
+ {
+  "crew_id": "C-3249",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-08-01",
+  "valid_to": "2028-07-31"
+ },
+ {
+  "crew_id": "C-3619",
+  "cert_type": "licence",
+  "valid_from": "2030-01-13",
+  "valid_to": "2032-01-13"
+ },
+ {
+  "crew_id": "C-3619",
+  "cert_type": "medical_class1",
+  "valid_from": "2026-01-11",
+  "valid_to": "2028-01-11"
+ },
+ {
+  "crew_id": "C-3619",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-02",
+  "valid_to": "2027-03-02"
+ },
+ {
+  "crew_id": "C-3619",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-04-18",
+  "valid_to": "2027-04-18"
+ },
+ {
+  "crew_id": "C-1526",
+  "cert_type": "licence",
+  "valid_from": "2027-05-19",
+  "valid_to": "2029-05-18"
+ },
+ {
+  "crew_id": "C-1526",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-11-23",
+  "valid_to": "2027-11-23"
+ },
+ {
+  "crew_id": "C-1526",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-13",
+  "valid_to": "2027-06-13"
+ },
+ {
+  "crew_id": "C-1526",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-06-20",
+  "valid_to": "2027-06-20"
+ },
+ {
+  "crew_id": "C-1510",
+  "cert_type": "licence",
+  "valid_from": "2027-12-11",
+  "valid_to": "2029-12-10"
+ },
+ {
+  "crew_id": "C-1510",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-15",
+  "valid_to": "2027-08-15"
+ },
+ {
+  "crew_id": "C-1510",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-18",
+  "valid_to": "2027-06-18"
+ },
+ {
+  "crew_id": "C-1510",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-09-24",
+  "valid_to": "2027-09-24"
+ },
+ {
+  "crew_id": "C-5716",
+  "cert_type": "licence",
+  "valid_from": "2028-06-22",
+  "valid_to": "2030-06-22"
+ },
+ {
+  "crew_id": "C-5716",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-11",
+  "valid_to": "2027-08-11"
+ },
+ {
+  "crew_id": "C-5716",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-05-15",
+  "valid_to": "2027-05-15"
+ },
+ {
+  "crew_id": "C-5716",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-04-16",
+  "valid_to": "2027-04-16"
+ },
+ {
+  "crew_id": "C-4999",
+  "cert_type": "licence",
+  "valid_from": "2029-05-29",
+  "valid_to": "2031-05-29"
+ },
+ {
+  "crew_id": "C-4999",
+  "cert_type": "medical_class1",
+  "valid_from": "2026-01-18",
+  "valid_to": "2028-01-18"
+ },
+ {
+  "crew_id": "C-4999",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-03",
+  "valid_to": "2027-04-03"
+ },
+ {
+  "crew_id": "C-4999",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-04-01",
+  "valid_to": "2027-04-01"
+ },
+ {
+  "crew_id": "C-2352",
+  "cert_type": "licence",
+  "valid_from": "2028-12-26",
+  "valid_to": "2030-12-26"
+ },
+ {
+  "crew_id": "C-2352",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-12-05",
+  "valid_to": "2027-12-05"
+ },
+ {
+  "crew_id": "C-2352",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-11",
+  "valid_to": "2027-03-11"
+ },
+ {
+  "crew_id": "C-2352",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-05-26",
+  "valid_to": "2028-05-25"
+ },
+ {
+  "crew_id": "C-5848",
+  "cert_type": "licence",
+  "valid_from": "2027-09-14",
+  "valid_to": "2029-09-13"
+ },
+ {
+  "crew_id": "C-5848",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-09-02",
+  "valid_to": "2027-09-02"
+ },
+ {
+  "crew_id": "C-5848",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-01-01",
+  "valid_to": "2027-01-01"
+ },
+ {
+  "crew_id": "C-5848",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-02-06",
+  "valid_to": "2028-02-06"
+ },
+ {
+  "crew_id": "C-2111",
+  "cert_type": "licence",
+  "valid_from": "2027-08-10",
+  "valid_to": "2029-08-09"
+ },
+ {
+  "crew_id": "C-2111",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-04-30",
+  "valid_to": "2027-04-30"
+ },
+ {
+  "crew_id": "C-2111",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-02",
+  "valid_to": "2027-06-02"
+ },
+ {
+  "crew_id": "C-2111",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-01-03",
+  "valid_to": "2028-01-03"
+ },
+ {
+  "crew_id": "C-3677",
+  "cert_type": "licence",
+  "valid_from": "2029-08-08",
+  "valid_to": "2031-08-08"
+ },
+ {
+  "crew_id": "C-3677",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-11-01",
+  "valid_to": "2027-11-01"
+ },
+ {
+  "crew_id": "C-3677",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-02-12",
+  "valid_to": "2027-02-12"
+ },
+ {
+  "crew_id": "C-3677",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-09-01",
+  "valid_to": "2027-09-01"
+ },
+ {
+  "crew_id": "C-5418",
+  "cert_type": "licence",
+  "valid_from": "2027-03-26",
+  "valid_to": "2029-03-25"
+ },
+ {
+  "crew_id": "C-5418",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-10-14",
+  "valid_to": "2027-10-14"
+ },
+ {
+  "crew_id": "C-5418",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-01-09",
+  "valid_to": "2027-01-09"
+ },
+ {
+  "crew_id": "C-5418",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-11-20",
+  "valid_to": "2027-11-20"
+ },
+ {
+  "crew_id": "C-1329",
+  "cert_type": "licence",
+  "valid_from": "2030-02-08",
+  "valid_to": "2032-02-08"
+ },
+ {
+  "crew_id": "C-1329",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-04-23",
+  "valid_to": "2027-04-23"
+ },
+ {
+  "crew_id": "C-1329",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-05-25",
+  "valid_to": "2027-05-25"
+ },
+ {
+  "crew_id": "C-1329",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-07-18",
+  "valid_to": "2028-07-17"
+ },
+ {
+  "crew_id": "C-2248",
+  "cert_type": "licence",
+  "valid_from": "2028-01-03",
+  "valid_to": "2030-01-02"
+ },
+ {
+  "crew_id": "C-2248",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-09-16",
+  "valid_to": "2027-09-16"
+ },
+ {
+  "crew_id": "C-2248",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-08-27",
+  "valid_to": "2027-08-27"
+ },
+ {
+  "crew_id": "C-2248",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-08-26",
+  "valid_to": "2027-08-26"
+ },
+ {
+  "crew_id": "C-4809",
+  "cert_type": "licence",
+  "valid_from": "2028-01-10",
+  "valid_to": "2030-01-09"
+ },
+ {
+  "crew_id": "C-4809",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-04-27",
+  "valid_to": "2027-04-27"
+ },
+ {
+  "crew_id": "C-4809",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-07-02",
+  "valid_to": "2027-07-02"
+ },
+ {
+  "crew_id": "C-4809",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-04-13",
+  "valid_to": "2028-04-12"
+ },
+ {
+  "crew_id": "C-2341",
+  "cert_type": "licence",
+  "valid_from": "2029-12-30",
+  "valid_to": "2031-12-30"
+ },
+ {
+  "crew_id": "C-2341",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-05-18",
+  "valid_to": "2027-05-18"
+ },
+ {
+  "crew_id": "C-2341",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-05",
+  "valid_to": "2027-04-05"
+ },
+ {
+  "crew_id": "C-2341",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-03-30",
+  "valid_to": "2028-03-29"
+ },
+ {
+  "crew_id": "C-3555",
+  "cert_type": "licence",
+  "valid_from": "2028-10-16",
+  "valid_to": "2030-10-16"
+ },
+ {
+  "crew_id": "C-3555",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-10-20",
+  "valid_to": "2027-10-20"
+ },
+ {
+  "crew_id": "C-3555",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-02-26",
+  "valid_to": "2027-02-26"
+ },
+ {
+  "crew_id": "C-3555",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-05-27",
+  "valid_to": "2027-05-27"
+ },
+ {
+  "crew_id": "C-1622",
+  "cert_type": "licence",
+  "valid_from": "2029-01-19",
+  "valid_to": "2031-01-19"
+ },
+ {
+  "crew_id": "C-1622",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-05-14",
+  "valid_to": "2027-05-14"
+ },
+ {
+  "crew_id": "C-1622",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-08-13",
+  "valid_to": "2027-08-13"
+ },
+ {
+  "crew_id": "C-1622",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-03-03",
+  "valid_to": "2027-03-03"
+ },
+ {
+  "crew_id": "C-1564",
+  "cert_type": "licence",
+  "valid_from": "2029-05-28",
+  "valid_to": "2031-05-28"
+ },
+ {
+  "crew_id": "C-1564",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-14",
+  "valid_to": "2027-08-14"
+ },
+ {
+  "crew_id": "C-1564",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-01-25",
+  "valid_to": "2027-01-25"
+ },
+ {
+  "crew_id": "C-1564",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-02-24",
+  "valid_to": "2028-02-24"
+ },
+ {
+  "crew_id": "C-5015",
+  "cert_type": "licence",
+  "valid_from": "2029-12-24",
+  "valid_to": "2031-12-24"
+ },
+ {
+  "crew_id": "C-5015",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-11-10",
+  "valid_to": "2027-11-10"
+ },
+ {
+  "crew_id": "C-5015",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-02-17",
+  "valid_to": "2027-02-17"
+ },
+ {
+  "crew_id": "C-5015",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-05-30",
+  "valid_to": "2027-05-30"
+ },
+ {
+  "crew_id": "C-2442",
+  "cert_type": "licence",
+  "valid_from": "2029-11-11",
+  "valid_to": "2031-11-11"
+ },
+ {
+  "crew_id": "C-2442",
+  "cert_type": "medical_class1",
+  "valid_from": "2026-01-13",
+  "valid_to": "2028-01-13"
+ },
+ {
+  "crew_id": "C-2442",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-24",
+  "valid_to": "2027-03-24"
+ },
+ {
+  "crew_id": "C-2442",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-05-26",
+  "valid_to": "2028-05-25"
+ },
+ {
+  "crew_id": "C-4104",
+  "cert_type": "licence",
+  "valid_from": "2029-05-20",
+  "valid_to": "2031-05-20"
+ },
+ {
+  "crew_id": "C-4104",
+  "cert_type": "medical_class1",
+  "valid_from": "2026-01-19",
+  "valid_to": "2028-01-19"
+ },
+ {
+  "crew_id": "C-4104",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-23",
+  "valid_to": "2027-03-23"
+ },
+ {
+  "crew_id": "C-4104",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-08-09",
+  "valid_to": "2028-08-08"
+ },
+ {
+  "crew_id": "C-3116",
+  "cert_type": "licence",
+  "valid_from": "2030-02-08",
+  "valid_to": "2032-02-08"
+ },
+ {
+  "crew_id": "C-3116",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-06",
+  "valid_to": "2027-08-06"
+ },
+ {
+  "crew_id": "C-3116",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-16",
+  "valid_to": "2027-04-16"
+ },
+ {
+  "crew_id": "C-3116",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-03-26",
+  "valid_to": "2026-09-28"
+ },
+ {
+  "crew_id": "C-5020",
+  "cert_type": "licence",
+  "valid_from": "2028-08-29",
+  "valid_to": "2030-08-29"
+ },
+ {
+  "crew_id": "C-5020",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-11-08",
+  "valid_to": "2027-11-08"
+ },
+ {
+  "crew_id": "C-5020",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-05-27",
+  "valid_to": "2026-10-03"
+ },
+ {
+  "crew_id": "C-5020",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-04-13",
+  "valid_to": "2027-04-13"
+ },
+ {
+  "crew_id": "C-2993",
+  "cert_type": "licence",
+  "valid_from": "2027-10-19",
+  "valid_to": "2029-10-18"
+ },
+ {
+  "crew_id": "C-2993",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-10-30",
+  "valid_to": "2026-10-08"
+ },
+ {
+  "crew_id": "C-2993",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-07-17",
+  "valid_to": "2027-07-17"
+ },
+ {
+  "crew_id": "C-2993",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-01-21",
+  "valid_to": "2028-01-21"
+ },
+ {
+  "crew_id": "C-3816",
+  "cert_type": "licence",
+  "valid_from": "2029-02-13",
+  "valid_to": "2031-02-13"
+ },
+ {
+  "crew_id": "C-3816",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-07-08",
+  "valid_to": "2027-07-08"
+ },
+ {
+  "crew_id": "C-3816",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-05-26",
+  "valid_to": "2027-05-26"
+ },
+ {
+  "crew_id": "C-3816",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-12-30",
+  "valid_to": "2027-12-30"
+ },
+ {
+  "crew_id": "C-2888",
+  "cert_type": "licence",
+  "valid_from": "2027-04-21",
+  "valid_to": "2029-04-20"
+ },
+ {
+  "crew_id": "C-2888",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-09-05",
+  "valid_to": "2027-09-05"
+ },
+ {
+  "crew_id": "C-2888",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-09",
+  "valid_to": "2027-03-09"
+ },
+ {
+  "crew_id": "C-2888",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-01-05",
+  "valid_to": "2028-01-05"
+ },
+ {
+  "crew_id": "C-2569",
+  "cert_type": "licence",
+  "valid_from": "2029-08-24",
+  "valid_to": "2031-08-24"
+ },
+ {
+  "crew_id": "C-2569",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-06-15",
+  "valid_to": "2027-06-15"
+ },
+ {
+  "crew_id": "C-2569",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-07-26",
+  "valid_to": "2027-07-26"
+ },
+ {
+  "crew_id": "C-2569",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-02-26",
+  "valid_to": "2027-02-26"
+ },
+ {
+  "crew_id": "C-1823",
+  "cert_type": "licence",
+  "valid_from": "2028-06-23",
+  "valid_to": "2030-06-23"
+ },
+ {
+  "crew_id": "C-1823",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-07-13",
+  "valid_to": "2027-07-13"
+ },
+ {
+  "crew_id": "C-1823",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-22",
+  "valid_to": "2027-06-22"
+ },
+ {
+  "crew_id": "C-1823",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-06-20",
+  "valid_to": "2027-06-20"
+ },
+ {
+  "crew_id": "C-5533",
+  "cert_type": "licence",
+  "valid_from": "2027-08-25",
+  "valid_to": "2029-08-24"
+ },
+ {
+  "crew_id": "C-5533",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-05-29",
+  "valid_to": "2027-05-29"
+ },
+ {
+  "crew_id": "C-5533",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-01-09",
+  "valid_to": "2027-01-09"
+ },
+ {
+  "crew_id": "C-5533",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-09-17",
+  "valid_to": "2027-09-17"
+ },
+ {
+  "crew_id": "C-3791",
+  "cert_type": "licence",
+  "valid_from": "2027-12-30",
+  "valid_to": "2029-12-29"
+ },
+ {
+  "crew_id": "C-3791",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-27",
+  "valid_to": "2027-08-27"
+ },
+ {
+  "crew_id": "C-3791",
+  "cert_type": "recurrent_training",
+  "valid_from": "2024-12-20",
+  "valid_to": "2026-12-20"
+ },
+ {
+  "crew_id": "C-3791",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-12-29",
+  "valid_to": "2027-12-29"
+ },
+ {
+  "crew_id": "C-1606",
+  "cert_type": "licence",
+  "valid_from": "2027-10-16",
+  "valid_to": "2029-10-15"
+ },
+ {
+  "crew_id": "C-1606",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-09-05",
+  "valid_to": "2027-09-05"
+ },
+ {
+  "crew_id": "C-1606",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-07-31",
+  "valid_to": "2027-07-31"
+ },
+ {
+  "crew_id": "C-1606",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-05-09",
+  "valid_to": "2028-05-08"
+ },
+ {
+  "crew_id": "C-1970",
+  "cert_type": "licence",
+  "valid_from": "2027-04-18",
+  "valid_to": "2029-04-17"
+ },
+ {
+  "crew_id": "C-1970",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-09-18",
+  "valid_to": "2027-09-18"
+ },
+ {
+  "crew_id": "C-1970",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-30",
+  "valid_to": "2027-03-30"
+ },
+ {
+  "crew_id": "C-1970",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-07-16",
+  "valid_to": "2028-07-15"
+ },
+ {
+  "crew_id": "C-5994",
+  "cert_type": "licence",
+  "valid_from": "2028-05-09",
+  "valid_to": "2030-05-09"
+ },
+ {
+  "crew_id": "C-5994",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-07-15",
+  "valid_to": "2027-07-15"
+ },
+ {
+  "crew_id": "C-5994",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-09-06",
+  "valid_to": "2027-09-06"
+ },
+ {
+  "crew_id": "C-5994",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-10-03",
+  "valid_to": "2027-10-03"
+ },
+ {
+  "crew_id": "C-2286",
+  "cert_type": "licence",
+  "valid_from": "2029-11-16",
+  "valid_to": "2031-11-16"
+ },
+ {
+  "crew_id": "C-2286",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-06-13",
+  "valid_to": "2027-06-13"
+ },
+ {
+  "crew_id": "C-2286",
+  "cert_type": "recurrent_training",
+  "valid_from": "2024-12-22",
+  "valid_to": "2026-12-22"
+ },
+ {
+  "crew_id": "C-2286",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-02-01",
+  "valid_to": "2028-02-01"
+ },
+ {
+  "crew_id": "C-3167",
+  "cert_type": "licence",
+  "valid_from": "2030-02-13",
+  "valid_to": "2032-02-13"
+ },
+ {
+  "crew_id": "C-3167",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-04-24",
+  "valid_to": "2027-04-24"
+ },
+ {
+  "crew_id": "C-3167",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-22",
+  "valid_to": "2027-04-22"
+ },
+ {
+  "crew_id": "C-3167",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-07-05",
+  "valid_to": "2027-07-05"
+ },
+ {
+  "crew_id": "C-2165",
+  "cert_type": "licence",
+  "valid_from": "2027-07-04",
+  "valid_to": "2029-07-03"
+ },
+ {
+  "crew_id": "C-2165",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-25",
+  "valid_to": "2027-08-25"
+ },
+ {
+  "crew_id": "C-2165",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-03-25",
+  "valid_to": "2027-03-25"
+ },
+ {
+  "crew_id": "C-2165",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-10-16",
+  "valid_to": "2027-10-16"
+ },
+ {
+  "crew_id": "C-4839",
+  "cert_type": "licence",
+  "valid_from": "2027-06-19",
+  "valid_to": "2029-06-18"
+ },
+ {
+  "crew_id": "C-4839",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-11-26",
+  "valid_to": "2027-11-26"
+ },
+ {
+  "crew_id": "C-4839",
+  "cert_type": "recurrent_training",
+  "valid_from": "2024-12-17",
+  "valid_to": "2026-12-17"
+ },
+ {
+  "crew_id": "C-4839",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-03-21",
+  "valid_to": "2027-03-21"
+ },
+ {
+  "crew_id": "C-1748",
+  "cert_type": "licence",
+  "valid_from": "2029-05-06",
+  "valid_to": "2031-05-06"
+ },
+ {
+  "crew_id": "C-1748",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-18",
+  "valid_to": "2027-08-18"
+ },
+ {
+  "crew_id": "C-1748",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-15",
+  "valid_to": "2027-06-15"
+ },
+ {
+  "crew_id": "C-1748",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-05-02",
+  "valid_to": "2027-05-02"
+ },
+ {
+  "crew_id": "C-2435",
+  "cert_type": "licence",
+  "valid_from": "2027-04-11",
+  "valid_to": "2029-04-10"
+ },
+ {
+  "crew_id": "C-2435",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-08-29",
+  "valid_to": "2027-08-29"
+ },
+ {
+  "crew_id": "C-2435",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-28",
+  "valid_to": "2027-06-28"
+ },
+ {
+  "crew_id": "C-2435",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-09-05",
+  "valid_to": "2027-09-05"
+ },
+ {
+  "crew_id": "C-5795",
+  "cert_type": "licence",
+  "valid_from": "2029-04-20",
+  "valid_to": "2031-04-20"
+ },
+ {
+  "crew_id": "C-5795",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-12-18",
+  "valid_to": "2027-12-18"
+ },
+ {
+  "crew_id": "C-5795",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-02-01",
+  "valid_to": "2027-02-01"
+ },
+ {
+  "crew_id": "C-5795",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-12-01",
+  "valid_to": "2027-12-01"
+ },
+ {
+  "crew_id": "C-4280",
+  "cert_type": "licence",
+  "valid_from": "2029-11-19",
+  "valid_to": "2031-11-19"
+ },
+ {
+  "crew_id": "C-4280",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-12-30",
+  "valid_to": "2027-12-30"
+ },
+ {
+  "crew_id": "C-4280",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-01-27",
+  "valid_to": "2027-01-27"
+ },
+ {
+  "crew_id": "C-4280",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2025-07-21",
+  "valid_to": "2027-07-21"
+ },
+ {
+  "crew_id": "C-5444",
+  "cert_type": "licence",
+  "valid_from": "2028-04-13",
+  "valid_to": "2030-04-13"
+ },
+ {
+  "crew_id": "C-5444",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-12-14",
+  "valid_to": "2027-12-14"
+ },
+ {
+  "crew_id": "C-5444",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-08-04",
+  "valid_to": "2027-08-04"
+ },
+ {
+  "crew_id": "C-5444",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-08-09",
+  "valid_to": "2028-08-08"
+ },
+ {
+  "crew_id": "C-4621",
+  "cert_type": "licence",
+  "valid_from": "2027-04-16",
+  "valid_to": "2029-04-15"
+ },
+ {
+  "crew_id": "C-4621",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-04-22",
+  "valid_to": "2027-04-22"
+ },
+ {
+  "crew_id": "C-4621",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-18",
+  "valid_to": "2027-04-18"
+ },
+ {
+  "crew_id": "C-4621",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-07-08",
+  "valid_to": "2028-07-07"
+ },
+ {
+  "crew_id": "C-3545",
+  "cert_type": "licence",
+  "valid_from": "2028-11-16",
+  "valid_to": "2030-11-16"
+ },
+ {
+  "crew_id": "C-3545",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-09-19",
+  "valid_to": "2027-09-19"
+ },
+ {
+  "crew_id": "C-3545",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-08-20",
+  "valid_to": "2027-08-20"
+ },
+ {
+  "crew_id": "C-3545",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-02-18",
+  "valid_to": "2028-02-18"
+ },
+ {
+  "crew_id": "C-5168",
+  "cert_type": "licence",
+  "valid_from": "2028-01-18",
+  "valid_to": "2030-01-17"
+ },
+ {
+  "crew_id": "C-5168",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-04-11",
+  "valid_to": "2027-04-11"
+ },
+ {
+  "crew_id": "C-5168",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-06-08",
+  "valid_to": "2027-06-08"
+ },
+ {
+  "crew_id": "C-5168",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-01-07",
+  "valid_to": "2028-01-07"
+ },
+ {
+  "crew_id": "C-2561",
+  "cert_type": "licence",
+  "valid_from": "2029-02-27",
+  "valid_to": "2031-02-27"
+ },
+ {
+  "crew_id": "C-2561",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-09-03",
+  "valid_to": "2027-09-03"
+ },
+ {
+  "crew_id": "C-2561",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-12",
+  "valid_to": "2027-04-12"
+ },
+ {
+  "crew_id": "C-2561",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-06-09",
+  "valid_to": "2028-06-08"
+ },
+ {
+  "crew_id": "C-1021",
+  "cert_type": "licence",
+  "valid_from": "2028-09-17",
+  "valid_to": "2030-09-17"
+ },
+ {
+  "crew_id": "C-1021",
+  "cert_type": "medical_class1",
+  "valid_from": "2025-05-03",
+  "valid_to": "2027-05-03"
+ },
+ {
+  "crew_id": "C-1021",
+  "cert_type": "recurrent_training",
+  "valid_from": "2025-04-23",
+  "valid_to": "2027-04-23"
+ },
+ {
+  "crew_id": "C-1021",
+  "cert_type": "dangerous_goods",
+  "valid_from": "2026-02-12",
+  "valid_to": "2028-02-12"
+ }
+]

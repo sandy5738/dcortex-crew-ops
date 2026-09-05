@@ -1,0 +1,290 @@
+[
+ {
+  "crew_id": "C-3305",
+  "base": "BLR",
+  "dates": [
+   "2026-09-14",
+   "2026-09-15",
+   "2026-09-16",
+   "2026-09-17",
+   "2026-09-18",
+   "2026-09-19",
+   "2026-09-20"
+  ],
+  "oncall_window_utc": {
+   "start": "00:00",
+   "end": "05:30"
+  },
+  "note": "Callout time must fall inside the on-call window (RULE-BASE-07 applies for base)."
+ },
+ {
+  "crew_id": "C-3310",
+  "base": "BLR",
+  "dates": [
+   "2026-09-14",
+   "2026-09-15",
+   "2026-09-16",
+   "2026-09-17",
+   "2026-09-18",
+   "2026-09-19",
+   "2026-09-20"
+  ],
+  "oncall_window_utc": {
+   "start": "06:00",
+   "end": "18:00"
+  },
+  "note": "Callout time must fall inside the on-call window (RULE-BASE-07 applies for base)."
+ },
+ {
+  "crew_id": "C-3311",
+  "base": "BLR",
+  "dates": [
+   "2026-09-14",
+   "2026-09-15",
+   "2026-09-16",
+   "2026-09-17",
+   "2026-09-18",
+   "2026-09-19",
+   "2026-09-20"
+  ],
+  "oncall_window_utc": {
+   "start": "06:00",
+   "end": "18:00"
+  },
+  "note": "Callout time must fall inside the on-call window (RULE-BASE-07 applies for base)."
+ },
+ {
+  "crew_id": "C-3312",
+  "base": "BLR",
+  "dates": [
+   "2026-09-14",
+   "2026-09-15",
+   "2026-09-16",
+   "2026-09-17",
+   "2026-09-18",
+   "2026-09-19",
+   "2026-09-20"
+  ],
+  "oncall_window_utc": {
+   "start": "00:00",
+   "end": "12:00"
+  },
+  "note": "Callout time must fall inside the on-call window (RULE-BASE-07 applies for base)."
+ },
+ {
+  "crew_id": "C-3315",
+  "base": "BLR",
+  "dates": [
+   "2026-09-14",
+   "2026-09-15",
+   "2026-09-16",
+   "2026-09-17",
+   "2026-09-18",
+   "2026-09-19",
+   "2026-09-20"
+  ],
+  "oncall_window_utc": {
+   "start": "03:00",
+   "end": "15:00"
+  },
+  "note": "Callout time must fall inside the on-call window (RULE-BASE-07 applies for base)."
+ },
+ {
+  "crew_id": "C-3316",
+  "base": "BLR",
+  "dates": [
+   "2026-09-14",
+   "2026-09-15",
+   "2026-09-16",
+   "2026-09-17",
+   "2026-09-18",
+   "2026-09-19",
+   "2026-09-20"
+  ],
+  "oncall_window_utc": {
+   "start": "03:00",
+   "end": "15:00"
+  },
+  "note": "Callout time must fall inside the on-call window (RULE-BASE-07 applies for base)."
+ },
+ {
+  "crew_id": "C-2210",
+  "base": "DEL",
+  "dates": [
+   "2026-09-14",
+   "2026-09-15",
+   "2026-09-16",
+   "2026-09-17",
+   "2026-09-18",
+   "2026-09-19",
+   "2026-09-20"
+  ],
+  "oncall_window_utc": {
+   "start": "03:00",
+   "end": "15:00"
+  },
+  "note": "Callout time must fall inside the on-call window (RULE-BASE-07 applies for base)."
+ },
+ {
+  "crew_id": "C-2111",
+  "base": "BLR",
+  "dates": [
+   "2026-09-14",
+   "2026-09-15",
+   "2026-09-16",
+   "2026-09-17",
+   "2026-09-18",
+   "2026-09-19",
+   "2026-09-20"
+  ],
+  "oncall_window_utc": {
+   "start": "04:00",
+   "end": "16:00"
+  },
+  "note": "Callout time must fall inside the on-call window (RULE-BASE-07 applies for base)."
+ },
+ {
+  "crew_id": "C-3677",
+  "base": "BLR",
+  "dates": [
+   "2026-09-14",
+   "2026-09-15",
+   "2026-09-16",
+   "2026-09-17",
+   "2026-09-18",
+   "2026-09-19",
+   "2026-09-20"
+  ],
+  "oncall_window_utc": {
+   "start": "04:00",
+   "end": "16:00"
+  },
+  "note": "Callout time must fall inside the on-call window (RULE-BASE-07 applies for base)."
+ },
+ {
+  "crew_id": "C-5418",
+  "base": "BLR",
+  "dates": [
+   "2026-09-14",
+   "2026-09-15",
+   "2026-09-16",
+   "2026-09-17",
+   "2026-09-18",
+   "2026-09-19",
+   "2026-09-20"
+  ],
+  "oncall_window_utc": {
+   "start": "04:00",
+   "end": "16:00"
+  },
+  "note": "Callout time must fall inside the on-call window (RULE-BASE-07 applies for base)."
+ },
+ {
+  "crew_id": "C-1329",
+  "base": "BLR",
+  "dates": [
+   "2026-09-14",
+   "2026-09-15",
+   "2026-09-16",
+   "2026-09-17",
+   "2026-09-18",
+   "2026-09-19",
+   "2026-09-20"
+  ],
+  "oncall_window_utc": {
+   "start": "04:00",
+   "end": "16:00"
+  },
+  "note": "Callout time must fall inside the on-call window (RULE-BASE-07 applies for base)."
+ },
+ {
+  "crew_id": "C-2248",
+  "base": "BLR",
+  "dates": [
+   "2026-09-14",
+   "2026-09-15",
+   "2026-09-16",
+   "2026-09-17",
+   "2026-09-18",
+   "2026-09-19",
+   "2026-09-20"
+  ],
+  "oncall_window_utc": {
+   "start": "04:00",
+   "end": "16:00"
+  },
+  "note": "Callout time must fall inside the on-call window (RULE-BASE-07 applies for base)."
+ },
+ {
+  "crew_id": "C-4809",
+  "base": "BLR",
+  "dates": [
+   "2026-09-14",
+   "2026-09-15",
+   "2026-09-16",
+   "2026-09-17",
+   "2026-09-18",
+   "2026-09-19",
+   "2026-09-20"
+  ],
+  "oncall_window_utc": {
+   "start": "00:00",
+   "end": "12:00"
+  },
+  "note": "Callout time must fall inside the on-call window (RULE-BASE-07 applies for base)."
+ },
+ {
+  "crew_id": "C-2341",
+  "base": "DEL",
+  "dates": [
+   "2026-09-14",
+   "2026-09-15",
+   "2026-09-16",
+   "2026-09-17",
+   "2026-09-18",
+   "2026-09-19",
+   "2026-09-20"
+  ],
+  "oncall_window_utc": {
+   "start": "03:00",
+   "end": "15:00"
+  },
+  "note": "Callout time must fall inside the on-call window (RULE-BASE-07 applies for base)."
+ },
+ {
+  "crew_id": "C-3555",
+  "base": "DEL",
+  "dates": [
+   "2026-09-14",
+   "2026-09-15",
+   "2026-09-16",
+   "2026-09-17",
+   "2026-09-18",
+   "2026-09-19",
+   "2026-09-20"
+  ],
+  "oncall_window_utc": {
+   "start": "03:00",
+   "end": "15:00"
+  },
+  "note": "Callout time must fall inside the on-call window (RULE-BASE-07 applies for base)."
+ },
+ {
+  "crew_id": "C-1622",
+  "base": "DEL",
+  "dates": [
+   "2026-09-14",
+   "2026-09-15",
+   "2026-09-16",
+   "2026-09-17",
+   "2026-09-18",
+   "2026-09-19",
+   "2026-09-20"
+  ],
+  "oncall_window_utc": {
+   "start": "03:00",
+   "end": "15:00"
+  },
+  "note": "Callout time must fall inside the on-call window (RULE-BASE-07 applies for base)."
+ }
+]

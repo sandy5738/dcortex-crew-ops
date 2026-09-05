@@ -1,0 +1,12 @@
+{
+ "currency": "INR",
+ "reserve_callout_pilot": 18500,
+ "reserve_callout_cabin": 9500,
+ "dayoff_callout_pilot": 24000,
+ "dayoff_callout_cabin": 12500,
+ "deadhead_positioning": 6500,
+ "delay_cost_per_duty_hour": 5400,
+ "cancellation_per_flight": 250000,
+ "hotel_overnight": 4200,
+ "notes": "delay_cost_per_duty_hour is charged per hour the duty's first departure is delayed. Cancellation is per flight leg."
+}
