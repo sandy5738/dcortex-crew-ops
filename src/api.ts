@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import { RulesEngine, Schemas } from './rulesEngine';
+import { RulesEngine, Schemas as RuleSchemas } from './rulesEngine';
+import { QueryEngine, QuerySchemas } from './queryEngine';
 import { simulateImpact } from './simulator';
 
 const app = express();
@@ -8,35 +9,73 @@ app.use(cors());
 app.use(express.json());
 
 // =================================================================
-// EXPRESS ROUTES (The Deterministic Boundary)
+// TIER 1: LOOKUP ENDPOINTS (Data Retrieval)
+// =================================================================
+
+app.post('/tools/get_reserve_pool', (req, res) => {
+    const parsed = QuerySchemas.GetReservePool.safeParse(req.body);
+    if (!parsed.success) return res.status(400).json(parsed.error);
+    res.json(QueryEngine.getReservePool(parsed.data));
+});
+
+app.post('/tools/get_duty_hours', (req, res) => {
+    const parsed = QuerySchemas.GetDutyHours.safeParse(req.body);
+    if (!parsed.success) return res.status(400).json(parsed.error);
+    res.json(QueryEngine.getDutyHours(parsed.data));
+});
+
+app.post('/tools/get_flights', (req, res) => {
+    const parsed = QuerySchemas.GetFlights.safeParse(req.body);
+    if (!parsed.success) return res.status(400).json(parsed.error);
+    res.json(QueryEngine.getFlights(parsed.data));
+});
+
+app.post('/tools/get_expiring_certifications', (req, res) => {
+    const parsed = QuerySchemas.GetExpiringCertifications.safeParse(req.body);
+    if (!parsed.success) return res.status(400).json(parsed.error);
+    res.json(QueryEngine.getExpiringCertifications(parsed.data));
+});
+
+app.post('/tools/get_crew', (req, res) => {
+    const parsed = QuerySchemas.GetCrew.safeParse(req.body);
+    if (!parsed.success) return res.status(400).json(parsed.error);
+    res.json(QueryEngine.getCrew(parsed.data));
+});
+
+app.post('/tools/get_pairing', (req, res) => {
+    const parsed = QuerySchemas.GetPairing.safeParse(req.body);
+    if (!parsed.success) return res.status(400).json(parsed.error);
+    res.json(QueryEngine.getPairing(parsed.data));
+});
+
+
+// =================================================================
+// TIER 2 & 3: LEGALITY ENDPOINTS (Math & Constraints)
 // =================================================================
 
 app.post('/tools/check_fdp_limit', (req, res) => {
-    // Validate request body against Zod Schema defined in rulesEngine
-    const parsed = Schemas.FDP01.safeParse(req.body);
+    const parsed = RuleSchemas.FDP01.safeParse(req.body);
     if (!parsed.success) return res.status(400).json(parsed.error);
-
-    const result = RulesEngine.checkFdp01(parsed.data);
-    res.json(result);
+    res.json(RulesEngine.checkFdp01(parsed.data));
 });
 
 app.post('/tools/check_7d_duty_limit', (req, res) => {
-    const parsed = Schemas.DUTY02.safeParse(req.body);
+    const parsed = RuleSchemas.DUTY02.safeParse(req.body);
     if (!parsed.success) return res.status(400).json(parsed.error);
-
-    const result = RulesEngine.checkDuty02(parsed.data);
-    res.json(result);
+    res.json(RulesEngine.checkDuty02(parsed.data));
 });
 
-// Example of how you would expose the new rules:
 app.post('/tools/check_certifications', (req, res) => {
-    const parsed = Schemas.CERT06.safeParse(req.body);
+    const parsed = RuleSchemas.CERT06.safeParse(req.body);
     if (!parsed.success) return res.status(400).json(parsed.error);
-
-    const result = RulesEngine.checkCert06(parsed.data);
-    res.json(result);
+    res.json(RulesEngine.checkCert06(parsed.data));
 });
 
+app.post('/tools/simulate_impact', (req, res) => {
+    // Basic mock mapping for the UI simulation
+    const result = simulateImpact(req.body.crew_id, req.body.date);
+    res.json(result);
+});
 
 // =================================================================
 // MOCK CHAT ENDPOINT (Where the LLM orchestration lives)
