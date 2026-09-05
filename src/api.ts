@@ -126,18 +126,39 @@ app.post('/chat', async (req, res) => {
     }
 
     try {
-        const { messages: result } = await graph.invoke({
+        const result = await graph.invoke({
             messages: [
                 { role: 'system', content: 'You are the Crew Ops Advisor for dCortex Air. You have access to tools to judge crew pairings, duty limits, reserve pools, and disruption impacts. Always reason step by step using tools when the user asks for a legality check, lookup, or simulation.' },
                 { role: 'user', content: message }
             ]
         });
 
-        const last = result[result.length - 1];
-        if (last && typeof last === 'object' && 'content' in last) {
-            return res.json({ answer: last.content, reasoning_trail: [] });
+        // Extract tool calls from the reasoning trail
+        const toolCalls: any[] = [];
+        for (const msg of result.messages) {
+            const m = msg as any;
+            if (m.tool_calls) {
+                for (const tc of m.tool_calls) {
+                    toolCalls.push({
+                        tool_called: tc.name,
+                        arguments: tc.args,
+                        raw_result: undefined
+                    });
+                }
+            }
+            if (m.type === 'tool') {
+                // Match tool results to tool calls
+                for (const tc of toolCalls) {
+                    if (!tc.raw_result && m.tool_call_id === tc.tool_called) {
+                        tc.raw_result = m.content;
+                    }
+                }
+            }
         }
-        return res.json({ answer: last as string, reasoning_trail: [] });
+
+        const last = result.messages[result.messages.length - 1];
+        const answer = (last as any).content || (last as any).response || '';
+        return res.json({ answer, reasoning_trail: toolCalls });
     } catch (err: any) {
         console.error('Agent error:', err.message);
         return res.status(500).json({ error: err.message });
