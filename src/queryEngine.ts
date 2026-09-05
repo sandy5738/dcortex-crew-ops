@@ -40,20 +40,26 @@ export class QueryEngine {
         const { date, base } = input;
         const db = getDb();
         try {
+            // reserve_pool was one flat table with a `date` column. It is now
+            // reserves (one row per crew) + reserve_dates (the on-call dates),
+            // so the date filter moves to the child table.
             let sql = `
-                SELECT r.crew_id, c.rank, r.oncall_start, r.oncall_end 
-                FROM reserve_pool r
-                JOIN crew c ON r.crew_id = c.crew_id
-                WHERE r.date = ?
+                SELECT r.crew_id, c.rank, r.oncall_start, r.oncall_end
+                FROM reserves r
+                JOIN reserve_dates d ON d.crew_id = r.crew_id
+                JOIN crew c          ON c.crew_id = r.crew_id
+                WHERE d.date = ?
             `;
             const params: any[] = [date];
             if (base) {
                 sql += ` AND r.base = ?`;
                 params.push(base);
             }
+            sql += ` ORDER BY r.crew_id`;
             return db.prepare(sql).all(params);
         } finally {
-            db.close();
+            // Deliberately not closing: getDb() returns a shared, memoised
+            // read handle now. See src/db.ts.
         }
     }
 
@@ -62,7 +68,7 @@ export class QueryEngine {
         try {
             return db.prepare("SELECT * FROM duty_clocks WHERE crew_id = ?").get(input.crewId) || { error: "Crew not found" };
         } finally {
-            db.close();
+            // Shared handle — see getReservePool.
         }
     }
 
@@ -75,7 +81,7 @@ export class QueryEngine {
             if (input.arrStation) { sql += ` AND arr_station = ?`; params.push(input.arrStation); }
             return db.prepare(sql).all(params);
         } finally {
-            db.close();
+            // Shared handle — see getReservePool.
         }
     }
 
@@ -88,7 +94,7 @@ export class QueryEngine {
                 ORDER BY valid_to ASC
             `).all(input.dateFrom, input.dateTo);
         } finally {
-            db.close();
+            // Shared handle — see getReservePool.
         }
     }
 
@@ -102,17 +108,46 @@ export class QueryEngine {
             if (input.rank) { sql += ` AND rank = ?`; params.push(input.rank); }
             return db.prepare(sql).all(params);
         } finally {
-            db.close();
+            // Shared handle — see getReservePool.
         }
     }
 
     static getPairing(input: z.infer<typeof QuerySchemas.GetPairing>) {
         const db = getDb();
         try {
-            const row = db.prepare("SELECT json_data FROM pairings WHERE pairing_id = ?").get(input.pairingId) as any;
-            return row ? JSON.parse(row.json_data) : { error: "Pairing not found" };
+            // pairings.json_data is gone: the roster is normalised across
+            // pairings / pairing_days / pairing_day_flights / pairing_crew.
+            // Rebuild the same object shape the JSON blob used to return, so
+            // callers of this endpoint are unaffected.
+            const pairing = db.prepare(
+                `SELECT pairing_id, aircraft FROM pairings WHERE pairing_id = ?`
+            ).get(input.pairingId) as any;
+            if (!pairing) return { error: "Pairing not found" };
+
+            const days = db.prepare(
+                `SELECT date, report_utc, release_utc FROM pairing_days
+                 WHERE pairing_id = ? ORDER BY seq`
+            ).all(input.pairingId) as any[];
+
+            const legs = db.prepare(
+                `SELECT flight_id FROM pairing_day_flights
+                 WHERE pairing_id = ? AND date = ? ORDER BY seq`
+            );
+
+            return {
+                ...pairing,
+                days: days.map(d => ({
+                    ...d,
+                    flights: (legs.all(input.pairingId, d.date) as any[])
+                        .map(f => f.flight_id),
+                })),
+                crew: db.prepare(
+                    `SELECT crew_id, role FROM pairing_crew
+                     WHERE pairing_id = ? ORDER BY seq`
+                ).all(input.pairingId),
+            };
         } finally {
-            db.close();
+            // Shared handle — see getReservePool.
         }
     }
 }

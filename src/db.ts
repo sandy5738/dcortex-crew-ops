@@ -44,8 +44,13 @@ export function closeDb(): void {
   }
 }
 
-/** A writable handle, for the ingest only. */
-export function openForWrite(): Database.Database {
+/**
+ * A writable handle, for the ingest only.
+ *
+ * `at` lets the ingest build into a temp path and rename it over DB_PATH on
+ * success, so a failed rebuild leaves the previous database intact.
+ */
+export function openForWrite(at: string = DB_PATH): Database.Database {
   closeDb();
-  return new Database(DB_PATH);
+  return new Database(at);
 }

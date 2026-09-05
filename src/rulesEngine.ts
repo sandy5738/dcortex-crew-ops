@@ -22,6 +22,22 @@ export interface RuleResult {
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 
+/**
+ * A real UTC calendar date, not merely something shaped like one.
+ *
+ * The shape check alone accepts 2026-02-30. Luxon then yields an invalid
+ * DateTime whose toISODate() is null, calendarWindow forces those nulls into
+ * the window, no history rows match, and the rule reports a confident
+ * "Legal. 0h over null..null". Returning a fluent wrong answer for a bad
+ * input is the exact failure this engine exists to prevent, so fail closed.
+ */
+const isoDate = (description: string) =>
+    z.string()
+        .regex(DATE_RE, 'expected YYYY-MM-DD')
+        .refine(s => DateTime.fromISO(s, { zone: 'utc' }).isValid,
+                s => ({ message: `${s} is not a real calendar date` }))
+        .describe(description);
+
 export const Schemas = {
     FDP01: z.object({
         numSectors: z.number().int().min(1).describe("Number of flight legs"),
@@ -34,12 +50,14 @@ export const Schemas = {
         // window ending on the duty date, so without this there is no
         // correct answer — only the snapshot-date answer, which is what the
         // previous implementation silently returned.
-        dutyDate: z.string().regex(DATE_RE).describe("Date of the new duty, YYYY-MM-DD. The 7-day window ends on this date.")
+        dutyDate: isoDate("Date of the new duty, YYYY-MM-DD. The 7-day window ends on this date."),
+        priorProposed: z.record(z.string(), z.number()).optional().describe("Earlier days of the SAME multi-day assignment, date -> hours. Needed so day 2 of a pairing counts day 1s proposed duty.")
     }),
     FLT03: z.object({
         crewId: z.string(),
         newFlightHours: z.number().positive(),
-        dutyDate: z.string().regex(DATE_RE).describe("Date of the new duty, YYYY-MM-DD. The 28-day window ends on this date.")
+        dutyDate: isoDate("Date of the new duty, YYYY-MM-DD. The 28-day window ends on this date."),
+        priorProposed: z.record(z.string(), z.number()).optional().describe("Earlier days of the SAME multi-day assignment, date -> hours. Needed so day 2 of a pairing counts day 1s proposed duty.")
     }),
     REST04: z.object({
         crewId: z.string(),
@@ -51,7 +69,7 @@ export const Schemas = {
     }),
     CERT06: z.object({
         crewId: z.string(),
-        dutyDate: z.string().regex(DATE_RE).describe("Date of duty in YYYY-MM-DD")
+        dutyDate: isoDate("Date of duty in YYYY-MM-DD")
     }),
     BASE07: z.object({
         crewId: z.string(),
@@ -109,6 +127,14 @@ function requireParam(ruleId: string, key: string): number {
  */
 export function calendarWindow(endDate: string, days: number): string[] {
     const end = DateTime.fromISO(endDate, { zone: 'utc' });
+    // Exported, so it is reachable without passing through a Zod schema.
+    // Throwing beats the old `toISODate()!`, which asserted away a null and
+    // produced a window of nulls that silently matched no history at all.
+    if (!end.isValid) {
+        throw new Error(
+            `calendarWindow: "${endDate}" is not a real calendar date ` +
+            `(${end.invalidReason ?? 'invalid'})`);
+    }
     const out: string[] = [];
     for (let i = days - 1; i >= 0; i--) {
         out.push(end.minus({ days: i }).toISODate()!);
@@ -116,9 +142,21 @@ export function calendarWindow(endDate: string, days: number): string[] {
     return out;
 }
 
-/** Per-date hours from duty_daily_history. Absent dates count as zero. */
+/**
+ * Per-date hours from duty_daily_history. Absent dates count as zero.
+ *
+ * `priorProposed` adds earlier days of the SAME proposed assignment, which
+ * are not in the database because they have not happened. Without it a
+ * multi-day pairing is checked as if each day stood alone: C-3305 is legal
+ * for P-2291 day 1 (59.50h) and then reads as legal again on day 2 (58.75h),
+ * when in fact day 1's proposed 9.50h lands inside day 2's window and takes
+ * the total to 68.25h — a breach. The dataset ships that case deliberately.
+ */
 function historyOver(
-    crewId: string, window: string[], column: 'duty_hours' | 'flight_hours'
+    crewId: string,
+    window: string[],
+    column: 'duty_hours' | 'flight_hours',
+    priorProposed?: Record<string, number>,
 ): Record<string, number> {
     const rows = getDb().prepare(
         `SELECT date, ${column} AS hours FROM duty_daily_history
@@ -129,6 +167,13 @@ function historyOver(
     const inputs: Record<string, number> = {};
     for (const d of window) inputs[d] = 0;
     for (const r of rows) inputs[r.date] = r.hours;
+
+    // Additive: a proposed day is extra duty on top of anything already
+    // recorded for that date. Dates outside the window are ignored rather
+    // than silently widening it.
+    for (const [date, hours] of Object.entries(priorProposed ?? {})) {
+        if (date in inputs) inputs[date] = round2(inputs[date] + hours);
+    }
     return inputs;
 }
 
@@ -174,7 +219,7 @@ export class RulesEngine {
      * 2026-09-15 or later.
      */
     static checkDuty02(input: z.infer<typeof Schemas.DUTY02>): RuleResult {
-        const { crewId, newDutyHours, dutyDate } = input;
+        const { crewId, newDutyHours, dutyDate, priorProposed } = input;
         if (!crewExists(crewId)) {
             return { rule_id: "RULE-DUTY-02", legal: false, reason: "Crew member not found." };
         }
@@ -182,7 +227,7 @@ export class RulesEngine {
         const limit = requireParam('RULE-DUTY-02', 'max_duty_hours');
         const windowDays = requireParam('RULE-DUTY-02', 'window_days');
         const window = calendarWindow(dutyDate, windowDays);
-        const inputs = historyOver(crewId, window, 'duty_hours');
+        const inputs = historyOver(crewId, window, 'duty_hours', priorProposed);
 
         const prior = round2(Object.values(inputs).reduce((a, b) => a + b, 0));
         const projected = round2(prior + newDutyHours);
@@ -203,7 +248,7 @@ export class RulesEngine {
 
     /** RULE-FLT-03 — 100 block hours / 28 calendar days. Same shape as DUTY-02. */
     static checkFlt03(input: z.infer<typeof Schemas.FLT03>): RuleResult {
-        const { crewId, newFlightHours, dutyDate } = input;
+        const { crewId, newFlightHours, dutyDate, priorProposed } = input;
         if (!crewExists(crewId)) {
             return { rule_id: "RULE-FLT-03", legal: false, reason: "Crew member not found." };
         }
@@ -211,7 +256,7 @@ export class RulesEngine {
         const limit = requireParam('RULE-FLT-03', 'max_flight_hours');
         const windowDays = requireParam('RULE-FLT-03', 'window_days');
         const window = calendarWindow(dutyDate, windowDays);
-        const inputs = historyOver(crewId, window, 'flight_hours');
+        const inputs = historyOver(crewId, window, 'flight_hours', priorProposed);
 
         const prior = round2(Object.values(inputs).reduce((a, b) => a + b, 0));
         const projected = round2(prior + newFlightHours);

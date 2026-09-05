@@ -247,9 +247,17 @@ function loadHarness(db: Database.Database) {
 // ------------------------------------------------------------------ build
 
 export function build(): void {
-  if (fs.existsSync(DB_PATH)) fs.unlinkSync(DB_PATH);
+  // Build into a sibling temp file and swap it in only once it is complete
+  // and its foreign keys check out. Deleting the live database first meant a
+  // parse error or a bad row left no database at all — recoverable, since the
+  // JSON is the source of truth, but it also fails on Windows if a reader
+  // still holds the file open, and leaves readers pointing at nothing.
+  const tmpPath = `${DB_PATH}.building`;
+  for (const stale of [tmpPath, `${tmpPath}-journal`, `${tmpPath}-wal`, `${tmpPath}-shm`]) {
+    if (fs.existsSync(stale)) fs.unlinkSync(stale);
+  }
 
-  const db = openForWrite();
+  const db = openForWrite(tmpPath);
   try {
     db.exec(fs.readFileSync(path.join(__dirname, 'schema.sql'), 'utf-8'));
     db.pragma('foreign_keys = ON');
@@ -275,8 +283,16 @@ export function build(): void {
       throw new Error(`foreign key violations after ingest: ${JSON.stringify(problems.slice(0, 5))}`);
     }
     db.exec('VACUUM');
-  } finally {
     db.close();
+
+    // Only now is the old database replaced. rename is atomic within a
+    // filesystem, so a reader sees either the previous database or the new
+    // one, never a half-built file.
+    fs.renameSync(tmpPath, DB_PATH);
+  } catch (err) {
+    try { db.close(); } catch { /* already closed on the success path */ }
+    if (fs.existsSync(tmpPath)) fs.unlinkSync(tmpPath);
+    throw err;
   }
 }
 

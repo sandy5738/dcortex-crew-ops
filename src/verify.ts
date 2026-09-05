@@ -22,7 +22,9 @@ import fs from 'fs';
 import path from 'path';
 import { DATA_DIR, DB_PATH, getDb } from './db';
 import { ALL_FILES, readJson } from './ingest';
-import { RulesEngine, calendarWindow, ruleParams } from './rulesEngine';
+import { RulesEngine, Schemas, calendarWindow, ruleParams } from './rulesEngine';
+
+const round2 = (n: number) => Math.round(n * 100) / 100;
 
 const failures: string[] = [];
 let checks = 0;
@@ -303,6 +305,55 @@ function rulesAgainstTheJson() {
           'duty_hours_7d happened to match every window — the regression proves nothing on this dataset');
     console.log(`  note: duty_hours_7d would have given the wrong figure for ` +
                 `${wouldHaveBeenWrong}/${clocks.length} crew on ${dutyDate}`);
+
+    // ---- RULE-FLT-03, checked the same way and for the same reason.
+    // The header claimed both rules; for a while only DUTY-02 was actually
+    // exercised, so a broken 28-day window would have passed `npm test`.
+    const fltWindowDays = ruleParams('RULE-FLT-03')['window_days'];
+    const fltWindow = calendarWindow(dutyDate, fltWindowDays);
+    const fltLimit = ruleParams('RULE-FLT-03')['max_flight_hours'];
+    const newFlight = 6.5;
+    let fltMismatches = 0;
+
+    for (const c of clocks) {
+        const byDate = new Map<string, number>(
+            c.daily_history.map((h: any) => [h.date, h.flight_hours]));
+        const truth = Math.round(
+            (fltWindow.reduce((n, d) => n + (byDate.get(d) ?? 0), 0) + newFlight) * 100) / 100;
+
+        const got = RulesEngine.checkFlt03({
+            crewId: c.crew_id, newFlightHours: newFlight, dutyDate });
+        if (Math.abs((got.actual ?? -1) - truth) > 0.011) fltMismatches++;
+        if (got.legal !== (truth <= fltLimit)) fltMismatches++;
+    }
+    equal('RULE-FLT-03 matches the JSON for all crew', fltMismatches, 0);
+    check('RULE-FLT-03 limit is loaded from the rules table', fltLimit !== undefined);
+    equal('RULE-FLT-03 window is 28 calendar dates', fltWindow.length, 28);
+
+    // ---- Impossible dates must be rejected, not answered.
+    // The shape-only regex accepted 2026-02-30, which produced a window of
+    // nulls and a confident "Legal. 0h over null..null".
+    check('a shape-valid but impossible date is rejected by the schema',
+          !Schemas.DUTY02.safeParse(
+              { crewId: 'C-2087', newDutyHours: 9.5, dutyDate: '2026-02-30' }).success);
+    let threw = false;
+    try { calendarWindow('2026-02-30', 7); } catch { threw = true; }
+    check('calendarWindow throws on an impossible date', threw);
+
+    // ---- Multi-day assignments must carry earlier proposed days forward.
+    // Day 2 of a pairing has to see day 1's proposed duty, which is not in
+    // duty_daily_history because it has not happened yet.
+    const soloDay2 = RulesEngine.checkDuty02({
+        crewId: 'C-3305', newDutyHours: 10.75, dutyDate: '2026-09-16' });
+    const seqDay2 = RulesEngine.checkDuty02({
+        crewId: 'C-3305', newDutyHours: 10.75, dutyDate: '2026-09-16',
+        priorProposed: { '2026-09-15': 9.5 } });
+    check('day 2 in isolation misses day 1 (the bug being guarded)',
+          soloDay2.legal === true);
+    check('day 2 with priorProposed breaches DUTY-02',
+          seqDay2.legal === false,
+          `expected a breach, got ${seqDay2.actual}h`);
+    equal('C-3305 sequential day-2 total', seqDay2.actual, round2(soloDay2.actual! + 9.5));
 
     // Params come from the table, not from constants in the code.
     check('RULE-DUTY-02 limit is loaded from the rules table', limit !== undefined);
