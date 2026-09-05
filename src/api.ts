@@ -133,24 +133,6 @@ app.post('/chat', async (req, res) => {
     }
 
     try {
-        // If no OpenAI API key, fall back to mock responses
-        if (!process.env.OPENAI_API_KEY) {
-            if (message.toLowerCase().includes("sick") && message.includes("C-5837")) {
-                const toolResult: any = simulateImpact("C-5837", "2026-09-14");
-                const answer = `Captain C-5837 is sick. This breaks Pairing ${toolResult.pairing_broken}. ` +
-                               `As a result, ${toolResult.uncrewed_flights.length} flights are now uncrewed, ` +
-                               `putting ${toolResult.passengers_affected} passengers at risk. ` +
-                               `${toolResult.action_required}`;
-                return res.json({
-                    answer,
-                    reasoning_trail: [
-                        { tool_called: "simulate_impact", arguments: { crew_id: "C-5837", date: "2026-09-14" }, raw_result: toolResult }
-                    ]
-                });
-            }
-            return res.json({ answer: "I am a Node.js prototype. Ask me about C-5837 getting sick!" });
-        }
-
         const { messages: result } = await graph.invoke({
             messages: [
                 { role: 'system', content: 'You are the Crew Ops Advisor for dCortex Air. You have access to tools to judge crew pairings, duty limits, reserve pools, and disruption impacts. Always reason step by step using tools when the user asks for a legality check, lookup, or simulation.' },
@@ -163,9 +145,9 @@ app.post('/chat', async (req, res) => {
             return res.json({ answer: last.content, reasoning_trail: [] });
         }
         return res.json({ answer: last as string, reasoning_trail: [] });
-    } catch (err) {
-        console.error('Agent error:', err);
-        return res.status(500).json({ error: 'Agent invocation failed' });
+    } catch (err: any) {
+        console.error('Agent error:', err.message);
+        return res.status(500).json({ error: err.message });
     }
 });
 
