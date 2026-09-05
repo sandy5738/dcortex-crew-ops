@@ -63,3 +63,88 @@ a Captain**. Change "FO C-2087" → "Captain C-2087" in the doc.
 python3 validate.py            # checks data/ (PASS/FAIL with details)
 python3 generate.py            # regenerates everything (seed-stable)
 ```
+
+---
+
+# The dataset in SQLite
+
+The Node app reads `airline.db`, built from `data/*.json` by `src/ingest.ts`.
+
+```bash
+npm run ingest    # build airline.db from data/*.json
+npm run verify    # check it against the JSON it came from
+npm run db        # both
+npm run typecheck # tsc --noEmit
+```
+
+The JSON stays the source of truth: `generate.py` still emits it and
+`validate.py` still checks it, both untouched. `airline.db` is derived,
+git-ignored and rebuilt in under a second, so it is always safe to delete.
+
+## Why this replaced the two-table ingest
+
+The previous `src/ingest.ts` covered `crew` and `duty_clocks` only — 2 tables
+of 23 — and, critically, **discarded `daily_history`**: the 4,200 rows that
+this README's own conventions section calls out as existing "precisely so
+these are computable on any day of the week".
+
+Without those rows, `RULE-DUTY-02` had nothing to sum, so it fell back on
+`duty_clocks.duty_hours_7d`. That column is a **snapshot artifact** — correct
+only for the window ending on the dataset's `as_of` date, 2026-09-14. Every
+scenario is dated 2026-09-15 or later.
+
+Measured on this repo's own `data/`, for a 9.5h duty on 2026-09-15:
+
+| | |
+|---|---|
+| Crew whose 7-day figure was wrong | **57 of 150** |
+| Largest error | **+22.05h** |
+| Verdicts that flipped | **1 — C-3305** |
+
+C-3305 is the teaching case listed under *Engineered facts* above. The old
+code computed **65.90h → BREACH**; the truth is **59.50h → LEGAL**, so it
+wrongly excluded him from day 1 of the flagship scenario S2. C-2087 still
+comes out at 61.33h → BREACH, exactly as the engineered facts require.
+
+The old ingest also dropped `crew.status` entirely (the table had no such
+column), so the 6 crew on leave and 2 in training were indistinguishable from
+the 142 active ones, and stored `ratings` as a JSON string, so "every
+A320-rated captain" was a parse-and-filter instead of a join.
+
+## What is in the schema
+
+23 tables with real foreign keys — `dataset/schema.sql` equivalent lives at
+`src/schema.sql` and carries the column-level comments. Nested arrays become
+child tables: `crew_ratings`, `pairing_days`, `pairing_day_flights`,
+`pairing_crew`, `duty_daily_history`, `reserve_dates`, `rule_params`,
+`risk_drivers`.
+
+Three things are deliberately **not** in it:
+
+- **No derived fields, and no views computing them.** Report/release for a
+  *proposed* assignment, the window sums and the FDP limit stay in
+  `rulesEngine.ts`, where the result carries `limit`, `actual`, `window` and
+  `inputs` so a controller can challenge the number.
+- **No normalised answer keys.** `scenarios` and `questions` keep their
+  answer keys as JSON text — they are heterogeneous assertions, and columns
+  would invent a structure the data has not got.
+- **No rule limits in code.** `60` and `100` come from the `rule_params`
+  table, so swapping a regulator's limits is a data change plus a re-ingest.
+
+## Verifying
+
+`npm run verify` runs five groups of checks — provenance hashes, row counts,
+foreign keys and invariants, a full round trip (all eleven files are
+reconstructed *from the database* and compared to the files on disk), and a
+regression that recomputes RULE-DUTY-02 for all 150 crew straight from
+`duty_clocks.json` and compares it to the engine.
+
+Nothing in it hardcodes a row count or an hours figure — every expectation is
+derived from `data/*.json` at run time, so it stays correct if the dataset is
+regenerated. That matters here: more than one generator run of this dataset
+exists, and they differ in `duty_clocks`, `certifications`, `risk_signals`
+and one `questions` answer key.
+
+```bash
+python3 validate.py   # the JSON checker, unchanged by any of this
+```
