@@ -1,6 +1,7 @@
 import { zodToJsonSchema } from 'zod-to-json-schema';
 import { Schemas as RuleSchemas } from './rulesEngine';
 import { QuerySchemas } from './queryEngine';
+import { ResolutionSchemas } from './resolutionEngine';
 
 /**
  * Dynamically generates the JSON structure for OpenAI Function Calling (Tools).
@@ -8,6 +9,17 @@ import { QuerySchemas } from './queryEngine';
  */
 
 export const OPENAI_TOOLS = [
+    // -------------------------------------------------------------
+    // TIER 3: DISRUPTION RECOVERY
+    // -------------------------------------------------------------
+    {
+        type: "function",
+        function: {
+            name: "generateRecoveryOptions",
+            description: "Finds and ranks legally viable crew replacements for a broken pairing when a crew member gets sick.",
+            parameters: zodToJsonSchema(ResolutionSchemas.GenerateRecovery, { target: "jsonSchema7" })
+        }
+    },
     // -------------------------------------------------------------
     // TIER 1: LOOKUPS (Data Retrieval)
     // -------------------------------------------------------------
