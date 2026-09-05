@@ -453,10 +453,36 @@ export class RulesEngine {
      */
     static checkCert06(input: z.infer<typeof Schemas.CERT06>): RuleResult {
         const { crewId, dutyDate } = input;
-        const rows = getDb().prepare(
-            `SELECT cert_type, valid_to FROM certifications
-             WHERE crew_id = ? AND valid_to < ? ORDER BY valid_to`
-        ).all(crewId, dutyDate) as { cert_type: string; valid_to: string }[];
+
+        // Fail closed. This rule used to query only for EXPIRED certificates,
+        // so zero rows read as "all valid" - including for a crew id that does
+        // not exist, and for a crew member with no certification rows at all.
+        // Every other crew-scoped rule refuses an unknown id; this one
+        // approved them.
+        if (!crewExists(crewId)) {
+            return { rule_id: "RULE-CERT-06", legal: false, reason: "Crew member not found." };
+        }
+
+        const held = getDb().prepare(
+            `SELECT cert_type, valid_to FROM certifications WHERE crew_id = ?`
+        ).all(crewId) as { cert_type: string; valid_to: string }[];
+
+        // "All certifications must be valid on the duty date" presupposes they
+        // exist. The dataset gives every crew member all four, and verify.ts
+        // asserts it, but absence must not read as compliance.
+        const REQUIRED = ['licence', 'medical_class1', 'recurrent_training', 'dangerous_goods'];
+        const missing = REQUIRED.filter(t => !held.some(h => h.cert_type === t));
+        if (missing.length) {
+            return {
+                rule_id: "RULE-CERT-06",
+                legal: false,
+                reason: `Violation. No record of ${missing.join(', ')} for ${crewId}.`,
+            };
+        }
+
+        const rows = held
+            .filter(h => h.valid_to < dutyDate)
+            .sort((a, b) => a.valid_to.localeCompare(b.valid_to));
 
         if (rows.length) {
             const first = rows[0];

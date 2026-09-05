@@ -23,6 +23,8 @@ import path from 'path';
 import { DATA_DIR, DB_PATH, getDb } from './db';
 import { ALL_FILES, readJson } from './ingest';
 import { RulesEngine, Schemas, calendarWindow, ruleParams } from './rulesEngine';
+import { deriveDuty, fdpLimit } from './duty';
+import { recommendCover } from './decide';
 
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
@@ -445,6 +447,87 @@ function rulesAgainstTheJson() {
     }
 }
 
+// 6. derivation and recommendation ---------------------------------------
+
+/**
+ * The duty derivation and the Tier 3 recommender, against the roster and the
+ * S2 answer key.
+ *
+ * The derivation check is the important one: if report/release computed from
+ * flight times reproduce all 42 stored pairing_days exactly, then the stored
+ * columns are redundant and it is safe to ignore them for delayed or proposed
+ * duties - which is the whole point, since those columns are the planned
+ * values and do not move.
+ */
+function derivationAndRecommendation() {
+    // -- every stored pairing-day must fall out of the flight times
+    const stored = rows(`SELECT pairing_id, date, report_utc, release_utc FROM pairing_days`);
+    const mismatched = stored.filter(s => {
+        const d = deriveDuty(s.pairing_id, s.date);
+        return !d || d.report_utc !== s.report_utc || d.release_utc !== s.release_utc;
+    }).map(s => `${s.pairing_id}@${s.date}`);
+    equal('derived duty periods reproduce every stored pairing-day', mismatched, []);
+
+    // -- S4: a delay EXTENDS the duty (crew reports on schedule and waits).
+    // A uniform shift leaves the length unchanged and finds no breach at all,
+    // so getting the mode wrong loses the scenario's entire point.
+    const s4 = readJson('scenarios').find((s: any) => s.scenario_id === 'S4');
+    if (s4) {
+        const line = rows(
+            `SELECT DISTINCT pdf.pairing_id p FROM pairing_day_flights pdf
+             JOIN flights f ON f.flight_id = pdf.flight_id
+             WHERE f.aircraft = ? AND pdf.date = ?`,
+            s4.event.aircraft, s4.event.date);
+        const delayed = line.map(({ p }) =>
+            deriveDuty(p, s4.event.date, { delayHours: s4.event.delay_hours, mode: 'extend' })!);
+        const worst = delayed.reduce((a, d) => (d.duty_hours > a.duty_hours ? d : a), delayed[0]);
+        equal('S4 delayed FDP matches the answer key', worst.duty_hours, s4.answer_key.fdp_after_delay);
+        equal('S4 FDP limit matches', fdpLimit(worst.sectors), s4.answer_key.fdp_limit);
+        check('S4 is a breach', worst.duty_hours > fdpLimit(worst.sectors) === s4.answer_key.breach);
+    }
+
+    // -- S2 end to end
+    const s2 = readJson('scenarios').find((s: any) => s.scenario_id === 'S2');
+    const rec = recommendCover(s2.event.pairing_id, s2.event.crew_id);
+    check('recommendCover returns a recommendation for S2', rec !== null);
+    if (!rec) return;
+
+    const keyOptions = s2.answer_key.options.filter((o: any) => o.crew_id);
+    const ourIds = new Set(rec.options.map(o => o.crew_id));
+    equal('S2 legal options match the key',
+          keyOptions.map((o: any) => o.crew_id).filter((c: string) => !ourIds.has(c)), []);
+    equal('S2 produces no option the key rejects',
+          [...ourIds].filter(c => !keyOptions.some((o: any) => o.crew_id === c)), []);
+
+    // Costs, including the deadhead composition for C-2210
+    for (const k of keyOptions) {
+        const ours = rec.options.find(o => o.crew_id === k.crew_id);
+        if (ours) equal(`S2 cost for ${k.crew_id}`, ours.cost?.total_inr, k.cost_inr);
+    }
+
+    equal('S2 rank 1 is the expected choice',
+          rec.options[0]?.crew_id, s2.answer_key.expected_choice.crew_id);
+
+    const keyExcluded = s2.answer_key.excluded_candidates.map((e: any) => e.crew_id);
+    const ourExcluded = new Set(rec.excluded.map(e => e.crew_id));
+    equal('every S2 exclusion is reproduced',
+          keyExcluded.filter((c: string) => !ourExcluded.has(c)), []);
+
+    // The header must add up: pool_size = options + excluded, which the
+    // hand-written fixture never did.
+    equal('pool size equals options plus excluded',
+          rec.pool_size, rec.options.length + rec.excluded.length);
+
+    // Every candidate carries all seven verdicts, pass or fail.
+    const short = [...rec.options, ...rec.excluded].filter(c => c.verdicts.length !== 7);
+    equal('every candidate carries all 7 rule verdicts', short.map(c => c.crew_id), []);
+
+    // Determinism: the same question twice, byte-identical.
+    const a = JSON.stringify(recommendCover(s2.event.pairing_id, s2.event.crew_id));
+    const b = JSON.stringify(recommendCover(s2.event.pairing_id, s2.event.crew_id));
+    check('recommendCover is deterministic', a === b);
+}
+
 // -------------------------------------------------------------------- cli
 
 function main() {
@@ -458,6 +541,7 @@ function main() {
     integrity();
     roundTrip();
     rulesAgainstTheJson();
+    derivationAndRecommendation();
 
     if (failures.length) {
         console.error(`\nFAIL - ${failures.length} of ${checks} checks failed\n`);
