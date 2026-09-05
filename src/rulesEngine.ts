@@ -290,7 +290,7 @@ export class RulesEngine {
      * Sums duty_daily_history over the seven UTC dates ending on the duty
      * date. It does NOT read duty_clocks.duty_hours_7d: that column is a
      * snapshot artifact, correct only for the window ending on the dataset's
-     * as_of date (2026-09-14) and wrong for every scenario, which all sit on
+     * as_of date (Current date) and wrong for every scenario, which all sit on
      * 2026-09-15 or later.
      */
     static checkDuty02(input: z.infer<typeof Schemas.DUTY02>): RuleResult {
