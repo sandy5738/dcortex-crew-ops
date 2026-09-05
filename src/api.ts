@@ -3,10 +3,25 @@ import cors from 'cors';
 import { RulesEngine, Schemas as RuleSchemas } from './rulesEngine';
 import { QueryEngine, QuerySchemas } from './queryEngine';
 import { simulateImpact } from './simulator';
+import { ResolutionEngine, ResolutionSchemas } from './resolutionEngine';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// =================================================================
+// TIER 3: DISRUPTION RECOVERY ENDPOINTS
+// =================================================================
+
+app.post('/tools/generate_recovery', (req, res) => {
+    try {
+        const parsed = ResolutionSchemas.GenerateRecovery.safeParse(req.body);
+        if (!parsed.success) return res.status(400).json(parsed.error);
+        res.json(ResolutionEngine.generateRecoveryOptions(parsed.data));
+    } catch (e: any) {
+        res.status(500).json({ error: e.message });
+    }
+});
 
 // =================================================================
 // TIER 1: LOOKUP ENDPOINTS (Data Retrieval)
