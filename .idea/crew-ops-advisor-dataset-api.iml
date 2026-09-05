@@ -3,14 +3,13 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/.ropeproject" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
-  <component name="PackageRequirementsSettings" />
   <component name="PyDocumentationSettings">
     <option name="format" value="PLAIN" />
   </component>
-  <component name="ReSTService" />
-  <component name="TestRunnerService" />
 </module>
