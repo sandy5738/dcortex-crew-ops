@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsx src/api.ts",
-    "ingest": "tsx src/ingest.ts"
+    "ingest": "tsx src/ingest.ts",
+    "verify": "tsx src/verify.ts",
+    "db": "npm run ingest && npm run verify",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run typecheck && npm run db"
   },
   "keywords": [],
   "author": "",
