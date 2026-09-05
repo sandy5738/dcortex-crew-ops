@@ -207,6 +207,88 @@ function loadCosts(db: Database.Database) {
             typeof v === 'string' ? v : null, i));
 }
 
+function loadCostsPerFlight(db: Database.Database) {
+  const p = path.join(DATA_DIR, 'costs', 'costs_per_flight.json');
+  if (!fs.existsSync(p)) return;
+  const doc = JSON.parse(fs.readFileSync(p, 'utf-8')) as any[];
+  const ins = db.prepare(
+    `INSERT OR REPLACE INTO costs_per_flight (flight_id, cancellation_cost, estimated_deadhead_cost, estimated_delay_cost_per_hour)
+     VALUES (?,?,?,?)`);
+  doc.forEach((r: any) => ins.run(r.flight_id, r.cancellation_cost ?? null, r.estimated_deadhead_cost ?? null, r.estimated_delay_cost_per_hour ?? null));
+}
+
+function loadCostsPerPairing(db: Database.Database) {
+  const p = path.join(DATA_DIR, 'costs', 'costs_per_pairing.json');
+  if (!fs.existsSync(p)) return;
+  const doc = JSON.parse(fs.readFileSync(p, 'utf-8')) as any[];
+  const ins = db.prepare(
+    `INSERT OR REPLACE INTO costs_per_pairing (pairing_id, total_block_hours, estimated_hotel_nights, hotel_cost_total, cancellation_costs_total)
+     VALUES (?,?,?,?,?)`);
+  doc.forEach((r: any) => ins.run(r.pairing_id, r.total_block_hours ?? null, r.estimated_hotel_nights ?? null, r.hotel_cost_total ?? null, r.cancellation_costs_total ?? null));
+}
+
+function loadNormalizedArtifacts(db: Database.Database) {
+  // normalized/flights_basic.json
+  try {
+    const p = path.join(DATA_DIR, 'normalized', 'flights_basic.json');
+    if (fs.existsSync(p)) {
+      const doc = JSON.parse(fs.readFileSync(p, 'utf-8')) as any[];
+      const ins = db.prepare(`INSERT OR REPLACE INTO normalized_flights_basic (flight_id, flight_no, date, dep_station, arr_station, dep_utc, arr_utc, block_hours, aircraft, aircraft_type, seats, seq) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`);
+      doc.forEach((r: any, i: number) => ins.run(r.flight_id, r.flight_no, r.date, r.dep_station, r.arr_station, r.dep_utc, r.arr_utc, r.block_hours, r.aircraft, r.aircraft_type, r.seats, i));
+    }
+  } catch (e) { /* tolerate */ }
+
+  // normalized/pairings.json
+  try {
+    const p = path.join(DATA_DIR, 'normalized', 'pairings.json');
+    if (fs.existsSync(p)) {
+      const doc = JSON.parse(fs.readFileSync(p, 'utf-8')) as any[];
+      const ins = db.prepare('INSERT OR REPLACE INTO normalized_pairings (pairing_id, aircraft, seq) VALUES (?,?,?)');
+      doc.forEach((r: any, i: number) => ins.run(r.pairing_id, r.aircraft, i));
+    }
+  } catch (e) { }
+
+  // normalized/pairing_crew.json
+  try {
+    const p = path.join(DATA_DIR, 'normalized', 'pairing_crew.json');
+    if (fs.existsSync(p)) {
+      const doc = JSON.parse(fs.readFileSync(p, 'utf-8')) as any[];
+      const ins = db.prepare('INSERT OR REPLACE INTO normalized_pairing_crew (pairing_id, crew_id, role, seq) VALUES (?,?,?,?)');
+      doc.forEach((r: any, i: number) => ins.run(r.pairing_id, r.crew_id, r.role, i));
+    }
+  } catch (e) { }
+
+  // normalized/pairing_legs.json
+  try {
+    const p = path.join(DATA_DIR, 'normalized', 'pairing_legs.json');
+    if (fs.existsSync(p)) {
+      const doc = JSON.parse(fs.readFileSync(p, 'utf-8')) as any[];
+      const ins = db.prepare('INSERT OR REPLACE INTO normalized_pairing_legs (pairing_id, flight_id, seq) VALUES (?,?,?)');
+      doc.forEach((r: any, i: number) => ins.run(r.pairing_id, r.flight_id, r.seq ?? i));
+    }
+  } catch (e) { }
+
+  // normalized/crew_base.json
+  try {
+    const p = path.join(DATA_DIR, 'normalized', 'crew_base.json');
+    if (fs.existsSync(p)) {
+      const doc = JSON.parse(fs.readFileSync(p, 'utf-8')) as any[];
+      const ins = db.prepare('INSERT OR REPLACE INTO normalized_crew_base (crew_id, name, rank, base, seniority, reachability_minutes, status, seq) VALUES (?,?,?,?,?,?,?,?)');
+      doc.forEach((r: any, i: number) => ins.run(r.crew_id, r.name, r.rank, r.base, r.seniority, r.reachability_minutes, r.status, i));
+    }
+  } catch (e) { }
+
+  // normalized/duty_clock_summary.json
+  try {
+    const p = path.join(DATA_DIR, 'normalized', 'duty_clock_summary.json');
+    if (fs.existsSync(p)) {
+      const doc = JSON.parse(fs.readFileSync(p, 'utf-8')) as any[];
+      const ins = db.prepare('INSERT OR REPLACE INTO normalized_duty_clock_summary (crew_id, as_of_utc, duty_hours_7d, flight_hours_28d, last_rest_ended, seq) VALUES (?,?,?,?,?,?)');
+      doc.forEach((r: any, i: number) => ins.run(r.crew_id, r.as_of_utc, r.duty_hours_7d, r.flight_hours_28d, r.last_rest_ended, i));
+    }
+  } catch (e) { }
+}
+
 function loadRiskSignals(db: Database.Database) {
   const ins = db.prepare(`
     INSERT INTO risk_signals (crew_id, as_of_utc, disruption_risk_score, seq)
@@ -217,6 +299,59 @@ function loadRiskSignals(db: Database.Database) {
   readJson('risk_signals').forEach((r: any, seq: number) => {
     ins.run(r.crew_id, r.as_of_utc, r.disruption_risk_score, seq);
     (r.drivers || []).forEach((d: string, j: number) => driver.run(r.crew_id, j, d));
+  });
+}
+
+function loadImpacts(db: Database.Database) {
+  // Load a consolidated, tool-produced detailed impacts file. This file is
+  // a derived artifact and not required for core rules or verification; the
+  // loader is therefore tolerant: if the file is absent the ingest proceeds
+  // normally. When present, rows are inserted into two small tables that
+  // let analysts query replacement/cancellation cost scenarios alongside
+  // the canonical snapshot (flights, pairings, crew).
+  const path = 'costs/impacts_detailed_consolidated.json';
+  let doc: any;
+  try {
+    doc = readJson(path);
+  } catch (e) {
+    // Not an error: impacts are produced by optional tools/ workflows.
+    return;
+  }
+
+  // Pairing-level baseline (keeps the small summary object as JSON text).
+  const insPair = db.prepare(
+    'INSERT OR REPLACE INTO impacts_pairing (crew_id, pairing_id, role, baseline_json, seq) VALUES (?,?,?,?,?)'
+  );
+
+  // Leg-level numeric estimates used to compute recommendations. Storing
+  // them as columns avoids re-parsing JSON for common analytic queries.
+  const insLeg = db.prepare(
+    `INSERT OR REPLACE INTO impacts_leg (crew_id, pairing_id, leg_seq, flight_id, remaining_legs, cancel_cost, reserve_total, deadhead_only, recommended_action, seq)
+     VALUES (?,?,?,?,?,?,?,?,?,?)`
+  );
+
+  // Iterate deterministic order: the consolidated file is stable but we
+  // retain seq values to preserve any original ordering semantics.
+  doc.forEach((c: any, ci: number) => {
+    const crew_id = c.crew_id;
+    (c.pairings || []).forEach((p: any, pi: number) => {
+      insPair.run(crew_id, p.pairing_id, p.role || null, JSON.stringify(p.baseline_pairing_costs || {}), pi);
+      (p.leg_scenarios || []).forEach((l: any, li: number) => {
+        const costs = l.costs || {};
+        insLeg.run(
+          crew_id,
+          p.pairing_id,
+          l.dropped_before_leg || (li + 1),
+          l.flight_id || null,
+          l.remaining_legs || 0,
+          costs.cancel_cost ?? null,
+          costs.reserve_total ?? null,
+          costs.deadhead_only ?? null,
+          l.recommended_action || null,
+          li
+        );
+      });
+    });
   });
 }
 
@@ -274,7 +409,11 @@ export function build(): void {
       loadReserves(db);
       loadRules(db);
       loadCosts(db);
+      loadCostsPerFlight(db);
+      loadCostsPerPairing(db);
+      loadNormalizedArtifacts(db);
       loadRiskSignals(db);
+      loadImpacts(db);
       loadHarness(db);
     })();
 
