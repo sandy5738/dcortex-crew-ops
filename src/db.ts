@@ -54,3 +54,12 @@ export function openForWrite(at: string = DB_PATH): Database.Database {
   closeDb();
   return new Database(at);
 }
+
+/**
+ * A writable handle for update tools.
+ * Opens the database without readonly flag so updates can be made.
+ */
+export function openForUpdate(): Database.Database {
+  closeDb();
+  return new Database(DB_PATH);
+}

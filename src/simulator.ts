@@ -73,7 +73,8 @@ export function simulateImpact(crewId: string, date: string) {
 }
 
 if (require.main === module) {
-    console.log("Simulating disruption for C-5837 on 2026-09-14...\n");
-    const impact = simulateImpact("C-5837", "2026-09-14");
+    const date = new Date().toISOString().split('T')[0];
+    console.log(`Simulating disruption for C-5837 on ${date}...\n`);
+    const impact = simulateImpact("C-5837", date);
     console.log(JSON.stringify(impact, null, 2));
 }
