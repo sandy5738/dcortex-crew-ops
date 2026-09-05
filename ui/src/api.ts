@@ -76,6 +76,21 @@ export function useAsk() {
   }, []);
 
   const ask = useCallback(async (query: string) => {
+    // Fixture mode promises no network calls, and that promise was only kept
+    // on mount: submitting through the composer still hit /api/ask, got a 404
+    // (there is no such route yet), and replaced the fixture verdict with an
+    // error — breaking the one mode that works today. Answer locally instead.
+    if (fixtureMode()) {
+      setState({
+        result: { ...FIXTURE_S2, query },
+        decisionId: null,
+        loading: false,
+        error: null,
+        degraded: true,
+      });
+      return;
+    }
+
     setState((s) => ({ ...s, loading: true, error: null }));
     try {
       const data = await post<AskResponse>("/ask", { query, history: [] });

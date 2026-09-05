@@ -1,2442 +1,2442 @@
 {
-  "intent_kind": "Vacancy",
-  "query": "Captain C-1042 just called in sick for tomorrow \u2014 what should I do?",
-  "impact": {
-    "pairing_id": "P-2291",
-    "uncovered_flights_day1": [
-      "DX412-2026-09-15",
-      "DX413-2026-09-15",
-      "DX588-2026-09-15"
+ "intent_kind": "Vacancy",
+ "query": "Captain C-1042 just called in sick for tomorrow — what should I do?",
+ "impact": {
+  "pairing_id": "P-2291",
+  "uncovered_flights_day1": [
+   "DX412-2026-09-15",
+   "DX413-2026-09-15",
+   "DX588-2026-09-15"
+  ],
+  "uncovered_flights_later": [
+   "DX589-2026-09-16",
+   "DX590-2026-09-16",
+   "DX591-2026-09-16"
+  ],
+  "passengers_at_risk_day1": 486,
+  "passengers_at_risk_total": 972,
+  "affected_pairings": [
+   "P-2291"
+  ],
+  "downstream_risks": [
+   {
+    "rule_id": "RULE-DUTY-02",
+    "passed": false,
+    "detail": "C-2087 would exceed 60h/7d by 1h20m (61.33h) if used as cover",
+    "limit": 60,
+    "actual": 61.33,
+    "margin": -1.33,
+    "window": [
+     "2026-09-09",
+     "2026-09-10",
+     "2026-09-11",
+     "2026-09-12",
+     "2026-09-13",
+     "2026-09-14",
+     "2026-09-15"
     ],
-    "uncovered_flights_later": [
-      "DX589-2026-09-16",
-      "DX590-2026-09-16",
-      "DX591-2026-09-16"
-    ],
-    "passengers_at_risk_day1": 486,
-    "passengers_at_risk_total": 972,
-    "affected_pairings": [
-      "P-2291"
-    ],
-    "downstream_risks": [
-      {
-        "rule_id": "RULE-DUTY-02",
-        "passed": false,
-        "detail": "C-2087 would exceed 60h/7d by 1h20m (61.33h) if used as cover",
-        "limit": 60.0,
-        "actual": 61.33,
-        "margin": -1.33,
-        "window": [
-          "2026-09-09",
-          "2026-09-10",
-          "2026-09-11",
-          "2026-09-12",
-          "2026-09-13",
-          "2026-09-14",
-          "2026-09-15"
-        ],
-        "inputs": {},
-        "source_files": [
-          "duty_clocks.json"
-        ]
-      }
+    "inputs": {},
+    "source_files": [
+     "duty_clocks.json"
     ]
-  },
-  "options": [
-    {
-      "crew_id": "C-3310",
-      "name": "R. Menon",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "reserve",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "duty 9.5h vs limit 12.5h (3 sectors) \u2014 3.0h headroom",
-          "limit": 12.5,
-          "actual": 9.5,
-          "margin": 3.0,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "rosters.json",
-            "flights.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "0.0 + 9.5 = 20.25 <= 60 (39.75h headroom)",
-          "limit": 60.0,
-          "actual": 20.25,
-          "margin": 39.75,
-          "window": [
-            "2026-09-09",
-            "2026-09-10",
-            "2026-09-11",
-            "2026-09-12",
-            "2026-09-13",
-            "2026-09-14",
-            "2026-09-15"
-          ],
-          "inputs": {
-            "2026-09-09": 0.0,
-            "2026-09-10": 0.0,
-            "2026-09-11": 0.0,
-            "2026-09-12": 0.0,
-            "2026-09-13": 0.0,
-            "2026-09-14": 0.0,
-            "2026-09-15": 9.5
-          },
-          "source_files": [
-            "duty_clocks.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "28-day flight hours within limit",
-          "limit": 100.0,
-          "actual": 60.53,
-          "margin": 39.47,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "duty_clocks.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": true,
-          "detail": "38.0h rest before report 06:00Z vs 12h minimum",
-          "limit": 12.0,
-          "actual": 38.0,
-          "margin": 26.0,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "duty_clocks.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": true,
-          "detail": "holds A320 rating for VT-DXC",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "crew.json",
-            "flights.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "all 4 certifications valid on 2026-09-15 and 2026-09-16 (checked on valid_to)",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "certifications.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "BLR-based; pairing departs BLR \u2014 no positioning required",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "crew.json"
-          ]
-        }
-      ],
-      "legal": true,
-      "coverage": "all 6 legs",
-      "coverage_fraction": 1.0,
-      "cost": {
-        "total_inr": 18500,
-        "callout_inr": 18500,
-        "deadhead_inr": 0,
-        "delay_inr": 0,
-        "hotel_inr": 0,
-        "delay_hours": 0.0,
-        "detail": "18,500 reserve callout"
-      },
-      "depletion": {
-        "forward_slots_covered": 2,
-        "forward_slots_lost": 0,
-        "weighted": 0.0,
-        "duty_hours_after": 20.25,
-        "duty_limit": 60.0,
-        "thinnest_slot_cover": 0,
-        "detail": "covers only 2 of 20 forward A320 slots (window opens 06:00Z); loses none"
-      },
-      "fragility_margin_hours": 38.0,
-      "rank_position": 1,
-      "action": "Assign Captain C-3310 (reserve callout)",
-      "reasoning": "BLR-based, A320-rated, on-call 06:00-18:00 covers the 06:00Z report, reachable in 45 min. Cheapest legal option and it consumes no forward cover."
-    },
-    {
-      "crew_id": "C-5566",
-      "name": "S. Iyer",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "duty 9.5h vs limit 12.5h (3 sectors) \u2014 3.0h headroom",
-          "limit": 12.5,
-          "actual": 9.5,
-          "margin": 3.0,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "rosters.json",
-            "flights.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "9.66 + 9.5 = 29.91 <= 60 (30.09h headroom)",
-          "limit": 60.0,
-          "actual": 29.91,
-          "margin": 30.09,
-          "window": [
-            "2026-09-09",
-            "2026-09-10",
-            "2026-09-11",
-            "2026-09-12",
-            "2026-09-13",
-            "2026-09-14",
-            "2026-09-15"
-          ],
-          "inputs": {
-            "2026-09-09": 0.0,
-            "2026-09-10": 0.0,
-            "2026-09-11": 0.0,
-            "2026-09-12": 0.0,
-            "2026-09-13": 0.0,
-            "2026-09-14": 9.66,
-            "2026-09-15": 9.5
-          },
-          "source_files": [
-            "duty_clocks.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "28-day flight hours within limit",
-          "limit": 100.0,
-          "actual": 60.53,
-          "margin": 39.47,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "duty_clocks.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": true,
-          "detail": "41.25h rest before report 06:00Z vs 12h minimum",
-          "limit": 12.0,
-          "actual": 41.25,
-          "margin": 29.25,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "duty_clocks.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": true,
-          "detail": "holds A320 rating for VT-DXC",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "crew.json",
-            "flights.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "all 4 certifications valid on 2026-09-15 and 2026-09-16 (checked on valid_to)",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "certifications.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "BLR-based; pairing departs BLR \u2014 no positioning required",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "crew.json"
-          ]
-        }
-      ],
-      "legal": true,
-      "coverage": "all 6 legs",
-      "coverage_fraction": 1.0,
-      "cost": {
-        "total_inr": 24000,
-        "callout_inr": 24000,
-        "deadhead_inr": 0,
-        "delay_inr": 0,
-        "hotel_inr": 0,
-        "delay_hours": 0.0,
-        "detail": "24,000 day-off callout"
-      },
-      "depletion": {
-        "forward_slots_covered": 12,
-        "forward_slots_lost": 4,
-        "weighted": 0.356,
-        "duty_hours_after": 29.91,
-        "duty_limit": 60.0,
-        "thinnest_slot_cover": 0,
-        "detail": "loses 4 of 20 forward slots; exits with 30.09h duty headroom"
-      },
-      "fragility_margin_hours": 41.25,
-      "rank_position": 2,
-      "action": "Assign Captain C-5566 (day-off callout)",
-      "reasoning": "Legal on all seven rules. Costs 5,500 more than the reserve but preserves the most forward capacity of the three day-off options."
-    },
-    {
-      "crew_id": "C-1526",
-      "name": "P. Rao",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "duty 9.5h vs limit 12.5h (3 sectors) \u2014 3.0h headroom",
-          "limit": 12.5,
-          "actual": 9.5,
-          "margin": 3.0,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "rosters.json",
-            "flights.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "29.71 + 9.5 = 50.46 <= 60 (9.54h headroom)",
-          "limit": 60.0,
-          "actual": 50.46,
-          "margin": 9.54,
-          "window": [
-            "2026-09-09",
-            "2026-09-10",
-            "2026-09-11",
-            "2026-09-12",
-            "2026-09-13",
-            "2026-09-14",
-            "2026-09-15"
-          ],
-          "inputs": {
-            "2026-09-09": 0.0,
-            "2026-09-10": 0.0,
-            "2026-09-11": 0.0,
-            "2026-09-12": 0.0,
-            "2026-09-13": 0.0,
-            "2026-09-14": 29.71,
-            "2026-09-15": 9.5
-          },
-          "source_files": [
-            "duty_clocks.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "28-day flight hours within limit",
-          "limit": 100.0,
-          "actual": 60.53,
-          "margin": 39.47,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "duty_clocks.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": true,
-          "detail": "26.0h rest before report 06:00Z vs 12h minimum",
-          "limit": 12.0,
-          "actual": 26.0,
-          "margin": 14.0,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "duty_clocks.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": true,
-          "detail": "holds A320 rating for VT-DXC",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "crew.json",
-            "flights.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "all 4 certifications valid on 2026-09-15 and 2026-09-16 (checked on valid_to)",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "certifications.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "BLR-based; pairing departs BLR \u2014 no positioning required",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "crew.json"
-          ]
-        }
-      ],
-      "legal": true,
-      "coverage": "all 6 legs",
-      "coverage_fraction": 1.0,
-      "cost": {
-        "total_inr": 24000,
-        "callout_inr": 24000,
-        "deadhead_inr": 0,
-        "delay_inr": 0,
-        "hotel_inr": 0,
-        "delay_hours": 0.0,
-        "detail": "24,000 day-off callout"
-      },
-      "depletion": {
-        "forward_slots_covered": 12,
-        "forward_slots_lost": 7,
-        "weighted": 0.629,
-        "duty_hours_after": 50.46,
-        "duty_limit": 60.0,
-        "thinnest_slot_cover": 0,
-        "detail": "loses 7 of 20 forward slots; exits with 9.54h duty headroom"
-      },
-      "fragility_margin_hours": 26.0,
-      "rank_position": 3,
-      "action": "Assign Captain C-1526 (day-off callout)",
-      "reasoning": "Legal, same cost as C-5566, but exits near the 60h ceiling and drops out of seven forward slots."
-    },
-    {
-      "crew_id": "C-3983",
-      "name": "N. Krishnan",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "duty 9.5h vs limit 12.5h (3 sectors) \u2014 3.0h headroom",
-          "limit": 12.5,
-          "actual": 9.5,
-          "margin": 3.0,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "rosters.json",
-            "flights.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "29.11 + 9.5 = 49.86 <= 60 (10.14h headroom)",
-          "limit": 60.0,
-          "actual": 49.86,
-          "margin": 10.14,
-          "window": [
-            "2026-09-09",
-            "2026-09-10",
-            "2026-09-11",
-            "2026-09-12",
-            "2026-09-13",
-            "2026-09-14",
-            "2026-09-15"
-          ],
-          "inputs": {
-            "2026-09-09": 0.0,
-            "2026-09-10": 0.0,
-            "2026-09-11": 0.0,
-            "2026-09-12": 0.0,
-            "2026-09-13": 0.0,
-            "2026-09-14": 29.11,
-            "2026-09-15": 9.5
-          },
-          "source_files": [
-            "duty_clocks.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "28-day flight hours within limit",
-          "limit": 100.0,
-          "actual": 60.53,
-          "margin": 39.47,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "duty_clocks.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": true,
-          "detail": "30.0h rest before report 06:00Z vs 12h minimum",
-          "limit": 12.0,
-          "actual": 30.0,
-          "margin": 18.0,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "duty_clocks.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": true,
-          "detail": "holds A320 rating for VT-DXC",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "crew.json",
-            "flights.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "all 4 certifications valid on 2026-09-15 and 2026-09-16 (checked on valid_to)",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "certifications.json"
-          ]
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "BLR-based; pairing departs BLR \u2014 no positioning required",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": [
-            "crew.json"
-          ]
-        }
-      ],
-      "legal": true,
-      "coverage": "all 6 legs",
-      "coverage_fraction": 1.0,
-      "cost": {
-        "total_inr": 24000,
-        "callout_inr": 24000,
-        "deadhead_inr": 0,
-        "delay_inr": 0,
-        "hotel_inr": 0,
-        "delay_hours": 0.0,
-        "detail": "24,000 day-off callout"
-      },
-      "depletion": {
-        "forward_slots_covered": 20,
-        "forward_slots_lost": 7,
-        "weighted": 0.629,
-        "duty_hours_after": 49.86,
-        "duty_limit": 60.0,
-        "thinnest_slot_cover": 0,
-        "detail": "loses 7 of 20 forward slots; exits with 10.14h duty headroom"
-      },
-      "fragility_margin_hours": 30.0,
-      "rank_position": 4,
-      "action": "Assign Captain C-3983 (day-off callout)",
-      "reasoning": "Legal and equal on cost, but the widest forward availability of any candidate \u2014 spending him here is the largest reduction in the pool."
-    }
-  ],
-  "excluded": [
-    {
-      "crew_id": "C-2087",
-      "name": "A. Sharma",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": false,
-          "detail": "would exceed 60h/7d by 1h20m on 2026-09-15 (total 61.33h); would exceed 60h/7d by 1h05m on 2026-09-16 (total 61.08h)",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        }
-      ],
-      "legal": false,
-      "coverage": "",
-      "coverage_fraction": 0.0,
-      "cost": null,
-      "depletion": null,
-      "fragility_margin_hours": null,
-      "rank_position": null,
-      "action": "",
-      "reasoning": ""
-    },
-    {
-      "crew_id": "C-3305",
-      "name": "K. Balan",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": false,
-          "detail": "reserve on-call window 00:00-05:30Z does not cover required report 06:00Z",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        }
-      ],
-      "legal": false,
-      "coverage": "",
-      "coverage_fraction": 0.0,
-      "cost": null,
-      "depletion": null,
-      "fragility_margin_hours": null,
-      "rank_position": null,
-      "action": "",
-      "reasoning": ""
-    },
-    {
-      "crew_id": "C-5837",
-      "name": "\u2014",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": false,
-          "detail": "only 10.75h rest before P-2204 on 2026-09-17 (downstream conflict)",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        }
-      ],
-      "legal": false,
-      "coverage": "",
-      "coverage_fraction": 0.0,
-      "cost": null,
-      "depletion": null,
-      "fragility_margin_hours": null,
-      "rank_position": null,
-      "action": "",
-      "reasoning": ""
-    },
-    {
-      "crew_id": "C-3940",
-      "name": "\u2014",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": false,
-          "detail": "only -6.75h rest before COVER on 2026-09-15 (rest conflict); double-booked: P-2202 overlaps COVER on 2026-09-15",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        }
-      ],
-      "legal": false,
-      "coverage": "",
-      "coverage_fraction": 0.0,
-      "cost": null,
-      "depletion": null,
-      "fragility_margin_hours": null,
-      "rank_position": null,
-      "action": "",
-      "reasoning": ""
-    },
-    {
-      "crew_id": "C-3187",
-      "name": "\u2014",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": false,
-          "detail": "only 10.0h rest before P-2203 on 2026-09-16 (downstream conflict); double-booked: P-2203 overlaps COVER on 2026-09-16",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        }
-      ],
-      "legal": false,
-      "coverage": "",
-      "coverage_fraction": 0.0,
-      "cost": null,
-      "depletion": null,
-      "fragility_margin_hours": null,
-      "rank_position": null,
-      "action": "",
-      "reasoning": ""
-    },
-    {
-      "crew_id": "C-2143",
-      "name": "\u2014",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": false,
-          "detail": "only 11.25h rest before P-2211 on 2026-09-17 (downstream conflict)",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        }
-      ],
-      "legal": false,
-      "coverage": "",
-      "coverage_fraction": 0.0,
-      "cost": null,
-      "depletion": null,
-      "fragility_margin_hours": null,
-      "rank_position": null,
-      "action": "",
-      "reasoning": ""
-    },
-    {
-      "crew_id": "C-1938",
-      "name": "\u2014",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": false,
-          "detail": "only -7.25h rest before COVER on 2026-09-15 (rest conflict); double-booked: P-2209 overlaps COVER on 2026-09-15",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        }
-      ],
-      "legal": false,
-      "coverage": "",
-      "coverage_fraction": 0.0,
-      "cost": null,
-      "depletion": null,
-      "fragility_margin_hours": null,
-      "rank_position": null,
-      "action": "",
-      "reasoning": ""
-    },
-    {
-      "crew_id": "C-5647",
-      "name": "\u2014",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": false,
-          "detail": "only 10.5h rest before P-2210 on 2026-09-16 (downstream conflict); double-booked: P-2210 overlaps COVER on 2026-09-16",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        }
-      ],
-      "legal": false,
-      "coverage": "",
-      "coverage_fraction": 0.0,
-      "cost": null,
-      "depletion": null,
-      "fragility_margin_hours": null,
-      "rank_position": null,
-      "action": "",
-      "reasoning": ""
-    },
-    {
-      "crew_id": "C-5820",
-      "name": "\u2014",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": false,
-          "detail": "only 11.75h rest before P-2218 on 2026-09-17 (downstream conflict)",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        }
-      ],
-      "legal": false,
-      "coverage": "",
-      "coverage_fraction": 0.0,
-      "cost": null,
-      "depletion": null,
-      "fragility_margin_hours": null,
-      "rank_position": null,
-      "action": "",
-      "reasoning": ""
-    },
-    {
-      "crew_id": "C-1443",
-      "name": "\u2014",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": false,
-          "detail": "only -6.25h rest before COVER on 2026-09-15 (rest conflict); double-booked: P-2216 overlaps COVER on 2026-09-15",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        }
-      ],
-      "legal": false,
-      "coverage": "",
-      "coverage_fraction": 0.0,
-      "cost": null,
-      "depletion": null,
-      "fragility_margin_hours": null,
-      "rank_position": null,
-      "action": "",
-      "reasoning": ""
-    },
-    {
-      "crew_id": "C-1017",
-      "name": "\u2014",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": false,
-          "detail": "only 11.0h rest before P-2217 on 2026-09-16 (downstream conflict); double-booked: P-2217 overlaps COVER on 2026-09-16",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        }
-      ],
-      "legal": false,
-      "coverage": "",
-      "coverage_fraction": 0.0,
-      "cost": null,
-      "depletion": null,
-      "fragility_margin_hours": null,
-      "rank_position": null,
-      "action": "",
-      "reasoning": ""
-    },
-    {
-      "crew_id": "C-3315",
-      "name": "\u2014",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": false,
-          "detail": "no A320 rating",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        }
-      ],
-      "legal": false,
-      "coverage": "",
-      "coverage_fraction": 0.0,
-      "cost": null,
-      "depletion": null,
-      "fragility_margin_hours": null,
-      "rank_position": null,
-      "action": "",
-      "reasoning": ""
-    },
-    {
-      "crew_id": "C-2091",
-      "name": "\u2014",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": false,
-          "detail": "no A320 rating",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        }
-      ],
-      "legal": false,
-      "coverage": "",
-      "coverage_fraction": 0.0,
-      "cost": null,
-      "depletion": null,
-      "fragility_margin_hours": null,
-      "rank_position": null,
-      "action": "",
-      "reasoning": ""
-    },
-    {
-      "crew_id": "C-1671",
-      "name": "\u2014",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": false,
-          "detail": "no A320 rating",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        }
-      ],
-      "legal": false,
-      "coverage": "",
-      "coverage_fraction": 0.0,
-      "cost": null,
-      "depletion": null,
-      "fragility_margin_hours": null,
-      "rank_position": null,
-      "action": "",
-      "reasoning": ""
-    },
-    {
-      "crew_id": "C-1600",
-      "name": "\u2014",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": false,
-          "detail": "no A320 rating",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        }
-      ],
-      "legal": false,
-      "coverage": "",
-      "coverage_fraction": 0.0,
-      "cost": null,
-      "depletion": null,
-      "fragility_margin_hours": null,
-      "rank_position": null,
-      "action": "",
-      "reasoning": ""
-    },
-    {
-      "crew_id": "C-3231",
-      "name": "\u2014",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": false,
-          "detail": "no A320 rating",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        }
-      ],
-      "legal": false,
-      "coverage": "",
-      "coverage_fraction": 0.0,
-      "cost": null,
-      "depletion": null,
-      "fragility_margin_hours": null,
-      "rank_position": null,
-      "action": "",
-      "reasoning": ""
-    },
-    {
-      "crew_id": "C-2221",
-      "name": "\u2014",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": false,
-          "detail": "no A320 rating",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        }
-      ],
-      "legal": false,
-      "coverage": "",
-      "coverage_fraction": 0.0,
-      "cost": null,
-      "depletion": null,
-      "fragility_margin_hours": null,
-      "rank_position": null,
-      "action": "",
-      "reasoning": ""
-    },
-    {
-      "crew_id": "C-3721",
-      "name": "\u2014",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": false,
-          "detail": "no A320 rating",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        }
-      ],
-      "legal": false,
-      "coverage": "",
-      "coverage_fraction": 0.0,
-      "cost": null,
-      "depletion": null,
-      "fragility_margin_hours": null,
-      "rank_position": null,
-      "action": "",
-      "reasoning": ""
-    },
-    {
-      "crew_id": "C-5392",
-      "name": "\u2014",
-      "rank": "Captain",
-      "base": "BLR",
-      "source": "dayoff",
-      "verdicts": [
-        {
-          "rule_id": "RULE-FDP-01",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-DUTY-02",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-FLT-03",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-REST-04",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-QUAL-05",
-          "passed": false,
-          "detail": "no A320 rating",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-CERT-06",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        },
-        {
-          "rule_id": "RULE-BASE-07",
-          "passed": true,
-          "detail": "checked, passed",
-          "limit": null,
-          "actual": null,
-          "margin": null,
-          "window": [],
-          "inputs": {},
-          "source_files": []
-        }
-      ],
-      "legal": false,
-      "coverage": "",
-      "coverage_fraction": 0.0,
-      "cost": null,
-      "depletion": null,
-      "fragility_margin_hours": null,
-      "rank_position": null,
-      "action": "",
-      "reasoning": ""
-    }
-  ],
-  "rows": [],
-  "ranking_key": "ranked by coverage, then cost, then forward depletion, then rest margin",
-  "pool_size": 28,
-  "trace": [
-    "parsed intent: Vacancy(C-1042, 2026-09-15, SICK)",
-    "resolved vacancy: P-2291, role Captain, 2 pairing-days, 6 legs",
-    "enumerated 28 candidates of rank Captain",
-    "evaluated 7 rules x 28 candidates = 196 checks",
-    "4 legal, 19 excluded (5 not evaluated: self, leave, training)",
-    "priced 4 options; scored forward depletion over 20 slots"
-  ],
-  "computed_at": "2026-09-15T05:00:12Z",
-  "caveats": [
-    "RULE-CERT-06 is evaluated on valid_to only; valid_from in certifications.json is unusable (all licence rows are dated in the future).",
-    "Depletion is a relative ordering signal, not a rupee forecast \u2014 the dataset's disruption rates are not statistically calibrated."
+   }
   ]
+ },
+ "options": [
+  {
+   "crew_id": "C-3310",
+   "name": "R. Menon",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "reserve",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "duty 9.5h vs limit 12.5h (3 sectors) — 3.0h headroom",
+     "limit": 12.5,
+     "actual": 9.5,
+     "margin": 3,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "rosters.json",
+      "flights.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "0 + 9.5 = 9.5 <= 60 (50.5h headroom)",
+     "limit": 60,
+     "actual": 9.5,
+     "margin": 50.5,
+     "window": [
+      "2026-09-09",
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15"
+     ],
+     "inputs": {
+      "2026-09-09": 0,
+      "2026-09-10": 0,
+      "2026-09-11": 0,
+      "2026-09-12": 0,
+      "2026-09-13": 0,
+      "2026-09-14": 0,
+      "2026-09-15": 9.5
+     },
+     "source_files": [
+      "duty_clocks.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "28-day flight hours within limit",
+     "limit": 100,
+     "actual": 60.53,
+     "margin": 39.47,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "duty_clocks.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": true,
+     "detail": "38.0h rest before report 06:00Z vs 12h minimum",
+     "limit": 12,
+     "actual": 38,
+     "margin": 26,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "duty_clocks.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": true,
+     "detail": "holds A320 rating for VT-DXC",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "crew.json",
+      "flights.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "all 4 certifications valid on 2026-09-15 and 2026-09-16 (checked on valid_to)",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "certifications.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "BLR-based; pairing departs BLR — no positioning required",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "crew.json"
+     ]
+    }
+   ],
+   "legal": true,
+   "coverage": "all 6 legs",
+   "coverage_fraction": 1,
+   "cost": {
+    "total_inr": 18500,
+    "callout_inr": 18500,
+    "deadhead_inr": 0,
+    "delay_inr": 0,
+    "hotel_inr": 0,
+    "delay_hours": 0,
+    "detail": "18,500 reserve callout"
+   },
+   "depletion": {
+    "forward_slots_covered": 2,
+    "forward_slots_lost": 0,
+    "weighted": 0,
+    "duty_hours_after": 20.25,
+    "duty_limit": 60,
+    "thinnest_slot_cover": 0,
+    "detail": "covers only 2 of 20 forward A320 slots (window opens 06:00Z); loses none"
+   },
+   "fragility_margin_hours": 38,
+   "rank_position": 1,
+   "action": "Assign Captain C-3310 (reserve callout)",
+   "reasoning": "BLR-based, A320-rated, on-call 06:00-18:00 covers the 06:00Z report, reachable in 45 min. Cheapest legal option and it consumes no forward cover."
+  },
+  {
+   "crew_id": "C-5566",
+   "name": "S. Iyer",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "duty 9.5h vs limit 12.5h (3 sectors) — 3.0h headroom",
+     "limit": 12.5,
+     "actual": 9.5,
+     "margin": 3,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "rosters.json",
+      "flights.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "9.66 + 9.5 = 19.16 <= 60 (40.84h headroom)",
+     "limit": 60,
+     "actual": 19.16,
+     "margin": 40.84,
+     "window": [
+      "2026-09-09",
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15"
+     ],
+     "inputs": {
+      "2026-09-09": 0,
+      "2026-09-10": 9.66,
+      "2026-09-11": 0,
+      "2026-09-12": 0,
+      "2026-09-13": 0,
+      "2026-09-14": 0,
+      "2026-09-15": 9.5
+     },
+     "source_files": [
+      "duty_clocks.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "28-day flight hours within limit",
+     "limit": 100,
+     "actual": 60.53,
+     "margin": 39.47,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "duty_clocks.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": true,
+     "detail": "41.25h rest before report 06:00Z vs 12h minimum",
+     "limit": 12,
+     "actual": 41.25,
+     "margin": 29.25,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "duty_clocks.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": true,
+     "detail": "holds A320 rating for VT-DXC",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "crew.json",
+      "flights.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "all 4 certifications valid on 2026-09-15 and 2026-09-16 (checked on valid_to)",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "certifications.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "BLR-based; pairing departs BLR — no positioning required",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "crew.json"
+     ]
+    }
+   ],
+   "legal": true,
+   "coverage": "all 6 legs",
+   "coverage_fraction": 1,
+   "cost": {
+    "total_inr": 24000,
+    "callout_inr": 24000,
+    "deadhead_inr": 0,
+    "delay_inr": 0,
+    "hotel_inr": 0,
+    "delay_hours": 0,
+    "detail": "24,000 day-off callout"
+   },
+   "depletion": {
+    "forward_slots_covered": 12,
+    "forward_slots_lost": 4,
+    "weighted": 0.356,
+    "duty_hours_after": 29.91,
+    "duty_limit": 60,
+    "thinnest_slot_cover": 0,
+    "detail": "loses 4 of 20 forward slots; exits with 30.09h duty headroom"
+   },
+   "fragility_margin_hours": 41.25,
+   "rank_position": 2,
+   "action": "Assign Captain C-5566 (day-off callout)",
+   "reasoning": "Legal on all seven rules. Costs 5,500 more than the reserve but preserves the most forward capacity of the three day-off options."
+  },
+  {
+   "crew_id": "C-1526",
+   "name": "P. Rao",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "duty 9.5h vs limit 12.5h (3 sectors) — 3.0h headroom",
+     "limit": 12.5,
+     "actual": 9.5,
+     "margin": 3,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "rosters.json",
+      "flights.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "20.18 + 9.5 = 29.68 <= 60 (30.32h headroom)",
+     "limit": 60,
+     "actual": 29.68,
+     "margin": 30.32,
+     "window": [
+      "2026-09-09",
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15"
+     ],
+     "inputs": {
+      "2026-09-09": 0,
+      "2026-09-10": 0,
+      "2026-09-11": 10.97,
+      "2026-09-12": 0,
+      "2026-09-13": 0,
+      "2026-09-14": 9.21,
+      "2026-09-15": 9.5
+     },
+     "source_files": [
+      "duty_clocks.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "28-day flight hours within limit",
+     "limit": 100,
+     "actual": 60.53,
+     "margin": 39.47,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "duty_clocks.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": true,
+     "detail": "26.0h rest before report 06:00Z vs 12h minimum",
+     "limit": 12,
+     "actual": 26,
+     "margin": 14,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "duty_clocks.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": true,
+     "detail": "holds A320 rating for VT-DXC",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "crew.json",
+      "flights.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "all 4 certifications valid on 2026-09-15 and 2026-09-16 (checked on valid_to)",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "certifications.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "BLR-based; pairing departs BLR — no positioning required",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "crew.json"
+     ]
+    }
+   ],
+   "legal": true,
+   "coverage": "all 6 legs",
+   "coverage_fraction": 1,
+   "cost": {
+    "total_inr": 24000,
+    "callout_inr": 24000,
+    "deadhead_inr": 0,
+    "delay_inr": 0,
+    "hotel_inr": 0,
+    "delay_hours": 0,
+    "detail": "24,000 day-off callout"
+   },
+   "depletion": {
+    "forward_slots_covered": 12,
+    "forward_slots_lost": 7,
+    "weighted": 0.629,
+    "duty_hours_after": 50.46,
+    "duty_limit": 60,
+    "thinnest_slot_cover": 0,
+    "detail": "loses 7 of 20 forward slots; exits with 9.54h duty headroom"
+   },
+   "fragility_margin_hours": 26,
+   "rank_position": 3,
+   "action": "Assign Captain C-1526 (day-off callout)",
+   "reasoning": "Legal, same cost as C-5566, but exits near the 60h ceiling and drops out of seven forward slots."
+  },
+  {
+   "crew_id": "C-3983",
+   "name": "N. Krishnan",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "duty 9.5h vs limit 12.5h (3 sectors) — 3.0h headroom",
+     "limit": 12.5,
+     "actual": 9.5,
+     "margin": 3,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "rosters.json",
+      "flights.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "18.86 + 9.5 = 28.36 <= 60 (31.64h headroom)",
+     "limit": 60,
+     "actual": 28.36,
+     "margin": 31.64,
+     "window": [
+      "2026-09-09",
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15"
+     ],
+     "inputs": {
+      "2026-09-09": 0,
+      "2026-09-10": 10.85,
+      "2026-09-11": 0,
+      "2026-09-12": 0,
+      "2026-09-13": 8.01,
+      "2026-09-14": 0,
+      "2026-09-15": 9.5
+     },
+     "source_files": [
+      "duty_clocks.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "28-day flight hours within limit",
+     "limit": 100,
+     "actual": 60.53,
+     "margin": 39.47,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "duty_clocks.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": true,
+     "detail": "30.0h rest before report 06:00Z vs 12h minimum",
+     "limit": 12,
+     "actual": 30,
+     "margin": 18,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "duty_clocks.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": true,
+     "detail": "holds A320 rating for VT-DXC",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "crew.json",
+      "flights.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "all 4 certifications valid on 2026-09-15 and 2026-09-16 (checked on valid_to)",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "certifications.json"
+     ]
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "BLR-based; pairing departs BLR — no positioning required",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": [
+      "crew.json"
+     ]
+    }
+   ],
+   "legal": true,
+   "coverage": "all 6 legs",
+   "coverage_fraction": 1,
+   "cost": {
+    "total_inr": 24000,
+    "callout_inr": 24000,
+    "deadhead_inr": 0,
+    "delay_inr": 0,
+    "hotel_inr": 0,
+    "delay_hours": 0,
+    "detail": "24,000 day-off callout"
+   },
+   "depletion": {
+    "forward_slots_covered": 20,
+    "forward_slots_lost": 7,
+    "weighted": 0.629,
+    "duty_hours_after": 49.86,
+    "duty_limit": 60,
+    "thinnest_slot_cover": 0,
+    "detail": "loses 7 of 20 forward slots; exits with 10.14h duty headroom"
+   },
+   "fragility_margin_hours": 30,
+   "rank_position": 4,
+   "action": "Assign Captain C-3983 (day-off callout)",
+   "reasoning": "Legal and equal on cost, but the widest forward availability of any candidate — spending him here is the largest reduction in the pool."
+  }
+ ],
+ "excluded": [
+  {
+   "crew_id": "C-2087",
+   "name": "A. Sharma",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": false,
+     "detail": "would exceed 60h/7d by 1h20m on 2026-09-15 (total 61.33h); would exceed 60h/7d by 1h05m on 2026-09-16 (total 61.08h)",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    }
+   ],
+   "legal": false,
+   "coverage": "",
+   "coverage_fraction": 0,
+   "cost": null,
+   "depletion": null,
+   "fragility_margin_hours": null,
+   "rank_position": null,
+   "action": "",
+   "reasoning": ""
+  },
+  {
+   "crew_id": "C-3305",
+   "name": "K. Balan",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": false,
+     "detail": "reserve on-call window 00:00-05:30Z does not cover required report 06:00Z",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    }
+   ],
+   "legal": false,
+   "coverage": "",
+   "coverage_fraction": 0,
+   "cost": null,
+   "depletion": null,
+   "fragility_margin_hours": null,
+   "rank_position": null,
+   "action": "",
+   "reasoning": ""
+  },
+  {
+   "crew_id": "C-5837",
+   "name": "—",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": false,
+     "detail": "only 10.75h rest before P-2204 on 2026-09-17 (downstream conflict)",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    }
+   ],
+   "legal": false,
+   "coverage": "",
+   "coverage_fraction": 0,
+   "cost": null,
+   "depletion": null,
+   "fragility_margin_hours": null,
+   "rank_position": null,
+   "action": "",
+   "reasoning": ""
+  },
+  {
+   "crew_id": "C-3940",
+   "name": "—",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": false,
+     "detail": "only -6.75h rest before COVER on 2026-09-15 (rest conflict); double-booked: P-2202 overlaps COVER on 2026-09-15",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    }
+   ],
+   "legal": false,
+   "coverage": "",
+   "coverage_fraction": 0,
+   "cost": null,
+   "depletion": null,
+   "fragility_margin_hours": null,
+   "rank_position": null,
+   "action": "",
+   "reasoning": ""
+  },
+  {
+   "crew_id": "C-3187",
+   "name": "—",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": false,
+     "detail": "only 10.0h rest before P-2203 on 2026-09-16 (downstream conflict); double-booked: P-2203 overlaps COVER on 2026-09-16",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    }
+   ],
+   "legal": false,
+   "coverage": "",
+   "coverage_fraction": 0,
+   "cost": null,
+   "depletion": null,
+   "fragility_margin_hours": null,
+   "rank_position": null,
+   "action": "",
+   "reasoning": ""
+  },
+  {
+   "crew_id": "C-2143",
+   "name": "—",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": false,
+     "detail": "only 11.25h rest before P-2211 on 2026-09-17 (downstream conflict)",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    }
+   ],
+   "legal": false,
+   "coverage": "",
+   "coverage_fraction": 0,
+   "cost": null,
+   "depletion": null,
+   "fragility_margin_hours": null,
+   "rank_position": null,
+   "action": "",
+   "reasoning": ""
+  },
+  {
+   "crew_id": "C-1938",
+   "name": "—",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": false,
+     "detail": "only -7.25h rest before COVER on 2026-09-15 (rest conflict); double-booked: P-2209 overlaps COVER on 2026-09-15",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    }
+   ],
+   "legal": false,
+   "coverage": "",
+   "coverage_fraction": 0,
+   "cost": null,
+   "depletion": null,
+   "fragility_margin_hours": null,
+   "rank_position": null,
+   "action": "",
+   "reasoning": ""
+  },
+  {
+   "crew_id": "C-5647",
+   "name": "—",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": false,
+     "detail": "only 10.5h rest before P-2210 on 2026-09-16 (downstream conflict); double-booked: P-2210 overlaps COVER on 2026-09-16",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    }
+   ],
+   "legal": false,
+   "coverage": "",
+   "coverage_fraction": 0,
+   "cost": null,
+   "depletion": null,
+   "fragility_margin_hours": null,
+   "rank_position": null,
+   "action": "",
+   "reasoning": ""
+  },
+  {
+   "crew_id": "C-5820",
+   "name": "—",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": false,
+     "detail": "only 11.75h rest before P-2218 on 2026-09-17 (downstream conflict)",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    }
+   ],
+   "legal": false,
+   "coverage": "",
+   "coverage_fraction": 0,
+   "cost": null,
+   "depletion": null,
+   "fragility_margin_hours": null,
+   "rank_position": null,
+   "action": "",
+   "reasoning": ""
+  },
+  {
+   "crew_id": "C-1443",
+   "name": "—",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": false,
+     "detail": "only -6.25h rest before COVER on 2026-09-15 (rest conflict); double-booked: P-2216 overlaps COVER on 2026-09-15",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    }
+   ],
+   "legal": false,
+   "coverage": "",
+   "coverage_fraction": 0,
+   "cost": null,
+   "depletion": null,
+   "fragility_margin_hours": null,
+   "rank_position": null,
+   "action": "",
+   "reasoning": ""
+  },
+  {
+   "crew_id": "C-1017",
+   "name": "—",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": false,
+     "detail": "only 11.0h rest before P-2217 on 2026-09-16 (downstream conflict); double-booked: P-2217 overlaps COVER on 2026-09-16",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    }
+   ],
+   "legal": false,
+   "coverage": "",
+   "coverage_fraction": 0,
+   "cost": null,
+   "depletion": null,
+   "fragility_margin_hours": null,
+   "rank_position": null,
+   "action": "",
+   "reasoning": ""
+  },
+  {
+   "crew_id": "C-3315",
+   "name": "—",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": false,
+     "detail": "no A320 rating",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    }
+   ],
+   "legal": false,
+   "coverage": "",
+   "coverage_fraction": 0,
+   "cost": null,
+   "depletion": null,
+   "fragility_margin_hours": null,
+   "rank_position": null,
+   "action": "",
+   "reasoning": ""
+  },
+  {
+   "crew_id": "C-2091",
+   "name": "—",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": false,
+     "detail": "no A320 rating",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    }
+   ],
+   "legal": false,
+   "coverage": "",
+   "coverage_fraction": 0,
+   "cost": null,
+   "depletion": null,
+   "fragility_margin_hours": null,
+   "rank_position": null,
+   "action": "",
+   "reasoning": ""
+  },
+  {
+   "crew_id": "C-1671",
+   "name": "—",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": false,
+     "detail": "no A320 rating",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    }
+   ],
+   "legal": false,
+   "coverage": "",
+   "coverage_fraction": 0,
+   "cost": null,
+   "depletion": null,
+   "fragility_margin_hours": null,
+   "rank_position": null,
+   "action": "",
+   "reasoning": ""
+  },
+  {
+   "crew_id": "C-1600",
+   "name": "—",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": false,
+     "detail": "no A320 rating",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    }
+   ],
+   "legal": false,
+   "coverage": "",
+   "coverage_fraction": 0,
+   "cost": null,
+   "depletion": null,
+   "fragility_margin_hours": null,
+   "rank_position": null,
+   "action": "",
+   "reasoning": ""
+  },
+  {
+   "crew_id": "C-3231",
+   "name": "—",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": false,
+     "detail": "no A320 rating",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    }
+   ],
+   "legal": false,
+   "coverage": "",
+   "coverage_fraction": 0,
+   "cost": null,
+   "depletion": null,
+   "fragility_margin_hours": null,
+   "rank_position": null,
+   "action": "",
+   "reasoning": ""
+  },
+  {
+   "crew_id": "C-2221",
+   "name": "—",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": false,
+     "detail": "no A320 rating",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    }
+   ],
+   "legal": false,
+   "coverage": "",
+   "coverage_fraction": 0,
+   "cost": null,
+   "depletion": null,
+   "fragility_margin_hours": null,
+   "rank_position": null,
+   "action": "",
+   "reasoning": ""
+  },
+  {
+   "crew_id": "C-3721",
+   "name": "—",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": false,
+     "detail": "no A320 rating",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    }
+   ],
+   "legal": false,
+   "coverage": "",
+   "coverage_fraction": 0,
+   "cost": null,
+   "depletion": null,
+   "fragility_margin_hours": null,
+   "rank_position": null,
+   "action": "",
+   "reasoning": ""
+  },
+  {
+   "crew_id": "C-5392",
+   "name": "—",
+   "rank": "Captain",
+   "base": "BLR",
+   "source": "dayoff",
+   "verdicts": [
+    {
+     "rule_id": "RULE-FDP-01",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-DUTY-02",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-FLT-03",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-REST-04",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-QUAL-05",
+     "passed": false,
+     "detail": "no A320 rating",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-CERT-06",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    },
+    {
+     "rule_id": "RULE-BASE-07",
+     "passed": true,
+     "detail": "checked, passed",
+     "limit": null,
+     "actual": null,
+     "margin": null,
+     "window": [],
+     "inputs": {},
+     "source_files": []
+    }
+   ],
+   "legal": false,
+   "coverage": "",
+   "coverage_fraction": 0,
+   "cost": null,
+   "depletion": null,
+   "fragility_margin_hours": null,
+   "rank_position": null,
+   "action": "",
+   "reasoning": ""
+  }
+ ],
+ "rows": [],
+ "ranking_key": "ranked by coverage, then cost, then forward depletion, then rest margin",
+ "pool_size": 28,
+ "trace": [
+  "parsed intent: Vacancy(C-1042, 2026-09-15, SICK)",
+  "resolved vacancy: P-2291, role Captain, 2 pairing-days, 6 legs",
+  "enumerated 28 candidates of rank Captain",
+  "evaluated 7 rules x 23 candidates = 161 checks",
+  "4 legal, 19 excluded (5 not evaluated: self, leave, training)",
+  "priced 4 options; scored forward depletion over 20 slots"
+ ],
+ "computed_at": "2026-09-15T05:00:12Z",
+ "caveats": [
+  "RULE-CERT-06 is evaluated on valid_to only; valid_from in certifications.json is unusable (all licence rows are dated in the future).",
+  "Depletion is a relative ordering signal, not a rupee forecast — the dataset's disruption rates are not statistically calibrated."
+ ]
 }

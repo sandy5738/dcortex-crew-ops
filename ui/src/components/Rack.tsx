@@ -24,6 +24,16 @@ export function Rack({
   const [cursor, setCursor] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
 
+  // A new answer must not inherit the previous one's selection. Without this
+  // a shorter result leaves the cursor past the end (so Enter targets
+  // nothing), and a crew id that appears in both results stays expanded.
+  // Keyed on the ids rather than the array, which is a new object each render.
+  const optionIds = options.map((o) => o.crew_id).join(",");
+  useEffect(() => {
+    setCursor(0);
+    setOpenId(null);
+  }, [optionIds]);
+
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       const tag = (e.target as HTMLElement)?.tagName;
@@ -46,7 +56,11 @@ export function Rack({
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [options, cursor]);
+    // openId belongs here: `toggle` reads it, so without it the installed
+    // listener keeps an openId from an earlier render. Enter then always
+    // computed "open", so a second press could not collapse the strip and
+    // fired onChoose again, recording the same choice twice.
+  }, [options, cursor, openId]);
 
   function toggle(c: Candidate) {
     const next = openId === c.crew_id ? null : c.crew_id;
