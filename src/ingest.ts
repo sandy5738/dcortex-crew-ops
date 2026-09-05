@@ -48,14 +48,29 @@ function loadProvenance(db: Database.Database) {
   const costs = readJson('costs');
 
   const meta = db.prepare('INSERT INTO dataset_meta (key, value) VALUES (?, ?)');
+  // Derive provenance values rather than hard-coding them. Week bounds are
+  // taken from the rostered pairing days; snapshot time defaults to
+  // midnight UTC on the first rostered date if no explicit value exists.
+  const allDates: string[] = [];
+  rosters.pairings?.forEach((p: any) => p.days?.forEach((d: any) => allDates.push(d.date)));
+  const week_start = allDates.length ? allDates.slice().sort()[0] : '';
+  // week_end = week_start + 6 days
+  let week_end = '';
+  if (week_start) {
+    const dt = new Date(week_start + 'T00:00:00Z');
+    dt.setUTCDate(dt.getUTCDate() + 6);
+    week_end = dt.toISOString().slice(0, 10);
+  }
+  const snapshot_utc = costs.snapshot_utc || (week_start ? `${week_start}T00:00:00Z` : '');
+
   const rows: [string, string][] = [
     ['schema_version', SCHEMA_VERSION],
     ['source', 'data/*.json (the source of truth)'],
     ['carrier', 'dCortex Air'],
     ['hub', 'BLR'],
-    ['week_start', '2026-09-14'],
-    ['week_end', '2026-09-20'],
-    ['snapshot_utc', '2026-09-14T18:00:00Z'],
+    ['week_start', week_start],
+    ['week_end', week_end],
+    ['snapshot_utc', snapshot_utc],
     ['currency', costs.currency],
     ['time_convention', rules.time_convention],
     ['rosters_note', rosters.note],
@@ -309,14 +324,9 @@ function loadImpacts(db: Database.Database) {
   // normally. When present, rows are inserted into two small tables that
   // let analysts query replacement/cancellation cost scenarios alongside
   // the canonical snapshot (flights, pairings, crew).
-  const path = 'costs/impacts_detailed_consolidated.json';
-  let doc: any;
-  try {
-    doc = readJson(path);
-  } catch (e) {
-    // Not an error: impacts are produced by optional tools/ workflows.
-    return;
-  }
+  const filePath = path.join(DATA_DIR, 'costs', 'impacts_detailed_consolidated.json');
+  if (!fs.existsSync(filePath)) return;
+  const doc = JSON.parse(fs.readFileSync(filePath, 'utf-8')) as any[];
 
   // Pairing-level baseline (keeps the small summary object as JSON text).
   const insPair = db.prepare(
