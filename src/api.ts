@@ -217,7 +217,9 @@ When providing crew replacement options, format as JSON with options array conta
             const jsonMatch = answer.match(/\{[\s\S]*\}/);
             if (jsonMatch) {
                 const parsed = JSON.parse(jsonMatch[0]);
-                return res.json({ ...parsed, reasoning_trail });
+                if (parsed.options && Array.isArray(parsed.options)) {
+                    return res.json({ ...parsed, reasoning_trail });
+                }
             }
         } catch {}
         
