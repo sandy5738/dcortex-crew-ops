@@ -8,7 +8,6 @@ import { RulesEngine, Schemas as RuleSchemas } from "./rulesEngine";
 import { QueryEngine, QuerySchemas } from "./queryEngine";
 import { simulateImpact } from "./simulator";
 import { z } from "zod";
-import { zodToJsonSchema } from "zod-to-json-schema";
 import { getDb, closeDb } from "./db";
 
 /**
@@ -29,7 +28,7 @@ const checkFdpLimitTool = tool(
     {
         name: "check_fdp_limit",
         description: "Evaluates RULE-FDP-01: Max flight duty period 13h, reduced 0.5h per sector beyond the 2nd.",
-        schema: zodToJsonSchema(RuleSchemas.FDP01)
+        schema: RuleSchemas.FDP01
     }
 );
 
@@ -40,7 +39,7 @@ const checkDutyLimitTool = tool(
     {
         name: "check_7d_duty_limit",
         description: "Evaluates RULE-DUTY-02: Max 60 duty hours in any 7 consecutive calendar days.",
-        schema: zodToJsonSchema(RuleSchemas.DUTY02)
+        schema: RuleSchemas.DUTY02
     }
 );
 
@@ -99,28 +98,20 @@ const checkBase07Tool = tool(
     }
 );
 
+const simulateImpactSchema = z.object({
+    crew_id: z.string().describe("The ID of the crew member who is disrupted."),
+    date: z.string().describe("The date of the disruption in YYYY-MM-DD format.")
+});
+
 const simulateImpactTool = tool(
-    async (input: { crew_id: string; date: string }) => {
+    async (input: z.infer<typeof simulateImpactSchema>) => {
         const result = simulateImpact(input.crew_id, input.date);
         return JSON.stringify(result);
     },
     {
         name: "simulate_impact",
         description: "Simulates the ripple effect of a crew member being unavailable (e.g., sick) on a specific date.",
-        schema: {
-            type: "object",
-            properties: {
-                crew_id: {
-                    type: "string",
-                    description: "The ID of the crew member who is disrupted."
-                },
-                date: {
-                    type: "string",
-                    description: "The date of the disruption in YYYY-MM-DD format."
-                }
-            },
-            required: ["crew_id", "date"]
-        }
+        schema: simulateImpactSchema
     }
 );
 
@@ -232,64 +223,6 @@ const checkAllRulesTool = tool(
     }
 );
 
-export const tools = [checkAllRulesTool, simulateImpactTool,
-    lookupReservePool, getDutyHours, getFlights, getExpiringCerts, getCrew, getPairing];
-const checkFlightLimitTool = tool(
-    async (input: z.infer<typeof RuleSchemas.FLT03>) => {
-        return JSON.stringify(RulesEngine.checkFlt03(input));
-    },
-    {
-        name: "check_flt03",
-        description: "Evaluates RULE-FLT-03: Max 100 flight hours in any 28 consecutive calendar days.",
-        schema: zodToJsonSchema(RuleSchemas.FLT03)
-    }
-);
-
-const checkRest04Tool = tool(
-    async (input: z.infer<typeof RuleSchemas.REST04>) => {
-        return JSON.stringify(RulesEngine.checkRest04(input));
-    },
-    {
-        name: "check_rest04",
-        description: "Evaluates RULE-REST-04: Min 12h rest between release and next report.",
-        schema: zodToJsonSchema(RuleSchemas.REST04)
-    }
-);
-
-const checkQual05Tool = tool(
-    async (input: z.infer<typeof RuleSchemas.QUAL05>) => {
-        return JSON.stringify(RulesEngine.checkQual05(input));
-    },
-    {
-        name: "check_qual05",
-        description: "Evaluates RULE-QUAL-05: Crew must hold a valid rating for the assigned aircraft type.",
-        schema: zodToJsonSchema(RuleSchemas.QUAL05)
-    }
-);
-
-const checkCert06Tool = tool(
-    async (input: z.infer<typeof RuleSchemas.CERT06>) => {
-        return JSON.stringify(RulesEngine.checkCert06(input));
-    },
-    {
-        name: "check_cert06",
-        description: "Evaluates RULE-CERT-06: All certifications must be valid on the duty date.",
-        schema: zodToJsonSchema(RuleSchemas.CERT06)
-    }
-);
-
-const checkBase07Tool = tool(
-    async (input: z.infer<typeof RuleSchemas.BASE07>) => {
-        return JSON.stringify(RulesEngine.checkBase07(input));
-    },
-    {
-        name: "check_base07",
-        description: "Evaluates RULE-BASE-07: Reserve callout from own base only; covering from another base requires deadhead positioning.",
-        schema: zodToJsonSchema(RuleSchemas.BASE07)
-    }
-);
-
-
 const updateCrewStatusTool = tool(
     async (input: { crewId: string; status: string }) => {
         const db = getDb();
@@ -301,10 +234,10 @@ const updateCrewStatusTool = tool(
     {
         name: "update_crew_status",
         description: "Updates a crew member's status (e.g., 'sick', 'leave', 'training') in the database.",
-        schema: zodToJsonSchema(z.object({
+        schema: z.object({
             crewId: z.string().describe("Crew ID (e.g., C-1042)"),
             status: z.string().describe("New status: 'active', 'sick', 'leave', 'training'")
-        }))
+        })
     }
 );
 
@@ -321,11 +254,11 @@ const assignPairingCrewTool = tool(
     {
         name: "assign_pairing_crew",
         description: "Assigns a crew member to a pairing with a specific role.",
-        schema: zodToJsonSchema(z.object({
+        schema: z.object({
             pairingId: z.string().describe("Pairing ID (e.g., P-2201)"),
             crewId: z.string().describe("Crew ID (e.g., C-3315)"),
             role: z.string().describe("Role: 'Captain', 'First Officer', 'Senior Cabin Crew', 'Cabin Crew'")
-        }))
+        })
     }
 );
 
@@ -339,14 +272,30 @@ const rollbackDbTool = tool(
     {
         name: "rollback_db",
         description: "Rolls back the database to its original state by rebuilding from JSON source.",
-        schema: zodToJsonSchema(z.object({}))
+        schema: z.object({})
     }
 );
 
-const tools = [checkFdpLimitTool, checkDutyLimitTool, simulateImpactTool,
-    checkFlightLimitTool,
-    lookupReservePool, getDutyHours, getFlights, getExpiringCerts, getCrew, getPairing,
-    updateCrewStatusTool, assignPairingCrewTool, rollbackDbTool];
+export const tools = [
+    checkAllRulesTool,
+    checkFdpLimitTool,
+    checkDutyLimitTool,
+    checkFlightHoursTool,
+    checkRest04Tool,
+    checkQual05Tool,
+    checkCert06Tool,
+    checkBase07Tool,
+    simulateImpactTool,
+    lookupReservePool,
+    getDutyHours,
+    getFlights,
+    getExpiringCerts,
+    getCrew,
+    getPairing,
+    updateCrewStatusTool,
+    assignPairingCrewTool,
+    rollbackDbTool,
+];
 const toolNode = new ToolNode(tools);
 
 /**

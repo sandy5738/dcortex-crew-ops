@@ -217,18 +217,19 @@ function loadRules(db: Database.Database) {
 function loadReserveAvailability(db: Database.Database) {
   // Precompute whether a reserve entry is usable on each of its dates
   // by summing the duty and flight windows and comparing against rule limits.
+  type RuleParamRow = { value_num: number | null };
   const dutyParam = db.prepare(
     "SELECT value_num FROM rule_params WHERE rule_id='RULE-DUTY-02' AND param_key='max_duty_hours'"
-  ).get();
+  ).get() as RuleParamRow | undefined;
   const dutyWindow = db.prepare(
     "SELECT value_num FROM rule_params WHERE rule_id='RULE-DUTY-02' AND param_key='window_days'"
-  ).get();
+  ).get() as RuleParamRow | undefined;
   const flightParam = db.prepare(
     "SELECT value_num FROM rule_params WHERE rule_id='RULE-FLT-03' AND param_key='max_flight_hours'"
-  ).get();
+  ).get() as RuleParamRow | undefined;
   const flightWindow = db.prepare(
     "SELECT value_num FROM rule_params WHERE rule_id='RULE-FLT-03' AND param_key='window_days'"
-  ).get();
+  ).get() as RuleParamRow | undefined;
 
   const maxDuty = dutyParam ? Number(dutyParam.value_num) : 60;
   const dutyDays = dutyWindow ? Number(dutyWindow.value_num) : 7;
