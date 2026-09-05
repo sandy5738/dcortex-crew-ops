@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import { RulesEngine, Schemas as RuleSchemas } from './rulesEngine';
 import { QueryEngine, QuerySchemas } from './queryEngine';
 import { simulateImpact } from './simulator';
+import { graph } from './agent';
 
 const app = express();
 app.use(cors());
@@ -84,33 +85,84 @@ app.post('/tools/simulate_impact', (req, res) => {
     res.json(result);
 });
 
+
 // =================================================================
-// MOCK CHAT ENDPOINT (Where the LLM orchestration lives)
+// GENERIC TOOL DISPATCH (LLM function-calling entrypoint)
+// POST /tools/call  { "name": "checkRuleFdp01", "arguments": { ... } }
 // =================================================================
-app.post('/chat', (req, res) => {
+// =================================================================
+// GENERIC TOOL DISPATCH (LLM function-calling entrypoint)
+// POST /tools/call  { "name": "checkRuleFdp01", "arguments": { ... } }
+// =================================================================
+const toolDispatchers = {
+    checkRuleFdp01: { schema: RuleSchemas.FDP01, handler: (d: any) => RulesEngine.checkFdp01(d) },
+    checkRuleDuty02: { schema: RuleSchemas.DUTY02, handler: (d: any) => RulesEngine.checkDuty02(d) },
+    checkRuleFlt03: { schema: RuleSchemas.FLT03, handler: (d: any) => RulesEngine.checkFlt03(d) },
+    checkRuleRest04: { schema: RuleSchemas.REST04, handler: (d: any) => RulesEngine.checkRest04(d) },
+    checkRuleQual05: { schema: RuleSchemas.QUAL05, handler: (d: any) => RulesEngine.checkQual05(d) },
+    checkRuleCert06: { schema: RuleSchemas.CERT06, handler: (d: any) => RulesEngine.checkCert06(d) },
+    checkRuleBase07: { schema: RuleSchemas.BASE07, handler: (d: any) => RulesEngine.checkBase07(d) }
+};
+
+app.post('/tools/call', (req, res) => {
+    const { name, arguments: args } = req.body || {};
+    const tool = toolDispatchers[name as keyof typeof toolDispatchers];
+    if (!tool) return res.status(404).json({ error: `Unknown tool: ${name}` });
+
+    const parsed = tool.schema.safeParse(args ?? {});
+    if (!parsed.success) return res.status(400).json(parsed.error);
+
+    res.json(tool.handler(parsed.data));
+});
+
+
+// =================================================================
+// LANGGRAPH CHAT ENDPOINT (LLM orchestration via graph)
+// =================================================================
+app.post('/chat', async (req, res) => {
     const { message } = req.body;
-    
-    if (message.toLowerCase().includes("sick") && message.includes("C-5837")) {
-        const toolResult: any = simulateImpact("C-5837", "2026-09-14");
-        
-        const answer = `Captain C-5837 is sick. This breaks Pairing ${toolResult.pairing_broken}. ` +
-                       `As a result, ${toolResult.uncrewed_flights.length} flights are now uncrewed, ` +
-                       `putting ${toolResult.passengers_affected} passengers at risk. ` +
-                       `${toolResult.action_required}`;
-                 
-        return res.json({
-            answer,
-            reasoning_trail: [
-                {
-                    tool_called: "simulate_impact",
-                    arguments: { crew_id: "C-5837", date: "2026-09-14" },
-                    raw_result: toolResult
-                }
+    if (!message || typeof message !== 'string') {
+        return res.status(400).json({ error: 'message field required (string)' });
+    }
+
+    try {
+        const result = await graph.invoke({
+            messages: [
+                { role: 'system', content: 'You are the Crew Ops Advisor for dCortex Air. You have access to tools to judge crew pairings, duty limits, reserve pools, and disruption impacts. Always reason step by step using tools when the user asks for a legality check, lookup, or simulation.' },
+                { role: 'user', content: message }
             ]
         });
+
+        // Extract tool calls from the reasoning trail
+        const toolCalls: any[] = [];
+        for (const msg of result.messages) {
+            const m = msg as any;
+            if (m.tool_calls) {
+                for (const tc of m.tool_calls) {
+                    toolCalls.push({
+                        tool_called: tc.name,
+                        arguments: tc.args,
+                        raw_result: undefined
+                    });
+                }
+            }
+            if (m.type === 'tool') {
+                // Match tool results to tool calls
+                for (const tc of toolCalls) {
+                    if (!tc.raw_result && m.tool_call_id === tc.tool_called) {
+                        tc.raw_result = m.content;
+                    }
+                }
+            }
+        }
+
+        const last = result.messages[result.messages.length - 1];
+        const answer = (last as any).content || (last as any).response || '';
+        return res.json({ answer, reasoning_trail: toolCalls });
+    } catch (err: any) {
+        console.error('Agent error:', err.message);
+        return res.status(500).json({ error: err.message });
     }
-    
-    res.json({ answer: "I am a Node.js prototype. Ask me about C-5837 getting sick!" });
 });
 
 const PORT = process.env.PORT || 3000;

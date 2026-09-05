@@ -31,12 +31,19 @@ const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
  * "Legal. 0h over null..null". Returning a fluent wrong answer for a bad
  * input is the exact failure this engine exists to prevent, so fail closed.
  */
-const isoDate = (description: string) =>
-    z.string()
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const isoDate = (description: string): any => {
+    const s = z.string()
         .regex(DATE_RE, 'expected YYYY-MM-DD')
-        .refine(s => DateTime.fromISO(s, { zone: 'utc' }).isValid,
-                s => ({ message: `${s} is not a real calendar date` }))
-        .describe(description);
+        .refine((v: any) => {
+            try {
+                return DateTime.fromISO(v, { zone: 'utc' }).isValid;
+            } catch {
+                return false;
+            }
+        }, `${description} must be a valid UTC date`);
+    return s.describe(description);
+};
 
 export const Schemas = {
     FDP01: z.object({
