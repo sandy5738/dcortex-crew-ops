@@ -39,12 +39,28 @@ export interface SarvamConfig {
     baseUrl: string;
 }
 
+/**
+ * Default to the conversational model, deliberately.
+ *
+ * `sarvam-105b` is a REASONING model: it returns `content: null`, puts its
+ * monologue in `reasoning_content`, and on these prompts spends its whole
+ * completion budget thinking without ever emitting an answer —
+ * `finish_reason: "length"` at 2048 tokens, 17s, nothing usable. Raising
+ * max_tokens to 4096 only bought more reasoning (33s, still nothing), and
+ * reasoning_effort:"low" made no difference.
+ *
+ * `sarvam-105b-conversations` answers the same prompt in 3s with 47 tokens,
+ * and calls tools just as accurately. Neither stage here needs deliberation:
+ * one picks a tool, the other rewrites a computed verdict as a sentence.
+ */
+export const DEFAULT_MODEL = 'sarvam-105b-conversations';
+
 export function loadConfig(): SarvamConfig | null {
     const apiKey = process.env.SARVAM_API_KEY?.trim();
     if (!apiKey) return null;
     return {
         apiKey,
-        model: process.env.SARVAM_MODEL?.trim() || 'sarvam-105b',
+        model: process.env.SARVAM_MODEL?.trim() || DEFAULT_MODEL,
         temperature: Number(process.env.SARVAM_TEMPERATURE ?? 0),
         baseUrl: process.env.SARVAM_BASE_URL?.trim() || 'https://api.sarvam.ai/v1',
     };
@@ -74,7 +90,11 @@ export async function chat(
     cfg: SarvamConfig,
     messages: ChatMessage[],
     tools?: unknown[],
-    opts: { toolChoice?: 'auto' | 'none' | 'required'; timeoutMs?: number } = {},
+    opts: {
+        toolChoice?: 'auto' | 'none' | 'required';
+        timeoutMs?: number;
+        maxTokens?: number;
+    } = {},
 ): Promise<ChatResult> {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), opts.timeoutMs ?? 45_000);
@@ -92,6 +112,10 @@ export async function chat(
                 model: cfg.model,
                 messages,
                 temperature: cfg.temperature,
+                // Neither stage needs a long answer: one returns a tool call,
+                // the other two or three sentences. A cap stops a reasoning
+                // model burning minutes if SARVAM_MODEL is pointed at one.
+                max_tokens: opts.maxTokens ?? 700,
                 ...(tools?.length ? { tools, tool_choice: opts.toolChoice ?? 'auto' } : {}),
             }),
             signal: controller.signal,
@@ -108,7 +132,21 @@ export async function chat(
         const choice = json?.choices?.[0];
         if (!choice) throw new SarvamError('Sarvam returned no choices.');
 
-        return { message: choice.message as ChatMessage, finish_reason: choice.finish_reason };
+        // A reasoning model can spend its whole budget in `reasoning_content`
+        // and return content: null with finish_reason "length". Silently
+        // treating that as an empty answer hides a misconfigured model behind
+        // the template narrator, which is how you end up wondering why the
+        // prose never changes. Name it.
+        const msg = choice.message ?? {};
+        if (!msg.content && !msg.tool_calls?.length &&
+            choice.finish_reason === 'length' && msg.reasoning_content) {
+            throw new SarvamError(
+                `Model "${cfg.model}" exhausted its completion budget on internal reasoning ` +
+                `and returned no answer. Use a non-reasoning model — ${DEFAULT_MODEL} — ` +
+                `or raise max_tokens well beyond ${opts.maxTokens ?? 700}.`);
+        }
+
+        return { message: msg as ChatMessage, finish_reason: choice.finish_reason };
     } catch (e) {
         if (e instanceof SarvamError) throw e;
         if ((e as Error).name === 'AbortError') {
