@@ -271,7 +271,7 @@ const callModel = async (state: any) => {
             baseURL: "https://api.sarvam.ai/v1",
             apiKey: "sk_7r1uy3rf_q1k8hq81MkwkyZ0LlTDhlW3i"
         }
-    });
+    }).bindTools(tools);
     
     const response = await openai.invoke(state.messages as BaseMessage[]);
     return { messages: [response] };
