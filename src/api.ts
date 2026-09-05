@@ -1,8 +1,13 @@
+// Load .env before anything reads process.env. Node 20.12+ built-in; no dotenv.
+try { process.loadEnvFile(); } catch { /* no .env file - fall back to the deterministic path */ }
+
 import express from 'express';
 import cors from 'cors';
 import { RulesEngine, Schemas as RuleSchemas } from './rulesEngine';
 import { QueryEngine, QuerySchemas } from './queryEngine';
 import { simulateImpact } from './simulator';
+import { ask } from './agent';
+import { llmEnabled } from './llm/sarvam';
 
 const app = express();
 app.use(cors());
@@ -80,30 +85,45 @@ app.post('/tools/simulate_impact', (req, res) => {
 // =================================================================
 // MOCK CHAT ENDPOINT (Where the LLM orchestration lives)
 // =================================================================
-app.post('/chat', (req, res) => {
-    const { message } = req.body;
-    
-    if (message.toLowerCase().includes("sick") && message.includes("C-5837")) {
-        const toolResult: any = simulateImpact("C-5837", "2026-09-14");
-        
-        const answer = `Captain C-5837 is sick. This breaks Pairing ${toolResult.pairing_broken}. ` +
-                       `As a result, ${toolResult.uncrewed_flights.length} flights are now uncrewed, ` +
-                       `putting ${toolResult.passengers_affected} passengers at risk. ` +
-                       `${toolResult.action_required}`;
-                 
-        return res.json({
-            answer,
-            reasoning_trail: [
-                {
-                    tool_called: "simulate_impact",
-                    arguments: { crew_id: "C-5837", date: "2026-09-14" },
-                    raw_result: toolResult
-                }
-            ]
+// =================================================================
+// THE CONVERSATIONAL ENDPOINT
+// =================================================================
+
+/**
+ * POST /ask  { query }  ->  { result, prose, degraded, decision_id }
+ *
+ * `result` is the Verdict the UI renders (ui/src/types.ts). `degraded` is
+ * true when the deterministic parser or template narrator was used, and the
+ * UI shows a "structured input mode" badge rather than an error — the system
+ * still answers everything, only the phrasing tolerance narrows.
+ */
+app.post('/ask', async (req, res) => {
+    const query = typeof req.body?.query === 'string' ? req.body.query.trim() : '';
+    if (!query) return res.status(400).json({ error: 'Body must include a non-empty "query".' });
+
+    try {
+        const answer = await ask(query);
+        res.json({
+            result: answer.result,
+            prose: answer.prose,
+            degraded: answer.degraded,
+            tool: answer.tool,
+            elapsed_ms: answer.elapsed_ms,
+            decision_id: null,
         });
+    } catch (e) {
+        // Say what happened and what to do. Never "something went wrong".
+        const message = e instanceof Error ? e.message : String(e);
+        res.status(500).json({ error: `The engine failed on this question: ${message}` });
     }
-    
-    res.json({ answer: "I am a Node.js prototype. Ask me about C-5837 getting sick!" });
+});
+
+app.get('/health', (_req, res) => {
+    res.json({
+        status: 'ok',
+        llm: llmEnabled() ? 'sarvam' : 'deterministic',
+        model: process.env.SARVAM_MODEL ?? 'sarvam-105b',
+    });
 });
 
 const PORT = process.env.PORT || 3000;
