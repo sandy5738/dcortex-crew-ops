@@ -59,14 +59,23 @@ fails silently, which is the worst way for this to break.
 
 ## Known gaps in the fixture
 
-`fixtures/verdict_s2.json` is a real worked answer, but three things differ
-from the dataset's own answer key, and the UI is built to tolerate them:
+`fixtures/verdict_s2.json` is a real worked answer, but two things still
+differ from the dataset's own answer key, and the UI is built to tolerate
+them:
 
-- it carries 4 options where the key has 6 (the DEL deadhead and the
-  cancellation fallback are missing)
-- `pool_size` is 28 while options + excluded is 23
-- most `RuleVerdict.inputs` are empty, so only the four legal options have a
-  per-date breakdown to expand
+- it carries 4 options where the key has 6 — the C-2210 DEL deadhead
+  (₹41,200) and the cancellation fallback (`crew_id: null`, ₹1,500,000)
+- `RuleVerdict.inputs` is empty on the excluded candidates, so only the four
+  legal options have a per-date breakdown to expand
+
+The RULE-DUTY-02 arithmetic **was** wrong on all four legal options — the
+per-date values named the wrong dates and did not sum to `actual`. It is now
+recomputed from `duty_daily_history` and internally consistent, so expanding
+a certificate shows working that checks out.
+
+`pool_size` is 28 while options + excluded is 23. That is deliberate, and the
+trace says so: five captains are not evaluated (the sick crew member himself
+and three on leave — plus C-2210, who belongs in `options`, see above).
 
 `Certificate` shows an explicit amber note rather than an empty grid when
 `inputs` is missing. Build against a legal option (C-3310, C-5566) when you
