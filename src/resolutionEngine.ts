@@ -56,12 +56,16 @@ export class ResolutionEngine {
         const pairingRow = db.prepare("SELECT aircraft FROM pairings WHERE pairing_id = ?").get(pairingId) as any;
         if (!pairingRow) throw new Error(`Pairing ${pairingId} not found.`);
         
-        // Find the specific day in the pairing
+        // Find the specific day in the pairing (this is when the cover starts)
         const dayPlan = db.prepare("SELECT report_utc, release_utc FROM pairing_days WHERE pairing_id = ? AND date = ?").get(pairingId, disruptedDate) as any;
         if (!dayPlan) throw new Error(`Pairing ${pairingId} has no flights on ${disruptedDate}.`);
 
+        // Find the release time of the LAST day of the pairing (this is when the cover ends)
+        const lastDayPlan = db.prepare("SELECT release_utc FROM pairing_days WHERE pairing_id = ? ORDER BY date DESC LIMIT 1").get(pairingId) as any;
+
         const reportUtc = dayPlan.report_utc;
-        const releaseUtc = dayPlan.release_utc;
+        const releaseUtc = dayPlan.release_utc; // Day's release
+        const coverReleaseUtc = lastDayPlan.release_utc; // Entire cover's release
         
         // Calculate proposed duty hours for the day
         const reportTime = DateTime.fromISO(reportUtc, { zone: 'utc' });
@@ -102,7 +106,11 @@ export class ResolutionEngine {
             const delayHours = isDeadheading ? 3.0 : 0.0; 
 
             // B. Rest Check (RULE-REST-04)
-            const restCheck = RulesEngine.checkRest04({ crewId, newReportUtc: reportUtc });
+            const restCheck = RulesEngine.checkRest04({ 
+                crewId, 
+                newReportUtc: reportUtc,
+                coverReleaseUtc: coverReleaseUtc 
+            });
             rulesChecked.push("RULE-REST-04");
             if (!restCheck.legal) {
                 report.rejected_audit.push({ crew_id: crewId, rule_failed: restCheck.rule_id, reason: restCheck.reason });
