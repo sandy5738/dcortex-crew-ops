@@ -1,0 +1,1829 @@
+[
+ {
+  "crew_id": "C-1017",
+  "name": "A. Verma",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 16,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1021",
+  "name": "N. Menon",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 16,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1042",
+  "name": "A. Nair",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 22,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1313",
+  "name": "K. Chandra",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 15,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1317",
+  "name": "H. Pillai",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 8,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1326",
+  "name": "D. Rao",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 9,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1329",
+  "name": "P. Pillai",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 8,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1385",
+  "name": "D. Menon",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 22,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1414",
+  "name": "A. Bose",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 17,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1443",
+  "name": "K. Sharma",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 14,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1510",
+  "name": "L. Bose",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 14,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1526",
+  "name": "N. Sen",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 16,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1542",
+  "name": "L. Kulkarni",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 12,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1564",
+  "name": "G. Gupta",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 2,
+  "reachability_minutes": 90,
+  "status": "leave"
+ },
+ {
+  "crew_id": "C-1568",
+  "name": "R. Das",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 22,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1569",
+  "name": "R. Pillai",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 11,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1594",
+  "name": "A. Malhotra",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 21,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1600",
+  "name": "S. Rao",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 18,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1606",
+  "name": "M. Menon",
+  "rank": "Cabin Crew",
+  "base": "DEL",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 20,
+  "reachability_minutes": 75,
+  "status": "leave"
+ },
+ {
+  "crew_id": "C-1622",
+  "name": "D. Sen",
+  "rank": "Cabin Crew",
+  "base": "DEL",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 15,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1671",
+  "name": "R. Kulkarni",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 20,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1694",
+  "name": "S. Menon",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 2,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1748",
+  "name": "N. Kulkarni",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 20,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1823",
+  "name": "R. Verma",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 3,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1873",
+  "name": "K. Joshi",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 16,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1895",
+  "name": "P. Rao",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 8,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1938",
+  "name": "N. Reddy",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 11,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-1970",
+  "name": "K. Malhotra",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 11,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2083",
+  "name": "V. Kulkarni",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 17,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2085",
+  "name": "D. Iyer",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 9,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2087",
+  "name": "R. Iyer",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 5,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2091",
+  "name": "H. Naidu",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 4,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2100",
+  "name": "M. Reddy",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 5,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2111",
+  "name": "A. Gupta",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 8,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2143",
+  "name": "P. Sen",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 19,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2148",
+  "name": "A. Kapoor",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 10,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2165",
+  "name": "A. Krishnan",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 21,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2210",
+  "name": "S. Kapoor",
+  "rank": "Captain",
+  "base": "DEL",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 2,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2221",
+  "name": "S. Kulkarni",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 19,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2248",
+  "name": "H. Reddy",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 20,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2252",
+  "name": "S. Kapoor",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 19,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2286",
+  "name": "N. Krishnan",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 11,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2295",
+  "name": "S. Nair",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 10,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2303",
+  "name": "H. Malhotra",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 10,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2341",
+  "name": "I. Reddy",
+  "rank": "First Officer",
+  "base": "DEL",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 20,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2352",
+  "name": "R. Sen",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 2,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2435",
+  "name": "H. Joshi",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 22,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2442",
+  "name": "R. Malhotra",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 9,
+  "reachability_minutes": 90,
+  "status": "leave"
+ },
+ {
+  "crew_id": "C-2561",
+  "name": "R. Iyer",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 10,
+  "reachability_minutes": 90,
+  "status": "leave"
+ },
+ {
+  "crew_id": "C-2569",
+  "name": "L. Naidu",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 10,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2751",
+  "name": "T. Sharma",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 7,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2791",
+  "name": "N. Joshi",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 21,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2796",
+  "name": "R. Joshi",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 17,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2840",
+  "name": "V. Gupta",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 2,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2875",
+  "name": "V. Sharma",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 12,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2876",
+  "name": "R. Gupta",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 14,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2888",
+  "name": "V. Reddy",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 19,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2907",
+  "name": "K. Shetty",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 10,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-2993",
+  "name": "I. Kulkarni",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 13,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3005",
+  "name": "H. Chandra",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 4,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3046",
+  "name": "V. Malhotra",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 19,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3057",
+  "name": "S. Iyer",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 22,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3116",
+  "name": "R. Naidu",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 19,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3136",
+  "name": "L. Gupta",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 9,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3145",
+  "name": "A. Nair",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 5,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3167",
+  "name": "A. Reddy",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 19,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3171",
+  "name": "P. Chandra",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 15,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3187",
+  "name": "V. Chandra",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 22,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3211",
+  "name": "A. Pillai",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 12,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3231",
+  "name": "L. Verma",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 18,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3249",
+  "name": "S. Pillai",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 10,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3266",
+  "name": "R. Nair",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 12,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3271",
+  "name": "P. Naidu",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 22,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3305",
+  "name": "V. Menon",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 10,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3310",
+  "name": "D. Reddy",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 9,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3311",
+  "name": "K. Rao",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 9,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3312",
+  "name": "P. Sharma",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 6,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3315",
+  "name": "M. Pillai",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 5,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3316",
+  "name": "N. Verma",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 19,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3334",
+  "name": "A. Sen",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 11,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3430",
+  "name": "L. Sharma",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 20,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3460",
+  "name": "G. Krishnan",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 15,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3545",
+  "name": "D. Malhotra",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 5,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3555",
+  "name": "V. Shetty",
+  "rank": "Senior Cabin Crew",
+  "base": "DEL",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 14,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3569",
+  "name": "S. Sharma",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 20,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3619",
+  "name": "N. Shetty",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 6,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3677",
+  "name": "M. Iyer",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 17,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3721",
+  "name": "R. Kapoor",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 5,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3757",
+  "name": "K. Iyer",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 14,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3791",
+  "name": "M. Naidu",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 5,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3816",
+  "name": "N. Das",
+  "rank": "First Officer",
+  "base": "DEL",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 16,
+  "reachability_minutes": 75,
+  "status": "training"
+ },
+ {
+  "crew_id": "C-3864",
+  "name": "S. Shetty",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 12,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3897",
+  "name": "K. Bose",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 2,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3940",
+  "name": "D. Chandra",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 10,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3973",
+  "name": "I. Pillai",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 3,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3983",
+  "name": "N. Chandra",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 12,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-3988",
+  "name": "A. Das",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 13,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4104",
+  "name": "N. Gupta",
+  "rank": "First Officer",
+  "base": "DEL",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 7,
+  "reachability_minutes": 90,
+  "status": "training"
+ },
+ {
+  "crew_id": "C-4242",
+  "name": "R. Krishnan",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 16,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4273",
+  "name": "P. Menon",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 22,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4280",
+  "name": "V. Verma",
+  "rank": "Cabin Crew",
+  "base": "DEL",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 12,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4296",
+  "name": "R. Shetty",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 7,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4326",
+  "name": "I. Krishnan",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 8,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4395",
+  "name": "V. Rao",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 14,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4458",
+  "name": "P. Iyer",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 14,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4462",
+  "name": "N. Verma",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 6,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4465",
+  "name": "A. Naidu",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 6,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4520",
+  "name": "R. Sharma",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 11,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4531",
+  "name": "D. Bose",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 15,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4574",
+  "name": "P. Joshi",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 5,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4588",
+  "name": "P. Malhotra",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 5,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4621",
+  "name": "K. Naidu",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 5,
+  "reachability_minutes": 45,
+  "status": "leave"
+ },
+ {
+  "crew_id": "C-4622",
+  "name": "L. Joshi",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 17,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4679",
+  "name": "S. Verma",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 2,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4763",
+  "name": "S. Reddy",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 14,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4806",
+  "name": "G. Bose",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 19,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4809",
+  "name": "M. Das",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 7,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4839",
+  "name": "P. Sharma",
+  "rank": "Cabin Crew",
+  "base": "DEL",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 15,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4874",
+  "name": "R. Rao",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 5,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-4999",
+  "name": "P. Shetty",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 12,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5015",
+  "name": "S. Malhotra",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 6,
+  "reachability_minutes": 90,
+  "status": "leave"
+ },
+ {
+  "crew_id": "C-5020",
+  "name": "K. Nair",
+  "rank": "First Officer",
+  "base": "DEL",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 4,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5089",
+  "name": "T. Malhotra",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 6,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5119",
+  "name": "V. Pillai",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 14,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5158",
+  "name": "K. Krishnan",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 22,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5168",
+  "name": "H. Naidu",
+  "rank": "Cabin Crew",
+  "base": "DEL",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 9,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5211",
+  "name": "P. Verma",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 17,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5363",
+  "name": "R. Menon",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 17,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5375",
+  "name": "P. Kapoor",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 16,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5392",
+  "name": "D. Verma",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 7,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5417",
+  "name": "S. Krishnan",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 14,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5418",
+  "name": "S. Das",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 9,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5444",
+  "name": "S. Bose",
+  "rank": "Cabin Crew",
+  "base": "DEL",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 3,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5522",
+  "name": "S. Chandra",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 13,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5533",
+  "name": "S. Naidu",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 17,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5566",
+  "name": "P. Reddy",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 16,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5597",
+  "name": "S. Sen",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 15,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5647",
+  "name": "A. Iyer",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 17,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5666",
+  "name": "P. Kulkarni",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 21,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5716",
+  "name": "I. Shetty",
+  "rank": "Senior Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 15,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5723",
+  "name": "R. Bose",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "ATR72"
+  ],
+  "seniority": 2,
+  "reachability_minutes": 60,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5751",
+  "name": "P. Gupta",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 16,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5788",
+  "name": "A. Kulkarni",
+  "rank": "First Officer",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 14,
+  "reachability_minutes": 75,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5795",
+  "name": "K. Kapoor",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 12,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5820",
+  "name": "N. Nair",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 4,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5837",
+  "name": "A. Sharma",
+  "rank": "Captain",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 2,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5848",
+  "name": "V. Nair",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 4,
+  "reachability_minutes": 90,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5881",
+  "name": "S. Joshi",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 10,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5906",
+  "name": "V. Naidu",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320"
+  ],
+  "seniority": 2,
+  "reachability_minutes": 45,
+  "status": "active"
+ },
+ {
+  "crew_id": "C-5994",
+  "name": "K. Rao",
+  "rank": "Cabin Crew",
+  "base": "BLR",
+  "ratings": [
+   "A320",
+   "ATR72"
+  ],
+  "seniority": 22,
+  "reachability_minutes": 60,
+  "status": "active"
+ }
+]

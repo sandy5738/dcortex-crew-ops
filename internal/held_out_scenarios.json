@@ -1,0 +1,231 @@
+[
+ {
+  "scenario_id": "H1",
+  "title": "ATR First Officer sick, 16 Sep",
+  "event": {
+   "type": "SICK_CREW",
+   "crew_id": "C-3057",
+   "pairing_id": "P-2224",
+   "reported_utc": "2026-09-16T02:00:00Z"
+  },
+  "answer_key": {
+   "options": [
+    {
+     "action": "Assign First Officer C-3316 (reserve callout)",
+     "crew_id": "C-3316",
+     "legal": true,
+     "rules_checked": [
+      "RULE-FDP-01",
+      "RULE-DUTY-02",
+      "RULE-FLT-03",
+      "RULE-REST-04",
+      "RULE-QUAL-05",
+      "RULE-CERT-06",
+      "RULE-BASE-07"
+     ],
+     "cost_inr": 18500,
+     "delay_hours": 0.0,
+     "rank": 1
+    },
+    {
+     "action": "Assign First Officer C-1317 (day-off callout)",
+     "crew_id": "C-1317",
+     "legal": true,
+     "rules_checked": [
+      "RULE-FDP-01",
+      "RULE-DUTY-02",
+      "RULE-FLT-03",
+      "RULE-REST-04",
+      "RULE-QUAL-05",
+      "RULE-CERT-06",
+      "RULE-BASE-07"
+     ],
+     "cost_inr": 24000,
+     "delay_hours": 0.0,
+     "rank": 2
+    },
+    {
+     "action": "Assign First Officer C-2085 (day-off callout)",
+     "crew_id": "C-2085",
+     "legal": true,
+     "rules_checked": [
+      "RULE-FDP-01",
+      "RULE-DUTY-02",
+      "RULE-FLT-03",
+      "RULE-REST-04",
+      "RULE-QUAL-05",
+      "RULE-CERT-06",
+      "RULE-BASE-07"
+     ],
+     "cost_inr": 24000,
+     "delay_hours": 0.0,
+     "rank": 3
+    },
+    {
+     "action": "Assign First Officer C-3136 (day-off callout)",
+     "crew_id": "C-3136",
+     "legal": true,
+     "rules_checked": [
+      "RULE-FDP-01",
+      "RULE-DUTY-02",
+      "RULE-FLT-03",
+      "RULE-REST-04",
+      "RULE-QUAL-05",
+      "RULE-CERT-06",
+      "RULE-BASE-07"
+     ],
+     "cost_inr": 24000,
+     "delay_hours": 0.0,
+     "rank": 4
+    },
+    {
+     "action": "Assign First Officer C-4520 (day-off callout)",
+     "crew_id": "C-4520",
+     "legal": true,
+     "rules_checked": [
+      "RULE-FDP-01",
+      "RULE-DUTY-02",
+      "RULE-FLT-03",
+      "RULE-REST-04",
+      "RULE-QUAL-05",
+      "RULE-CERT-06",
+      "RULE-BASE-07"
+     ],
+     "cost_inr": 24000,
+     "delay_hours": 0.0,
+     "rank": 5
+    },
+    {
+     "action": "Cancel all 4 flights of the pairing",
+     "crew_id": null,
+     "legal": true,
+     "rules_checked": [],
+     "cost_inr": 1000000,
+     "delay_hours": 0.0,
+     "rank": 6
+    }
+   ],
+   "excluded_candidates": [
+    {
+     "crew_id": "C-3311",
+     "reason": "reserve on-call window 06:00-18:00Z does not cover required report 03:00Z"
+    },
+    {
+     "crew_id": "C-3312",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    },
+    {
+     "crew_id": "C-2791",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    },
+    {
+     "crew_id": "C-4763",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    },
+    {
+     "crew_id": "C-5375",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    },
+    {
+     "crew_id": "C-5788",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    },
+    {
+     "crew_id": "C-2295",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    },
+    {
+     "crew_id": "C-5363",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    },
+    {
+     "crew_id": "C-2875",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    },
+    {
+     "crew_id": "C-1895",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    },
+    {
+     "crew_id": "C-4465",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    },
+    {
+     "crew_id": "C-1313",
+     "reason": "RULE-REST-04: only -7.25h rest before P-2231 on 2026-09-16 (downstream conflict); double-booked: COVER overlaps P-2231 on 2026-09-16"
+    },
+    {
+     "crew_id": "C-3460",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    },
+    {
+     "crew_id": "C-1694",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    },
+    {
+     "crew_id": "C-4806",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    },
+    {
+     "crew_id": "C-1510",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    },
+    {
+     "crew_id": "C-2341",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    },
+    {
+     "crew_id": "C-3116",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    },
+    {
+     "crew_id": "C-5020",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    },
+    {
+     "crew_id": "C-2993",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    },
+    {
+     "crew_id": "C-2888",
+     "reason": "RULE-QUAL-05: no ATR72 rating"
+    }
+   ],
+   "expected_choice": {
+    "action": "Assign First Officer C-3316 (reserve callout)",
+    "crew_id": "C-3316",
+    "legal": true,
+    "rules_checked": [
+     "RULE-FDP-01",
+     "RULE-DUTY-02",
+     "RULE-FLT-03",
+     "RULE-REST-04",
+     "RULE-QUAL-05",
+     "RULE-CERT-06",
+     "RULE-BASE-07"
+    ],
+    "cost_inr": 18500,
+    "delay_hours": 0.0,
+    "rank": 1
+   }
+  }
+ },
+ {
+  "scenario_id": "H2",
+  "title": "HYD closed 05:00\u201309:00Z, 19 Sep",
+  "event": {
+   "type": "STATION_CLOSURE",
+   "station": "HYD",
+   "window_utc": {
+    "start": "2026-09-19T05:00:00Z",
+    "end": "2026-09-19T09:00:00Z"
+   }
+  },
+  "answer_key": {
+   "affected_flights": [
+    "DX461-2026-09-19",
+    "DX462-2026-09-19"
+   ]
+  }
+ }
+]

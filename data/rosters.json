@@ -1,0 +1,1590 @@
+{
+ "pairings": [
+  {
+   "pairing_id": "P-2201",
+   "aircraft": "VT-DXA",
+   "days": [
+    {
+     "date": "2026-09-14",
+     "flights": [
+      "DX401-2026-09-14",
+      "DX402-2026-09-14",
+      "DX403-2026-09-14",
+      "DX404-2026-09-14"
+     ],
+     "report_utc": "2026-09-14T01:30:00Z",
+     "release_utc": "2026-09-14T12:45:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-5837",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-2791",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-5597",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-4679",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-4462",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-3757",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2202",
+   "aircraft": "VT-DXA",
+   "days": [
+    {
+     "date": "2026-09-15",
+     "flights": [
+      "DX401-2026-09-15",
+      "DX402-2026-09-15",
+      "DX403-2026-09-15",
+      "DX404-2026-09-15"
+     ],
+     "report_utc": "2026-09-15T01:30:00Z",
+     "release_utc": "2026-09-15T12:45:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-3940",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-4763",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-5522",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-1569",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-2907",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-3988",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2203",
+   "aircraft": "VT-DXA",
+   "days": [
+    {
+     "date": "2026-09-16",
+     "flights": [
+      "DX401-2026-09-16",
+      "DX402-2026-09-16",
+      "DX403-2026-09-16",
+      "DX404-2026-09-16"
+     ],
+     "report_utc": "2026-09-16T01:30:00Z",
+     "release_utc": "2026-09-16T12:45:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-3187",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-5375",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-3211",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-2876",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-1542",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-5089",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2204",
+   "aircraft": "VT-DXA",
+   "days": [
+    {
+     "date": "2026-09-17",
+     "flights": [
+      "DX401-2026-09-17",
+      "DX402-2026-09-17",
+      "DX403-2026-09-17",
+      "DX404-2026-09-17"
+     ],
+     "report_utc": "2026-09-17T01:30:00Z",
+     "release_utc": "2026-09-17T12:45:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-5837",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-2791",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-5597",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-4679",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-4462",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-3757",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2205",
+   "aircraft": "VT-DXA",
+   "days": [
+    {
+     "date": "2026-09-18",
+     "flights": [
+      "DX401-2026-09-18",
+      "DX402-2026-09-18",
+      "DX403-2026-09-18",
+      "DX404-2026-09-18"
+     ],
+     "report_utc": "2026-09-18T01:30:00Z",
+     "release_utc": "2026-09-18T12:45:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-3940",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-4763",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-5522",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-1569",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-2907",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-3988",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2206",
+   "aircraft": "VT-DXA",
+   "days": [
+    {
+     "date": "2026-09-19",
+     "flights": [
+      "DX401-2026-09-19",
+      "DX402-2026-09-19",
+      "DX403-2026-09-19",
+      "DX404-2026-09-19"
+     ],
+     "report_utc": "2026-09-19T01:30:00Z",
+     "release_utc": "2026-09-19T12:45:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-3187",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-5375",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-3211",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-2876",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-1542",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-5089",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2207",
+   "aircraft": "VT-DXA",
+   "days": [
+    {
+     "date": "2026-09-20",
+     "flights": [
+      "DX401-2026-09-20",
+      "DX402-2026-09-20",
+      "DX403-2026-09-20",
+      "DX404-2026-09-20"
+     ],
+     "report_utc": "2026-09-20T01:30:00Z",
+     "release_utc": "2026-09-20T12:45:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-5837",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-2791",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-5597",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-4679",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-4462",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-3757",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2208",
+   "aircraft": "VT-DXB",
+   "days": [
+    {
+     "date": "2026-09-14",
+     "flights": [
+      "DX421-2026-09-14",
+      "DX422-2026-09-14",
+      "DX423-2026-09-14",
+      "DX424-2026-09-14"
+     ],
+     "report_utc": "2026-09-14T02:00:00Z",
+     "release_utc": "2026-09-14T13:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-2143",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-5788",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-2796",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-1385",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-4458",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-5881",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2209",
+   "aircraft": "VT-DXB",
+   "days": [
+    {
+     "date": "2026-09-15",
+     "flights": [
+      "DX421-2026-09-15",
+      "DX422-2026-09-15",
+      "DX423-2026-09-15",
+      "DX424-2026-09-15"
+     ],
+     "report_utc": "2026-09-15T02:00:00Z",
+     "release_utc": "2026-09-15T13:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-1938",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-2295",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-5158",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-2252",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-5906",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-3973",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2210",
+   "aircraft": "VT-DXB",
+   "days": [
+    {
+     "date": "2026-09-16",
+     "flights": [
+      "DX421-2026-09-16",
+      "DX422-2026-09-16",
+      "DX423-2026-09-16",
+      "DX424-2026-09-16"
+     ],
+     "report_utc": "2026-09-16T02:00:00Z",
+     "release_utc": "2026-09-16T13:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-5647",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-5363",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-3171",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-5417",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-4588",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-2840",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2211",
+   "aircraft": "VT-DXB",
+   "days": [
+    {
+     "date": "2026-09-17",
+     "flights": [
+      "DX421-2026-09-17",
+      "DX422-2026-09-17",
+      "DX423-2026-09-17",
+      "DX424-2026-09-17"
+     ],
+     "report_utc": "2026-09-17T02:00:00Z",
+     "release_utc": "2026-09-17T13:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-2143",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-5788",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-2796",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-1385",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-4458",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-5881",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2212",
+   "aircraft": "VT-DXB",
+   "days": [
+    {
+     "date": "2026-09-18",
+     "flights": [
+      "DX421-2026-09-18",
+      "DX422-2026-09-18",
+      "DX423-2026-09-18",
+      "DX424-2026-09-18"
+     ],
+     "report_utc": "2026-09-18T02:00:00Z",
+     "release_utc": "2026-09-18T13:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-1938",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-2295",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-5158",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-2252",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-5906",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-3973",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2213",
+   "aircraft": "VT-DXB",
+   "days": [
+    {
+     "date": "2026-09-19",
+     "flights": [
+      "DX421-2026-09-19",
+      "DX422-2026-09-19",
+      "DX423-2026-09-19",
+      "DX424-2026-09-19"
+     ],
+     "report_utc": "2026-09-19T02:00:00Z",
+     "release_utc": "2026-09-19T13:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-5647",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-5363",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-3171",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-5417",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-4588",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-2840",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2214",
+   "aircraft": "VT-DXB",
+   "days": [
+    {
+     "date": "2026-09-20",
+     "flights": [
+      "DX421-2026-09-20",
+      "DX422-2026-09-20",
+      "DX423-2026-09-20",
+      "DX424-2026-09-20"
+     ],
+     "report_utc": "2026-09-20T02:00:00Z",
+     "release_utc": "2026-09-20T13:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-2143",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-5788",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-2796",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-1385",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-4458",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-5881",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2215",
+   "aircraft": "VT-DXD",
+   "days": [
+    {
+     "date": "2026-09-14",
+     "flights": [
+      "DX431-2026-09-14",
+      "DX432-2026-09-14",
+      "DX433-2026-09-14",
+      "DX434-2026-09-14"
+     ],
+     "report_utc": "2026-09-14T02:30:00Z",
+     "release_utc": "2026-09-14T12:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-5820",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-2875",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-5211",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-2083",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-4874",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-4531",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2216",
+   "aircraft": "VT-DXD",
+   "days": [
+    {
+     "date": "2026-09-15",
+     "flights": [
+      "DX431-2026-09-15",
+      "DX432-2026-09-15",
+      "DX433-2026-09-15",
+      "DX434-2026-09-15"
+     ],
+     "report_utc": "2026-09-15T02:30:00Z",
+     "release_utc": "2026-09-15T12:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-1443",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-1895",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-2148",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-3046",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-1414",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-2751",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2217",
+   "aircraft": "VT-DXD",
+   "days": [
+    {
+     "date": "2026-09-16",
+     "flights": [
+      "DX431-2026-09-16",
+      "DX432-2026-09-16",
+      "DX433-2026-09-16",
+      "DX434-2026-09-16"
+     ],
+     "report_utc": "2026-09-16T02:30:00Z",
+     "release_utc": "2026-09-16T12:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-1017",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-4465",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-3430",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-3569",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-5119",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-5666",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2218",
+   "aircraft": "VT-DXD",
+   "days": [
+    {
+     "date": "2026-09-17",
+     "flights": [
+      "DX431-2026-09-17",
+      "DX432-2026-09-17",
+      "DX433-2026-09-17",
+      "DX434-2026-09-17"
+     ],
+     "report_utc": "2026-09-17T02:30:00Z",
+     "release_utc": "2026-09-17T12:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-5820",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-2875",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-5211",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-2083",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-4874",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-4531",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2219",
+   "aircraft": "VT-DXD",
+   "days": [
+    {
+     "date": "2026-09-18",
+     "flights": [
+      "DX431-2026-09-18",
+      "DX432-2026-09-18",
+      "DX433-2026-09-18",
+      "DX434-2026-09-18"
+     ],
+     "report_utc": "2026-09-18T02:30:00Z",
+     "release_utc": "2026-09-18T12:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-1443",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-1895",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-2148",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-3046",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-1414",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-2751",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2220",
+   "aircraft": "VT-DXD",
+   "days": [
+    {
+     "date": "2026-09-19",
+     "flights": [
+      "DX431-2026-09-19",
+      "DX432-2026-09-19",
+      "DX433-2026-09-19",
+      "DX434-2026-09-19"
+     ],
+     "report_utc": "2026-09-19T02:30:00Z",
+     "release_utc": "2026-09-19T12:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-1017",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-4465",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-3430",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-3569",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-5119",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-5666",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2221",
+   "aircraft": "VT-DXD",
+   "days": [
+    {
+     "date": "2026-09-20",
+     "flights": [
+      "DX431-2026-09-20",
+      "DX432-2026-09-20",
+      "DX433-2026-09-20",
+      "DX434-2026-09-20"
+     ],
+     "report_utc": "2026-09-20T02:30:00Z",
+     "release_utc": "2026-09-20T12:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-5820",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-2875",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-5211",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-2083",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-4874",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-4531",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2222",
+   "aircraft": "VT-DXE",
+   "days": [
+    {
+     "date": "2026-09-14",
+     "flights": [
+      "DX451-2026-09-14",
+      "DX452-2026-09-14",
+      "DX453-2026-09-14",
+      "DX454-2026-09-14"
+     ],
+     "report_utc": "2026-09-14T03:00:00Z",
+     "release_utc": "2026-09-14T11:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-1671",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-3136",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-4242",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-1594",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2223",
+   "aircraft": "VT-DXE",
+   "days": [
+    {
+     "date": "2026-09-15",
+     "flights": [
+      "DX451-2026-09-15",
+      "DX452-2026-09-15",
+      "DX453-2026-09-15",
+      "DX454-2026-09-15"
+     ],
+     "report_utc": "2026-09-15T03:00:00Z",
+     "release_utc": "2026-09-15T11:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-1600",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-2085",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-3334",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-2100",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2224",
+   "aircraft": "VT-DXE",
+   "days": [
+    {
+     "date": "2026-09-16",
+     "flights": [
+      "DX451-2026-09-16",
+      "DX452-2026-09-16",
+      "DX453-2026-09-16",
+      "DX454-2026-09-16"
+     ],
+     "report_utc": "2026-09-16T03:00:00Z",
+     "release_utc": "2026-09-16T11:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-3231",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-3057",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-3266",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-3145",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2225",
+   "aircraft": "VT-DXE",
+   "days": [
+    {
+     "date": "2026-09-17",
+     "flights": [
+      "DX451-2026-09-17",
+      "DX452-2026-09-17",
+      "DX453-2026-09-17",
+      "DX454-2026-09-17"
+     ],
+     "report_utc": "2026-09-17T03:00:00Z",
+     "release_utc": "2026-09-17T11:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-1671",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-3136",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-4242",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-1594",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2226",
+   "aircraft": "VT-DXE",
+   "days": [
+    {
+     "date": "2026-09-18",
+     "flights": [
+      "DX451-2026-09-18",
+      "DX452-2026-09-18",
+      "DX453-2026-09-18",
+      "DX454-2026-09-18"
+     ],
+     "report_utc": "2026-09-18T03:00:00Z",
+     "release_utc": "2026-09-18T11:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-1600",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-2085",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-3334",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-2100",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2227",
+   "aircraft": "VT-DXE",
+   "days": [
+    {
+     "date": "2026-09-19",
+     "flights": [
+      "DX451-2026-09-19",
+      "DX452-2026-09-19",
+      "DX453-2026-09-19",
+      "DX454-2026-09-19"
+     ],
+     "report_utc": "2026-09-19T03:00:00Z",
+     "release_utc": "2026-09-19T11:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-3231",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-3057",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-3266",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-3145",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2228",
+   "aircraft": "VT-DXE",
+   "days": [
+    {
+     "date": "2026-09-20",
+     "flights": [
+      "DX451-2026-09-20",
+      "DX452-2026-09-20",
+      "DX453-2026-09-20",
+      "DX454-2026-09-20"
+     ],
+     "report_utc": "2026-09-20T03:00:00Z",
+     "release_utc": "2026-09-20T11:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-1671",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-3136",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-4242",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-1594",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2229",
+   "aircraft": "VT-DXF",
+   "days": [
+    {
+     "date": "2026-09-14",
+     "flights": [
+      "DX461-2026-09-14",
+      "DX462-2026-09-14"
+     ],
+     "report_utc": "2026-09-14T04:00:00Z",
+     "release_utc": "2026-09-14T09:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-2221",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-4520",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-1326",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-3897",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2230",
+   "aircraft": "VT-DXF",
+   "days": [
+    {
+     "date": "2026-09-15",
+     "flights": [
+      "DX461-2026-09-15",
+      "DX462-2026-09-15"
+     ],
+     "report_utc": "2026-09-15T04:00:00Z",
+     "release_utc": "2026-09-15T09:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-3721",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-1317",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-3864",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-1568",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2231",
+   "aircraft": "VT-DXF",
+   "days": [
+    {
+     "date": "2026-09-16",
+     "flights": [
+      "DX461-2026-09-16",
+      "DX462-2026-09-16"
+     ],
+     "report_utc": "2026-09-16T04:00:00Z",
+     "release_utc": "2026-09-16T09:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-5392",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-1313",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-4574",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-5723",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2232",
+   "aircraft": "VT-DXF",
+   "days": [
+    {
+     "date": "2026-09-17",
+     "flights": [
+      "DX461-2026-09-17",
+      "DX462-2026-09-17"
+     ],
+     "report_utc": "2026-09-17T04:00:00Z",
+     "release_utc": "2026-09-17T09:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-2221",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-4520",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-1326",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-3897",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2233",
+   "aircraft": "VT-DXF",
+   "days": [
+    {
+     "date": "2026-09-18",
+     "flights": [
+      "DX461-2026-09-18",
+      "DX462-2026-09-18"
+     ],
+     "report_utc": "2026-09-18T04:00:00Z",
+     "release_utc": "2026-09-18T09:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-3721",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-1317",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-3864",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-1568",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2234",
+   "aircraft": "VT-DXF",
+   "days": [
+    {
+     "date": "2026-09-19",
+     "flights": [
+      "DX461-2026-09-19",
+      "DX462-2026-09-19"
+     ],
+     "report_utc": "2026-09-19T04:00:00Z",
+     "release_utc": "2026-09-19T09:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-5392",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-1313",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-4574",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-5723",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2235",
+   "aircraft": "VT-DXF",
+   "days": [
+    {
+     "date": "2026-09-20",
+     "flights": [
+      "DX461-2026-09-20",
+      "DX462-2026-09-20"
+     ],
+     "report_utc": "2026-09-20T04:00:00Z",
+     "release_utc": "2026-09-20T09:15:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-2221",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-4520",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-1326",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-3897",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2289",
+   "aircraft": "VT-DXC",
+   "days": [
+    {
+     "date": "2026-09-14",
+     "flights": [
+      "DX589-2026-09-14",
+      "DX590-2026-09-14",
+      "DX591-2026-09-14"
+     ],
+     "report_utc": "2026-09-14T04:00:00Z",
+     "release_utc": "2026-09-14T14:45:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-3983",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-3460",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-4296",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-4326",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-5751",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-4622",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2291",
+   "aircraft": "VT-DXC",
+   "days": [
+    {
+     "date": "2026-09-15",
+     "flights": [
+      "DX412-2026-09-15",
+      "DX413-2026-09-15",
+      "DX588-2026-09-15"
+     ],
+     "report_utc": "2026-09-15T06:00:00Z",
+     "release_utc": "2026-09-15T15:30:00Z"
+    },
+    {
+     "date": "2026-09-16",
+     "flights": [
+      "DX589-2026-09-16",
+      "DX590-2026-09-16",
+      "DX591-2026-09-16"
+     ],
+     "report_utc": "2026-09-16T04:00:00Z",
+     "release_utc": "2026-09-16T14:45:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-1042",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-1694",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-3005",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-4395",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-4273",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-1873",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2293",
+   "aircraft": "VT-DXC",
+   "days": [
+    {
+     "date": "2026-09-17",
+     "flights": [
+      "DX412-2026-09-17",
+      "DX413-2026-09-17",
+      "DX588-2026-09-17"
+     ],
+     "report_utc": "2026-09-17T06:00:00Z",
+     "release_utc": "2026-09-17T15:30:00Z"
+    },
+    {
+     "date": "2026-09-18",
+     "flights": [
+      "DX589-2026-09-18",
+      "DX590-2026-09-18",
+      "DX591-2026-09-18"
+     ],
+     "report_utc": "2026-09-18T04:00:00Z",
+     "release_utc": "2026-09-18T14:45:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-5566",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-4806",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-2303",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-3271",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-3249",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-3619",
+     "role": "Cabin Crew"
+    }
+   ]
+  },
+  {
+   "pairing_id": "P-2295",
+   "aircraft": "VT-DXC",
+   "days": [
+    {
+     "date": "2026-09-19",
+     "flights": [
+      "DX412-2026-09-19",
+      "DX413-2026-09-19",
+      "DX588-2026-09-19"
+     ],
+     "report_utc": "2026-09-19T06:00:00Z",
+     "release_utc": "2026-09-19T15:30:00Z"
+    },
+    {
+     "date": "2026-09-20",
+     "flights": [
+      "DX589-2026-09-20",
+      "DX590-2026-09-20",
+      "DX591-2026-09-20"
+     ],
+     "report_utc": "2026-09-20T04:00:00Z",
+     "release_utc": "2026-09-20T14:45:00Z"
+    }
+   ],
+   "crew": [
+    {
+     "crew_id": "C-1526",
+     "role": "Captain"
+    },
+    {
+     "crew_id": "C-1510",
+     "role": "First Officer"
+    },
+    {
+     "crew_id": "C-5716",
+     "role": "Senior Cabin Crew"
+    },
+    {
+     "crew_id": "C-4999",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-2352",
+     "role": "Cabin Crew"
+    },
+    {
+     "crew_id": "C-5848",
+     "role": "Cabin Crew"
+    }
+   ]
+  }
+ ],
+ "flagged_exceptions": [
+  {
+   "crew_id": "C-5417",
+   "date": "2026-09-19",
+   "rule": "RULE-CERT-06",
+   "note": "recurrent_training expires 2026-09-17; assignment on 2026-09-19 is illegal and must be resolved (see scenario S5)."
+  }
+ ],
+ "note": "Every assignment is legal under rules.json except the flagged exceptions listed here."
+}

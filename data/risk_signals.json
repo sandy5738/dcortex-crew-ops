@@ -1,0 +1,1203 @@
+[
+ {
+  "crew_id": "C-1042",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.78,
+  "drivers": [
+   "short-rest pattern over last 14 days",
+   "two fatigue reports this month"
+  ]
+ },
+ {
+  "crew_id": "C-2087",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.29,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2210",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.03,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3305",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.28,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3310",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.17,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3311",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.14,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3312",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.21,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3315",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.27,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3316",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.06,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2091",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.23,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5837",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.2,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2791",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.28,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5597",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.12,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4679",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.1,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4462",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.1,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3757",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.15,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3940",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.71,
+  "drivers": [
+   "elevated sick-call likelihood: cluster pattern at base"
+  ]
+ },
+ {
+  "crew_id": "C-4763",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.21,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5522",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.37,
+  "drivers": [
+   "moderate recent duty load"
+  ]
+ },
+ {
+  "crew_id": "C-1569",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.11,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2907",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.09,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3988",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.26,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3187",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.16,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5375",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.2,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3211",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.02,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2876",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.1,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1542",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.21,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5089",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.08,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2143",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.12,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5788",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.03,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2796",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.37,
+  "drivers": [
+   "moderate recent duty load"
+  ]
+ },
+ {
+  "crew_id": "C-1385",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.4,
+  "drivers": [
+   "moderate recent duty load"
+  ]
+ },
+ {
+  "crew_id": "C-4458",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.21,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5881",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.14,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1938",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.69,
+  "drivers": [
+   "elevated sick-call likelihood: cluster pattern at base"
+  ]
+ },
+ {
+  "crew_id": "C-2295",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.35,
+  "drivers": [
+   "moderate recent duty load"
+  ]
+ },
+ {
+  "crew_id": "C-5158",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.06,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2252",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.1,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5906",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.27,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3973",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.2,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5647",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.13,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5363",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.07,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3171",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.34,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5417",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.64,
+  "drivers": [
+   "certification lapse risk: recurrent_training expiring"
+  ]
+ },
+ {
+  "crew_id": "C-4588",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.13,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2840",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.02,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5820",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.23,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2875",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.08,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5211",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.06,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2083",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.21,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4874",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.34,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4531",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.06,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1443",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.22,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1895",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.12,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2148",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.16,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3046",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.1,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1414",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.22,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2751",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.31,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1017",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.09,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4465",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.1,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3430",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.08,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3569",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.12,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5119",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.17,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5666",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.3,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1671",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.05,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3136",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.27,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4242",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.03,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1594",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.17,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1600",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.03,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2085",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.05,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3334",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.02,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2100",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.29,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3231",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.1,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3057",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.15,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3266",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.16,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3145",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.17,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2221",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.15,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4520",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.13,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1326",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.14,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3897",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.25,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3721",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.14,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1317",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.02,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3864",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.15,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1568",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.11,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5392",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.41,
+  "drivers": [
+   "moderate recent duty load"
+  ]
+ },
+ {
+  "crew_id": "C-1313",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.02,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4574",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.23,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5723",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.06,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3983",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.1,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3460",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.25,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4296",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.15,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4326",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.25,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5751",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.31,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4622",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.19,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1694",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.09,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3005",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.21,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4395",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.02,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4273",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.04,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1873",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.05,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5566",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.08,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4806",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.27,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2303",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.03,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3271",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.04,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3249",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.14,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3619",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.16,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1526",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.12,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1510",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.27,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5716",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.15,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4999",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.02,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2352",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.25,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5848",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.04,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2111",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.11,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3677",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.13,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5418",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.13,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1329",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.12,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2248",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.25,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4809",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.09,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2341",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.33,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3555",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.05,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1622",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.18,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1564",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.12,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5015",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.13,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2442",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.09,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4104",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.14,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3116",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.2,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5020",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.05,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2993",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.14,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3816",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.1,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2888",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.19,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2569",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.02,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1823",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.13,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5533",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.1,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3791",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.06,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1606",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.21,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1970",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.21,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5994",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.27,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2286",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.13,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3167",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.08,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2165",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.08,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4839",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.17,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1748",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.07,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2435",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.02,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5795",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.2,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4280",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.02,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5444",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.19,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-4621",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.18,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-3545",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.06,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-5168",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.18,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-2561",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.05,
+  "drivers": [
+   "baseline"
+  ]
+ },
+ {
+  "crew_id": "C-1021",
+  "as_of_utc": "2026-09-14T18:00:00Z",
+  "disruption_risk_score": 0.14,
+  "drivers": [
+   "baseline"
+  ]
+ }
+]

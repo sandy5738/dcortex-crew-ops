@@ -1,0 +1,55 @@
+{
+ "time_convention": "All times UTC. Duty windows use calendar days (UTC dates), inclusive of the duty date.",
+ "definitions": {
+  "duty_period": "report_utc to release_utc. Report = first departure minus 60 min; release = last arrival plus 30 min.",
+  "fdp": "Flight Duty Period = duty period length in hours.",
+  "sector": "One flight leg.",
+  "reserve_callout": "A reserve may be called out only if the callout time falls inside their on-call window. Once assigned, they operate as line crew (window no longer applies)."
+ },
+ "rules": [
+  {
+   "rule_id": "RULE-FDP-01",
+   "text": "Max flight duty period 13h, reduced 0.5h per sector beyond the 2nd.",
+   "params": {
+    "base_fdp_hours": 13.0,
+    "reduction_per_extra_sector_hours": 0.5,
+    "free_sectors": 2
+   }
+  },
+  {
+   "rule_id": "RULE-DUTY-02",
+   "text": "Max 60 duty hours in any 7 consecutive calendar days (inclusive of duty date).",
+   "params": {
+    "max_duty_hours": 60,
+    "window_days": 7
+   }
+  },
+  {
+   "rule_id": "RULE-FLT-03",
+   "text": "Max 100 flight (block) hours in any 28 consecutive calendar days.",
+   "params": {
+    "max_flight_hours": 100,
+    "window_days": 28
+   }
+  },
+  {
+   "rule_id": "RULE-REST-04",
+   "text": "Min 12h rest between release and next report.",
+   "params": {
+    "min_rest_hours": 12
+   }
+  },
+  {
+   "rule_id": "RULE-QUAL-05",
+   "text": "Crew must hold a valid rating for the assigned aircraft type."
+  },
+  {
+   "rule_id": "RULE-CERT-06",
+   "text": "All certifications must be valid on the duty date."
+  },
+  {
+   "rule_id": "RULE-BASE-07",
+   "text": "Reserve callout from own base only; covering from another base requires deadhead positioning (cost applies)."
+  }
+ ]
+}
