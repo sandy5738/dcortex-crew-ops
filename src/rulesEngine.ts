@@ -61,7 +61,17 @@ export const Schemas = {
     }),
     REST04: z.object({
         crewId: z.string(),
-        newReportUtc: z.string().datetime().describe("UTC ISO string of next report time")
+        newReportUtc: z.string().datetime().describe("UTC ISO report time of the FIRST day of the proposed cover"),
+        // Required, not optional. It was optional so that "crew released at
+        // 15:30Z, when may they report next?" could reuse this function - but
+        // that question is arithmetic (release + min_rest), not a legality
+        // check, and making it optional meant a caller who omitted it got
+        // legal: true with only one of the three checks performed. A reason
+        // suffix does not protect a caller reading the boolean, and the whole
+        // point of this rule is that under-checking approves illegal
+        // assignments. A cover always has a release time; require it.
+        coverReleaseUtc: z.string().datetime()
+            .describe("UTC ISO release time of the LAST day of the proposed cover. Used to check rest before the crew's own next duty, and to detect double-booking.")
     }),
     QUAL05: z.object({
         crewId: z.string(),
@@ -177,6 +187,64 @@ function historyOver(
     return inputs;
 }
 
+const HOUR_MS = 3_600_000;
+/**
+ * Exact elapsed hours. NOT rounded.
+ *
+ * Rounding before the comparison lets 11h59m59s become 12.00 and clear a
+ * 12-hour minimum. Legality is a threshold test, so it compares the exact
+ * value; rounding happens only where a number is displayed or recorded in
+ * `inputs`.
+ */
+const hoursBetween = (laterIso: string, earlierIso: string) =>
+    (Date.parse(laterIso) - Date.parse(earlierIso)) / HOUR_MS;
+
+interface OwnDuty { pairing_id: string; date: string; report_utc: string; release_utc: string }
+
+/** Every pairing-day this crew member already holds, in time order. */
+function ownDuties(crewId: string): OwnDuty[] {
+    return getDb().prepare(
+        `SELECT pd.pairing_id, pd.date, pd.report_utc, pd.release_utc
+         FROM pairing_crew pc
+         JOIN pairing_days pd ON pd.pairing_id = pc.pairing_id
+         WHERE pc.crew_id = ? ORDER BY pd.report_utc`
+    ).all(crewId) as OwnDuty[];
+}
+
+/**
+ * Rest either side of a proposed cover, plus any double-booking.
+ *
+ * The three shapes the answer keys actually use. Verified to reproduce their
+ * figures exactly for the S2 exclusions: C-5837 10.75h downstream,
+ * C-1938 -7.25h before COVER with a P-2209 overlap, C-2143 11.25h,
+ * C-5820 11.75h.
+ *
+ * Derived from pairing_days, NOT from duty_clocks.last_rest_ended: that field
+ * yields +4h for C-1938 where the key says -7.25h, so it is not what the keys
+ * were computed from. An overlap surfaces naturally as negative rest, which is
+ * how the keys phrase it.
+ */
+function restAround(crewId: string, coverReport: string, coverRelease?: string) {
+    const own = ownDuties(crewId);
+
+    const prev = [...own].reverse().find(o => o.report_utc <= coverReport);
+    const before = prev ? hoursBetween(coverReport, prev.release_utc) : null;
+
+    let after: number | null = null;
+    let next: OwnDuty | undefined;
+    let overlaps: OwnDuty[] = [];
+    if (coverRelease) {
+        // >= not >: a duty reporting exactly when the cover releases has zero
+        // hours of rest and must fail. With a strict >, it was selected as
+        // neither the next duty nor an overlap (touching intervals do not
+        // overlap), so it fell through both checks and read as legal.
+        next = own.find(o => o.report_utc >= coverRelease);
+        after = next ? hoursBetween(next.report_utc, coverRelease) : null;
+        overlaps = own.filter(o => o.report_utc < coverRelease && o.release_utc > coverReport);
+    }
+    return { before, prev, after, next, overlaps };
+}
+
 function crewExists(crewId: string): boolean {
     return !!getDb().prepare('SELECT 1 FROM crew WHERE crew_id = ?').get(crewId);
 }
@@ -286,23 +354,71 @@ export class RulesEngine {
      * changes legality, so it is left for whoever owns this rule.
      * min_rest_hours is available via ruleParams('RULE-REST-04').
      */
+    /**
+     * RULE-REST-04 — minimum 12h rest, checked in BOTH directions.
+     *
+     * rules.json states only "min 12h rest between release and next report",
+     * which is symmetric and names neither party. The answer keys settle it:
+     * across the six scenarios, 28 exclusions cite REST-04 or double-booking
+     * and NONE of them is a plain one-directional shortfall. They split into
+     * downstream conflicts (18), shortfalls before the cover (15) and
+     * double-bookings (22), so a single forward check reproduces none of them.
+     *
+     * Three checks:
+     *   1. rest BEFORE the cover   — coverReport - previous own release
+     *   2. rest AFTER the cover    — next own report - coverRelease
+     *   3. overlap                 — the cover collides with a duty they hold
+     */
     static checkRest04(input: z.infer<typeof Schemas.REST04>): RuleResult {
-        const { crewId, newReportUtc } = input;
-        const row = getDb()
-            .prepare("SELECT last_rest_ended FROM duty_clocks WHERE crew_id = ?")
-            .get(crewId) as any;
-        if (!row || !row.last_rest_ended) {
-            return { rule_id: "RULE-REST-04", legal: true, reason: "No previous rest constraint found." };
+        const { crewId, newReportUtc, coverReleaseUtc } = input;
+        if (!crewExists(crewId)) {
+            return { rule_id: "RULE-REST-04", legal: false, reason: "Crew member not found." };
         }
 
-        const lastRest = DateTime.fromISO(row.last_rest_ended, { zone: 'utc' });
-        const newReport = DateTime.fromISO(newReportUtc, { zone: 'utc' });
-        const legal = newReport >= lastRest;
+        const min = requireParam('RULE-REST-04', 'min_rest_hours');
+        const { before, prev, after, next, overlaps } =
+            restAround(crewId, newReportUtc, coverReleaseUtc);
 
+        const failures: string[] = [];
+        const inputs: Record<string, number> = {};
+
+        // Compare the exact elapsed hours; round only for the trace and the
+        // prose, so a 11h59m59s shortfall cannot round its way to a pass.
+        if (before !== null) {
+            inputs['rest_before_cover_h'] = round2(before);
+            if (before < min) {
+                failures.push(
+                    `only ${round2(before)}h rest before COVER on ${newReportUtc.slice(0, 10)} ` +
+                    `(after ${prev!.pairing_id} on ${prev!.date})`);
+            }
+        }
+
+        if (after !== null) {
+            inputs['rest_before_next_own_duty_h'] = round2(after);
+            if (after < min) {
+                failures.push(
+                    `only ${round2(after)}h rest before ${next!.pairing_id} on ${next!.date} ` +
+                    `(downstream conflict)`);
+            }
+        }
+
+        for (const o of overlaps) {
+            failures.push(`double-booked: ${o.pairing_id} overlaps COVER on ${o.date}`);
+        }
+        inputs['overlapping_duties'] = overlaps.length;
+
+        const legal = failures.length === 0;
         return {
             rule_id: "RULE-REST-04",
             legal,
-            reason: legal ? "Legal. Adequate rest achieved." : `Violation. Crew cannot report before ${row.last_rest_ended}.`
+            limit: min,
+            actual: before !== null ? round2(before) : undefined,
+            inputs,
+            reason: legal
+                ? `Legal. ${before !== null ? `${round2(before)}h before the cover` : 'no prior duty'}` +
+                  `${after !== null ? `, ${round2(after)}h before their next duty` : ''} ` +
+                  `(min ${min}h).`
+                : `Violation. RULE-REST-04: ${failures.join('; ')}.`
         };
     }
 
