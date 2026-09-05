@@ -193,8 +193,42 @@ const getPairing = tool(
     }
 );
 
-export const tools = [checkFdpLimitTool, checkDutyLimitTool, checkFlightHoursTool, checkRest04Tool,
-    checkQual05Tool, checkCert06Tool, checkBase07Tool, simulateImpactTool,
+const CheckAllRulesSchema = z.object({
+    crewId: z.string(),
+    dutyDate: z.string().describe("Date of duty in YYYY-MM-DD"),
+    newReportUtc: z.string().datetime().describe("UTC ISO string of the report time"),
+    coverReleaseUtc: z.string().datetime().describe("UTC ISO string of the release time"),
+    numSectors: z.number().int().min(1).describe("Number of flight legs"),
+    proposedFdpHours: z.number().positive().describe("Proposed total flight duty period in hours"),
+    newDutyHours: z.number().positive().describe("Proposed total duty hours"),
+    newFlightHours: z.number().positive().describe("Proposed flight (block) hours"),
+    targetAircraftType: z.string().describe("Aircraft type (e.g., A320, ATR72)"),
+    requiredDepartureStation: z.string().describe("Station code (e.g., BLR)"),
+    priorProposed: z.record(z.string(), z.number()).optional().describe("Earlier days of the SAME multi-day assignment")
+});
+
+const checkAllRulesTool = tool(
+    async (input: z.infer<typeof CheckAllRulesSchema>) => {
+        const results = {
+            fdp01: RulesEngine.checkFdp01(input),
+            duty02: RulesEngine.checkDuty02(input),
+            flt03: RulesEngine.checkFlt03(input),
+            rest04: RulesEngine.checkRest04(input),
+            qual05: RulesEngine.checkQual05(input),
+            cert06: RulesEngine.checkCert06(input),
+            base07: RulesEngine.checkBase07(input)
+        };
+        const allLegal = Object.values(results).every(r => r.legal);
+        return JSON.stringify({ all_legal: allLegal, results });
+    },
+    {
+        name: "check_all_rules",
+        description: "Evaluates all 7 legality rules (FDP, Duty, Flight, Rest, Qualifications, Certifications, Base) in a single tool call.",
+        schema: CheckAllRulesSchema
+    }
+);
+
+export const tools = [checkAllRulesTool, simulateImpactTool,
     lookupReservePool, getDutyHours, getFlights, getExpiringCerts, getCrew, getPairing];
 const toolNode = new ToolNode(tools);
 
