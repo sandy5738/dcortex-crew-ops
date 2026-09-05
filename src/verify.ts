@@ -355,6 +355,89 @@ function rulesAgainstTheJson() {
           `expected a breach, got ${seqDay2.actual}h`);
     equal('C-3305 sequential day-2 total', seqDay2.actual, round2(soloDay2.actual! + 9.5));
 
+    // ---- RULE-REST-04 must be checked in BOTH directions, plus overlap.
+    // rules.json says only "min 12h rest between release and next report",
+    // which names neither party. The keys settle it: of the 28 exclusions
+    // citing rest or double-booking across all six scenarios, NONE is a plain
+    // one-directional shortfall. A forward-only check reproduces none of them.
+    const coverDays = getDb().prepare(
+        `SELECT report_utc, release_utc FROM pairing_days
+         WHERE pairing_id = 'P-2291' ORDER BY date`).all() as any[];
+    const coverReport = coverDays[0].report_utc;
+    const coverRelease = coverDays[coverDays.length - 1].release_utc;
+
+    const s2 = (readJson('scenarios').scenarios ?? readJson('scenarios'))
+        .find((s: any) => s.scenario_id === 'S2');
+    const keyRest: string[] = s2.answer_key.excluded_candidates
+        .filter((e: any) => /REST-04|double-booked/i.test(e.reason))
+        .map((e: any) => e.crew_id);
+    const keyOptions: string[] = s2.answer_key.options
+        .filter((o: any) => o.crew_id).map((o: any) => o.crew_id);
+
+    const missed = keyRest.filter(c => RulesEngine.checkRest04(
+        { crewId: c, newReportUtc: coverReport, coverReleaseUtc: coverRelease }).legal);
+    equal('every REST-04 exclusion in the S2 key is caught', missed.length, 0);
+
+    // The other direction matters just as much: a candidate the key ranks as
+    // a real option must not be rejected by our stricter check.
+    const wronglyRejected = keyOptions.filter(c => !RulesEngine.checkRest04(
+        { crewId: c, newReportUtc: coverReport, coverReleaseUtc: coverRelease }).legal);
+    equal('no S2 option is wrongly rejected on rest', wronglyRejected.length, 0);
+
+    // The three shapes, one representative each, with the key's own figures.
+    const downstream = RulesEngine.checkRest04(
+        { crewId: 'C-5837', newReportUtc: coverReport, coverReleaseUtc: coverRelease });
+    check('C-5837 fails on the DOWNSTREAM conflict', !downstream.legal);
+    check('C-5837 downstream margin is 10.75h',
+          downstream.inputs?.['rest_before_next_own_duty_h'] === 10.75,
+          `got ${downstream.inputs?.['rest_before_next_own_duty_h']}`);
+
+    const overlap = RulesEngine.checkRest04(
+        { crewId: 'C-1938', newReportUtc: coverReport, coverReleaseUtc: coverRelease });
+    check('C-1938 is caught as double-booked', !overlap.legal && /double-booked/.test(overlap.reason));
+    check('C-1938 rest before the cover is -7.25h',
+          overlap.inputs?.['rest_before_cover_h'] === -7.25,
+          `got ${overlap.inputs?.['rest_before_cover_h']}`);
+
+    // coverReleaseUtc is required: omitting it used to yield legal:true with
+    // only one of the three checks performed, and a reason suffix does not
+    // protect a caller reading the boolean.
+    check('coverReleaseUtc is mandatory',
+          !Schemas.REST04.safeParse({ crewId: 'C-5837', newReportUtc: coverReport }).success);
+
+    // A duty reporting exactly when the cover releases has zero rest. It is
+    // not an overlap (touching intervals do not overlap), so a strict > in
+    // the downstream lookup let it fall through both checks.
+    const zeroRest = RulesEngine.checkRest04({
+        crewId: 'C-5837', newReportUtc: coverReport,
+        coverReleaseUtc: '2026-09-17T01:30:00Z' });   // == C-5837's own P-2204 report
+    check('a duty starting exactly at cover release fails on zero rest',
+          !zeroRest.legal && zeroRest.inputs?.['rest_before_next_own_duty_h'] === 0,
+          `got ${JSON.stringify(zeroRest.inputs)}`);
+
+    // Legality compares exact hours; rounding is for display only. 11h59m59s
+    // rounds to 12.00 and would otherwise clear a 12h minimum.
+    //
+    // C-5837's own P-2204 reports 2026-09-17T01:30:00Z, so a cover releasing
+    // one second after 13:30:00Z on the 16th leaves exactly 11h59m59s. That
+    // release is still before P-2204 starts, so this tests the rounding and
+    // NOT the overlap check — an earlier version of this assertion released
+    // at 01:30:01Z, which made the cover swallow P-2204 and passed as a
+    // double-booking instead.
+    const shortByASecond = RulesEngine.checkRest04({
+        crewId: 'C-5837', newReportUtc: coverReport,
+        coverReleaseUtc: '2026-09-16T13:30:01Z' });
+    check('a shortfall of one second does not round its way to a pass',
+          !shortByASecond.legal && /downstream conflict/.test(shortByASecond.reason),
+          shortByASecond.reason);
+    equal('...and it is reported rounded, as 12h',
+          shortByASecond.inputs?.['rest_before_next_own_duty_h'], 12);
+
+    // min_rest_hours was dead config: checkRest04 compared against
+    // last_rest_ended and never read the parameter at all.
+    check('RULE-REST-04 reads min_rest_hours from the rules table',
+          downstream.limit === ruleParams('RULE-REST-04')['min_rest_hours']);
+
     // Params come from the table, not from constants in the code.
     check('RULE-DUTY-02 limit is loaded from the rules table', limit !== undefined);
     for (const id of ['RULE-QUAL-05', 'RULE-CERT-06', 'RULE-BASE-07']) {

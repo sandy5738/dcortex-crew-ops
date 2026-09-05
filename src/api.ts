@@ -8,6 +8,20 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// API Logger Middleware
+app.use((req, res, next) => {
+    console.log(`\n[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    if (Object.keys(req.body).length > 0) {
+        console.log(`Body: ${JSON.stringify(req.body)}`);
+    }
+    const start = Date.now();
+    res.on('finish', () => {
+        const ms = Date.now() - start;
+        console.log(`[${new Date().toISOString()}] ${req.method} ${req.url} ${res.statusCode} - ${ms}ms`);
+    });
+    next();
+});
+
 // =================================================================
 // TIER 1: LOOKUP ENDPOINTS (Data Retrieval)
 // =================================================================
