@@ -442,3 +442,19 @@ CREATE TABLE harness_questions (
 );
 
 CREATE INDEX ix_harness_questions_tier ON harness_questions(tier);
+
+-- ------------------------------------------------------------------ derived
+
+-- Store any derived JSON artifact produced by tools/ so the database
+-- contains a copy of what the analysis pipeline produced. The canonical
+-- source_files table continues to track the nine world files; this table
+-- is a convenience for analysts who want the derived artifacts available
+-- inside the DB without adding many separate columns or tables for each
+-- tool output.
+CREATE TABLE IF NOT EXISTS derived_json_files (
+    filename   TEXT PRIMARY KEY,
+    sha256     TEXT NOT NULL,
+    bytes      INTEGER NOT NULL,
+    json_text  TEXT NOT NULL,
+    seq        INTEGER NOT NULL
+) WITHOUT ROWID;

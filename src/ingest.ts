@@ -420,6 +420,35 @@ function loadImpacts(db: Database.Database) {
   });
 }
 
+function loadDerivedArtifacts(db: Database.Database) {
+  // Walk DATA_DIR and its common subfolders and insert any JSON files
+  // that are not part of the canonical ALL_FILES set into
+  // `derived_json_files` so the DB contains the exact tool outputs.
+  const crypto = require('crypto');
+  const files: string[] = [];
+
+  function walk(dir: string) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, entry.name);
+      if (entry.isDirectory()) walk(p);
+      else if (entry.isFile() && entry.name.endsWith('.json')) files.push(p);
+    }
+  }
+
+  walk(DATA_DIR);
+  const ins = db.prepare('INSERT OR REPLACE INTO derived_json_files (filename, sha256, bytes, json_text, seq) VALUES (?,?,?,?,?)');
+  let seq = 0;
+  for (const abs of files.sort()) {
+    const rel = path.relative(DATA_DIR, abs).replace(/\\/g, '/');
+    const base = path.basename(rel, '.json');
+    // Skip the canonical source files; they are already recorded in source_files
+    if ((ALL_FILES as readonly string[]).includes(base)) continue;
+    const buf = fs.readFileSync(abs);
+    const hash = crypto.createHash('sha256').update(buf).digest('hex');
+    ins.run(rel, hash, buf.length, buf.toString('utf-8'), seq++);
+  }
+}
+
 function loadHarness(db: Database.Database) {
   // Answer keys are heterogeneous assertions — a string, a number, a list or
   // an object depending on the question — so they are stored whole rather
@@ -480,6 +509,7 @@ export function build(): void {
       loadNormalizedArtifacts(db);
       loadRiskSignals(db);
       loadImpacts(db);
+      loadDerivedArtifacts(db);
       loadHarness(db);
     })();
 
