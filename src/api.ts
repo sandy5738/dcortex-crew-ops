@@ -3,6 +3,7 @@ import cors from 'cors';
 import { RulesEngine, Schemas as RuleSchemas } from './rulesEngine';
 import { QueryEngine, QuerySchemas } from './queryEngine';
 import { simulateImpact } from './simulator';
+import { graph } from './agent';
 
 const app = express();
 app.use(cors());
@@ -96,14 +97,18 @@ app.post('/tools/simulate_impact', (req, res) => {
 // GENERIC TOOL DISPATCH (LLM function-calling entrypoint)
 // POST /tools/call  { "name": "checkRuleFdp01", "arguments": { ... } }
 // =================================================================
+// =================================================================
+// GENERIC TOOL DISPATCH (LLM function-calling entrypoint)
+// POST /tools/call  { "name": "checkRuleFdp01", "arguments": { ... } }
+// =================================================================
 const toolDispatchers = {
-    checkRuleFdp01: { schema: Schemas.FDP01, handler: (d: any) => RulesEngine.checkFdp01(d) },
-    checkRuleDuty02: { schema: Schemas.DUTY02, handler: (d: any) => RulesEngine.checkDuty02(d) },
-    checkRuleFlt03: { schema: Schemas.FLT03, handler: (d: any) => RulesEngine.checkFlt03(d) },
-    checkRuleRest04: { schema: Schemas.REST04, handler: (d: any) => RulesEngine.checkRest04(d) },
-    checkRuleQual05: { schema: Schemas.QUAL05, handler: (d: any) => RulesEngine.checkQual05(d) },
-    checkRuleCert06: { schema: Schemas.CERT06, handler: (d: any) => RulesEngine.checkCert06(d) },
-    checkRuleBase07: { schema: Schemas.BASE07, handler: (d: any) => RulesEngine.checkBase07(d) }
+    checkRuleFdp01: { schema: RuleSchemas.FDP01, handler: (d: any) => RulesEngine.checkFdp01(d) },
+    checkRuleDuty02: { schema: RuleSchemas.DUTY02, handler: (d: any) => RulesEngine.checkDuty02(d) },
+    checkRuleFlt03: { schema: RuleSchemas.FLT03, handler: (d: any) => RulesEngine.checkFlt03(d) },
+    checkRuleRest04: { schema: RuleSchemas.REST04, handler: (d: any) => RulesEngine.checkRest04(d) },
+    checkRuleQual05: { schema: RuleSchemas.QUAL05, handler: (d: any) => RulesEngine.checkQual05(d) },
+    checkRuleCert06: { schema: RuleSchemas.CERT06, handler: (d: any) => RulesEngine.checkCert06(d) },
+    checkRuleBase07: { schema: RuleSchemas.BASE07, handler: (d: any) => RulesEngine.checkBase07(d) }
 };
 
 app.post('/tools/call', (req, res) => {
@@ -119,32 +124,49 @@ app.post('/tools/call', (req, res) => {
 
 
 // =================================================================
-// MOCK CHAT ENDPOINT (Where the LLM orchestration lives)
+// LANGGRAPH CHAT ENDPOINT (LLM orchestration via graph)
 // =================================================================
-app.post('/chat', (req, res) => {
+app.post('/chat', async (req, res) => {
     const { message } = req.body;
-    
-    if (message.toLowerCase().includes("sick") && message.includes("C-5837")) {
-        const toolResult: any = simulateImpact("C-5837", "2026-09-14");
-        
-        const answer = `Captain C-5837 is sick. This breaks Pairing ${toolResult.pairing_broken}. ` +
-                       `As a result, ${toolResult.uncrewed_flights.length} flights are now uncrewed, ` +
-                       `putting ${toolResult.passengers_affected} passengers at risk. ` +
-                       `${toolResult.action_required}`;
-                 
-        return res.json({
-            answer,
-            reasoning_trail: [
-                {
-                    tool_called: "simulate_impact",
-                    arguments: { crew_id: "C-5837", date: "2026-09-14" },
-                    raw_result: toolResult
-                }
+    if (!message || typeof message !== 'string') {
+        return res.status(400).json({ error: 'message field required (string)' });
+    }
+
+    try {
+        // If no OpenAI API key, fall back to mock responses
+        if (!process.env.OPENAI_API_KEY) {
+            if (message.toLowerCase().includes("sick") && message.includes("C-5837")) {
+                const toolResult: any = simulateImpact("C-5837", "2026-09-14");
+                const answer = `Captain C-5837 is sick. This breaks Pairing ${toolResult.pairing_broken}. ` +
+                               `As a result, ${toolResult.uncrewed_flights.length} flights are now uncrewed, ` +
+                               `putting ${toolResult.passengers_affected} passengers at risk. ` +
+                               `${toolResult.action_required}`;
+                return res.json({
+                    answer,
+                    reasoning_trail: [
+                        { tool_called: "simulate_impact", arguments: { crew_id: "C-5837", date: "2026-09-14" }, raw_result: toolResult }
+                    ]
+                });
+            }
+            return res.json({ answer: "I am a Node.js prototype. Ask me about C-5837 getting sick!" });
+        }
+
+        const { messages: result } = await graph.invoke({
+            messages: [
+                { role: 'system', content: 'You are the Crew Ops Advisor for dCortex Air. You have access to tools to judge crew pairings, duty limits, reserve pools, and disruption impacts. Always reason step by step using tools when the user asks for a legality check, lookup, or simulation.' },
+                { role: 'user', content: message }
             ]
         });
+
+        const last = result[result.length - 1];
+        if (last && typeof last === 'object' && 'content' in last) {
+            return res.json({ answer: last.content, reasoning_trail: [] });
+        }
+        return res.json({ answer: last as string, reasoning_trail: [] });
+    } catch (err) {
+        console.error('Agent error:', err);
+        return res.status(500).json({ error: 'Agent invocation failed' });
     }
-    
-    res.json({ answer: "I am a Node.js prototype. Ask me about C-5837 getting sick!" });
 });
 
 const PORT = process.env.PORT || 3000;

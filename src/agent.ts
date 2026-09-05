@@ -1,9 +1,11 @@
-import { ChatOpenAI, OpenAIEmbeddings } from "@langchain/openai";
-import { StateGraph } from "@langchain/langgraph";
+import { ChatOpenAI } from "@langchain/openai";
+import { MessagesAnnotation, StateGraph } from "@langchain/langgraph";
+import { BaseMessage } from "@langchain/core/messages";
+import { tool } from "@langchain/core/tools";
+import { ToolNode } from "@langchain/langgraph/prebuilt";
 import { RulesEngine, Schemas as RuleSchemas } from "./rulesEngine";
 import { QueryEngine, QuerySchemas } from "./queryEngine";
 import { simulateImpact } from "./simulator";
-import { ToolNode } from "@langchain/core/tools";
 import { z } from "zod";
 
 /**
@@ -263,11 +265,15 @@ const toolNode = new ToolNode(tools);
 
 const callModel = async (state: any) => {
     const openai = new ChatOpenAI({
-        modelName: "gpt-4o",
+        modelName: "sarvam-105b",
         temperature: 0,
+        configuration: {
+            baseURL: "https://api.sarvam.ai/v1",
+            apiKey: "sk_7r1uy3rf_q1k8hq81MkwkyZ0LlTDhlW3i"
+        }
     });
     
-    const response = await openai.invoke(<BaseMessage[]>state.messages);
+    const response = await openai.invoke(state.messages as BaseMessage[]);
     return { messages: [response] };
 };
 
@@ -285,7 +291,7 @@ const shouldContinue = (state: any) => {
 /**
  * 4. Build the Graph
  */
-const workflow = new StateGraph({} as any)
+const workflow = new StateGraph(MessagesAnnotation)
     .addNode("agent", callModel)
     .addNode("tools", toolNode)
     .addEdge("__start__", "agent")
