@@ -399,10 +399,39 @@ function rulesAgainstTheJson() {
           overlap.inputs?.['rest_before_cover_h'] === -7.25,
           `got ${overlap.inputs?.['rest_before_cover_h']}`);
 
-    // A forward-only call must not claim a pass it did not earn.
-    const partial = RulesEngine.checkRest04({ crewId: 'C-5837', newReportUtc: coverReport });
-    check('a call without coverReleaseUtc discloses its narrower scope',
-          /before-cover only/.test(partial.reason));
+    // coverReleaseUtc is required: omitting it used to yield legal:true with
+    // only one of the three checks performed, and a reason suffix does not
+    // protect a caller reading the boolean.
+    check('coverReleaseUtc is mandatory',
+          !Schemas.REST04.safeParse({ crewId: 'C-5837', newReportUtc: coverReport }).success);
+
+    // A duty reporting exactly when the cover releases has zero rest. It is
+    // not an overlap (touching intervals do not overlap), so a strict > in
+    // the downstream lookup let it fall through both checks.
+    const zeroRest = RulesEngine.checkRest04({
+        crewId: 'C-5837', newReportUtc: coverReport,
+        coverReleaseUtc: '2026-09-17T01:30:00Z' });   // == C-5837's own P-2204 report
+    check('a duty starting exactly at cover release fails on zero rest',
+          !zeroRest.legal && zeroRest.inputs?.['rest_before_next_own_duty_h'] === 0,
+          `got ${JSON.stringify(zeroRest.inputs)}`);
+
+    // Legality compares exact hours; rounding is for display only. 11h59m59s
+    // rounds to 12.00 and would otherwise clear a 12h minimum.
+    //
+    // C-5837's own P-2204 reports 2026-09-17T01:30:00Z, so a cover releasing
+    // one second after 13:30:00Z on the 16th leaves exactly 11h59m59s. That
+    // release is still before P-2204 starts, so this tests the rounding and
+    // NOT the overlap check — an earlier version of this assertion released
+    // at 01:30:01Z, which made the cover swallow P-2204 and passed as a
+    // double-booking instead.
+    const shortByASecond = RulesEngine.checkRest04({
+        crewId: 'C-5837', newReportUtc: coverReport,
+        coverReleaseUtc: '2026-09-16T13:30:01Z' });
+    check('a shortfall of one second does not round its way to a pass',
+          !shortByASecond.legal && /downstream conflict/.test(shortByASecond.reason),
+          shortByASecond.reason);
+    equal('...and it is reported rounded, as 12h',
+          shortByASecond.inputs?.['rest_before_next_own_duty_h'], 12);
 
     // min_rest_hours was dead config: checkRest04 compared against
     // last_rest_ended and never read the parameter at all.

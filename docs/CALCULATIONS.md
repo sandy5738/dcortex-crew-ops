@@ -160,8 +160,17 @@ the duty length.
 | Rest **after** the cover (downstream) | `next_own_report - cover_release ≥ 12h` |
 | **Double-booking** | the cover overlaps a `pairing_days` row the crew already holds |
 
-Previous release: `duty_clocks.last_rest_ended`, or the release of their
-preceding `pairing_days` row. Next own duty:
+Both releases come from `pairing_days` — the crew member's own rostered duties.
+
+⚠ **`duty_clocks.last_rest_ended` is NOT a release time.** `generate.py:322`
+sets it to `last_duty_end + 12h`, i.e. the *earliest legal next report*. Rest
+has already been added. Treating it as a release and adding 12h again
+double-counts the minimum, and it is why the original one-directional check
+looked plausible while reproducing none of the answer keys: it yields +4h for
+C-1938 where the key says −7.25h. Use it only as a ready-made "not before"
+timestamp, never as an input to a rest subtraction.
+
+Next own duty:
 
 ```sql
 SELECT MIN(pd.report_utc) FROM pairing_crew pc

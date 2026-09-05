@@ -61,14 +61,17 @@ export const Schemas = {
     }),
     REST04: z.object({
         crewId: z.string(),
-        newReportUtc: z.string().datetime().describe("UTC ISO string of the proposed duty's report time"),
-        // Optional so the one-directional question ("crew released at 15:30Z,
-        // when may they report next?") still works. Supply it whenever a
-        // cover is being evaluated: without it the downstream and overlap
-        // checks cannot run, and the verdict says so rather than quietly
-        // reporting a pass it did not earn.
-        coverReleaseUtc: z.string().datetime().optional()
-            .describe("UTC ISO release time of the LAST day of the proposed cover. Required to check rest before the crew's own next duty, and to detect double-booking.")
+        newReportUtc: z.string().datetime().describe("UTC ISO report time of the FIRST day of the proposed cover"),
+        // Required, not optional. It was optional so that "crew released at
+        // 15:30Z, when may they report next?" could reuse this function - but
+        // that question is arithmetic (release + min_rest), not a legality
+        // check, and making it optional meant a caller who omitted it got
+        // legal: true with only one of the three checks performed. A reason
+        // suffix does not protect a caller reading the boolean, and the whole
+        // point of this rule is that under-checking approves illegal
+        // assignments. A cover always has a release time; require it.
+        coverReleaseUtc: z.string().datetime()
+            .describe("UTC ISO release time of the LAST day of the proposed cover. Used to check rest before the crew's own next duty, and to detect double-booking.")
     }),
     QUAL05: z.object({
         crewId: z.string(),
@@ -185,8 +188,16 @@ function historyOver(
 }
 
 const HOUR_MS = 3_600_000;
+/**
+ * Exact elapsed hours. NOT rounded.
+ *
+ * Rounding before the comparison lets 11h59m59s become 12.00 and clear a
+ * 12-hour minimum. Legality is a threshold test, so it compares the exact
+ * value; rounding happens only where a number is displayed or recorded in
+ * `inputs`.
+ */
 const hoursBetween = (laterIso: string, earlierIso: string) =>
-    Math.round(((Date.parse(laterIso) - Date.parse(earlierIso)) / HOUR_MS) * 100) / 100;
+    (Date.parse(laterIso) - Date.parse(earlierIso)) / HOUR_MS;
 
 interface OwnDuty { pairing_id: string; date: string; report_utc: string; release_utc: string }
 
@@ -223,7 +234,11 @@ function restAround(crewId: string, coverReport: string, coverRelease?: string) 
     let next: OwnDuty | undefined;
     let overlaps: OwnDuty[] = [];
     if (coverRelease) {
-        next = own.find(o => o.report_utc > coverRelease);
+        // >= not >: a duty reporting exactly when the cover releases has zero
+        // hours of rest and must fail. With a strict >, it was selected as
+        // neither the next duty nor an overlap (touching intervals do not
+        // overlap), so it fell through both checks and read as legal.
+        next = own.find(o => o.report_utc >= coverRelease);
         after = next ? hoursBetween(next.report_utc, coverRelease) : null;
         overlaps = own.filter(o => o.report_utc < coverRelease && o.release_utc > coverReport);
     }
@@ -367,20 +382,22 @@ export class RulesEngine {
         const failures: string[] = [];
         const inputs: Record<string, number> = {};
 
+        // Compare the exact elapsed hours; round only for the trace and the
+        // prose, so a 11h59m59s shortfall cannot round its way to a pass.
         if (before !== null) {
-            inputs['rest_before_cover_h'] = before;
+            inputs['rest_before_cover_h'] = round2(before);
             if (before < min) {
                 failures.push(
-                    `only ${before}h rest before COVER on ${newReportUtc.slice(0, 10)} ` +
+                    `only ${round2(before)}h rest before COVER on ${newReportUtc.slice(0, 10)} ` +
                     `(after ${prev!.pairing_id} on ${prev!.date})`);
             }
         }
 
         if (after !== null) {
-            inputs['rest_before_next_own_duty_h'] = after;
+            inputs['rest_before_next_own_duty_h'] = round2(after);
             if (after < min) {
                 failures.push(
-                    `only ${after}h rest before ${next!.pairing_id} on ${next!.date} ` +
+                    `only ${round2(after)}h rest before ${next!.pairing_id} on ${next!.date} ` +
                     `(downstream conflict)`);
             }
         }
@@ -390,26 +407,18 @@ export class RulesEngine {
         }
         inputs['overlapping_duties'] = overlaps.length;
 
-        // Say plainly when the caller gave us no release time: the downstream
-        // and overlap checks did not run, so a pass here is narrower than it
-        // looks. Under-checking is how an illegal assignment gets approved.
-        const partial = !coverReleaseUtc;
-        const scope = partial
-            ? ' [before-cover only; supply coverReleaseUtc for downstream and overlap]'
-            : '';
-
         const legal = failures.length === 0;
         return {
             rule_id: "RULE-REST-04",
             legal,
             limit: min,
-            actual: before ?? undefined,
+            actual: before !== null ? round2(before) : undefined,
             inputs,
             reason: legal
-                ? `Legal. ${before !== null ? `${before}h before the cover` : 'no prior duty'}` +
-                  `${after !== null ? `, ${after}h before their next duty` : ''} ` +
-                  `(min ${min}h).${scope}`
-                : `Violation. RULE-REST-04: ${failures.join('; ')}.${scope}`
+                ? `Legal. ${before !== null ? `${round2(before)}h before the cover` : 'no prior duty'}` +
+                  `${after !== null ? `, ${round2(after)}h before their next duty` : ''} ` +
+                  `(min ${min}h).`
+                : `Violation. RULE-REST-04: ${failures.join('; ')}.`
         };
     }
 
