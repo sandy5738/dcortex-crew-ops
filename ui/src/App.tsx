@@ -29,13 +29,11 @@ export default function App() {
           </div>
         )}
 
-        {!error && (
-          <TieredResponse
-            turn={latestTurn}
-            loading={loading}
-            onFollowUp={(prompt) => void ask(prompt)}
-          />
-        )}
+        <TieredResponse
+          turn={latestTurn}
+          loading={loading}
+          onFollowUp={(prompt) => void ask(prompt)}
+        />
       </main>
     </div>
   );

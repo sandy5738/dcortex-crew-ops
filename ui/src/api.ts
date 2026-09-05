@@ -168,6 +168,36 @@ export function useChat() {
       const userMessage: Message = { role: "you", text: query };
       const history = toChatHistory(state.messages);
 
+      if (fixtureMode()) {
+        const assistantText =
+          `Fixture mode answer from verdict_s2.json. ` +
+          `Top legal option: ${FIXTURE_S2.options[0]?.crew_id ?? "n/a"}. ` +
+          `${FIXTURE_S2.options.length} legal options and ${FIXTURE_S2.excluded.length} excluded candidates.`;
+
+        const assistantMessage: Message = {
+          role: "advisor",
+          text: assistantText,
+        };
+
+        setState((s) => ({
+          ...s,
+          messages: [...s.messages, userMessage, assistantMessage],
+          turns: [
+            ...s.turns,
+            {
+              id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+              question: query,
+              answer: assistantText,
+              reasoningTrail: [],
+              createdAt: new Date().toISOString(),
+            },
+          ],
+          loading: false,
+          error: null,
+        }));
+        return;
+      }
+
       setState((s) => ({
         ...s,
         messages: [...s.messages, userMessage],
@@ -204,6 +234,12 @@ export function useChat() {
       } catch (e) {
         setState((s) => ({
           ...s,
+          messages:
+            s.messages.length > 0 &&
+            s.messages[s.messages.length - 1].role === "you" &&
+            s.messages[s.messages.length - 1].text === query
+              ? s.messages.slice(0, -1)
+              : s.messages,
           loading: false,
           error:
             e instanceof Error

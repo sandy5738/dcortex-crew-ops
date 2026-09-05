@@ -238,12 +238,15 @@ const toolNode = new ToolNode(tools);
  */
 
 const callModel = async (state: any) => {
-    const sarvamApiKey = process.env.SARVAM_API_KEY ?? process.env.OPENAI_API_KEY;
+    const sarvamApiKey = process.env.SARVAM_API_KEY;
     const sarvamBaseUrl = process.env.SARVAM_BASE_URL ?? "https://api.sarvam.ai/v1";
     const sarvamModel = process.env.SARVAM_MODEL ?? "sarvam-105b";
+    const openAiApiKey = process.env.OPENAI_API_KEY;
+    const openAiBaseUrl = process.env.OPENAI_BASE_URL;
+    const openAiModel = process.env.OPENAI_MODEL ?? "gpt-4o-mini";
     const tokenRouterApiKey = process.env.TOKENROUTER_API_KEY;
 
-    const candidates: ChatOpenAI[] = [];
+    const candidates = [] as Array<ReturnType<ChatOpenAI["bindTools"]>>;
 
     if (sarvamApiKey) {
         candidates.push(
@@ -253,6 +256,19 @@ const callModel = async (state: any) => {
                 temperature: 0,
                 configuration: {
                     baseURL: sarvamBaseUrl
+                }
+            }).bindTools(tools),
+        );
+    }
+
+    if (openAiApiKey) {
+        candidates.push(
+            new ChatOpenAI({
+                modelName: openAiModel,
+                apiKey: openAiApiKey,
+                temperature: 0,
+                configuration: {
+                    ...(openAiBaseUrl ? { baseURL: openAiBaseUrl } : {})
                 }
             }).bindTools(tools),
         );
@@ -273,7 +289,7 @@ const callModel = async (state: any) => {
 
     if (candidates.length === 0) {
         throw new Error(
-            "Missing API credentials. Set SARVAM_API_KEY (preferred), OPENAI_API_KEY, or TOKENROUTER_API_KEY in .env.",
+            "Missing API credentials. Set SARVAM_API_KEY, OPENAI_API_KEY, or TOKENROUTER_API_KEY in .env.",
         );
     }
 
