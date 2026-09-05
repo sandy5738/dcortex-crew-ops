@@ -260,6 +260,7 @@ const callModel = async (state: any) => {
     const openai = new ChatOpenAI({
         modelName: "sarvam-105b",
         temperature: 0,
+        openAIApiKey: process.env.SARVAM_API_KEY || "missing",
         configuration: {
             baseURL: "https://api.sarvam.ai/v1",
             apiKey: process.env.SARVAM_API_KEY
