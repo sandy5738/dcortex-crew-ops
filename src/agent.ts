@@ -269,7 +269,7 @@ const callModel = async (state: any) => {
         temperature: 0,
         configuration: {
             baseURL: "https://api.sarvam.ai/v1",
-            apiKey: "sk_7r1uy3rf_q1k8hq81MkwkyZ0LlTDhlW3i"
+            apiKey: process.env.SARVAM_API_KEY"
         }
     }).bindTools(tools);
     
