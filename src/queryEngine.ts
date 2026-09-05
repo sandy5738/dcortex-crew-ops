@@ -31,7 +31,11 @@ export const QuerySchemas = {
         // Questions name the aircraft and date rather than the pairing:
         // "who is the Senior Cabin Crew on VT-DXB's pairing on 16 Sep?"
         aircraft: z.string().optional().describe("Tail number (e.g., VT-DXB). Use with date when the pairing id is unknown."),
-        date: z.string().optional().describe("Date in YYYY-MM-DD, used with aircraft")
+        date: z.string().optional().describe("Date in YYYY-MM-DD, used with aircraft"),
+        // Questions also name a single leg — "move C-2087 onto DX412". Without
+        // this the pairing id was unobtainable and the model guessed one,
+        // producing correct arithmetic against entirely the wrong pairing.
+        flightId: z.string().optional().describe("Flight number or full flight id (e.g., DX412 or DX412-2026-09-15). Use with date when only the flight number is given. ALWAYS resolve a flight to its pairing this way rather than guessing a pairing id.")
     }),
     GetRiskSignals: z.object({
         crewId: z.string().optional().describe("Crew ID; omit to list the highest-risk crew"),
@@ -138,9 +142,44 @@ export class QueryEngine {
             // Resolve by aircraft + date when the pairing id is unknown, which
             // is how the questions actually phrase it.
             let pairingId = input.pairingId;
+
+            // Resolve a leg to the pairing that flies it. A flight number
+            // recurs across the week (DX412 flies on the 15th, 17th and 19th
+            // on three different pairings), so an ambiguous match returns the
+            // choices rather than picking one.
+            if (!pairingId && input.flightId) {
+                const exact = /-\d{4}-\d{2}-\d{2}$/.test(input.flightId);
+                const matches = db.prepare(
+                    exact
+                        ? `SELECT pairing_id, date, flight_id FROM pairing_day_flights
+                           WHERE flight_id = ?`
+                        : `SELECT pdf.pairing_id, pdf.date, pdf.flight_id
+                           FROM pairing_day_flights pdf
+                           JOIN flights f ON f.flight_id = pdf.flight_id
+                           WHERE f.flight_no = ?${input.date ? ' AND pdf.date = ?' : ''}
+                           ORDER BY pdf.date`
+                ).all(...(exact ? [input.flightId]
+                                : input.date ? [input.flightId, input.date]
+                                             : [input.flightId])) as any[];
+
+                if (matches.length === 0) {
+                    return { error: `No pairing flies ${input.flightId}${input.date ? ` on ${input.date}` : ''}` };
+                }
+                if (matches.length > 1) {
+                    return {
+                        error: `${input.flightId} operates on ${matches.length} dates. ` +
+                               `Supply a date, or the full flight id.`,
+                        choices: matches.map(m => ({
+                            flight_id: m.flight_id, pairing_id: m.pairing_id, date: m.date,
+                        })),
+                    };
+                }
+                pairingId = matches[0].pairing_id;
+            }
+
             if (!pairingId) {
                 if (!input.aircraft || !input.date) {
-                    return { error: "Supply either pairingId, or aircraft and date." };
+                    return { error: "Supply pairingId, or flightId, or aircraft and date." };
                 }
                 const found = db.prepare(
                     `SELECT DISTINCT pdf.pairing_id FROM pairing_day_flights pdf

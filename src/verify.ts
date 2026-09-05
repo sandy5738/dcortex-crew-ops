@@ -26,6 +26,7 @@ import { RulesEngine, Schemas, calendarWindow, ruleParams } from './rulesEngine'
 import { deriveDuty, fdpLimit } from './duty';
 import { recommendCover } from './decide';
 import { assessStationClosure, planJointCover } from './disruption';
+import { QueryEngine } from './queryEngine';
 
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
@@ -527,6 +528,26 @@ function derivationAndRecommendation() {
     const a = JSON.stringify(recommendCover(s2.event.pairing_id, s2.event.crew_id));
     const b = JSON.stringify(recommendCover(s2.event.pairing_id, s2.event.crew_id));
     check('recommendCover is deterministic', a === b);
+
+    // -- A flight id must resolve to its pairing.
+    // Without this the model had no way to answer "move C-2087 onto DX412":
+    // it guessed a pairing and returned perfect arithmetic about the wrong
+    // one (63.08h against P-2202 instead of 61.33h against P-2291). A guessed
+    // identifier is the worst failure available here, because the rules then
+    // evaluate it flawlessly.
+    const byFullId = QueryEngine.getPairing({ flightId: 'DX412-2026-09-15' }) as any;
+    equal('a full flight id resolves to its pairing', byFullId.pairing_id, 'P-2291');
+
+    const byNumberAndDate = QueryEngine.getPairing(
+        { flightId: 'DX412', date: '2026-09-15' }) as any;
+    equal('a flight number plus date resolves', byNumberAndDate.pairing_id, 'P-2291');
+
+    // DX412 flies on three dates across three pairings. Picking one silently
+    // is how the original bug looked from the outside.
+    const ambiguous = QueryEngine.getPairing({ flightId: 'DX412' }) as any;
+    check('an ambiguous flight number is refused, not guessed',
+          !!ambiguous.error && Array.isArray(ambiguous.choices) && ambiguous.choices.length > 1,
+          JSON.stringify(ambiguous).slice(0, 120));
 
     // -- S3: a station closure, both directions. 9 of the 13 affected flights
     // are ARRIVALS - the narrative is explicit that aircraft may not land in

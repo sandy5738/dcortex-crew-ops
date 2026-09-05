@@ -74,7 +74,7 @@ export const TOOLS = [
     tool('getCrew', 'Look up crew details: rank, base, ratings, status. Search by crewId, or list everyone of a rank and/or base.', QuerySchemas.GetCrew),
     tool('getFlights', 'Flight schedules for a date, optionally filtered by departure or arrival station.', QuerySchemas.GetFlights),
     tool('getNetworkStats', 'Network aggregates: how many flights operate, the longest block time and which flights hold it, and which stations are served nonstop from a given station.', QuerySchemas.GetNetworkStats),
-    tool('getPairing', 'The full pairing: days, report/release, legs and assigned crew. Identify it by pairingId, or by aircraft plus date.', QuerySchemas.GetPairing),
+    tool('getPairing', 'The full pairing: days, report/release, legs and assigned crew. Identify it by pairingId, by flightId (which leg it flies), or by aircraft plus date. Call this FIRST whenever a question names a flight or an aircraft but you need a pairing id — never guess one.', QuerySchemas.GetPairing),
     tool('getReservePool', 'Which crew are on reserve for a date and base, with their on-call windows.', QuerySchemas.GetReservePool),
     tool('getExpiringCertifications', 'Certifications expiring within a date range.', QuerySchemas.GetExpiringCertifications),
     tool('getDutyHours', "A crew member's accrued duty and flight hours and last rest.", QuerySchemas.GetDutyHours),

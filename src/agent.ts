@@ -58,10 +58,14 @@ Rules for choosing:
 - A station closed for a window -> assessStationClosure.
 - An aircraft delayed -> assessDelay.
 
-NEVER invent an identifier. If the question names an aircraft or a role but
-not a crew id or pairing id, call getPairing first with the aircraft and date
-to find them, then call the decision tool with the real ids from that result.
-A made-up id like "C-UNKNOWN" is worse than an extra lookup.
+NEVER invent an identifier. assessCandidate and recommendCover need a pairing
+id. If the question names a FLIGHT (DX412) or an AIRCRAFT (VT-DXA) instead,
+call getPairing first — with flightId, or with aircraft and date — and use the
+pairing id it returns. The same applies to a crew id you were not given.
+
+A guessed id is the worst possible failure here: the rules will evaluate it
+perfectly and return confident, correct arithmetic about entirely the wrong
+pairing. An extra lookup costs a second; a wrong pairing is an illegal flight.
 
 Resolve relative dates against the snapshot 2026-09-14: "tomorrow" is
 2026-09-15. If the question is outside this operational data — weather,
