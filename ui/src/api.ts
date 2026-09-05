@@ -1,19 +1,16 @@
 /**
  * The one place the frontend talks to the backend.
  *
- * One useAsk() hook owns the API call; no component fetches for itself.
- * Everything below is that hook plus the small ledger/rules calls.
+ * The chat UI uses useChat() to call /api/chat. Legacy verdict-mode helpers
+ * (useAsk, recordChoice, rules reload) are still kept for fixture workflows.
  *
  * Vite proxies /api/* to http://localhost:3000 (vite.config.ts), so there is
  * no CORS configuration anywhere.
- *
- * ⚠ The backend does not serve POST /ask yet — src/api.ts exposes per-tool
- * routes and a stub /chat. Until an endpoint returns a Verdict, run the UI
- * with ?fixture=1. See ui/README.md.
  */
 import { useCallback, useEffect, useState } from "react";
 import type { Result, Verdict } from "./types";
 import fixtureS2 from "@fixtures/verdict_s2.json";
+import type { Message } from "./components/ConversationRail";
 
 export const FIXTURE_S2 = fixtureS2 as unknown as Verdict;
 
@@ -29,6 +26,30 @@ export interface AskResponse {
   degraded: boolean;
   /** Ledger row id, so a strip click can write controller_chose back. */
   decision_id: string | null;
+}
+
+export interface ChatHistoryItem {
+  role: "user" | "assistant";
+  content: string;
+}
+
+export interface ReasoningTrailItem {
+  tool_called: string;
+  arguments: unknown;
+  raw_result: unknown;
+}
+
+export interface ChatResponse {
+  answer: string;
+  reasoning_trail: ReasoningTrailItem[];
+}
+
+export interface ChatTurn {
+  id: string;
+  question: string;
+  answer: string;
+  reasoningTrail: ReasoningTrailItem[];
+  createdAt: string;
 }
 
 async function post<T>(path: string, body: unknown): Promise<T> {
@@ -51,6 +72,13 @@ export type AskState = {
   /** State what happened and what to do. Never "Something went wrong." */
   error: string | null;
   degraded: boolean;
+};
+
+export type ChatState = {
+  messages: Message[];
+  turns: ChatTurn[];
+  loading: boolean;
+  error: string | null;
 };
 
 export function useAsk() {
@@ -114,6 +142,114 @@ export function useAsk() {
       });
     }
   }, []);
+
+  return { ...state, ask };
+}
+
+function toChatHistory(messages: Message[]): ChatHistoryItem[] {
+  return messages.map((m) => ({
+    role: m.role === "you" ? "user" : "assistant",
+    content: m.text,
+  }));
+}
+
+export function useChat() {
+  const [state, setState] = useState<ChatState>({
+    messages: [],
+    turns: [],
+    loading: false,
+    error: null,
+  });
+
+  const ask = useCallback(
+    async (query: string) => {
+      if (state.loading) return;
+
+      const userMessage: Message = { role: "you", text: query };
+      const history = toChatHistory(state.messages);
+
+      if (fixtureMode()) {
+        const assistantText =
+          `Fixture mode answer from verdict_s2.json. ` +
+          `Top legal option: ${FIXTURE_S2.options[0]?.crew_id ?? "n/a"}. ` +
+          `${FIXTURE_S2.options.length} legal options and ${FIXTURE_S2.excluded.length} excluded candidates.`;
+
+        const assistantMessage: Message = {
+          role: "advisor",
+          text: assistantText,
+        };
+
+        setState((s) => ({
+          ...s,
+          messages: [...s.messages, userMessage, assistantMessage],
+          turns: [
+            ...s.turns,
+            {
+              id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+              question: query,
+              answer: assistantText,
+              reasoningTrail: [],
+              createdAt: new Date().toISOString(),
+            },
+          ],
+          loading: false,
+          error: null,
+        }));
+        return;
+      }
+
+      setState((s) => ({
+        ...s,
+        messages: [...s.messages, userMessage],
+        loading: true,
+        error: null,
+      }));
+
+      try {
+        const data = await post<ChatResponse>("/chat", {
+          message: query,
+          history,
+        });
+
+        const assistantMessage: Message = {
+          role: "advisor",
+          text: data.answer,
+        };
+
+        setState((s) => ({
+          messages: [...s.messages, assistantMessage],
+          turns: [
+            ...s.turns,
+            {
+              id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+              question: query,
+              answer: data.answer,
+              reasoningTrail: data.reasoning_trail ?? [],
+              createdAt: new Date().toISOString(),
+            },
+          ],
+          loading: false,
+          error: null,
+        }));
+      } catch (e) {
+        setState((s) => ({
+          ...s,
+          messages:
+            s.messages.length > 0 &&
+            s.messages[s.messages.length - 1].role === "you" &&
+            s.messages[s.messages.length - 1].text === query
+              ? s.messages.slice(0, -1)
+              : s.messages,
+          loading: false,
+          error:
+            e instanceof Error
+              ? `${e.message}. Is the API running? Start it with \`npm start\`.`
+              : "Unknown error",
+        }));
+      }
+    },
+    [state.loading, state.messages],
+  );
 
   return { ...state, ask };
 }

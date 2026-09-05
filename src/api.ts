@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 // @ts-ignore
@@ -158,9 +159,24 @@ app.post('/tools/rollback_db', (req, res) => {
     }
 });
 app.post('/chat', async (req, res) => {
-    const { message } = req.body;
+    const { message, history } = req.body;
     if (!message || typeof message !== 'string') {
         return res.status(400).json({ error: 'message field required (string)' });
+    }
+
+    const safeHistory = Array.isArray(history)
+        ? history
+            .filter((m) => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
+            .slice(-20)
+        : [];
+
+    function parseMaybeJson(value: unknown): unknown {
+        if (typeof value !== 'string') return value;
+        try {
+            return JSON.parse(value);
+        } catch {
+            return value;
+        }
     }
 
     try {
@@ -177,38 +193,45 @@ When providing crew replacement options, format as JSON with options array conta
         const result = await graph.invoke({
             messages: [
                 { role: 'system', content: systemPrompt },
+                ...safeHistory,
                 { role: 'user', content: message }
             ]
         });
 
-        // Extract tool calls and results for the reasoning trail
+        // Extract tool calls and pair them with tool outputs for transparency.
         const toolCalls: any[] = [];
+        const byToolCallId = new Map<string, { tool_called: string; arguments: unknown; raw_result: unknown }>();
+
         for (const msg of result.messages) {
             const m = msg as any;
             if (m.tool_calls && Array.isArray(m.tool_calls)) {
                 for (const tc of m.tool_calls) {
-                    toolCalls.push({
-                        id: tc.id,
+                    const row = {
                         tool_called: tc.name,
                         arguments: tc.args,
-                        raw_result: undefined
-                    });
+                        raw_result: null
+                    };
+                    toolCalls.push(row);
+                    if (tc.id) byToolCallId.set(tc.id, row);
                 }
             }
-            if (m.type === 'tool' || m._getType?.() === 'tool' || ('tool_call_id' in m)) {
-                for (const tc of toolCalls) {
-                    if (tc.raw_result === undefined && m.tool_call_id === tc.id) {
-                        try {
-                            tc.raw_result = typeof m.content === 'string' ? JSON.parse(m.content) : m.content;
-                        } catch {
-                            tc.raw_result = m.content;
-                        }
-                    }
+
+            if (m.type === 'tool') {
+                const parsedContent = parseMaybeJson(m.content);
+                const matched = m.tool_call_id ? byToolCallId.get(m.tool_call_id) : undefined;
+                if (matched) {
+                    matched.raw_result = parsedContent;
+                } else {
+                    toolCalls.push({
+                        tool_called: m.name || 'tool',
+                        arguments: {},
+                        raw_result: parsedContent
+                    });
                 }
             }
         }
 
-        const reasoning_trail = toolCalls.map(({ id, ...rest }) => rest);
+        const reasoning_trail = toolCalls;
         const last = result.messages[result.messages.length - 1];
         const answer = (last as any).content || (last as any).response || '';
         

@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { ChatOpenAI } from "@langchain/openai";
 import { MessagesAnnotation, StateGraph } from "@langchain/langgraph";
 import { BaseMessage } from "@langchain/core/messages";
@@ -353,31 +354,66 @@ const toolNode = new ToolNode(tools);
  */
 
 const callModel = async (state: any) => {
-    const primaryModel = new ChatOpenAI({
-        modelName: "sarvam-105b",
-        temperature: 0,
-        openAIApiKey: process.env.SARVAM_API_KEY || "missing",
-        configuration: {
-            baseURL: "https://api.sarvam.ai/v1",
-            apiKey: process.env.SARVAM_API_KEY
-        }
-    }).bindTools(tools);
+    const sarvamApiKey = process.env.SARVAM_API_KEY;
+    const sarvamBaseUrl = process.env.SARVAM_BASE_URL ?? "https://api.sarvam.ai/v1";
+    const sarvamModel = process.env.SARVAM_MODEL ?? "sarvam-105b";
+    const openAiApiKey = process.env.OPENAI_API_KEY;
+    const openAiBaseUrl = process.env.OPENAI_BASE_URL;
+    const openAiModel = process.env.OPENAI_MODEL ?? "gpt-4o-mini";
+    const tokenRouterApiKey = process.env.TOKENROUTER_API_KEY;
 
-    const fallbackModel = new ChatOpenAI({
-        modelName: "glm-4",
-        temperature: 0,
-        openAIApiKey: process.env.TOKENROUTER_API_KEY || "missing",
-        configuration: {
-            baseURL: "https://api.tokenrouter.com/v1",
-            apiKey: process.env.TOKENROUTER_API_KEY
-        }
-    }).bindTools(tools);
+    const candidates = [] as Array<ReturnType<ChatOpenAI["bindTools"]>>;
 
-    const modelWithFallback = primaryModel.withFallbacks({
-        fallbacks: [fallbackModel]
-    });
+    if (sarvamApiKey) {
+        candidates.push(
+            new ChatOpenAI({
+                modelName: sarvamModel,
+                apiKey: sarvamApiKey,
+                temperature: 0,
+                configuration: {
+                    baseURL: sarvamBaseUrl
+                }
+            }).bindTools(tools),
+        );
+    }
 
-    const response = await modelWithFallback.invoke(state.messages as BaseMessage[]);
+    if (openAiApiKey) {
+        candidates.push(
+            new ChatOpenAI({
+                modelName: openAiModel,
+                apiKey: openAiApiKey,
+                temperature: 0,
+                configuration: {
+                    ...(openAiBaseUrl ? { baseURL: openAiBaseUrl } : {})
+                }
+            }).bindTools(tools),
+        );
+    }
+
+    if (tokenRouterApiKey) {
+        candidates.push(
+            new ChatOpenAI({
+                modelName: "glm-4",
+                apiKey: tokenRouterApiKey,
+                temperature: 0,
+                configuration: {
+                    baseURL: "https://api.tokenrouter.com/v1"
+                }
+            }).bindTools(tools),
+        );
+    }
+
+    if (candidates.length === 0) {
+        throw new Error(
+            "Missing API credentials. Set SARVAM_API_KEY, OPENAI_API_KEY, or TOKENROUTER_API_KEY in .env.",
+        );
+    }
+
+    const model = candidates.length > 1
+        ? candidates[0].withFallbacks({ fallbacks: candidates.slice(1) })
+        : candidates[0];
+
+    const response = await model.invoke(state.messages as BaseMessage[]);
     return { messages: [response] };
 };
 
