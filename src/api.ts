@@ -6,7 +6,7 @@ import { RulesEngine, Schemas as RuleSchemas } from './rulesEngine';
 import { QueryEngine, QuerySchemas } from './queryEngine';
 import { simulateImpact } from './simulator';
 import { graph } from './agent';
-import { getDb, closeDb } from './db';
+import { getDb, closeDb, openForUpdate } from './db';
 
 const app = express();
 app.use(cors());
@@ -121,7 +121,7 @@ app.post('/tools/update_crew_status', (req, res) => {
     const { crewId, status } = req.body;
     if (!crewId || !status) return res.status(400).json({ error: 'crewId and status required' });
     try {
-        const db = getDb();
+        const db = openForUpdate();
         db.prepare("UPDATE crew SET status = ? WHERE crew_id = ?").run(status, crewId);
         db.close();
         closeDb();
@@ -135,7 +135,7 @@ app.post('/tools/assign_pairing_crew', (req, res) => {
     const { pairingId, crewId, role } = req.body;
     if (!pairingId || !crewId || !role) return res.status(400).json({ error: 'pairingId, crewId, and role required' });
     try {
-        const db = getDb();
+        const db = openForUpdate();
         const seq = db.prepare("SELECT MAX(seq) as max_seq FROM pairing_crew WHERE pairing_id = ?").get(pairingId) as any;
         const newSeq = (seq?.max_seq ?? 0) + 1;
         db.prepare("INSERT INTO pairing_crew (pairing_id, crew_id, role, seq) VALUES (?, ?, ?, ?)").run(pairingId, crewId, role, newSeq);
@@ -171,7 +171,8 @@ Current operational context:
 - When the user refers to "today", "this afternoon", "tonight", or does not specify a date, use current date.
 - When the user refers to "tomorrow", use the day after current date.
 You have access to tools to query flights, crew, reserve pools, duty hours, certifications, pairings, check legality rules (FDP limits, 7-day duty, 28-day flight hours, minimum rest, aircraft ratings, certifications, base/deadhead), and disruption simulations.
-Always call the appropriate tool to query the database or evaluate rules when answering user questions. Reason step-by-step using deterministic tool results.`;
+Always call the appropriate tool to query the database or evaluate rules when answering user questions. Reason step-by-step using deterministic tool results.
+When providing crew replacement options, format as JSON with options array containing: rank, action, legal, rules_checked, cost_inr, coverage, reasoning.`;
 
         const result = await graph.invoke({
             messages: [
@@ -210,6 +211,16 @@ Always call the appropriate tool to query the database or evaluate rules when an
         const reasoning_trail = toolCalls.map(({ id, ...rest }) => rest);
         const last = result.messages[result.messages.length - 1];
         const answer = (last as any).content || (last as any).response || '';
+        
+        // Try to parse answer as JSON if it looks like JSON
+        try {
+            const jsonMatch = answer.match(/\{[\s\S]*\}/);
+            if (jsonMatch) {
+                const parsed = JSON.parse(jsonMatch[0]);
+                return res.json({ ...parsed, reasoning_trail });
+            }
+        } catch {}
+        
         return res.json({ answer, reasoning_trail });
     } catch (err: any) {
         console.error('Agent error:', err.message);
