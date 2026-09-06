@@ -8,10 +8,23 @@ import { QueryEngine, QuerySchemas } from './queryEngine';
 import { simulateImpact } from './simulator';
 import { graph } from './agent';
 import { getDb, closeDb, openForUpdate } from './db';
+import { opsSnapshot } from './opsSnapshot';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// =================================================================
+// OPS DECK (deterministic, no LLM) — one call powers the whole board
+// =================================================================
+
+app.get('/ops/snapshot', (_req, res) => {
+    try {
+        res.json(opsSnapshot());
+    } catch (err: any) {
+        res.status(500).json({ error: err.message });
+    }
+});
 
 // Setup Morgan logger with a custom token for the request body
 morgan.token('body', (req: express.Request) => {
@@ -190,13 +203,34 @@ You have access to tools to query flights, crew, reserve pools, duty hours, cert
 Always call the appropriate tool to query the database or evaluate rules when answering user questions. Reason step-by-step using deterministic tool results.
 When providing crew replacement options, format as JSON with options array containing: rank, action, legal, rules_checked, cost_inr, coverage, reasoning.`;
 
-        const result = await graph.invoke({
-            messages: [
-                { role: 'system', content: systemPrompt },
-                ...safeHistory,
-                { role: 'user', content: message }
-            ]
-        });
+        // Some providers occasionally end a long tool loop with an empty
+        // final message. One immediate retry with the same inputs fixes it
+        // far more often than it re-fails, and the UI gets an answer
+        // instead of a shrug.
+        let result: Awaited<ReturnType<typeof graph.invoke>>;
+        try {
+            result = await graph.invoke({
+                messages: [
+                    { role: 'system', content: systemPrompt },
+                    ...safeHistory,
+                    { role: 'user', content: message }
+                ]
+            });
+            const finalMsg = result.messages[result.messages.length - 1] as any;
+            const finalContent = finalMsg?.content ?? finalMsg?.response ?? '';
+            if (typeof finalContent !== 'string' || finalContent.trim() === '') {
+                throw new Error('empty final message');
+            }
+        } catch (first: any) {
+            console.warn(`Agent first pass failed (${first.message ?? 'unknown'}), retrying once…`);
+            result = await graph.invoke({
+                messages: [
+                    { role: 'system', content: systemPrompt },
+                    ...safeHistory,
+                    { role: 'user', content: message }
+                ]
+            });
+        }
 
         // Extract tool calls and pair them with tool outputs for transparency.
         const toolCalls: any[] = [];
@@ -233,8 +267,15 @@ When providing crew replacement options, format as JSON with options array conta
 
         const reasoning_trail = toolCalls;
         const last = result.messages[result.messages.length - 1];
-        const answer = (last as any).content || (last as any).response || '';
-        
+        let answer = String((last as any).content || (last as any).response || '');
+
+        // Models often preface the answer with "I now have all the
+        // information…". A controller wants the answer, not the soliloquy.
+        answer = answer.replace(
+            /^\s*(?:I (?:now )?have (?:all|enough|the) (?:information|data)(?: needed|necessary)?[^.\n]*\.|Based on (?:the|my) (?:tool results|data|information)[^.\n]*\.)\s*/i,
+            '',
+        );
+
         // Try to parse answer as JSON if it looks like JSON
         try {
             const jsonMatch = answer.match(/\{[\s\S]*\}/);
@@ -245,7 +286,7 @@ When providing crew replacement options, format as JSON with options array conta
                 }
             }
         } catch {}
-        
+
         return res.json({ answer, reasoning_trail });
     } catch (err: any) {
         console.error('Agent error:', err.message);

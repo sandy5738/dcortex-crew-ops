@@ -1,82 +1,60 @@
-# ui/ — Crew Ops Advisor frontend
+# ui/ — Crew Ops Advisor · Crew Control deck
 
-Vite + React 18 + TypeScript + Tailwind 3. No component library: the interface
-is three custom surfaces and a kit would have cost more setup than it saved.
+Vite + React 18 + TypeScript + Tailwind 3, one dark aerospace ops-room theme.
+No component library: every surface is a strip, because controllers read strips.
 
 ```bash
-cd ui
+# repo root — start the deterministic + agent backend (port 3000)
+npm start
+
+# here — start the deck (port 5173)
 npm install
 npm run dev          # http://localhost:5173
 ```
 
-## Run it without a backend
+The Vite dev server proxies `/api/*` → `http://localhost:3000`, so there is
+no CORS configuration anywhere.
 
-```
-http://localhost:5173/?fixture=1
-```
+## The two surfaces
 
-`?fixture=1` renders `fixtures/verdict_s2.json` directly and makes **no
-network calls at all**. That is the mode to use today, because the backend
-does not serve `POST /ask` yet — `src/api.ts` exposes per-tool routes and a
-`/chat` stub, neither of which returns a `Verdict`.
+| Surface | What it does | Backend |
+|---|---|---|
+| **OpsDeck** (left) | Situation wall: 7-day date bar, flights board with per-flight crew, reserve pool with on-call windows, duty-clock watchlist with 75%/90% bands, disruption-risk board, certification alerts | `GET /api/ops/snapshot` — pure SQL, no LLM |
+| **ChatPanel** (right) | The advisor: plain-language questions, markdown answers with tables, ranked Tier-3 option cards, collapsible reasoning trail per tool call, six worked disruption scenarios | `POST /api/chat` |
 
-`vite.config.ts` aliases `@fixtures` to the repo-root `fixtures/` directory,
-so the UI and any future harness read the *same* file. No copy to drift.
+They are one workflow: **clicking any deck row injects a grounded prompt into
+the chat** (a flight strip, a risky crew member, a duty-clock row, a reserve,
+a cert alert). The deck answers "what is happening"; the advisor answers
+"what should I do about it".
 
-When a real endpoint exists, the dev server proxies `/api/*` to
-`http://localhost:3000` (start it with `npm start` from the repo root), so
-there is no CORS configuration anywhere.
+## The chat, specifically
 
-## What it renders
+- Answers render as markdown — headings, bold, bullets, and the pipe tables
+  the model emits for lookups, rendered by a hand-written parser
+  (`src/markdown.tsx`, zero new dependencies).
+- **Reasoning trail is first-class.** Every assistant turn lists its tool
+  calls, tiered (1 = lookup, 2 = legality, 3 = impact), each expandable to
+  the exact arguments and the deterministic result. Explainability is a
+  hackathon requirement, so it is never hidden behind a debug drawer.
+- Tier-3 replacement answers arrive as JSON options and render as ranked
+  cards: action, legal status, cost (₹), coverage, rule chips.
+- **Drill scenarios** button loads the dataset's six worked disruptions
+  (S1–S6, sick calls, station closure, delay cascade, cert lapse,
+  simultaneous sick calls) as one-click prompts.
+- Multi-turn: history (last 20 messages) is sent with each request.
 
-| Surface | What it does |
-|---|---|
-| `Header` | the situation line, and "28 considered · 4 legal · 19 excluded" |
-| `Rack` | one `Strip` per legal option, in engine rank order |
-| `Certificate` | 7 rule chips per candidate; click one for the full trace |
-| `ExclusionPanel` | the rejects, grouped by failing rule with counts |
-| `ConversationRail` | message history and the composer |
+## Design rules
 
-The design deliberately borrows from ops-room paper flight strips — wide, short,
-hairline-separated, with a colour-coded left edge — and renders the rule trace
-as fixed-width machine output, because that is what it is.
+- Colour is a verdict, never decoration: green pass / amber marginal /
+  red breach — and every state also carries a glyph (✓ ! ✕) and a word.
+- Depth by tone, not shadow. Nothing in this app casts one.
+- Numbers use tabular figures, so columns align on the decimal point.
+- `/` focuses the composer from anywhere.
 
-**Keyboard:** `/` focus input · `j`/`k` move between strips · `Enter` expand ·
-`Esc` collapse.
+## Legacy note
 
-**Colour is never alone.** Every pass/fail carries a glyph (`✓` `✕` `!`) and a
-word, so the interface does not depend on distinguishing red from green.
-
-## The contract
-
-`src/types.ts` describes the `Verdict` the engine must return. Nothing in
-`src/` builds one yet — see the note at the top of that file. Today it matches
-`fixtures/verdict_s2.json` exactly.
-
-When `recommendCover()` lands, the engine's return type and `src/types.ts`
-must move in the same commit. A UI reading a field the engine stopped sending
-fails silently, which is the worst way for this to break.
-
-## Known gaps in the fixture
-
-`fixtures/verdict_s2.json` is a real worked answer, but two things still
-differ from the dataset's own answer key, and the UI is built to tolerate
-them:
-
-- it carries 4 options where the key has 6 — the C-2210 DEL deadhead
-  (₹41,200) and the cancellation fallback (`crew_id: null`, ₹1,500,000)
-- `RuleVerdict.inputs` is empty on the excluded candidates, so only the four
-  legal options have a per-date breakdown to expand
-
-The RULE-DUTY-02 arithmetic **was** wrong on all four legal options — the
-per-date values named the wrong dates and did not sum to `actual`. It is now
-recomputed from `duty_daily_history` and internally consistent, so expanding
-a certificate shows working that checks out.
-
-`pool_size` is 28 while options + excluded is 23. That is deliberate, and the
-trace says so: five captains are not evaluated (the sick crew member himself
-and three on leave — plus C-2210, who belongs in `options`, see above).
-
-`Certificate` shows an explicit amber note rather than an empty grid when
-`inputs` is missing. Build against a legal option (C-3310, C-5566) when you
-need a fully populated trace.
+`src/api.ts`, `src/types.ts` and the verdict-mode components
+(`Strip`, `Rack`, `Certificate`, `ExclusionPanel`, `Header`,
+`ConversationRail`, `TieredResponse`) belong to the earlier fixture-driven
+prototype and are unused by this deck. They are kept for their history and
+removed from the bundle automatically — nothing imports them.

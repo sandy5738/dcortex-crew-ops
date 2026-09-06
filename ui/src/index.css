@@ -3,30 +3,34 @@
 @tailwind utilities;
 
 /* ===================================================================
-   Design tokens — docs/UI_DESIGN.md §2.
-   Five base colours, three semantic. The semantic three are the aviation
-   convention (green / amber / red); a controller reads them without
-   thinking. Colour is a verdict here, never decoration.
+   dCortex Air — Crew Control deck.
+   Aerospace ops-room palette: deep slate, radar amber, verdict colours
+   from the aviation convention (green pass / amber marginal / red
+   breach). Colour is a verdict, never decoration; every state also
+   carries a glyph and a word.
    =================================================================== */
 
 :root {
-  --paper: #f3f4f1; /* page ground */
-  --strip: #ffffff; /* strip and panel face */
-  --board: #2e353b; /* the rack region behind strips, and the left rail */
-  --ink: #14181b; /* primary text */
-  --ink-2: #5a6167; /* labels, secondary */
-  --rule: #d8dad5; /* hairlines, 1px */
+  --paper: #0d1216; /* page ground — dark ops room */
+  --panel: #131a20; /* panel face */
+  --panel-2: #0f1519; /* recessed face (lists) */
+  --strip: #1a232b; /* raised strip (rows) */
+  --board: #131a20;
+  --ink: #e8ebed; /* primary text */
+  --ink-2: #8f989e; /* labels, secondary */
+  --ink-3: #5f6a72; /* faint labels */
+  --rule: #232d35; /* hairlines */
+  --accent: #2dd4bf; /* radar teal — brand, live data */
+  --accent-2: #d3a625; /* cockpit amber — watch states */
 
-  --legal: #17603f; /* rule passed */
-  --breach: #a02724; /* rule failed */
-  --caution: #9a6206; /* passed, but margin under 2h */
+  --legal: #34d399; /* rule passed */
+  --breach: #f87171; /* rule failed */
+  --caution: #fbbf24; /* passed, thin margin */
 
-  --rail-w: 320px;
+  --rail-w: 420px;
 
-  color-scheme: light;
+  color-scheme: dark;
 }
-
-/* ------------------------------------------------------------------ base */
 
 * {
   box-sizing: border-box;
@@ -48,8 +52,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Every element containing a number gets tabular figures, so columns align
-   on the decimal point. This is why the certificate is readable at a glance. */
 .num,
 .mono,
 table {
@@ -61,460 +63,945 @@ table {
     monospace;
 }
 
-/* Depth by tone, not shadow (§2 principle 4). Nothing in this app casts one. */
+/* Depth by tone, not shadow. Nothing in this app casts one. */
 * {
   box-shadow: none !important;
 }
 
-/* ------------------------------------------------------------- semantics */
+.v-legal { color: var(--legal); }
+.v-breach { color: var(--breach); }
+.v-caution { color: var(--caution); }
 
-.v-legal {
-  color: var(--legal);
+.spin {
+  animation: spin 1.1s linear infinite;
 }
-.v-breach {
-  color: var(--breach);
-}
-.v-caution {
-  color: var(--caution);
-}
-
-.edge-legal {
-  border-left-color: var(--legal);
-}
-.edge-breach {
-  border-left-color: var(--breach);
-}
-.edge-caution {
-  border-left-color: var(--caution);
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
-/* ------------------------------------------------------------------ rack */
+/* =================================================================== shell */
 
-/* Strips are rack items, not cards: 2px radius, a 3px left edge in the
-   legality colour, hairline separation. The shared radius-plus-shadow look
-   is exactly the SaaS-kit tell we rejected. */
-.strip {
-  background: var(--strip);
-  border-radius: 2px;
-  border-left: 3px solid var(--rule);
-  border-top: 1px solid var(--rule);
-  border-right: 1px solid var(--rule);
+.shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
   border-bottom: 1px solid var(--rule);
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
+  background: var(--panel);
+  flex: none;
 }
 
-.strip:focus-visible,
-.chip:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 2px;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-/* The strip currently addressed by j/k. Keyboard focus must be visible
-   without a mouse — a controller under pressure does not reach for one. */
-.strip[data-cursor="true"] {
-  outline: 2px solid var(--ink);
-  outline-offset: 2px;
-}
-
-/* ----------------------------------------------------------- certificate */
-
-/* It should read as machine output, because it is. Fixed-width,
-   decimal-aligned, 1px hairline border, no radius. */
-.certificate {
-  background: var(--strip);
-  border: 1px solid var(--rule);
-  border-radius: 0;
-  font-family: "IBM Plex Mono", ui-monospace, "Consolas", monospace;
-  font-variant-numeric: tabular-nums;
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: var(--accent);
+  color: #06231f;
+  font-weight: 700;
+  border-radius: 4px;
   font-size: 13px;
+}
+
+.brand-name {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.brand-sub {
+  color: var(--ink-2);
+  font-size: 13px;
+  border-left: 1px solid var(--rule);
+  padding-left: 10px;
+  white-space: nowrap;     /* the whole bar never wraps to two lines */
+}
+
+.topbar-right {
+  color: var(--ink-2);
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.columns {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* =================================================================== deck */
+
+.deck {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  min-height: 0;
+}
+
+.deck-loading,
+.deck-error {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--ink-2);
+  padding: 24px;
+  font-size: 14px;
+}
+
+.situation-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--panel);
+  flex: none;
   overflow-x: auto;
 }
 
-.chip {
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  background: var(--strip);
-  font-size: 13px;
-  cursor: pointer;
-  white-space: nowrap;
+.situation-dates {
+  display: flex;
+  gap: 6px;
 }
 
-.tier-pre {
-  margin: 0;
-  padding: 8px;
-  max-height: 240px;
-  overflow: auto;
-  background: #f7f7f5;
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  font-family: "IBM Plex Mono", ui-monospace, "Consolas", monospace;
-  font-size: 12px;
-  line-height: 1.35;
-}
-
-.response-shell {
-  display: grid;
-  gap: 16px;
-  max-width: 1120px;
-}
-
-.response-hero,
-.response-card,
-.response-metric-card,
-.response-answer-card,
-.response-tier-card,
-.response-followup-card {
-  background: linear-gradient(180deg, #fffdfa 0%, #ffffff 100%);
-  border: 1px solid var(--rule);
-  border-radius: 12px;
-}
-
-.response-hero {
-  padding: 24px 26px;
-  background:
-    radial-gradient(circle at top right, rgba(204, 132, 40, 0.16), transparent 32%),
-    linear-gradient(135deg, #fffef8 0%, #f8f4ea 100%);
-}
-
-.response-hero-loading {
-  min-height: 148px;
+.date-chip {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-}
-
-.response-eyebrow {
-  margin-bottom: 8px;
-  color: var(--caution);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.response-title {
-  font-size: clamp(28px, 4vw, 42px);
-  line-height: 1.08;
-  font-weight: 600;
-  max-width: 18ch;
-  text-wrap: balance;
-}
-
-.response-subtitle {
-  margin-top: 10px;
-  max-width: 72ch;
+  align-items: center;
+  min-width: 58px;
+  padding: 6px 8px;
+  background: var(--panel-2);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
   color: var(--ink-2);
-  font-size: 15px;
-  line-height: 1.6;
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 1.25;
 }
 
-.response-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.response-card,
-.response-metric-card,
-.response-answer-card,
-.response-followup-card,
-.response-tier-card {
-  padding: 18px;
-}
-
-.response-card-label {
-  color: var(--ink-2);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.response-card-text {
-  margin-top: 8px;
-  color: var(--ink-2);
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.response-metric-value {
-  margin-top: 10px;
-  font-size: 36px;
-  line-height: 1;
-  font-weight: 600;
+.date-chip.on {
+  background: var(--strip);
+  border-color: var(--accent);
   color: var(--ink);
 }
 
-.response-section-head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.response-section-title {
-  margin-top: 3px;
-  font-size: 22px;
-  line-height: 1.2;
+.date-chip .date-day {
+  font-size: 16px;
   font-weight: 600;
+  color: inherit;
 }
 
-.response-time {
+.situation-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
   color: var(--ink-2);
-  font-size: 12px;
+  font-size: 13px;
+  white-space: nowrap;
+  flex: none;                /* dates scroll, meta stays whole */
+}
+
+.refresh-btn {
+  display: inline-flex;
+  padding: 4px;
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.refresh-btn:hover { color: var(--ink); border-color: var(--ink-3); }
+
+.deck-grid {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: grid;
+  /* min(330px, 100%): panels can shrink below 330px rather than pushing
+     the grid out of the deck on narrow viewports. */
+  grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr));
+  gap: 12px;
+  padding: 12px 14px;
+  align-content: start;
+}
+
+.deck-panel {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;      /* panels inside the grid must shrink, not overflow */
+  overflow: hidden;  /* nothing escapes a panel face */
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--rule);
+  min-width: 0;
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  min-width: 0;           /* the flights panel titles carry the date too */
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.response-answer-body {
-  display: grid;
-  gap: 14px;
-  margin-top: 18px;
+/* Chat header: title block must shrink so the scenario button never
+   wraps or pushes out of the rail. */
+.chat-panel .panel-head {
+  padding: 12px 14px;
 }
 
-.response-paragraph {
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.7;
-  color: #1b2328;
+.chat-panel .panel-title,
+.chat-panel .panel-sub {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.response-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: 8px;
+.chat-panel .panel-head > div:first-child {
+  min-width: 0;
 }
 
-.response-list-item {
-  position: relative;
-  padding-left: 18px;
-  font-size: 15px;
-  line-height: 1.6;
-}
-
-.response-list-item::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.72em;
-  width: 7px;
-  height: 7px;
-  border-radius: 999px;
-  background: var(--caution);
-  transform: translateY(-50%);
-}
-
-.response-table-wrap {
-  overflow-x: auto;
-  border: 1px solid var(--rule);
-  border-radius: 10px;
-}
-
-.response-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-}
-
-.response-table th,
-.response-table td {
-  padding: 11px 12px;
-  text-align: left;
-  border-bottom: 1px solid #ece7dc;
-}
-
-.response-table th {
-  background: #f7f1e4;
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+.panel-sub {
   color: var(--ink-2);
+  font-size: 12px;
+  margin-top: 2px;
 }
 
-.response-table tbody tr:last-child td {
-  border-bottom: 0;
+.panel-count {
+  color: var(--accent);
+  font-size: 13px;
+  padding: 1px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
 }
 
-.response-tier-stack {
+.deck-empty {
+  padding: 14px;
+  color: var(--ink-3);
+  font-size: 13px;
+}
+
+/* rows everywhere read as strips: hairline separation, hover raise tone */
+
+.flight-toolbar { padding: 8px 12px 0; }
+
+.station-select {
+  background: var(--panel-2);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 13px;
+}
+
+.flight-list,
+.reserve-list,
+.duty-list,
+.risk-list,
+.cert-list {
+  overflow-y: auto;
+  max-height: 340px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  gap: 4px;
+}
+
+/* duty/risk/cert stay single-line grid rows. flight-strip and reserve-row
+   are two-line flex strips — see their own block below. */
+.duty-row,
+.risk-row,
+.cert-row {
   display: grid;
-  gap: 14px;
-}
-
-.response-tier-card {
-  position: relative;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  text-align: left;
+  background: var(--strip);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--rule);
+  border-radius: 4px;
+  color: var(--ink);
+  padding: 7px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  gap: 6px 10px;
   overflow: hidden;
 }
 
-.response-tier-card::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 5px;
+/* Every grid cell must be allowed to shrink, or long names/drivers push
+   the row past the panel edge. */
+.duty-row > span,
+.risk-row > span,
+.cert-row > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.tone-lookup::before {
-  background: #2c6e63;
+.duty-row:hover,
+.risk-row:hover,
+.cert-row:hover {
+  border-left-color: var(--accent);
+  background: #1e2933;
 }
 
-.tone-checks::before {
-  background: #b17816;
+/* Two-line strips: a flex data line, then a block name line that spans
+   the full strip width. No grid tracks, so nothing can overlap — each
+   line owns its own row box. */
+.flight-strip,
+.reserve-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+  min-width: 0;
+  text-align: left;
+  background: var(--strip);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--rule);
+  border-radius: 4px;
+  color: var(--ink);
+  padding: 7px 10px;
+  cursor: pointer;
+  font-size: 13px;
 }
 
-.tone-impact::before {
-  background: #8b3b32;
+.flight-strip:hover,
+.reserve-row:hover {
+  border-left-color: var(--accent);
+  background: #1e2933;
 }
 
-.tone-other::before {
-  background: #5f6a72;
+.flight-strip:focus-visible,
+.reserve-row:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 1px;
 }
 
-.response-pill,
-.response-chip {
+/* Line 1: fixed-width-ish flex items, aircraft label flexes last. Each
+   item shrinks with ellipsis, never overlaps. */
+.fs-line,
+.rr-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.fs-line > span,
+.rr-line > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: none;
+}
+
+.fs-line .fs-ac { flex: 1 1 auto; }   /* aircraft takes what's left */
+.rr-line .rr-reach { margin-left: auto; }
+
+/* Line 2: names, full width, ellipsized. */
+.fs-names,
+.rr-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fs-names {
+  color: var(--ink-2);
+  font-size: 12px;
+}
+
+.rr-name {
+  color: var(--ink);
+  font-size: 13px;
+}
+
+/* Remaining single-line rows keep their original columns. */
+.duty-row { grid-template-columns: 3.6em 1fr 8.4em 64px auto; }
+.risk-row { grid-template-columns: 3.6em 1fr auto 3.2em auto 1.6fr; }
+.cert-row { grid-template-columns: 3.6em 1fr auto auto 3em; }
+
+.flight-strip .fs-no { color: var(--accent); font-weight: 600; }
+.flight-strip .fs-route { color: var(--ink); }
+.flight-strip .fs-time { color: var(--ink-2); }
+.flight-strip .fs-ac { color: var(--ink-3); font-size: 12px; }
+.flight-strip .fs-crew { color: var(--ink-2); display: flex; gap: 4px; align-items: center; }
+
+.rr-id, .dr-id, .rk-id, .ct-id { color: var(--accent); }
+.rr-name, .dr-name, .rk-name, .ct-name { color: var(--ink); }
+.rr-rank, .rk-rank, .ct-type { color: var(--ink-2); font-size: 12px; }
+.rr-window { color: var(--ink-2); font-size: 12px; }
+.rr-reach { color: var(--ink-2); font-size: 12px; display: flex; align-items: center; gap: 3px; }
+.rr-base { color: var(--ink-3); }
+
+.dr-hours { color: var(--ink-2); font-size: 12px; }
+.dr-bar {
+  height: 5px;
+  border-radius: 999px;
+  background: var(--panel-2);
+  overflow: hidden;
+  border: 1px solid var(--rule);
+}
+.dr-fill { display: block; height: 100%; }
+.dr-fill.fill-legal { background: var(--legal); }
+.dr-fill.fill-caution { background: var(--caution); }
+.dr-fill.fill-breach { background: var(--breach); }
+.dr-state { font-size: 12px; white-space: nowrap; }
+
+.rk-score { color: var(--ink); }
+.rk-label { font-size: 12px; white-space: nowrap; }
+.rk-drivers { color: var(--ink-3); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.ct-date { color: var(--ink-2); font-size: 12px; }
+.ct-days { font-size: 12px; }
+
+.cert-foot {
+  padding: 8px 12px;
+  border-top: 1px solid var(--rule);
+  color: var(--ink-3);
+  font-size: 12px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* =================================================================== chat */
+
+.chat-panel {
+  width: var(--rail-w);
+  max-width: var(--rail-w);  /* flex children can exceed width: — this cannot */
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border-left: 1px solid var(--rule);
+  min-height: 0;
+  overflow: hidden;         /* the rail never pushes past its edge */
+}
+
+.chat-panel .panel-head {
+  padding: 12px 14px;
+}
+
+.scenario-btn {
   display: inline-flex;
   align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  background: var(--panel-2);
   border: 1px solid var(--rule);
   border-radius: 999px;
-  background: #fbfaf6;
-}
-
-.response-pill {
-  padding: 6px 10px;
-  font-size: 12px;
-  color: var(--ink-2);
-}
-
-.response-chip {
-  padding: 4px 9px;
   color: var(--ink-2);
   font-size: 12px;
-}
-
-.response-call-list {
-  display: grid;
-  gap: 10px;
-  margin-top: 14px;
-}
-
-.response-call-item {
-  border: 1px solid #e7e3da;
-  border-radius: 10px;
-  background: #fcfbf8;
-}
-
-.response-call-summary {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 14px;
   cursor: pointer;
-  list-style: none;
+  white-space: nowrap;
 }
-
-.response-call-summary::-webkit-details-marker {
-  display: none;
-}
-
-.response-call-name {
-  font-size: 14px;
+.scenario-btn.on,
+.scenario-btn:hover {
   color: var(--ink);
+  border-color: var(--accent);
 }
 
-.response-call-meta {
-  margin-top: 4px;
+.scenario-tray {
+  border-bottom: 1px solid var(--rule);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: var(--panel-2);
+}
+
+.scenario-caption {
+  color: var(--ink-3);
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.scenario-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 9px;
+  background: var(--strip);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent-2);
+  border-radius: 4px;
+  color: var(--ink);
   font-size: 13px;
-  color: var(--ink-2);
-}
-
-.response-call-body {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  padding: 0 14px 14px;
-}
-
-.response-followup-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 16px;
-}
-
-.response-followup-button {
-  border: 1px solid #d9d2c2;
-  border-radius: 999px;
-  background: linear-gradient(180deg, #fffefb 0%, #f7f2e7 100%);
-  color: var(--ink);
-  padding: 10px 14px;
+  cursor: pointer;
   text-align: left;
-  font-size: 14px;
-  line-height: 1.4;
+  min-width: 0;
+}
+.scenario-item:hover { border-left-color: var(--accent); }
+
+.scenario-id { color: var(--accent-2); font-size: 12px; flex: none; }
+.scenario-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chat-scroll {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  overflow-y: auto;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.chat-empty-title {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.chat-empty p {
+  margin: 0 0 12px;
+  color: var(--ink-2);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.chat-examples {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.example-chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  text-align: left;
+  padding: 8px 10px;
+  background: var(--strip);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  color: var(--ink);
+  font-size: 13px;
   cursor: pointer;
 }
+.example-chip svg { color: var(--accent); flex: none; }
+.example-chip:hover { border-color: var(--accent); }
 
-.response-followup-button:hover {
-  border-color: #c8b99b;
+.msg { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+
+.msg-role {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink-3);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-@media (max-width: 960px) {
-  .response-grid,
-  .response-call-body {
-    grid-template-columns: 1fr;
-  }
-
-  .response-title {
-    max-width: none;
-  }
+.msg-user .msg-text {
+  background: var(--strip);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.55;
+  overflow-wrap: break-word;   /* long pasted questions wrap inside the bubble */
 }
 
-@media (max-width: 640px) {
-  .response-hero,
-  .response-card,
-  .response-metric-card,
-  .response-answer-card,
-  .response-tier-card,
-  .response-followup-card {
-    padding: 15px;
-  }
-
-  .response-section-head,
-  .response-call-summary {
-    flex-direction: column;
-  }
+.msg-advisor .msg-answer,
+.msg-working {
+  background: var(--panel-2);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 1.6;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
+
+.msg-working {
+  color: var(--ink-2);
+  border-left-color: var(--accent-2);
+}
+
+.msg-error {
+  background: #2a1516;
+  border: 1px solid #5c2325;
+  border-left: 3px solid var(--breach);
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: #ffb4b0;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* ---------------------------------------------------------- markdown body */
+
+.md-p { margin: 0 0 10px; }
+.md-p:last-child { margin-bottom: 0; }
+
+.md-h1, .md-h2, .md-h3, .md-h4 {
+  margin: 4px 0 8px;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.md-h1 { font-size: 17px; font-weight: 700; }
+.md-h2 { font-size: 15px; font-weight: 700; }
+.md-h3 { font-size: 14px; font-weight: 600; }
+.md-h4 { font-size: 13.5px; font-weight: 600; }
+
+.md-ul, .md-ol {
+  margin: 0 0 10px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.md-li { line-height: 1.55; }
+
+.md-code {
+  font-family: "IBM Plex Mono", ui-monospace, "Consolas", monospace;
+  font-size: 12.5px;
+  background: #0b0f12;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: var(--accent);
+}
+
+.md-table-wrap {
+  overflow-x: auto;        /* wide tables scroll in place inside the bubble */
+  max-width: 100%;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  margin: 0 0 10px;
+  background: #0b0f12;
+}
+
+.md-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.md-table th {
+  text-align: left;
+  padding: 7px 10px;
+  color: var(--ink-2);
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+
+.md-table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+  vertical-align: top;
+}
+
+.md-table tbody tr:last-child td { border-bottom: none; }
+
+/* --------------------------------------------------------- ranked options */
+
+.options-rack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.option-card {
+  display: flex;
+  gap: 10px;
+  background: var(--strip);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 10px 12px;
+  min-width: 0;
+  overflow-wrap: break-word;   /* long action/reasoning lines wrap, not bleed */
+}
+.option-card.opt-legal { border-left: 3px solid var(--legal); }
+.option-card.opt-breach { border-left: 3px solid var(--breach); }
+
+.opt-rank {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--panel-2);
+  border: 1px solid var(--rule);
+  color: var(--ink-2);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.opt-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+
+.opt-action { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.4; }
+
+.opt-reasoning {
+  color: var(--ink-2);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+.opt-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+
+.opt-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--panel-2);
+  color: var(--ink-2);
+  font-size: 11.5px;
+  white-space: nowrap;
+}
+
+.opt-legal-chip { font-weight: 600; }
+.chip-legal { color: var(--legal); border-color: #1d5c43; }
+.chip-breach { color: var(--breach); border-color: #5c2325; }
+
+.opt-rules { display: flex; flex-wrap: wrap; gap: 4px; }
+
+.rule-chip {
+  font-size: 10.5px;
+  padding: 1px 6px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  color: var(--ink-3);
+  background: var(--panel-2);
+}
+
+/* -------------------------------------------------------- reasoning trail */
+
+.trail-section { display: flex; flex-direction: column; gap: 6px; }
+
+.trail-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  background: none;
+  border: 1px dashed var(--rule);
+  border-radius: 999px;
+  color: var(--ink-3);
+  font-size: 12px;
+  padding: 4px 10px;
+  cursor: pointer;
+  text-align: left;
+  max-width: 100%;             /* the tier list makes this a long pill */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.trail-toggle:hover { color: var(--ink-2); border-color: var(--ink-3); }
+
+.trail-chevron { margin-left: auto; transition: transform 120ms ease; flex: none; }
+.trail-chevron.flip { transform: rotate(180deg); }
+
+.trail-list { display: flex; flex-direction: column; gap: 4px; }
+
+.trail-item {
+  background: var(--panel-2);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.trail-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 10px;
+  background: none;
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 12.5px;
+  text-align: left;
+  min-width: 0;
+}
+
+.trail-tier-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  flex: none;
+}
+.tier-1 .trail-tier-badge { color: var(--accent); background: #10312e; }
+.tier-2 .trail-tier-badge { color: var(--accent-2); background: #33270e; }
+.tier-3 .trail-tier-badge { color: var(--breach); background: #351718; }
+
+.trail-name { color: var(--ink); font-size: 12px; flex: none; }
+
+.trail-summary {
+  color: var(--ink-3);
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.trail-body {
+  border-top: 1px solid var(--rule);
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: #0b0f12;
+}
+
+.trail-label {
+  color: var(--ink-3);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+.trail-pre {
+  margin: 0;
+  padding: 8px;
+  max-height: 220px;
+  overflow: auto;
+  background: var(--panel-2);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  color: #b8c4cc;
+  font-size: 11.5px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* -------------------------------------------------------------- composer */
+
+.composer {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--rule);
+  background: var(--panel);
+}
+
+.composer textarea {
+  flex: 1;
+  resize: none;
+  background: var(--panel-2);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 9px 11px;
+  font-family: inherit;
+  font-size: 13.5px;
+  line-height: 1.5;
+  outline: none;
+}
+.composer textarea:focus { border-color: var(--accent); }
+.composer textarea::placeholder { color: var(--ink-3); }
+
+.composer button {
+  flex: none;
+  width: 38px;
+  border-radius: 6px;
+  border: 1px solid var(--rule);
+  background: var(--accent);
+  color: #06231f;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.composer button:disabled { opacity: 0.45; cursor: default; }
+
+/* ------------------------------------------------------------- responsive */
+
+@media (max-width: 1100px) {
+  .columns { flex-direction: column; }
+  .chat-panel {
+    width: 100%;
+    height: 60vh;
+    border-left: none;
+    border-top: 1px solid var(--rule);
+  }
+  .deck { flex: none; height: 40vh; }
+}
+
+/* ------------------------------------------------------------- scrollbars */
+
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #232d35; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #2e3a44; }
 
 /* --------------------------------------------------------------- motion */
 
-/* The certificate expanding is the single animated moment in the app.
-   No entrance animations, no hover lifts. */
 @media (prefers-reduced-motion: no-preference) {
-  .expand {
-    animation: expand 140ms ease-out;
-  }
+  .trail-body { animation: slide 140ms ease-out; }
 }
-
-@keyframes expand {
-  from {
-    opacity: 0;
-    transform: translateY(-2px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* ------------------------------------------------------------ scrollbars */
-
-.rail ::-webkit-scrollbar,
-.rail::-webkit-scrollbar {
-  width: 8px;
-}
-.rail::-webkit-scrollbar-thumb {
-  background: #47505722;
+@keyframes slide {
+  from { opacity: 0; transform: translateY(-3px); }
+  to { opacity: 1; transform: none; }
 }
